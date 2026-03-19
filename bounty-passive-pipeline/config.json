@@ -1,7 +1,7 @@
 {
   "PLATFORM_ADAPTERS": ["bugcrowd", "hackerone", "intigriti", "standoff365"],
   "RATE_LIMIT_DELAY_MS": 2000,
-  "DRY_RUN": true,
+  "DRY_RUN": false,
   "MIN_SEVERITY_TO_NOTIFY": "MEDIUM",
   "WATCH_INTERVAL_MS": 21600000,
   "TARGET_PROGRAMS": [],
@@ -9,5 +9,16 @@
   "SNAPSHOT_STORE": "logs/snapshots",
   "ENABLE_TELEGRAM": true,
   "ENABLE_DB": true,
-  "LOG_LEVEL": "info"
+  "LOG_LEVEL": "info",
+  "SCANNER_ENABLED": true,
+  "SCANNER_DRY_RUN": false,
+  "SCANNER_MAX_TARGETS": 20,
+  "SCANNER_TIMEOUT_MS": 300000,
+  "DALFOX_ENABLED": true,
+  "SQLMAP_ENABLED": true,
+  "NUCLEI_ENABLED": true,
+  "NUCLEI_TEMPLATES_DIR": "",
+  "SSRF_ENABLED": true,
+  "AUTH_ENABLED": true,
+  "API_ENABLED": true
 }
