@@ -2,13 +2,14 @@
   "name": "bounty-passive-pipeline",
   "version": "0.1.0",
   "description": "Read-only browser-only bug bounty metadata collector",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "npm run build && playwright test",
     "pipeline": "npm run build && node dist/index.js",
-    "discover": "npm run build && node dist/index.js --discover-only"
+    "discover": "npm run build && node dist/index.js --discover-only",
+    "osint": "npm run build && node dist/src/osint/index.js"
   },
   "author": "",
   "license": "MIT",

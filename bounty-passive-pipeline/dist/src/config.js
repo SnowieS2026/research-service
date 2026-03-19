@@ -32,7 +32,15 @@ const DEFAULT_CONFIG = {
     NUCLEI_TEMPLATES_DIR: '',
     SSRF_ENABLED: true,
     AUTH_ENABLED: true,
-    API_ENABLED: true
+    API_ENABLED: true,
+    // OSINT defaults
+    OSINT_WEB_SEARCH_KEY: '',
+    OSINT_HUNTER_API_KEY: '',
+    OSINT_HIBP_API_KEY: '',
+    OSINT_SHODAN_API_KEY: '',
+    OSINT_NUMVALIDATE_KEY: '',
+    OSINT_DEEP_SEARCH: false,
+    OSINT_TIMEOUT_PER_COLLECTOR_MS: 30_000
 };
 function deepMerge(base, override) {
     const result = { ...base };

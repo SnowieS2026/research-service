@@ -25,6 +25,14 @@ export interface PipelineConfig {
   SSRF_ENABLED: boolean;
   AUTH_ENABLED: boolean;
   API_ENABLED: boolean;
+  // OSINT config
+  OSINT_WEB_SEARCH_KEY?: string;
+  OSINT_HUNTER_API_KEY?: string;
+  OSINT_HIBP_API_KEY?: string;
+  OSINT_SHODAN_API_KEY?: string;
+  OSINT_NUMVALIDATE_KEY?: string;
+  OSINT_DEEP_SEARCH?: boolean;
+  OSINT_TIMEOUT_PER_COLLECTOR_MS?: number;
 }
 
 const SEVERITY_ORDER: Record<string, number> = {
@@ -61,7 +69,15 @@ const DEFAULT_CONFIG: PipelineConfig = {
   NUCLEI_TEMPLATES_DIR: '',
   SSRF_ENABLED: true,
   AUTH_ENABLED: true,
-  API_ENABLED: true
+  API_ENABLED: true,
+  // OSINT defaults
+  OSINT_WEB_SEARCH_KEY: '',
+  OSINT_HUNTER_API_KEY: '',
+  OSINT_HIBP_API_KEY: '',
+  OSINT_SHODAN_API_KEY: '',
+  OSINT_NUMVALIDATE_KEY: '',
+  OSINT_DEEP_SEARCH: false,
+  OSINT_TIMEOUT_PER_COLLECTOR_MS: 30_000
 };
 
 function deepMerge(base: PipelineConfig, override: Partial<PipelineConfig>): PipelineConfig {

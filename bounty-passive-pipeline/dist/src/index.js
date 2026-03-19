@@ -33,6 +33,10 @@ function parseArgs() {
     if (platformIdx !== -1 && args[platformIdx + 1]) {
         return { mode: 'single-platform', platform: args[platformIdx + 1], scan };
     }
+    const osintIdx = args.indexOf('--osint');
+    if (osintIdx !== -1 && args[osintIdx + 1]) {
+        return { mode: 'osint', osintType: args[osintIdx + 1], osintTarget: args[osintIdx + 2] };
+    }
     return { mode: 'watch', scan };
 }
 async function runPipeline(cfg, cli) {
@@ -408,6 +412,19 @@ switch (cli.mode) {
             }
         });
         scheduler.start();
+        break;
+    }
+    case 'osint': {
+        const { runOsint } = await import('./osint/index.js');
+        const { deliverOsintResult } = await import('./osint/deliver.js');
+        const type = cli.osintType;
+        const target = cli.osintTarget ?? '';
+        if (!type || !target) {
+            LOG.error('Usage: npm start -- --osint <type> <target>');
+            process.exit(1);
+        }
+        const result = await runOsint({ type, target, flags: [] });
+        await deliverOsintResult(result);
         break;
     }
 }
