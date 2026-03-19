@@ -1,0 +1,13 @@
+{
+  "PLATFORM_ADAPTERS": ["bugcrowd", "hackerone", "intigriti", "standoff365"],
+  "RATE_LIMIT_DELAY_MS": 2000,
+  "DRY_RUN": true,
+  "MIN_SEVERITY_TO_NOTIFY": "MEDIUM",
+  "WATCH_INTERVAL_MS": 21600000,
+  "TARGET_PROGRAMS": [],
+  "REPORTS_DIR": "reports",
+  "SNAPSHOT_STORE": "logs/snapshots",
+  "ENABLE_TELEGRAM": true,
+  "ENABLE_DB": true,
+  "LOG_LEVEL": "info"
+}

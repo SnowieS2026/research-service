@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "DB_PATH": { "type": "string" },
+    "DRY_RUN": { "type": "boolean", "default": true },
+    "LOG_LEVEL": { "type": "string", "default": "info" },
+    "PLATFORM_ADAPTERS": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": ["bugcrowd", "hackerone", "intigriti", "standoff365"]
+    },
+    "RATE_LIMIT_DELAY_MS": {
+      "type": "number",
+      "default": 500
+    }
+  },
+  "required": ["DB_PATH"]
+}

@@ -1,0 +1,41 @@
+CREATE TABLE programs (
+    id TEXT PRIMARY KEY,
+    platform TEXT NOT NULL,
+    program_name TEXT NOT NULL,
+    program_url TEXT NOT NULL,
+    scope_assets TEXT,
+    rules_json TEXT,
+    reward_range TEXT,
+    reward_currency TEXT,
+    disclosure_policy TEXT,
+    last_fetched TEXT,
+    UNIQUE(platform, program_url)
+);
+
+CREATE TABLE observations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    program_id TEXT,
+    fetched_at TEXT,
+    raw_json TEXT,
+    FOREIGN KEY (program_id) REFERENCES programs (id)
+);
+
+CREATE TABLE program_snapshots (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    program_id TEXT,
+    snapshot_hash TEXT,
+    snapshot_ts TEXT,
+    FOREIGN KEY (program_id) REFERENCES programs (id),
+    UNIQUE(program_id, snapshot_hash)
+);
+
+CREATE TABLE findings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    program_id TEXT,
+    finding_hash TEXT,
+    issue_category TEXT,
+    suspected_severity TEXT,
+    confidence_score REAL,
+    evidence TEXT,
+    FOREIGN KEY (program_id) REFERENCES programs (id)
+);
