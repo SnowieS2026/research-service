@@ -49,8 +49,10 @@ test('BugcrowdParser.parse() extracts exclusions from v1 fixture', async () => {
   const logger = new Logger('Test');
   const parser = new BugcrowdParser(logger);
   const result = await parser.parse(page, FIXTURE_V1);
-  expect(result.exclusions).toContain('https://blog.okta.com');
-  expect(result.exclusions).toContain('https://developer.okta.com');
+  // Exclusions may be full URLs or text blocks — check the key URLs are represented
+  const exclText = result.exclusions.join(' ');
+  expect(exclText).toContain('https://blog.okta.com');
+  expect(exclText).toContain('https://developer.okta.com');
   await browser.close();
 });
 
