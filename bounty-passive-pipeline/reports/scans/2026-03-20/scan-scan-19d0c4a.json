@@ -1,0 +1,2278 @@
+{
+  "scanId": "scan-19d0c4aa25a",
+  "startedAt": "2026-03-20T17:28:31.066Z",
+  "duration": 0,
+  "targetsScanned": 6,
+  "findings": [
+    {
+      "id": "b715bcef1df33c42695eb5c6db8c0e896c457e5e0461ea4ed01bff105d5dd672",
+      "url": "https://pagead2.googlesyndication.com/pagead/gen_204?id=tcfe",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "id",
+      "description": "SSRF via parameter 'id' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 204) from internal resource",
+      "createdAt": "2026-03-20T16:54:27.498Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "b5ebbe1aa7f82c4a0c628309ac64a2878308b6d7b037df659bd2af96e5a13382",
+      "url": "https://stats.g.doubleclick.net/g/collect?v=2&",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "v",
+      "description": "SSRF via parameter 'v' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 204) from internal resource",
+      "createdAt": "2026-03-20T16:54:29.613Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "20dc2ac8a800f1489192b875c0771701b62a1f1845b1771fcd517647e801e8b6",
+      "url": "https://www.google-analytics.com/gtm/js?id=",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "id",
+      "description": "SSRF via parameter 'id' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 404) from internal resource",
+      "createdAt": "2026-03-20T16:54:31.717Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "69b19c46f6cf68768e34827a55e4971fe2cbba5feccab007dda597a36ec25642",
+      "url": "https://www.googletagmanager.com/gtag/js?id=",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "id",
+      "description": "SSRF via parameter 'id' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+      "createdAt": "2026-03-20T16:54:33.834Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "3e13d90bca047a03ad346e298a7da239199896dc3fc143fa8b9db69b0a328e10",
+      "url": "https://www.google-analytics.com/debug/bootstrap?id=",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "id",
+      "description": "SSRF via parameter 'id' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+      "createdAt": "2026-03-20T16:54:36.018Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "608ce414d4a4e7b8ee9260264ff7e62f33f91b5e264b7e94029984e1eade5d3c",
+      "url": "https://play.google.com/log?format=json&hasfast=true",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "format",
+      "description": "SSRF via parameter 'format' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+      "createdAt": "2026-03-20T16:54:38.127Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "0dfb8e7de0b7ca92fac9c17929d24a4d812fb1cdafdc6e792f92b77e2dbfc372",
+      "url": "https://www.googletagmanager.com/gtm.js?id=",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "id",
+      "description": "SSRF via parameter 'id' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 404) from internal resource",
+      "createdAt": "2026-03-20T16:55:05.218Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "787d391bcc7f21554ac18855c60e74535c5ea8d0fce77cb784f28811b3d9a3e2",
+      "url": "https://surveys.okta.com/jfe/form/SV_e4L0iW8a3tz8Yol?source=",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "source",
+      "description": "SSRF via parameter 'source' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 403) from internal resource",
+      "createdAt": "2026-03-20T16:55:09.397Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "f08ff361706e2ba7fca535dbf38a5f9fb6bfa108840af5b5cb65c1153fbfd8a9",
+      "url": "https://www.pendo.io/pendo-free/nps?utm_source=pendo_app&utm_medium=branded-nps&utm_campaign=free-branded-nps",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "utm_source",
+      "description": "SSRF via parameter 'utm_source' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+      "createdAt": "2026-03-20T16:55:13.774Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "ca3934cca2e011c34e938d2000c823073fe80ef3b3a52d412d6b9d4ed8a7054b",
+      "url": "https://www.youtube.com/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.youtube.com/api/v1/users accessible without authentication",
+      "evidence": "GET https://www.youtube.com/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:01:31.341Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "c13f3ec0d361496f935cdf2cdf0016f2ce4b610b16ddf2bba9fdada56dfd5771",
+      "url": "https://www.youtube.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.youtube.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://www.youtube.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:01:32.116Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "06c9af441bbbb2259b7d062f1f55bbc42eebc4dbfd6866f658573e67fd420654",
+      "url": "https://www.youtube.com/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.youtube.com/api/v1/admin accessible without authentication",
+      "evidence": "GET https://www.youtube.com/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:01:32.958Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "147141febf008c159d3ed2cc250db524d5e7c3c44e1e2fb693120f8e5f72b32a",
+      "url": "https://www.youtube.com/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.youtube.com/api/users accessible without authentication",
+      "evidence": "GET https://www.youtube.com/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:01:35.442Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "69f464cfc6b0ca5b49303f88dfb66763231418e243c93ec23ddeae7bc11fb87a",
+      "url": "https://www.youtube.com/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.youtube.com/api/admin accessible without authentication",
+      "evidence": "GET https://www.youtube.com/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:01:36.247Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "b436ef75069f09e975c0dabd13f973515749e51fec2bae6f5d331996583fb228",
+      "url": "https://www.youtube.com/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.youtube.com/api/v2/users accessible without authentication",
+      "evidence": "GET https://www.youtube.com/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:01:47.854Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "04da3d9b70c04f0ae680b5cef75e8db4da1a77c476e33d388fa44aae50cfb594",
+      "url": "https://www.youtube.com/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.youtube.com/api/me accessible without authentication",
+      "evidence": "GET https://www.youtube.com/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:01:49.473Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "4004e19cd41d278a4ea16b792d5fe577be80f3ea188cf638bf80b08685beb887",
+      "url": "https://www.youtube.com/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.youtube.com/api/config accessible without authentication",
+      "evidence": "GET https://www.youtube.com/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:01:50.239Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "43da0aee509caf7532a4aa3c514954703bda212bd69665524a3d096da0019433",
+      "url": "https://www.youtube.com/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.youtube.com/api/settings accessible without authentication",
+      "evidence": "GET https://www.youtube.com/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:01:51.088Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "949e985f1a613e3853a146b0bd17a3b8b3ccec4f193941238cc39af9dd1edaf3",
+      "url": "https://m.youtube.com/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://m.youtube.com/api/v1/users accessible without authentication",
+      "evidence": "GET https://m.youtube.com/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:01:58.089Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "1fec00cd6a97435fe338a2cc6d389f0f9dc8ec315f7fa89f021c11454d0606c5",
+      "url": "https://m.youtube.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://m.youtube.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://m.youtube.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:01:58.884Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "3b76f7f386f744466485f49ada037e199581d1a95732403338cf5395e8c8694f",
+      "url": "https://m.youtube.com/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://m.youtube.com/api/v1/admin accessible without authentication",
+      "evidence": "GET https://m.youtube.com/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:01:59.693Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "cf248f72db796523edb859fb8c559393624399318beaed7c53438e6fab89e204",
+      "url": "https://m.youtube.com/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://m.youtube.com/api/users accessible without authentication",
+      "evidence": "GET https://m.youtube.com/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:02:02.114Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "dbee7125a3f7e783125f414564cc2ec1fd1d3606ad53c1499aeb1634e496a328",
+      "url": "https://m.youtube.com/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://m.youtube.com/api/admin accessible without authentication",
+      "evidence": "GET https://m.youtube.com/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:02:02.948Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "19716377b941566a8c11990939f673a6b9ea64617d2219b62651100e90cf6a8a",
+      "url": "https://m.youtube.com/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://m.youtube.com/api/v2/users accessible without authentication",
+      "evidence": "GET https://m.youtube.com/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:02:15.211Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "af4eb976cd17ddd282dbf65f6e1cc3e94008ab1cf962be7e464ad42c07bcdaf0",
+      "url": "https://m.youtube.com/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://m.youtube.com/api/me accessible without authentication",
+      "evidence": "GET https://m.youtube.com/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:02:16.821Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "1a5fd42b29d44bcd2f6b4015392c8b6dbc770118db75c3e728a46fef5d2a4257",
+      "url": "https://m.youtube.com/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://m.youtube.com/api/config accessible without authentication",
+      "evidence": "GET https://m.youtube.com/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:02:17.739Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "5bfccb2da16377fd92f5eb5ba10e7bd136da0968fd1a1f3a8a0b4d90f5dc6baf",
+      "url": "https://m.youtube.com/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://m.youtube.com/api/settings accessible without authentication",
+      "evidence": "GET https://m.youtube.com/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:02:18.660Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "af473c9a73aac27be34525cd6e3161ff20302ec3f963ecdc0bf191d26fb28c49",
+      "url": "https://stats.g.doubleclick.net/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://stats.g.doubleclick.net/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://stats.g.doubleclick.net/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:03:22.695Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "a1012d314dc633652f287d3578b4bc332a796d5397470dd068f7b84e464621a5",
+      "url": "https://www.google-analytics.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://www.google-analytics.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://www.google-analytics.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:04:03.365Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "90c73cb2bdf265761f3edf6c8756b0e5cc1104c66ce5a25c4c30d1779c5397fb",
+      "url": "https://angular.dev/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.dev/api/v1/users accessible without authentication",
+      "evidence": "GET https://angular.dev/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:04:46.023Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "405a2fc12b6e48efeeb6c5febe28e9d7d79236b73a708e47754403357182e3eb",
+      "url": "https://angular.dev/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.dev/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://angular.dev/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:04:46.608Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "63d90951c40cec0d9b68aead62a7adfa9aa4f08cc1e33143b90b78bd304fbe8a",
+      "url": "https://angular.dev/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.dev/api/v1/admin accessible without authentication",
+      "evidence": "GET https://angular.dev/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:04:47.223Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "e8aa6d84855f25f65b7f950c4be479ef86ab2f009bee6fa0eed29d2a94f9d770",
+      "url": "https://angular.dev/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.dev/api/users accessible without authentication",
+      "evidence": "GET https://angular.dev/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:04:49.209Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "f54ce3d356d27dbc97e86606fa9f7ae30e3082aa5202254f614eb1ba92672685",
+      "url": "https://angular.dev/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.dev/api/admin accessible without authentication",
+      "evidence": "GET https://angular.dev/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:04:49.800Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "20eb5445e4dc26df78d41232db03dbd3bbad14f97dbd0185181ca4dc12061711",
+      "url": "https://angular.dev/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.dev/api/v2/users accessible without authentication",
+      "evidence": "GET https://angular.dev/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:04:58.858Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "f23f38da9b1287ed0336c99a37304b00cf2cb768a2a4d280879c3e41ef5237fc",
+      "url": "https://angular.dev/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.dev/api/me accessible without authentication",
+      "evidence": "GET https://angular.dev/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:05:00.071Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "6896b1d684f2c390fba94c6e3734012c519b6f07a113b9705676dfda4b392032",
+      "url": "https://angular.dev/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.dev/api/config accessible without authentication",
+      "evidence": "GET https://angular.dev/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:05:00.660Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "9f5d7b0f4b905b18a79050dee211c57f5ad9f31c04c8e99d4907c94dc5febc97",
+      "url": "https://angular.dev/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.dev/api/settings accessible without authentication",
+      "evidence": "GET https://angular.dev/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:05:01.257Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "545c14f9c26b1270f4e796c55dce2bd70bf36f51064ccb6054c92abbe3e23f2c",
+      "url": "https://angular.io/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.io/api/v1/users accessible without authentication",
+      "evidence": "GET https://angular.io/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:05:06.955Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "be6c3ac59ef9a069ad3bf3dabe745f2b31b8807f2bba2a8b4058c1fa54ffb614",
+      "url": "https://angular.io/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.io/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://angular.io/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:05:07.591Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "b1f0cbe49850175e6b05cff8aeef04efe97828bee00d21ee79131f58a5265697",
+      "url": "https://angular.io/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.io/api/v1/admin accessible without authentication",
+      "evidence": "GET https://angular.io/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:05:08.215Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "90e8c435b421c3584c953e5bfcf9a88f6e553c01a8dbb1ae4d0e553b2eedf405",
+      "url": "https://angular.io/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.io/api/users accessible without authentication",
+      "evidence": "GET https://angular.io/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:05:10.097Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "5d2c98a15556e4a58a4d26f7cb7f45e4e72fd517bf4030a8aff5a6a644fc8b70",
+      "url": "https://angular.io/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.io/api/admin accessible without authentication",
+      "evidence": "GET https://angular.io/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:05:10.732Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "2a9e4d838dc2e54ca8949e6f755925d1cc3a91247141809a61628160fc9edf7f",
+      "url": "https://angular.io/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.io/api/v2/users accessible without authentication",
+      "evidence": "GET https://angular.io/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:05:19.821Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "fd38b6fa04c8a5090ea92679908dff7fbc0a0da68b5e9a4133f025397ec66986",
+      "url": "https://angular.io/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.io/api/me accessible without authentication",
+      "evidence": "GET https://angular.io/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:05:21.065Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "f04ec9991d8d1d35374bf026732d9491e7816693180e0fd14be9dadcc47aeea0",
+      "url": "https://angular.io/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.io/api/config accessible without authentication",
+      "evidence": "GET https://angular.io/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:05:21.698Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "c30072ac64cac154f2e6dc660ccb220f34a441d6777dd106cb300b23fbb888bd",
+      "url": "https://angular.io/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://angular.io/api/settings accessible without authentication",
+      "evidence": "GET https://angular.io/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:05:22.341Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "d632009a5f7cc9764e38914cf72875dd9162fa2bc36e9586f2ce2a11b6998fb3",
+      "url": "http://angular.io/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://angular.io/api/v1/users accessible without authentication",
+      "evidence": "GET http://angular.io/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:07:17.162Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "a2cfa7737278676ad64eb136f04bf8526d64cde237d748147b68655aeb062738",
+      "url": "http://angular.io/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://angular.io/api/v1/users/ accessible without authentication",
+      "evidence": "GET http://angular.io/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:07:17.841Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "71f6b68d6266a6587d60adfb1f950e7b914099eec2ce6ac3ccb674483817ce12",
+      "url": "http://angular.io/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://angular.io/api/v1/admin accessible without authentication",
+      "evidence": "GET http://angular.io/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:07:18.524Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "f03c738b71c50314b0928585b59647597f16e5829254598cf3d030909b68b747",
+      "url": "http://angular.io/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://angular.io/api/users accessible without authentication",
+      "evidence": "GET http://angular.io/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:07:20.631Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "1bb8dcec7f54d11793ae41e0ea22ff4d40718b22d2eae325a4cea1fa8ddd9538",
+      "url": "http://angular.io/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://angular.io/api/admin accessible without authentication",
+      "evidence": "GET http://angular.io/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:07:21.322Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "f96e0483a85f43d9ff206d36192af4a3b5fc345e6969302ceed2c3c8754b4e37",
+      "url": "http://angular.io/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://angular.io/api/v2/users accessible without authentication",
+      "evidence": "GET http://angular.io/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:07:31.257Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "a666a2b7574a8ee4b21e20c16f8e4f2b60a0b42c3413bec5a8444910a0544b39",
+      "url": "http://angular.io/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://angular.io/api/me accessible without authentication",
+      "evidence": "GET http://angular.io/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:07:32.623Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "0f0db43f436a8f20bf831b71df6865f2369e1105c836a98c8b05c94287f215e6",
+      "url": "http://angular.io/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://angular.io/api/config accessible without authentication",
+      "evidence": "GET http://angular.io/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:07:33.304Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "9464d7f1ed0613494a1ea86e4861b4d2a0df31648a229de0d37649813db853d1",
+      "url": "http://angular.io/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://angular.io/api/settings accessible without authentication",
+      "evidence": "GET http://angular.io/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:07:33.970Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "429160e4f6217cde77033f7dd0f55ca4f45c763414d3a93d87ad6ea1e5a3efe9",
+      "url": "https://apis.google.com/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://apis.google.com/api/v1/users accessible without authentication",
+      "evidence": "GET https://apis.google.com/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:12:53.132Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "67f5bbda8dcb4b4037b715db7fa3047720051c8b24ad1b5960c8401a98fcc31d",
+      "url": "https://apis.google.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://apis.google.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://apis.google.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:12:54.109Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "273b72e907babbb546ec7f57feee31fbffc28646dc120cbfbb8fe98138cde726",
+      "url": "https://apis.google.com/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://apis.google.com/api/v1/admin accessible without authentication",
+      "evidence": "GET https://apis.google.com/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:12:55.361Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "a21eb72cf356a0f77bc8e2d5ea5591509c5e42add96522f1490e40ad528be5d7",
+      "url": "https://apis.google.com/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://apis.google.com/api/users accessible without authentication",
+      "evidence": "GET https://apis.google.com/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:12:58.862Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "c1a41e7dbc83f51690c68bd689e29d2b7fb31dc9edbd15dbd95881048d6ac57e",
+      "url": "https://apis.google.com/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://apis.google.com/api/admin accessible without authentication",
+      "evidence": "GET https://apis.google.com/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:12:59.909Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "28895f46e4415fdcc34e7cf713f2c7f55491b553c939cab807609d23971f56af",
+      "url": "https://apis.google.com/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://apis.google.com/api/v2/users accessible without authentication",
+      "evidence": "GET https://apis.google.com/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:13:17.903Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "fa31805cfde5b355d5816aa94e13b64fc23f978321a57fc6cd493296c80ebc35",
+      "url": "https://apis.google.com/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://apis.google.com/api/me accessible without authentication",
+      "evidence": "GET https://apis.google.com/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:13:20.656Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "d9a7a04a103f7d3c3ab3c0535f30db5b0c6ed6fd5a209b567bc6467623bd99ce",
+      "url": "https://apis.google.com/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://apis.google.com/api/config accessible without authentication",
+      "evidence": "GET https://apis.google.com/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:13:21.662Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "2c86a06218049a7d0964bdbae1faa2d50ea8e49d30e810bdd2fec33eba4100ff",
+      "url": "https://apis.google.com/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://apis.google.com/api/settings accessible without authentication",
+      "evidence": "GET https://apis.google.com/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:13:23.070Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "a00fbc9ad2d1c08ce3f96607c72deaa58de5f66b3d37e382dd5013c83081b77b",
+      "url": "https://ngrx.io/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://ngrx.io/api/v1/users accessible without authentication",
+      "evidence": "GET https://ngrx.io/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:13:34.174Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "b5aab0d7d9464c4735050637517c46a0aedcd271fc527b0a4072d80dc9dc2271",
+      "url": "https://ngrx.io/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://ngrx.io/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://ngrx.io/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:13:34.845Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "4310df81b970bfee6b21182cf622147e6ef6e965e35ebe8b2d78eb89c676313c",
+      "url": "https://ngrx.io/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://ngrx.io/api/v1/admin accessible without authentication",
+      "evidence": "GET https://ngrx.io/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:13:35.504Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "104d431c393170b6ae371688207baf1474573278281219f483bc76eab64c49c8",
+      "url": "https://ngrx.io/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://ngrx.io/api/users accessible without authentication",
+      "evidence": "GET https://ngrx.io/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:13:37.621Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "8134fb2e4d6375a845ab1369e90f909af44d129d5174abde16556e5b3e5f83d4",
+      "url": "https://ngrx.io/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://ngrx.io/api/admin accessible without authentication",
+      "evidence": "GET https://ngrx.io/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:13:38.284Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "0bac08c168ea2744ad3f2e17771e7e768ac72355c9575784e7cf2bd0cf7a003f",
+      "url": "https://ngrx.io/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://ngrx.io/api/v2/users accessible without authentication",
+      "evidence": "GET https://ngrx.io/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:13:49.057Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "3011f2aa2fb812b572f9ced6a9f46c4c7ef7aa5bdd344132a90c2f73613e5604",
+      "url": "https://ngrx.io/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://ngrx.io/api/me accessible without authentication",
+      "evidence": "GET https://ngrx.io/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:13:50.370Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "2829afe8fab7dd520ab7192640e07f269e2d00a6d9ef49a9c7683c3dd0ac072a",
+      "url": "https://ngrx.io/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://ngrx.io/api/config accessible without authentication",
+      "evidence": "GET https://ngrx.io/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:13:51.031Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "09a1c4a470a910540d06fcb7ae5ffddd6059a349858d5229cdfe0e37a4b8df31",
+      "url": "https://ngrx.io/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://ngrx.io/api/settings accessible without authentication",
+      "evidence": "GET https://ngrx.io/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:13:51.689Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "ff50249d6146233ce2d7ad9283bbf929bc1f9573e2ad67ff84b57e0d8ab59738",
+      "url": "https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users accessible without authentication",
+      "evidence": "GET https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:14:35.558Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "e3308b3e312447d7a00f17152185dfb19dc560b7a20043d82af343183183f61d",
+      "url": "https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:14:36.170Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "f544c8fb527f768b0a9038b9f8c7119622df2794fa0afbd129683529c9d4ef43",
+      "url": "https://dev-alkalicore-pa.corp.googleapis.com/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkalicore-pa.corp.googleapis.com/api/v1/admin accessible without authentication",
+      "evidence": "GET https://dev-alkalicore-pa.corp.googleapis.com/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:14:36.785Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "e7e60b5578e824086b3dc935dd155d5043c34ff8ca84e097a5fb086bdbf579e2",
+      "url": "https://dev-alkalicore-pa.corp.googleapis.com/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkalicore-pa.corp.googleapis.com/api/users accessible without authentication",
+      "evidence": "GET https://dev-alkalicore-pa.corp.googleapis.com/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:14:38.633Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "f59c084c1f8a5d9ff20b05d835c6ea58e193736e992ce2324d95c07263b63227",
+      "url": "https://dev-alkalicore-pa.corp.googleapis.com/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkalicore-pa.corp.googleapis.com/api/admin accessible without authentication",
+      "evidence": "GET https://dev-alkalicore-pa.corp.googleapis.com/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:14:39.256Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "2645c4ec41bb42bd31e8428d4437c753e497caf10444897ae1c018745c998ced",
+      "url": "https://dev-alkalicore-pa.corp.googleapis.com/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkalicore-pa.corp.googleapis.com/api/v2/users accessible without authentication",
+      "evidence": "GET https://dev-alkalicore-pa.corp.googleapis.com/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:14:48.522Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "5124a57b036005ef480f03f5c9b6fa0b8c37392463bbd4f4e86f5b31fb71e492",
+      "url": "https://dev-alkalicore-pa.corp.googleapis.com/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkalicore-pa.corp.googleapis.com/api/me accessible without authentication",
+      "evidence": "GET https://dev-alkalicore-pa.corp.googleapis.com/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:14:49.758Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "872cdf12ef8225828743740aff58b34754d2d938f4358ee6b5d7fe9500af3d63",
+      "url": "https://dev-alkalicore-pa.corp.googleapis.com/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkalicore-pa.corp.googleapis.com/api/config accessible without authentication",
+      "evidence": "GET https://dev-alkalicore-pa.corp.googleapis.com/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:14:50.375Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "95cae42c5e76ff33c29e2a5d6cc53f284dd8cbace840de12f6b286aeffeb1d2e",
+      "url": "https://dev-alkalicore-pa.corp.googleapis.com/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkalicore-pa.corp.googleapis.com/api/settings accessible without authentication",
+      "evidence": "GET https://dev-alkalicore-pa.corp.googleapis.com/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:14:50.987Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "cf51d95530b45205c264006492d35981ae7da26d225dfd826a1a7e80beb2fd67",
+      "url": "https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users accessible without authentication",
+      "evidence": "GET https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:14:56.659Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "ec252c62848527c99a8094189b4efb0d99d04a5b99721a6d6c9bc775be183e95",
+      "url": "https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:14:57.286Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "c87370ce962e9f7fba0f8eb8a63532f35948c6cff70b5b63df6b2d55df477f47",
+      "url": "https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/admin accessible without authentication",
+      "evidence": "GET https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:14:57.903Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "f413d8a7ccd1f8ab8f884321e2151fe64a6a5a8848d920643a85b44f7e3c2f97",
+      "url": "https://dev-alkaliauth-pa.corp.googleapis.com/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkaliauth-pa.corp.googleapis.com/api/users accessible without authentication",
+      "evidence": "GET https://dev-alkaliauth-pa.corp.googleapis.com/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:14:59.747Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "3468d83f68156fb5d28e9f5daa87fb0805e14209c595964144238c54345b259a",
+      "url": "https://dev-alkaliauth-pa.corp.googleapis.com/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkaliauth-pa.corp.googleapis.com/api/admin accessible without authentication",
+      "evidence": "GET https://dev-alkaliauth-pa.corp.googleapis.com/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:15:00.376Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "bd439fd0017db1be4e3c2e435afa43b1d9ecc9bd3af8f2e29b19ffe619595c6b",
+      "url": "https://dev-alkaliauth-pa.corp.googleapis.com/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkaliauth-pa.corp.googleapis.com/api/v2/users accessible without authentication",
+      "evidence": "GET https://dev-alkaliauth-pa.corp.googleapis.com/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:15:09.689Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "1a3bf645fa7e7fc386553cee540b04f19e61a0abf348315ead61d442b3e59e15",
+      "url": "https://dev-alkaliauth-pa.corp.googleapis.com/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkaliauth-pa.corp.googleapis.com/api/me accessible without authentication",
+      "evidence": "GET https://dev-alkaliauth-pa.corp.googleapis.com/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:15:10.921Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "36f72a7c2476fecb6c208933e57b980e1430c3cbed8ac8b999b8e155fd09ed88",
+      "url": "https://dev-alkaliauth-pa.corp.googleapis.com/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkaliauth-pa.corp.googleapis.com/api/config accessible without authentication",
+      "evidence": "GET https://dev-alkaliauth-pa.corp.googleapis.com/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:15:11.540Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "2ce674a7aea47a4684fa8f55f9c1d1a6889ff79793ed69ee1be1bc2927e19158",
+      "url": "https://dev-alkaliauth-pa.corp.googleapis.com/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-alkaliauth-pa.corp.googleapis.com/api/settings accessible without authentication",
+      "evidence": "GET https://dev-alkaliauth-pa.corp.googleapis.com/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:15:12.153Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "71e4ad91b928a4a920f4b341e05c765c00d3d068c0ed3c5d7bb9130edf2bca51",
+      "url": "https://pulse-tracker.corp.google.com/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://pulse-tracker.corp.google.com/api/v1/users accessible without authentication",
+      "evidence": "GET https://pulse-tracker.corp.google.com/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:17:25.693Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "39acb3f0b88a8d8dc09086c71cdca619c9666dd41f87148101f2195c5f4e7460",
+      "url": "https://pulse-tracker.corp.google.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://pulse-tracker.corp.google.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://pulse-tracker.corp.google.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:17:26.306Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "aa42573aed7e08c8830f00b91bddb64a43df23fab0ed8ad663800e331d85c866",
+      "url": "https://pulse-tracker.corp.google.com/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://pulse-tracker.corp.google.com/api/v1/admin accessible without authentication",
+      "evidence": "GET https://pulse-tracker.corp.google.com/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:17:26.926Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "835dba6569512a65123a4865342609fa4824f8cad2d5444abcc96cfb60ab7cc0",
+      "url": "https://pulse-tracker.corp.google.com/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://pulse-tracker.corp.google.com/api/users accessible without authentication",
+      "evidence": "GET https://pulse-tracker.corp.google.com/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:17:28.784Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "1d1658d154fc03f5a959e4a618f8c01a83cdf7784a0ca7ec49b45fd73f7f01ea",
+      "url": "https://pulse-tracker.corp.google.com/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://pulse-tracker.corp.google.com/api/admin accessible without authentication",
+      "evidence": "GET https://pulse-tracker.corp.google.com/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:17:29.392Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "2521c9c33d55c4be4b50909c752dbfe769a62aabcadefbac6ce36c41b657a994",
+      "url": "https://pulse-tracker.corp.google.com/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://pulse-tracker.corp.google.com/api/v2/users accessible without authentication",
+      "evidence": "GET https://pulse-tracker.corp.google.com/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:17:38.646Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "6aa4222a22136b077746d941c397e351e048475afa47e5c0c5d90b7edd488267",
+      "url": "https://pulse-tracker.corp.google.com/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://pulse-tracker.corp.google.com/api/me accessible without authentication",
+      "evidence": "GET https://pulse-tracker.corp.google.com/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:17:39.891Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "0f903fe9b5c9160c4d841b1a6615852b460430fcca4aa55a501d20d26736f25a",
+      "url": "https://pulse-tracker.corp.google.com/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://pulse-tracker.corp.google.com/api/config accessible without authentication",
+      "evidence": "GET https://pulse-tracker.corp.google.com/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:17:40.511Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "bd8f2ce45286cd3339ae5c6db3185e789f961808f937f2b0709cae92ad649ce6",
+      "url": "https://pulse-tracker.corp.google.com/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://pulse-tracker.corp.google.com/api/settings accessible without authentication",
+      "evidence": "GET https://pulse-tracker.corp.google.com/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:17:41.120Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "0e203e1cbf9194ad40cf4a04409a020a3c665d49d349714f6ab7000a7f530032",
+      "url": "https://dev-people-pa.corp.googleapis.com/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-people-pa.corp.googleapis.com/api/v1/users accessible without authentication",
+      "evidence": "GET https://dev-people-pa.corp.googleapis.com/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:20:59.425Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "9a80eaab84802babc7204e9c2c4e9cfc3796945938cd3980d1b3c22bd1318818",
+      "url": "https://dev-people-pa.corp.googleapis.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-people-pa.corp.googleapis.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://dev-people-pa.corp.googleapis.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:21:00.036Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "ce2112bc15d7d567a9c36d887070853fe584ce32f9a03d1381438fec8d5096d2",
+      "url": "https://dev-people-pa.corp.googleapis.com/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-people-pa.corp.googleapis.com/api/v1/admin accessible without authentication",
+      "evidence": "GET https://dev-people-pa.corp.googleapis.com/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:21:00.643Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "b8bc0bd062be714d1aa43d0f502768e20645fa67ef4af7cb2c27c7f6fa0ce4dd",
+      "url": "https://dev-people-pa.corp.googleapis.com/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-people-pa.corp.googleapis.com/api/users accessible without authentication",
+      "evidence": "GET https://dev-people-pa.corp.googleapis.com/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:21:02.456Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "0da08cf8fd5ff1250b0cb64adbde10deac587cc9dbbe30909fc673cda9eea6da",
+      "url": "https://dev-people-pa.corp.googleapis.com/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-people-pa.corp.googleapis.com/api/admin accessible without authentication",
+      "evidence": "GET https://dev-people-pa.corp.googleapis.com/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:21:03.061Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "a22171bd27043c9acd2226bb7ed4d984bcc815b9173d2c27fff4d869e1a914c2",
+      "url": "https://dev-people-pa.corp.googleapis.com/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-people-pa.corp.googleapis.com/api/v2/users accessible without authentication",
+      "evidence": "GET https://dev-people-pa.corp.googleapis.com/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:21:12.182Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "3c4ab6239a9d094628c617fdfafab7b71cdd62ddd2f9944f7d5171ad6233852b",
+      "url": "https://dev-people-pa.corp.googleapis.com/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-people-pa.corp.googleapis.com/api/me accessible without authentication",
+      "evidence": "GET https://dev-people-pa.corp.googleapis.com/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:21:13.414Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "5d0ac73cbe018315c2423061f63b006ee6eda4a7b71278256fd841e7f26350e3",
+      "url": "https://dev-people-pa.corp.googleapis.com/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-people-pa.corp.googleapis.com/api/config accessible without authentication",
+      "evidence": "GET https://dev-people-pa.corp.googleapis.com/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:21:14.022Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "4421391a84445e5eb9ca39758a4be5a55ece2e9d560d9809aa97bb4062d38527",
+      "url": "https://dev-people-pa.corp.googleapis.com/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://dev-people-pa.corp.googleapis.com/api/settings accessible without authentication",
+      "evidence": "GET https://dev-people-pa.corp.googleapis.com/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:21:14.773Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "54618d468a292ce64430eb2b4bf11576aae25b1d1989c2686da24553ae20d38b",
+      "url": "https://support.google.com/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://support.google.com/api/v1/users accessible without authentication",
+      "evidence": "GET https://support.google.com/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:21:20.518Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "d07e856a8ebc83f514f9e5357fdcd5bac43e4a349b2d28707461bd7da921be6b",
+      "url": "https://support.google.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://support.google.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://support.google.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:21:21.301Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "2884558e99efb4286f2edd5f8723e3c6fff19962d08981b21ac9d5994b827c99",
+      "url": "https://support.google.com/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://support.google.com/api/v1/admin accessible without authentication",
+      "evidence": "GET https://support.google.com/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:21:22.099Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "e1085a55902bde3e8838f3965992bf310e0ab3f1594723f90994999902aaa21f",
+      "url": "https://support.google.com/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://support.google.com/api/users accessible without authentication",
+      "evidence": "GET https://support.google.com/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:21:24.460Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "0c68a45fa0f79ddcd189be6733c65a09ea0161c0e6193ee7f89a0bbc487b9fc2",
+      "url": "https://support.google.com/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://support.google.com/api/admin accessible without authentication",
+      "evidence": "GET https://support.google.com/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:21:25.265Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "c0826d337f30c96b8cdc006538ac7971fa3b078e0656972b5506733a12fec454",
+      "url": "https://support.google.com/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://support.google.com/api/v2/users accessible without authentication",
+      "evidence": "GET https://support.google.com/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:21:36.697Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "8bbf916e6563fe0e224edb718606344f26a81c38a8e21c23f77cb43b577e0bde",
+      "url": "https://support.google.com/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://support.google.com/api/me accessible without authentication",
+      "evidence": "GET https://support.google.com/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:21:38.281Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "2aea94da55cc184ab8338ff7ccb4b476b27b4390e17f813c64d227e9c3f7290a",
+      "url": "https://support.google.com/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://support.google.com/api/config accessible without authentication",
+      "evidence": "GET https://support.google.com/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:21:39.069Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "04c632315eddca7a86c355393622f21571eb33962fabdc2f33e6b181372f8108",
+      "url": "https://support.google.com/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://support.google.com/api/settings accessible without authentication",
+      "evidence": "GET https://support.google.com/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:21:39.820Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "1b8dc63deee94893bee1e921d017161fc191309d6dc090d769465274c4181f05",
+      "url": "https://agent.pendo.io/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://agent.pendo.io/api/v1/users accessible without authentication",
+      "evidence": "GET https://agent.pendo.io/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:22:59.117Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "a7f20151650380354a20dfd7286a518849a5996f0379a1c90b5031b6f0f5a569",
+      "url": "https://agent.pendo.io/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://agent.pendo.io/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://agent.pendo.io/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:22:59.683Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "a7ab11623443bce0acada36025bb91faf22b335642bf85696f0fdf7f8083afca",
+      "url": "https://agent.pendo.io/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://agent.pendo.io/api/v1/admin accessible without authentication",
+      "evidence": "GET https://agent.pendo.io/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:23:00.250Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "37cf69e9d25f5c0eeaf8954bfdd4c74c28d340a74e6d781f521b28c1295b84db",
+      "url": "https://agent.pendo.io/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://agent.pendo.io/api/users accessible without authentication",
+      "evidence": "GET https://agent.pendo.io/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:23:01.935Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "fdad3d1da7f5358590718450a7ce3df04a5feecf9bb2a88f4b50c529594f1fdc",
+      "url": "https://agent.pendo.io/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://agent.pendo.io/api/admin accessible without authentication",
+      "evidence": "GET https://agent.pendo.io/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:23:02.497Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "41629e954382887df4e1e58b80ee8f3c395838d6c29d219ed376696d609525f8",
+      "url": "https://agent.pendo.io/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://agent.pendo.io/api/v2/users accessible without authentication",
+      "evidence": "GET https://agent.pendo.io/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:23:11.009Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "e0e2e3f7caed943c86e622799cb32d8be1ece468285717ab1040543495b998f2",
+      "url": "https://agent.pendo.io/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://agent.pendo.io/api/me accessible without authentication",
+      "evidence": "GET https://agent.pendo.io/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:23:12.131Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "efd2e25c550f1bfe36af8b0c9387c5dc225a216d5af13fab5d2678553f034f86",
+      "url": "https://agent.pendo.io/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://agent.pendo.io/api/config accessible without authentication",
+      "evidence": "GET https://agent.pendo.io/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:23:12.701Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "00d25e30d5e313a95ca544c4c69871e0f9948fa3a740a975165e736847b00de4",
+      "url": "https://agent.pendo.io/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://agent.pendo.io/api/settings accessible without authentication",
+      "evidence": "GET https://agent.pendo.io/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:23:13.262Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "95651e20f37e3c79c4972070448d693ddfd908a7fe1d840b0a1e8a6938127d99",
+      "url": "https://app.pendo.io/api/v1/users",
+      "type": "api",
+      "severity": "MEDIUM",
+      "cvss": 6.1,
+      "tool": "api-scanner",
+      "description": "CORS misconfiguration on https://app.pendo.io/api/v1/users – dangerous HTTP methods allowed",
+      "evidence": "Access-Control-Allow-Methods: GET,POST,PUT,DELETE",
+      "createdAt": "2026-03-20T17:23:18.492Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/09-Testing_for_Web_Services/"
+      ],
+      "subType": "cors-misconfiguration"
+    },
+    {
+      "id": "912f68469dc76a51a9e820a879dc22b4500e4052b26e8468e99b98e1fec06549",
+      "url": "https://app.pendo.io/api/v1/users/",
+      "type": "api",
+      "severity": "MEDIUM",
+      "cvss": 6.1,
+      "tool": "api-scanner",
+      "description": "CORS misconfiguration on https://app.pendo.io/api/v1/users/ – dangerous HTTP methods allowed",
+      "evidence": "Access-Control-Allow-Methods: GET,POST,PUT,DELETE",
+      "createdAt": "2026-03-20T17:23:19.136Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/09-Testing_for_Web_Services/"
+      ],
+      "subType": "cors-misconfiguration"
+    },
+    {
+      "id": "e24a29e52d5207956ebb046d17978ad5007c3e24768052301d2590ed21a0f1d5",
+      "url": "https://app.pendo.io/api/v1/admin",
+      "type": "api",
+      "severity": "MEDIUM",
+      "cvss": 6.1,
+      "tool": "api-scanner",
+      "description": "CORS misconfiguration on https://app.pendo.io/api/v1/admin – dangerous HTTP methods allowed",
+      "evidence": "Access-Control-Allow-Methods: GET,POST,PUT,DELETE",
+      "createdAt": "2026-03-20T17:23:19.779Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/09-Testing_for_Web_Services/"
+      ],
+      "subType": "cors-misconfiguration"
+    },
+    {
+      "id": "a34fcd4ef98c9d78c6f0fe607aa15570db9403f35a8fd37aa7bcd90c206935ab",
+      "url": "https://app.pendo.io/api/v1/",
+      "type": "api",
+      "severity": "MEDIUM",
+      "cvss": 6.1,
+      "tool": "api-scanner",
+      "description": "CORS misconfiguration on https://app.pendo.io/api/v1/ – dangerous HTTP methods allowed",
+      "evidence": "Access-Control-Allow-Methods: GET,POST,PUT,DELETE",
+      "createdAt": "2026-03-20T17:23:30.693Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/09-Testing_for_Web_Services/"
+      ],
+      "subType": "cors-misconfiguration"
+    },
+    {
+      "id": "70baad486c0dd1551e9b8ca88f10cefc563805ca7e4d25e5815ad2ecf94d9d36",
+      "url": "http://help.pendo.io/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://help.pendo.io/api/v1/users accessible without authentication",
+      "evidence": "GET http://help.pendo.io/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:23:40.626Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "63275506622cc70d8f6182ac5537caa80921b2fb0560de68413cf22933009d31",
+      "url": "http://help.pendo.io/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://help.pendo.io/api/v1/users/ accessible without authentication",
+      "evidence": "GET http://help.pendo.io/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:23:41.300Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "6783edd41b086edf62809239fb013967d994005462bd81e8b684d78ba6395f28",
+      "url": "http://help.pendo.io/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://help.pendo.io/api/v1/admin accessible without authentication",
+      "evidence": "GET http://help.pendo.io/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:23:41.984Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "4b2d55ee11e79d009869a709a8a57b89b1d0bb4a945f2741b54d61ad92456903",
+      "url": "http://help.pendo.io/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://help.pendo.io/api/users accessible without authentication",
+      "evidence": "GET http://help.pendo.io/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:23:44.050Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "8759d9895a18551286f10fb08866627f215afded4643ab6b8f5092caf5cb13ff",
+      "url": "http://help.pendo.io/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://help.pendo.io/api/admin accessible without authentication",
+      "evidence": "GET http://help.pendo.io/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:23:44.728Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "de4d77c7a794127aaca9df8c95b218abaf3dfd406084926f9d7f984fdadbf889",
+      "url": "http://help.pendo.io/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://help.pendo.io/api/v2/users accessible without authentication",
+      "evidence": "GET http://help.pendo.io/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:23:54.720Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "8d98d28a05b451eb652d11dfc8b1355279599b2978fadb6afc928ce574ec7b80",
+      "url": "http://help.pendo.io/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://help.pendo.io/api/me accessible without authentication",
+      "evidence": "GET http://help.pendo.io/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:23:56.071Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "cded533d551def208b247f93af62f2930ea563f40410958eaef198e211ed4bb4",
+      "url": "http://help.pendo.io/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://help.pendo.io/api/config accessible without authentication",
+      "evidence": "GET http://help.pendo.io/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:23:56.717Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "4d9615113508ae8df0ea6b20793c02e33bda3ec7f658769100363055f7ed1815",
+      "url": "http://help.pendo.io/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint http://help.pendo.io/api/settings accessible without authentication",
+      "evidence": "GET http://help.pendo.io/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:23:57.372Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "7861e2898b150a4d5b645375cead8da65a3093a68d52b82e1fa30c4b0f9fdd26",
+      "url": "https://px.ads.linkedin.com/api/v1/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://px.ads.linkedin.com/api/v1/users accessible without authentication",
+      "evidence": "GET https://px.ads.linkedin.com/api/v1/users → HTTP 200",
+      "createdAt": "2026-03-20T17:26:10.056Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "83c09b4b3b78e745b9889916de76b8d4192e9aad320a6b51e90a67d2f54def43",
+      "url": "https://px.ads.linkedin.com/api/v1/users/",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://px.ads.linkedin.com/api/v1/users/ accessible without authentication",
+      "evidence": "GET https://px.ads.linkedin.com/api/v1/users/ → HTTP 200",
+      "createdAt": "2026-03-20T17:26:10.715Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "d69ea13bdc5c839488f0fcda55351f8eb00f82d7e478bf6b2e492ed07d479710",
+      "url": "https://px.ads.linkedin.com/api/v1/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://px.ads.linkedin.com/api/v1/admin accessible without authentication",
+      "evidence": "GET https://px.ads.linkedin.com/api/v1/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:26:11.339Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "6cf366041553d11e2ab7d696c8f040b5eb2219a0d42fab355db96db0e817ddf8",
+      "url": "https://px.ads.linkedin.com/api/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://px.ads.linkedin.com/api/users accessible without authentication",
+      "evidence": "GET https://px.ads.linkedin.com/api/users → HTTP 200",
+      "createdAt": "2026-03-20T17:26:13.248Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "972dd1da46470caf8b05982451b7f9e2813057407a111cc64c6b66ca3bed7546",
+      "url": "https://px.ads.linkedin.com/api/admin",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://px.ads.linkedin.com/api/admin accessible without authentication",
+      "evidence": "GET https://px.ads.linkedin.com/api/admin → HTTP 200",
+      "createdAt": "2026-03-20T17:26:13.951Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "40b533c175032c70cd19e09e9b7b81aa1349f5bd8e0e30a1d291756b90c86d6d",
+      "url": "https://px.ads.linkedin.com/api/v2/users",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://px.ads.linkedin.com/api/v2/users accessible without authentication",
+      "evidence": "GET https://px.ads.linkedin.com/api/v2/users → HTTP 200",
+      "createdAt": "2026-03-20T17:26:24.004Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "4851d8fa4c0591c899710e5933ad0e1a60e329ca84c82d14007519f7aa9dd9ff",
+      "url": "https://px.ads.linkedin.com/api/me",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://px.ads.linkedin.com/api/me accessible without authentication",
+      "evidence": "GET https://px.ads.linkedin.com/api/me → HTTP 200",
+      "createdAt": "2026-03-20T17:26:25.336Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "1081c181cc2f247142c52f7e07271462501689a25f6cb147126dcb9bba995df6",
+      "url": "https://px.ads.linkedin.com/api/config",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://px.ads.linkedin.com/api/config accessible without authentication",
+      "evidence": "GET https://px.ads.linkedin.com/api/config → HTTP 200",
+      "createdAt": "2026-03-20T17:26:25.964Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    },
+    {
+      "id": "ad2d4de04670bf2950bb14ecaecdb21818a180eef73b6770912437ed5b345520",
+      "url": "https://px.ads.linkedin.com/api/settings",
+      "type": "api",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "api-scanner",
+      "description": "Sensitive API endpoint https://px.ads.linkedin.com/api/settings accessible without authentication",
+      "evidence": "GET https://px.ads.linkedin.com/api/settings → HTTP 200",
+      "createdAt": "2026-03-20T17:26:26.625Z",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/04-Authentication_Testing/"
+      ],
+      "subType": "missing-auth"
+    }
+  ],
+  "summary": {
+    "xss": 0,
+    "sql": 0,
+    "ssrf": 9,
+    "idor": 0,
+    "auth": 0,
+    "rce": 0,
+    "info": 141
+  },
+  "stackDetected": {},
+  "errors": []
+}

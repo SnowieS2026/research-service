@@ -121,3 +121,309 @@
 [16:56:34]     Auth findings: 0
 [16:56:34] 
   [4e] API scan...
+[17:28:31]     API findings: 141
+[17:28:31]       - HIGH api https://www.youtube.com/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://www.youtube.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://www.youtube.com/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://www.youtube.com/api/users [missing-auth]
+[17:28:31]       - HIGH api https://www.youtube.com/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://www.youtube.com/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://www.youtube.com/api/me [missing-auth]
+[17:28:31]       - HIGH api https://www.youtube.com/api/config [missing-auth]
+[17:28:31]       - HIGH api https://www.youtube.com/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://m.youtube.com/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://m.youtube.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://m.youtube.com/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://m.youtube.com/api/users [missing-auth]
+[17:28:31]       - HIGH api https://m.youtube.com/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://m.youtube.com/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://m.youtube.com/api/me [missing-auth]
+[17:28:31]       - HIGH api https://m.youtube.com/api/config [missing-auth]
+[17:28:31]       - HIGH api https://m.youtube.com/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://stats.g.doubleclick.net/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://www.google-analytics.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://angular.dev/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://angular.dev/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://angular.dev/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://angular.dev/api/users [missing-auth]
+[17:28:31]       - HIGH api https://angular.dev/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://angular.dev/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://angular.dev/api/me [missing-auth]
+[17:28:31]       - HIGH api https://angular.dev/api/config [missing-auth]
+[17:28:31]       - HIGH api https://angular.dev/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://angular.io/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://angular.io/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://angular.io/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://angular.io/api/users [missing-auth]
+[17:28:31]       - HIGH api https://angular.io/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://angular.io/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://angular.io/api/me [missing-auth]
+[17:28:31]       - HIGH api https://angular.io/api/config [missing-auth]
+[17:28:31]       - HIGH api https://angular.io/api/settings [missing-auth]
+[17:28:31]       - HIGH api http://angular.io/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api http://angular.io/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api http://angular.io/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api http://angular.io/api/users [missing-auth]
+[17:28:31]       - HIGH api http://angular.io/api/admin [missing-auth]
+[17:28:31]       - HIGH api http://angular.io/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api http://angular.io/api/me [missing-auth]
+[17:28:31]       - HIGH api http://angular.io/api/config [missing-auth]
+[17:28:31]       - HIGH api http://angular.io/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://apis.google.com/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://apis.google.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://apis.google.com/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://apis.google.com/api/users [missing-auth]
+[17:28:31]       - HIGH api https://apis.google.com/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://apis.google.com/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://apis.google.com/api/me [missing-auth]
+[17:28:31]       - HIGH api https://apis.google.com/api/config [missing-auth]
+[17:28:31]       - HIGH api https://apis.google.com/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://ngrx.io/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://ngrx.io/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://ngrx.io/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://ngrx.io/api/users [missing-auth]
+[17:28:31]       - HIGH api https://ngrx.io/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://ngrx.io/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://ngrx.io/api/me [missing-auth]
+[17:28:31]       - HIGH api https://ngrx.io/api/config [missing-auth]
+[17:28:31]       - HIGH api https://ngrx.io/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkalicore-pa.corp.googleapis.com/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkalicore-pa.corp.googleapis.com/api/users [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkalicore-pa.corp.googleapis.com/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkalicore-pa.corp.googleapis.com/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkalicore-pa.corp.googleapis.com/api/me [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkalicore-pa.corp.googleapis.com/api/config [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkalicore-pa.corp.googleapis.com/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkaliauth-pa.corp.googleapis.com/api/users [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkaliauth-pa.corp.googleapis.com/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkaliauth-pa.corp.googleapis.com/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkaliauth-pa.corp.googleapis.com/api/me [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkaliauth-pa.corp.googleapis.com/api/config [missing-auth]
+[17:28:31]       - HIGH api https://dev-alkaliauth-pa.corp.googleapis.com/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://pulse-tracker.corp.google.com/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://pulse-tracker.corp.google.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://pulse-tracker.corp.google.com/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://pulse-tracker.corp.google.com/api/users [missing-auth]
+[17:28:31]       - HIGH api https://pulse-tracker.corp.google.com/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://pulse-tracker.corp.google.com/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://pulse-tracker.corp.google.com/api/me [missing-auth]
+[17:28:31]       - HIGH api https://pulse-tracker.corp.google.com/api/config [missing-auth]
+[17:28:31]       - HIGH api https://pulse-tracker.corp.google.com/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://dev-people-pa.corp.googleapis.com/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://dev-people-pa.corp.googleapis.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://dev-people-pa.corp.googleapis.com/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://dev-people-pa.corp.googleapis.com/api/users [missing-auth]
+[17:28:31]       - HIGH api https://dev-people-pa.corp.googleapis.com/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://dev-people-pa.corp.googleapis.com/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://dev-people-pa.corp.googleapis.com/api/me [missing-auth]
+[17:28:31]       - HIGH api https://dev-people-pa.corp.googleapis.com/api/config [missing-auth]
+[17:28:31]       - HIGH api https://dev-people-pa.corp.googleapis.com/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://support.google.com/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://support.google.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://support.google.com/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://support.google.com/api/users [missing-auth]
+[17:28:31]       - HIGH api https://support.google.com/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://support.google.com/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://support.google.com/api/me [missing-auth]
+[17:28:31]       - HIGH api https://support.google.com/api/config [missing-auth]
+[17:28:31]       - HIGH api https://support.google.com/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://agent.pendo.io/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://agent.pendo.io/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://agent.pendo.io/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://agent.pendo.io/api/users [missing-auth]
+[17:28:31]       - HIGH api https://agent.pendo.io/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://agent.pendo.io/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://agent.pendo.io/api/me [missing-auth]
+[17:28:31]       - HIGH api https://agent.pendo.io/api/config [missing-auth]
+[17:28:31]       - HIGH api https://agent.pendo.io/api/settings [missing-auth]
+[17:28:31]       - MEDIUM api https://app.pendo.io/api/v1/users [cors-misconfiguration]
+[17:28:31]       - MEDIUM api https://app.pendo.io/api/v1/users/ [cors-misconfiguration]
+[17:28:31]       - MEDIUM api https://app.pendo.io/api/v1/admin [cors-misconfiguration]
+[17:28:31]       - MEDIUM api https://app.pendo.io/api/v1/ [cors-misconfiguration]
+[17:28:31]       - HIGH api http://help.pendo.io/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api http://help.pendo.io/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api http://help.pendo.io/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api http://help.pendo.io/api/users [missing-auth]
+[17:28:31]       - HIGH api http://help.pendo.io/api/admin [missing-auth]
+[17:28:31]       - HIGH api http://help.pendo.io/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api http://help.pendo.io/api/me [missing-auth]
+[17:28:31]       - HIGH api http://help.pendo.io/api/config [missing-auth]
+[17:28:31]       - HIGH api http://help.pendo.io/api/settings [missing-auth]
+[17:28:31]       - HIGH api https://px.ads.linkedin.com/api/v1/users [missing-auth]
+[17:28:31]       - HIGH api https://px.ads.linkedin.com/api/v1/users/ [missing-auth]
+[17:28:31]       - HIGH api https://px.ads.linkedin.com/api/v1/admin [missing-auth]
+[17:28:31]       - HIGH api https://px.ads.linkedin.com/api/users [missing-auth]
+[17:28:31]       - HIGH api https://px.ads.linkedin.com/api/admin [missing-auth]
+[17:28:31]       - HIGH api https://px.ads.linkedin.com/api/v2/users [missing-auth]
+[17:28:31]       - HIGH api https://px.ads.linkedin.com/api/me [missing-auth]
+[17:28:31]       - HIGH api https://px.ads.linkedin.com/api/config [missing-auth]
+[17:28:31]       - HIGH api https://px.ads.linkedin.com/api/settings [missing-auth]
+[17:28:31] 
+  [4f] Nuclei scan...
+[17:28:31]     Nuclei findings: 0
+[17:28:31] 
+[5] Deduplication and classification...
+[17:28:31]   Unique findings: 150
+[17:28:31]   LOW [3.5] ssrf @ https://pagead2.googlesyndication.com/pagead/gen_204?id=tcfe — Minor program metadata changed
+[17:28:31]   LOW [3.5] ssrf @ https://stats.g.doubleclick.net/g/collect?v=2& — Minor program metadata changed
+[17:28:31]   LOW [3.5] ssrf @ https://www.google-analytics.com/gtm/js?id= — Minor program metadata changed
+[17:28:31]   LOW [3.5] ssrf @ https://www.googletagmanager.com/gtag/js?id= — Minor program metadata changed
+[17:28:31]   LOW [3.5] ssrf @ https://www.google-analytics.com/debug/bootstrap?id= — Minor program metadata changed
+[17:28:31]   LOW [3.5] ssrf @ https://play.google.com/log?format=json&hasfast=true — Minor program metadata changed
+[17:28:31]   LOW [3.5] ssrf @ https://www.googletagmanager.com/gtm.js?id= — Minor program metadata changed
+[17:28:31]   LOW [3.5] ssrf @ https://surveys.okta.com/jfe/form/SV_e4L0iW8a3tz8Yol?source= — Minor program metadata changed
+[17:28:31]   LOW [3.5] ssrf @ https://www.pendo.io/pendo-free/nps?utm_source=pendo_app&utm_medium=branded-nps&utm_campaign=free-branded-nps — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.youtube.com/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.youtube.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.youtube.com/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.youtube.com/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.youtube.com/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.youtube.com/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.youtube.com/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.youtube.com/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.youtube.com/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://m.youtube.com/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://m.youtube.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://m.youtube.com/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://m.youtube.com/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://m.youtube.com/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://m.youtube.com/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://m.youtube.com/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://m.youtube.com/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://m.youtube.com/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://stats.g.doubleclick.net/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://www.google-analytics.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.dev/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.dev/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.dev/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.dev/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.dev/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.dev/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.dev/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.dev/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.dev/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.io/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.io/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.io/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.io/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.io/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.io/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.io/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.io/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://angular.io/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://angular.io/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://angular.io/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://angular.io/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://angular.io/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://angular.io/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://angular.io/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://angular.io/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://angular.io/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://angular.io/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://apis.google.com/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://apis.google.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://apis.google.com/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://apis.google.com/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://apis.google.com/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://apis.google.com/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://apis.google.com/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://apis.google.com/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://apis.google.com/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://ngrx.io/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://ngrx.io/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://ngrx.io/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://ngrx.io/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://ngrx.io/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://ngrx.io/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://ngrx.io/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://ngrx.io/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://ngrx.io/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkalicore-pa.corp.googleapis.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkalicore-pa.corp.googleapis.com/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkalicore-pa.corp.googleapis.com/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkalicore-pa.corp.googleapis.com/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkalicore-pa.corp.googleapis.com/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkalicore-pa.corp.googleapis.com/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkalicore-pa.corp.googleapis.com/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkalicore-pa.corp.googleapis.com/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkaliauth-pa.corp.googleapis.com/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkaliauth-pa.corp.googleapis.com/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkaliauth-pa.corp.googleapis.com/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkaliauth-pa.corp.googleapis.com/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkaliauth-pa.corp.googleapis.com/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkaliauth-pa.corp.googleapis.com/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-alkaliauth-pa.corp.googleapis.com/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://pulse-tracker.corp.google.com/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://pulse-tracker.corp.google.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://pulse-tracker.corp.google.com/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://pulse-tracker.corp.google.com/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://pulse-tracker.corp.google.com/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://pulse-tracker.corp.google.com/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://pulse-tracker.corp.google.com/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://pulse-tracker.corp.google.com/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://pulse-tracker.corp.google.com/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-people-pa.corp.googleapis.com/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-people-pa.corp.googleapis.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-people-pa.corp.googleapis.com/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-people-pa.corp.googleapis.com/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-people-pa.corp.googleapis.com/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-people-pa.corp.googleapis.com/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-people-pa.corp.googleapis.com/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-people-pa.corp.googleapis.com/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://dev-people-pa.corp.googleapis.com/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://support.google.com/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://support.google.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://support.google.com/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://support.google.com/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://support.google.com/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://support.google.com/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://support.google.com/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://support.google.com/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://support.google.com/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://agent.pendo.io/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://agent.pendo.io/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://agent.pendo.io/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://agent.pendo.io/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://agent.pendo.io/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://agent.pendo.io/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://agent.pendo.io/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://agent.pendo.io/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://agent.pendo.io/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://app.pendo.io/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://app.pendo.io/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://app.pendo.io/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://app.pendo.io/api/v1/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://help.pendo.io/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://help.pendo.io/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://help.pendo.io/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://help.pendo.io/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://help.pendo.io/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://help.pendo.io/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://help.pendo.io/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://help.pendo.io/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ http://help.pendo.io/api/settings — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://px.ads.linkedin.com/api/v1/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://px.ads.linkedin.com/api/v1/users/ — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://px.ads.linkedin.com/api/v1/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://px.ads.linkedin.com/api/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://px.ads.linkedin.com/api/admin — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://px.ads.linkedin.com/api/v2/users — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://px.ads.linkedin.com/api/me — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://px.ads.linkedin.com/api/config — Minor program metadata changed
+[17:28:31]   LOW [3.5] api @ https://px.ads.linkedin.com/api/settings — Minor program metadata changed
+[17:28:31] 
+[6] Writing active scan report...
+[17:28:31]   Report MD: reports\scans\2026-03-20\scan-scan-19d0c4a.md
+[17:28:31]   Report JSON: reports\scans\2026-03-20\scan-scan-19d0c4a.json
+[17:28:31]   Exists: true true
+[17:28:31] 
+=== Scan Complete ===
+[17:28:31] Log: C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\logs\scan-1774024995043.log

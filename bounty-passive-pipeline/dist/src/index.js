@@ -9,7 +9,7 @@ import { discoverPrograms } from './ProgramDiscovery.js';
 import { seedFromTargets } from './SeedingDiscovery.js';
 import { supportedPlatforms, getAdapter } from './browser/parsers/PlatformAdapters.js';
 import { Logger } from './Logger.js';
-import { ScannerOrchestrator } from './scanner/ScannerOrchestrator.js';
+import { runParallelScan } from './scanner/ParallelScanner.js';
 import path from 'path';
 import fs from 'fs';
 const LOG = new Logger('Pipeline');
@@ -237,32 +237,31 @@ async function runDiscovery(cfg) {
 // ── Active scanning ────────────────────────────────────────────────────────────
 async function runActiveScan(cfg, targets) {
     LOG.log(`Starting active scan on ${targets.length} targets…`);
-    const scannerConfig = {
-        dryRun: cfg.SCANNER_DRY_RUN ?? true,
-        tools: {
-            dalfox: cfg.DALFOX_ENABLED ?? true,
-            sqlmap: cfg.SQLMAP_ENABLED ?? true,
-            nuclei: cfg.NUCLEI_ENABLED ?? true,
-            ssrf: cfg.SSRF_ENABLED ?? true,
-            auth: cfg.AUTH_ENABLED ?? true,
-            api: cfg.API_ENABLED ?? true
-        },
-        nucleiTemplates: cfg.NUCLEI_TEMPLATES_DIR ?? '',
-        rateLimitMs: cfg.RATE_LIMIT_DELAY_MS ?? 2000,
-        timeoutPerTarget: cfg.SCANNER_TIMEOUT_MS ?? 300_000,
-        maxTargetsPerRun: cfg.SCANNER_MAX_TARGETS ?? 20,
-        outputDir: cfg.REPORTS_DIR ?? 'reports',
-        sqlmapLevel: 2,
-        sqlmapRisk: 1
-    };
     const db = cfg.ENABLE_DB ? new BountyDB(path.join(process.cwd(), 'logs', 'bounty.db')) : undefined;
-    const orchestrator = new ScannerOrchestrator(scannerConfig, db);
     try {
-        const result = await orchestrator.scanTargets(targets);
+        // Use ParallelScanner – each tool runs as an independent process so a slow
+        // SQL scan can't timeout fast tools like XSS or nuclei
+        const result = await runParallelScan(targets, {
+            dryRun: cfg.SCANNER_DRY_RUN ?? true,
+            tools: {
+                dalfox: cfg.DALFOX_ENABLED ?? true,
+                sqlmap: cfg.SQLMAP_ENABLED ?? true,
+                nuclei: cfg.NUCLEI_ENABLED ?? true,
+                ssrf: cfg.SSRF_ENABLED ?? true,
+                auth: cfg.AUTH_ENABLED ?? true,
+                api: cfg.API_ENABLED ?? true
+            },
+            nucleiTemplates: cfg.NUCLEI_TEMPLATES_DIR ?? '',
+            rateLimitMs: cfg.RATE_LIMIT_DELAY_MS ?? 2000,
+            timeoutPerTarget: cfg.SCANNER_TIMEOUT_MS ?? 300_000,
+            maxTargetsPerRun: cfg.SCANNER_MAX_TARGETS ?? 20,
+            outputDir: cfg.REPORTS_DIR ?? 'reports',
+            sqlmapLevel: 2,
+            sqlmapRisk: 1
+        }, db);
         await deliverScanReport(result, cfg, db);
     }
     finally {
-        await orchestrator.close();
         db?.close();
     }
 }
