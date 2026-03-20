@@ -21,6 +21,8 @@ export interface DiffNotification {
   prohibited_techniques: string[];
   last_seen_at: string;
   source_snapshot_hash: string;
+  /** Previous program snapshot (available when a prior snapshot existed). */
+  prevProgram?: NormalisedProgram;
   diff: {
     oldHash: string;
     newHash: string;

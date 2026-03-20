@@ -11,6 +11,7 @@ import { seedFromTargets } from './SeedingDiscovery.js';
 import { supportedPlatforms, getAdapter } from './browser/parsers/PlatformAdapters.js';
 import { Logger } from './Logger.js';
 import type { DiffNotification } from './BrowserTool.js';
+import type { NormalisedProgram } from './browser/parsers/BaseParser.js';
 import type { ScanRunResult } from './scanner/ScanResult.js';
 import { ScannerOrchestrator } from './scanner/ScannerOrchestrator.js';
 import type { OsintQuery } from './osint/index.js';
@@ -218,8 +219,9 @@ async function fetchAndDiff(
     changedFields: [] as string[]
   };
 
+  let prevProg: NormalisedProgram | undefined;
   if (prevHash && prevHash !== newHash) {
-    const prevProg = (await snapshotMgr.load(identifier, prevHash)) as typeof program;
+    prevProg = await snapshotMgr.load(identifier, prevHash) as NormalisedProgram;
     const { diffPrograms } = await import('./diff/ProgramDiffer.js');
     const diff = diffPrograms(prevProg, program, prevHash, newHash, identifier);
     diffResult.addedFields = diff.addedFields.map((f: { field: string }) => f.field);
@@ -229,6 +231,7 @@ async function fetchAndDiff(
 
   return {
     ...program,
+    prevProgram: prevProg,
     diff: diffResult
   };
 }
