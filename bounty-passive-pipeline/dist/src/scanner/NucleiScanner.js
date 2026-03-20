@@ -1,24 +1,16 @@
 /**
  * Nuclei wrapper – runs nuclei with selected templates based on stack detection.
  */
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { nucleiToFinding } from './ScanResult.js';
 import { Logger } from '../Logger.js';
+import { isToolAvailable } from './tool-utils.js';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-const execAsync = promisify(exec);
+const execFileP = promisify(execFile);
 const LOG = new Logger('NucleiScanner');
-async function isToolAvailable(name) {
-    try {
-        await execAsync(`which ${name} || where ${name}`, { timeout: 10_000 });
-        return true;
-    }
-    catch {
-        return false;
-    }
-}
 /**
  * Select nuclei template tags based on detected stack technologies.
  */
@@ -137,13 +129,12 @@ export async function runNuclei(targets, stackTechs, config) {
     const tagArgs = tags.flatMap(tag => ['-tags', tag]);
     const outputPath = path.join(tmpDir, `nuclei-output-${Date.now()}.txt`);
     const args = [
-        'nuclei',
         '-l', urlsPath,
-        '-t', templatesDir,
-        ...tagArgs,
+        ...(config.nucleiTemplates ? ['-t', config.nucleiTemplates] : []),
+        ...tagArgs.flatMap(tag => ['-tags', tag]),
         '-json',
         '-o', outputPath,
-        '-rl', '50' // rate limit 50/sec
+        '-rl', '50'
     ];
     if (config.dryRun) {
         LOG.log(`[DRY_RUN] nuclei ${args.join(' ')}`);
@@ -157,9 +148,10 @@ export async function runNuclei(targets, stackTechs, config) {
             // Fall back to default nuclei templates path
             args[args.indexOf(templatesDir)] = '';
         }
-        await execAsync(args.filter(Boolean).join(' '), {
+        await execFileP('nuclei', args.filter(Boolean), {
             timeout: config.timeoutPerTarget * Math.min(targets.length, 5),
-            cwd: tmpDir
+            cwd: tmpDir,
+            windowsHide: true
         });
         // Read output
         if (fs.existsSync(outputPath)) {

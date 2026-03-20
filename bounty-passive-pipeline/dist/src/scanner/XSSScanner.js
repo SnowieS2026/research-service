@@ -1,11 +1,12 @@
 /**
  * XSS scanning using dalfox + manual reflection analysis.
  */
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { buildFindingId } from './ScanResult.js';
 import { Logger } from '../Logger.js';
-const execAsync = promisify(exec);
+import { isToolAvailable } from './tool-utils.js';
+const execFileP = promisify(execFile);
 const LOG = new Logger('XSSScanner');
 // Common XSS payloads
 const REFLECTED_XSS_PAYLOADS = [
@@ -18,15 +19,6 @@ const REFLECTED_XSS_PAYLOADS = [
     "{{constructor.constructor('alert(1)')()}}",
     "<script>alert(String.fromCharCode(88,83,83))</script>"
 ];
-async function isToolAvailable(name) {
-    try {
-        await execAsync(`which ${name} || where ${name}`, { timeout: 10_000 });
-        return true;
-    }
-    catch {
-        return false;
-    }
-}
 async function runDalfox(endpoint, config) {
     const results = [];
     const hasDalfox = await isToolAvailable('dalfox');
@@ -35,33 +27,35 @@ async function runDalfox(endpoint, config) {
         return results;
     }
     if (endpoint.params.length === 0) {
-        // Scan the URL directly
+        // Scan the URL directly (no params to target)
+        const args = ['url', endpoint.url];
+        if (config.callbackUrl) {
+            args.push('--blind', config.callbackUrl);
+        }
+        args.push('--format', 'json');
         try {
-            const cmd = `dalfox url "${endpoint.url}" --blind "${config.callbackUrl ?? ''}" -o /dev/null --format json`;
-            const { stdout } = await execAsync(cmd, { timeout: config.timeoutPerTarget });
-            const parsed = parseDalfoxOutput(stdout);
-            results.push(...parsed);
+            const { stdout } = await execFileP('dalfox', args, { timeout: config.timeoutPerTarget });
+            results.push(...parseDalfoxOutput(stdout));
         }
         catch {
-            // dalfox may return non-zero for findings – that's expected
+            // dalfox non-zero exit is expected when vulnerabilities are found
         }
         return results;
     }
-    // Target each parameter
+    // Target each parameter individually
     for (const param of endpoint.params) {
+        if (config.dryRun) {
+            LOG.log(`[DRY_RUN] dalfox url ${endpoint.url} --param ${param.name}`);
+            continue;
+        }
+        const args = ['url', endpoint.url, '--param', param.name];
+        if (config.callbackUrl) {
+            args.push('--blind', config.callbackUrl);
+        }
+        args.push('--format', 'json');
         try {
-            const args = [
-                'dalfox', 'url', `"${endpoint.url}"`,
-                '--param', param.name,
-                '--blind', config.callbackUrl ?? ''
-            ];
-            if (config.dryRun) {
-                LOG.log(`[DRY_RUN] dalfox ${args.join(' ')}`);
-                continue;
-            }
-            const { stdout } = await execAsync(args.join(' '), { timeout: config.timeoutPerTarget });
-            const parsed = parseDalfoxOutput(stdout);
-            results.push(...parsed);
+            const { stdout } = await execFileP('dalfox', args, { timeout: config.timeoutPerTarget });
+            results.push(...parseDalfoxOutput(stdout));
         }
         catch {
             // non-zero exit is expected when vulnerabilities are found
