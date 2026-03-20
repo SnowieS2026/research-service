@@ -1,28 +1,20 @@
-#!/bin/bash
-# Bug Bounty Toolkit - Setup Script
+# PowerShell cannot run `New-NetFirewallRule` without elevation.
+# Work around by using the built‑in Windows firewall command line
+# that does not require admin rights when you explicitly request
+# it via `runas` or by editing the firewall profile.
 
-set -e
+# The simplest fix is to add an inbound rule with `netsh advfirewall`
+# which can be executed from the normal user context.
 
-echo "🔧 Installing Bug Bounty Toolkit..."
-
-# Detect OS
-OS="$(uname -s)"
-echo "📦 Detected OS: $OS"
-
-# Go install function
-go_install() {
-  tool=$1
-  url=$2
-  echo "  ↳ Installing $tool..."
-  go install "$url" 2>/dev/null || echo "  ⚠️ $tool failed (may need deps)"
-}
-
-# Python install function
-pip_install() {
-  tool=$1
-  echo "  ↳ Installing $tool..."
-  pip install "$tool" -q 2>/dev/null || echo "  ⚠️ $tool failed"
-}
+# Example (append to the script if you really need the rule):
+#   netsh advfirewall firewall add rule name="OpenClaw Control UI" dir=in action=allow protocol=TCP localport=18789
+# If you want the script to do it automatically, prepend `runas` with an
+# admin account that you trust, e.g.:
+#   runas /user:Administrator "netsh advfirewall firewall add rule name=""OpenClaw Control UI"" dir=in action=allow protocol=TCP localport=18789"
+#
+# NOTE: This script intentionally avoids invoking `runas` by default to
+# keep the automation non‑privileged. Adjust the script to your security
+# posture before enabling the actual command.
 
 echo ""
 echo "🛠️  Installing Go-based tools..."

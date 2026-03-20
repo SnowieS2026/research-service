@@ -40,7 +40,7 @@ const DEFAULT_CONFIG = {
     OSINT_SHODAN_API_KEY: '',
     OSINT_NUMVALIDATE_KEY: '',
     OSINT_DEEP_SEARCH: false,
-    OSINT_TIMEOUT_PER_COLLECTOR_MS: 30_000
+    OSINT_TIMEOUT_PER_COLLECTOR_MS: 60_000
 };
 function deepMerge(base, override) {
     const result = { ...base };

@@ -138,4 +138,7 @@ export async function main() {
     await deliverOsintResult(result);
 }
 // Entry point
-main().catch(console.error);
+main().catch(err => {
+    console.error('OSINT main failed:', err);
+    process.exit(1);
+});

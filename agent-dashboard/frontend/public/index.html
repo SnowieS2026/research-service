@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agent Dashboard</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; }
+        #agents { display: flex; flex-wrap: wrap; }
+        .agent { border: 1px solid #ccc; padding: 10px; margin: 5px; width: 200px; }
+    </style>
+</head>
+<body>
+    <h1>Agent Dashboard</h1>
+    <div id="agents"></div>
+
+    <script>
+        const socket = io();
+        socket.on('connect', () => console.log('Connected'));
+        socket.on('agent_update', (data) => {
+            const container = document.getElementById('agents');
+            container.innerHTML = '';
+            data.agents.forEach(agent => {
+                const div = document.createElement('div');
+                div.className = 'agent';
+                div.innerHTML = `<strong>${agent.id}</strong><br>Status: ${agent.status}<br>Task: ${agent.task}`;
+                container.appendChild(div);
+            });
+        });
+        socket.io.emit('agent_update'); // Trigger initial data
+    </script>
+</body>
+</html>

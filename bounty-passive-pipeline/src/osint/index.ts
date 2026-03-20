@@ -181,4 +181,7 @@ export async function main(): Promise<void> {
 
 
 // Entry point
-main().catch(console.error);
+main().catch(err => {
+  console.error('OSINT main failed:', err);
+  process.exit(1);
+});

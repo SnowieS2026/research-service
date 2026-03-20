@@ -60,6 +60,9 @@ export class GeneralCollector {
     try {
       const webResults = await ddgSearch(target, 15);
       rawData['webResults'] = webResults;
+      if (webResults.length === 0) {
+        errors.push('Web search returned no results (DuckDuckGo may be blocking requests — consider adding Brave Search API key)');
+      }
 
       for (const r of webResults) {
         findings.push({
