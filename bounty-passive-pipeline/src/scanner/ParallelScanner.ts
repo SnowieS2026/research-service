@@ -220,13 +220,20 @@ async function runParallelScan(
 
   LOG.log(`[ParallelScanner] Spawned ${spawned.length} tools`);
 
-  // ── Collect results ─────────────────────────────────────────────────────────
+  // ── Collect results (wait for ALL tools in parallel) ──────────────────────────
   const allFindings: BaseFinding[] = [];
   const allErrors: string[] = [];
 
-  for (const tool of spawned) {
+  // Wait for all tools concurrently
+  const resultPromises = spawned.map(async (tool) => {
     LOG.log(`[ParallelScanner] Waiting for ${tool}...`);
     const result = await waitForTool(tool);
+    return { tool, result };
+  });
+
+  const results = await Promise.all(resultPromises);
+
+  for (const { tool, result } of results) {
     if (result) {
       allFindings.push(...result.findings);
       allErrors.push(...result.errors);
