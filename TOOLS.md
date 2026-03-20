@@ -37,4 +37,14 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+### OSINT (bounty-passive-pipeline)
+
+- **SearxNG**: `http://localhost:8080`
+  - Start: `docker run -d --name searxng -p 8080:8080 -v searxng:/etc/searxng --restart unless-stopped searxng/searxng:latest`
+  - Stop: `docker stop searxng`
+  - Config env: `SEARXNG_URL=http://localhost:8080`
+  - The pipeline falls back to public instances (searx.party, searx.mw.io, searx.work, searxng.site) if local is unavailable
+
+---
+
 Add whatever helps you do your job. This is your cheat sheet.
