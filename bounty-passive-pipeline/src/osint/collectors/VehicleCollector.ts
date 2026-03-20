@@ -1,6 +1,7 @@
 import { osintFetch, osintDelay, tryParseJson } from '../http.js';
 import { Logger } from '../../Logger.js';
 import type { OsintQuery, CollectorResult, OsintFinding } from '../types.js';
+import { estimateAdvisories, generateVehicleValuation } from './VehicleValuation.js';
 
 const LOG = new Logger('VehicleCollector');
 
@@ -62,6 +63,104 @@ export class VehicleCollector {
       } else {
         errors.push(`MIB insurance check: ${mibResult.reason}`);
       }
+
+      // ── VehicleValuation: extract advisories and generate cost estimates ────
+      try {
+        const _carCheckRawTmp = carCheck.status === 'fulfilled' ? carCheck.value.rawData : undefined;
+        const carCheckRaw: Record<string, unknown> = _carCheckRawTmp ?? ({} as Record<string, unknown>);
+        const rawText = carCheckRaw['raw_text'] as string || '';
+        const valuationMake = (rawData['DVLA'] as Record<string, string>)?.['Make']
+          || carCheckRaw['make'] as string || '';
+        const valuationModel = carCheckRaw['model'] as string || '';
+        const valuationYear = parseInt(carCheckRaw['year'] as string || '0', 10) || 0;
+        const mileage = null; // not available from DVLA/car-check free tier
+
+        // Extract ALL advisory items from the full raw text — don't split by MOT block.
+        // The advisory items appear in the text as "Advice ..." or "Advisory ...".
+        const advisoryLines: string[] = [];
+        const allItemsRe = /(?:^|\s)(Advice|Advisory)\s+([^\n]{10,250}?)(?=\s+(?:Advice|Advisory)|$)/gim;
+        for (const match of rawText.matchAll(allItemsRe)) {
+          const item = match[2]?.trim();
+          if (item && item.length > 5) advisoryLines.push(item);
+        }
+
+        // Fallback: if regex missed them, try splitting by keyword
+        if (advisoryLines.length === 0) {
+          const parts = rawText.split(/(?=Advice\s{2,}|Advisory\s{2,})/gi);
+          for (const part of parts) {
+            const line = part.replace(/^Advice\s*/i, '').replace(/^Advisory\s*/i, '').trim();
+            if (line.length > 5 && line.length < 300) advisoryLines.push(line);
+          }
+        }
+
+        const motFailedStr = String(rawData['DVLA'] as Record<string, string> ? (rawData['DVLA'] as Record<string, string>)['Failed MOT tests'] || '0' : '0');
+        const motFailed = parseInt(motFailedStr, 10) || 0;
+        const motPassedStr = String(rawData['DVLA'] as Record<string, string> ? (rawData['DVLA'] as Record<string, string>)['MOT passed'] || '0' : '0');
+        const motPassed = parseInt(motPassedStr, 10) || 0;
+        const motTotal = motFailed + motPassed;
+
+        const engineCcStr = carCheckRaw['engine_capacity'] as string || '';
+        const engineCc = parseInt(engineCcStr.replace(/\D/g, ''), 10) || 0;
+        const fuelType = carCheckRaw['fuel_type'] as string || 'DIESEL';
+
+        const advisoryCosts = estimateAdvisories(advisoryLines, motFailed, motTotal, valuationYear, engineCc, fuelType);
+        const valuation = generateVehicleValuation(valuationMake, valuationModel, valuationYear, mileage, fuelType, advisoryCosts, motFailed, motTotal);
+
+        // Attach valuation findings with exact field names report.ts expects
+        findings.push({
+          source: 'VehicleValuation',
+          field: 'make',
+          value: String(valuation.make),
+          confidence: 90,
+        });
+        findings.push({
+          source: 'VehicleValuation',
+          field: 'model',
+          value: String(valuation.model),
+          confidence: 90,
+        });
+        findings.push({
+          source: 'VehicleValuation',
+          field: 'year',
+          value: String(valuation.year),
+          confidence: 90,
+        });
+        findings.push({
+          source: 'VehicleValuation',
+          field: 'advisory_total_min',
+          value: String(valuation.totalAdvisoryCostMin),
+          confidence: 90,
+        });
+        findings.push({
+          source: 'VehicleValuation',
+          field: 'advisory_total_max',
+          value: String(valuation.totalAdvisoryCostMax),
+          confidence: 90,
+        });
+        findings.push({
+          source: 'VehicleValuation',
+          field: 'mot_fail_risk',
+          value: String(valuation.motFailRisk),
+          confidence: 70,
+        });
+
+        // Also push individual advisory costs as findings
+        for (const ac of advisoryCosts) {
+          findings.push({
+            source: 'VehicleValuation',
+            field: `cost__${ac.item.replace(/\s+/g, '_')}__${ac.severity}__${ac.urgency}`,
+            value: `£${ac.estimatedCostMin}-£${ac.estimatedCostMax}`,
+            confidence: ac.severity === 'critical' ? 95 : ac.severity === 'high' ? 85 : 70,
+          });
+        }
+
+        rawData['valuation'] = valuation;
+        rawData['advisory_costs'] = advisoryCosts;
+      } catch (valErr) {
+        // Valuation is best-effort — don't fail the whole collector
+        errors.push(`VehicleValuation: ${valErr}`);
+      }
+
       return { collector: 'VehicleCollector', findings, errors, rawData };
     } else if (plateType === 'US') {
       return this.collectUS(target.toUpperCase(), findings, errors, rawData);
