@@ -73,6 +73,7 @@ export async function osintDelay(ms: number): Promise<void> {
 // ── SearxNG Search ───────────────────────────────────────────────────────────
 
 const SEARXNG_INSTANCES = [
+  'http://localhost:8080',
   'https://searx.party',
   'https://searx.mw.io',
 ];
@@ -119,7 +120,7 @@ export async function searxngSearch(
 
   for (const base of instances) {
     try {
-      const url = `${base}/search?q=${encodeURIComponent(query)}&format=json&safesearch=${safesearch}`;
+      const url = `${base}/search?q=${encodeURIComponent(query)}&format=json&safesearch=${safesearch}&engines=bing,mojeek`;
       const text = await osintFetch(url, { timeout: 15_000 });
       const json = tryParseJson<SearxngResponse>(text, { results: [] });
       if (!json.results) continue;

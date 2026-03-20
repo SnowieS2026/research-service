@@ -8,8 +8,8 @@
     "start": "node dist/index.js",
     "test": "npm run build && playwright test",
     "pipeline": "npm run build && node dist/index.js",
-    "discover": "npm run build && node dist/index.js --discover-only",
-    "osint": "npm run build && node dist/src/osint/index.js"
+    "discover": "npm run build && node dist/src/index.js --discover-only",
+    "osint": "npm run build && cross-env SEARXNG_URL=http://localhost:8080 node dist/src/osint/index.js"
   },
   "author": "",
   "license": "MIT",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@playwright/test": "^1.45.2",
     "@types/better-sqlite3": "^7.6.11",
+    "cross-env": "^10.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.0.0"
   }
