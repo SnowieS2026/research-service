@@ -4,11 +4,79 @@ import { Logger } from '../../Logger.js';
 import crypto from 'crypto';
 
 /**
- * Parses an Intigriti program page into a NormalisedProgram.
- *
- * CSS selectors are based on Intigriti's public program page structure.
- * Adjust selectors as needed based on actual page markup.
+ * Fast synchronous DOM extraction — runs inside browser context.
+ * Must NOT reference `this` or class methods.
+ * Accesses `document` directly (global in browser).
  */
+function extractIntigritiData(): {
+  title: string;
+  scopeAssets: string[];
+  exclusions: string[];
+  rewardRange: string;
+  description: string;
+  techniques: string[];
+  lastUpdated: string;
+} | null {
+  // Program name
+  const h1 = document.querySelector('.program-header h1, .page-header h1');
+  const title = h1?.textContent?.trim() ?? '';
+  if (!title) return null;
+
+  const scopeAssets: string[] = [];
+  const exclusions: string[] = [];
+  let rewardRange = '';
+  let description = '';
+  let lastUpdated = '';
+
+  // Iterate all detail boxes
+  const boxes = document.querySelectorAll('.detail-box');
+  for (const box of boxes) {
+    const labelEl = box.querySelector('.detail-header .label');
+    const label = labelEl?.textContent?.trim() ?? '';
+    const labelLower = label.toLowerCase();
+
+    if (labelLower.includes('description')) {
+      const content = box.querySelector('.detail-content');
+      description = content?.textContent?.trim() ?? '';
+    } else if (labelLower.includes('in scope') || labelLower.includes('target')) {
+      const cols = box.querySelectorAll('.detail-content .column');
+      for (const col of cols) {
+        const text = col.textContent?.trim() ?? '';
+        if (text && text.length > 2) scopeAssets.push(text);
+      }
+    } else if (labelLower.includes('out of scope')) {
+      const cols = box.querySelectorAll('.detail-content .column');
+      for (const col of cols) {
+        const text = col.textContent?.trim() ?? '';
+        if (text && text.length > 2) exclusions.push(text);
+      }
+    } else if (labelLower.includes('bounty')) {
+      const rows = box.querySelectorAll('.bounty-table-row-container');
+      for (const row of rows) {
+        const cells = row.querySelectorAll('.column');
+        if (cells.length >= 2) {
+          const severity = cells[0].textContent?.trim() ?? '';
+          const amount = cells[cells.length - 1].textContent?.trim() ?? '';
+          if (severity && amount) {
+            rewardRange = `${severity} ${amount}`;
+            break; // take first (highest) row
+          }
+        }
+      }
+    } else if (labelLower.includes('updated') || labelLower.includes('last')) {
+      const content = box.querySelector('.detail-content');
+      lastUpdated = content?.textContent?.trim() ?? '';
+    }
+  }
+
+  // Allowed techniques
+  const bodyText = document.body?.textContent ?? '';
+  const kw = ['SQLi', 'XSS', 'CSRF', 'SSRF', 'IDOR', 'RCE', 'LFI', 'RFI', 'XXE', 'OAuth'];
+  const techniques = kw.filter((k) => bodyText.includes(k));
+
+  return { title, scopeAssets, exclusions, rewardRange, description, techniques, lastUpdated };
+}
+
 export class IntigritiParser extends BaseParser {
   constructor(logger: Logger) {
     super(logger);
@@ -19,27 +87,25 @@ export class IntigritiParser extends BaseParser {
   }
 
   async parse(page: Page, url: string): Promise<NormalisedProgram> {
-    const title = await this.safeExtract(page, 'h1, [data-testid="program-name"], .program-name, .program-header h2');
-    const scopeAssets = await this.extractScopeAssets(page);
-    const exclusions = await this.extractExclusions(page);
-    const rewardRange = await this.safeExtract(
-      page,
-      '[data-testid="reward-range"], .reward-range, .bounty-range, [data-testid="bounty-range"], .payout-range'
-    );
-    const rewardCurrency = 'EUR'; // Intigriti typically pays in EUR
-    const payoutNotes = await this.safeExtract(
-      page,
-      '[data-testid="payout-notes"], .payout-notes, .reward-notes'
-    );
-    const allowedTechniques = await this.extractAllowedTechniques(page);
-    const prohibitedTechniques = await this.extractProhibitedTechniques(page);
-    const lastSeenAt = await this.safeExtract(
-      page,
-      '[data-testid="last-updated"], .last-updated, time, tr:has-text("Updated") td:last-child'
-    );
+    // Use evaluate with the standalone function (not a class method)
+    // This runs in browser context where `this` won't be the class instance
+    let data: ReturnType<typeof extractIntigritiData> | null = null;
+    try {
+      data = await page.evaluate(extractIntigritiData);
+    } catch (err) {
+      this.logger.warn(`IntigritiParser evaluate failed: ${(err as Error).message}`);
+    }
 
     const html = await page.content();
     const hash = this.hashContent(html);
+
+    // If evaluate returned null, fall back to basic HTML title
+    const title = data?.title ?? await this.fallbackTitle(page);
+    const scopeAssets = data?.scopeAssets ?? [];
+    const exclusions = data?.exclusions ?? [];
+    const rewardRange = data?.rewardRange ?? '';
+    const description = data?.description ?? '';
+    const techniques = data?.techniques ?? [];
 
     const result: NormalisedProgram = {
       platform: 'intigriti',
@@ -48,105 +114,34 @@ export class IntigritiParser extends BaseParser {
       scope_assets: scopeAssets,
       exclusions,
       reward_range: rewardRange || 'unknown',
-      reward_currency: rewardCurrency,
-      payout_notes: payoutNotes || '',
-      allowed_techniques: allowedTechniques,
-      prohibited_techniques: prohibitedTechniques,
-      last_seen_at: lastSeenAt || new Date().toISOString().split('T')[0],
+      reward_currency: 'EUR',
+      payout_notes: description.slice(0, 500),
+      allowed_techniques: techniques,
+      prohibited_techniques: [],
+      last_seen_at: this.parseDate(data?.lastUpdated ?? ''),
       source_snapshot_hash: hash
     };
 
-    this.logger.log(`IntigritiParser produced: ${result.program_name} (${scopeAssets.length} assets)`);
+    this.logger.log(`IntigritiParser: ${result.program_name} | ${result.scope_assets.length} assets`);
     return result;
   }
 
-  private async safeExtract(page: Page, selector: string): Promise<string> {
+  private async fallbackTitle(page: Page): Promise<string> {
     try {
-      const el = page.locator(selector).first();
+      const el = page.locator('.program-header h1, .page-header h1').first();
       if (await el.count() > 0) {
         return (await el.textContent())?.trim() ?? '';
       }
-    } catch {
-      // fall through
-    }
+    } catch { /* ignore */ }
     return '';
   }
 
-  private async extractScopeAssets(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="scope"] td:first-child',
-      '.scope-table td:first-child',
-      'table:has-text("In Scope") td:first-child',
-      '.in-scope .asset',
-      '.target-list .target-item',
-      '[data-testid="target"]'
-    ];
-    return this.extractFromSelectors(page, selectors);
-  }
-
-  private async extractExclusions(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="out-of-scope"] td:first-child',
-      '.out-of-scope td:first-child',
-      'table:has-text("Out of Scope") td:first-child',
-      '.exclusion-list .exclusion-item'
-    ];
-    return this.extractFromSelectors(page, selectors);
-  }
-
-  private async extractAllowedTechniques(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="allowed-techniques"] li',
-      '.allowed-techniques li',
-      'tr:has-text("Allowed") td:last-child'
-    ];
-    return this.extractListFromSelectors(page, selectors);
-  }
-
-  private async extractProhibitedTechniques(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="prohibited-techniques"] li',
-      '.prohibited-techniques li',
-      'tr:has-text("Prohibited") td:last-child'
-    ];
-    return this.extractListFromSelectors(page, selectors);
-  }
-
-  private async extractFromSelectors(page: Page, selectors: string[]): Promise<string[]> {
-    for (const sel of selectors) {
-      try {
-        const count = await page.locator(sel).count();
-        if (count > 0) {
-          const items: string[] = [];
-          for (let i = 0; i < count; i++) {
-            const text = (await page.locator(sel).nth(i).textContent())?.trim();
-            if (text && !items.includes(text)) items.push(text);
-          }
-          if (items.length > 0) return items;
-        }
-      } catch {
-        // try next
-      }
-    }
-    return [];
-  }
-
-  private async extractListFromSelectors(page: Page, selectors: string[]): Promise<string[]> {
-    for (const sel of selectors) {
-      try {
-        const count = await page.locator(sel).count();
-        if (count > 0) {
-          const items: string[] = [];
-          for (let i = 0; i < count; i++) {
-            const text = (await page.locator(sel).nth(i).textContent())?.trim();
-            if (text) items.push(text);
-          }
-          if (items.length > 0) return items;
-        }
-      } catch {
-        // try next
-      }
-    }
-    return [];
+  private parseDate(text: string): string {
+    if (!text) return new Date().toISOString().split('T')[0];
+    try {
+      const d = new Date(text);
+      if (!isNaN(d.getTime())) return d.toISOString().split('T')[0];
+    } catch { /* ignore */ }
+    return new Date().toISOString().split('T')[0];
   }
 }

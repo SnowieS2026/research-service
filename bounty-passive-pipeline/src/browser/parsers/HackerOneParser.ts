@@ -6,8 +6,8 @@ import crypto from 'crypto';
 /**
  * Parses a HackerOne program page into a NormalisedProgram.
  *
- * CSS selectors are based on HackerOne's public program page structure.
- * Adjust selectors as needed based on actual page markup.
+ * Selectors are based on HackerOne's React app structure (spec-bbp class).
+ * Uses structured tables for scope and rewards.
  */
 export class HackerOneParser extends BaseParser {
   constructor(logger: Logger) {
@@ -19,41 +19,26 @@ export class HackerOneParser extends BaseParser {
   }
 
   async parse(page: Page, url: string): Promise<NormalisedProgram> {
-    // Program name – typically in the hero/header area
-    const title = await this.safeExtract(page, 'h1, [data-testid="program-name"], .program-name');
+    // Program name — h1 in the program hero
+    const title = await this.safeExtract(page, '.program-hero .program-title, h1');
 
-    // Scope assets – structured asset table or list
+    // Scope assets — in-scope table (exclude out-of-scope)
     const scopeAssets = await this.extractScopeAssets(page);
 
-    // Exclusions – out-of-scope section
+    // Exclusions — out-of-scope table
     const exclusions = await this.extractExclusions(page);
 
-    // Reward range – displayed in structured bounty table
-    const rewardRange = await this.safeExtract(
-      page,
-      '[data-testid="bounty-range"], .bounty-range, [data-testid="reward-range"], .reward-range, tr:has-text("Bounty") td:last-child'
-    );
+    // Reward range — highest bounty tier (Critical)
+    const rewardRange = await this.extractRewardRange(page);
 
-    // Reward currency – default USD for HackerOne
-    const rewardCurrency = 'USD';
+    // Payout notes — any additional notes
+    const payoutNotes = await this.safeExtract(page, '.program-description');
 
-    // Payout notes
-    const payoutNotes = await this.safeExtract(
-      page,
-      '[data-testid="payout-notes"], .payout-notes, .reward-notes'
-    );
-
-    // Allowed techniques
+    // Allowed techniques — scan body text for known technique keywords
     const allowedTechniques = await this.extractAllowedTechniques(page);
 
-    // Prohibited techniques
-    const prohibitedTechniques = await this.extractProhibitedTechniques(page);
-
-    // Last updated – structured date field or meta
-    const lastSeenAt = await this.safeExtract(
-      page,
-      '[data-testid="last-updated"], .last-updated, time, tr:has-text("Last updated") td:last-child'
-    );
+    // Last updated date
+    const lastSeenAt = await this.safeExtract(page, '.program-updated');
 
     const html = await page.content();
     const hash = this.hashContent(html);
@@ -65,15 +50,15 @@ export class HackerOneParser extends BaseParser {
       scope_assets: scopeAssets,
       exclusions,
       reward_range: rewardRange || 'unknown',
-      reward_currency: rewardCurrency,
+      reward_currency: 'USD',
       payout_notes: payoutNotes || '',
       allowed_techniques: allowedTechniques,
-      prohibited_techniques: prohibitedTechniques,
-      last_seen_at: lastSeenAt || new Date().toISOString().split('T')[0],
+      prohibited_techniques: [],
+      last_seen_at: this.parseDate(lastSeenAt),
       source_snapshot_hash: hash
     };
 
-    this.logger.log(`HackerOneParser produced: ${result.program_name} (${scopeAssets.length} assets)`);
+    this.logger.log(`HackerOneParser: ${result.program_name} | ${scopeAssets.length} assets | rewards: ${rewardRange || 'n/a'}`);
     return result;
   }
 
@@ -83,110 +68,86 @@ export class HackerOneParser extends BaseParser {
       if (await el.count() > 0) {
         return (await el.textContent())?.trim() ?? '';
       }
-    } catch {
-      // fall through
-    }
+    } catch { /* fall through */ }
     return '';
   }
 
   private async extractScopeAssets(page: Page): Promise<string[]> {
     const assets: string[] = [];
-    // Try common HackerOne scope table selectors
-    const selectors = [
-      '[data-testid="scope-table"] td:first-child',
-      '.scope-table td:first-child',
-      'table:has-text("In Scope") td:first-child',
-      '.asset-list .asset-item',
-      '[data-testid="asset"]',
-      '.in-scope .asset'
-    ];
-    for (const sel of selectors) {
-      try {
-        const count = await page.locator(sel).count();
-        if (count > 0) {
-          for (let i = 0; i < count; i++) {
-            const text = (await page.locator(sel).nth(i).textContent())?.trim();
-            if (text && !assets.includes(text)) assets.push(text);
-          }
-        }
-      } catch {
-        // try next selector
-      }
-      if (assets.length > 0) break;
+
+    // HackerOne scope tables: use CSS class to distinguish in/out of scope
+    // .scope-table           → in-scope
+    // .scope-table.out-of-scope → out-of-scope (skip)
+    const inScopeRows = page.locator('.scope-table:not(.out-of-scope) tbody tr td:first-child');
+    const count = await inScopeRows.count();
+    for (let i = 0; i < count; i++) {
+      const text = (await inScopeRows.nth(i).textContent())?.trim() ?? '';
+      if (text && text.length > 3) assets.push(text);
     }
-    return assets;
+
+    return [...new Set(assets)];
   }
 
   private async extractExclusions(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="out-of-scope"] td:first-child',
-      '.out-of-scope td:first-child',
-      'table:has-text("Out of Scope") td:first-child',
-      '.exclusion-list .exclusion-item'
-    ];
-    for (const sel of selectors) {
-      try {
-        const count = await page.locator(sel).count();
-        if (count > 0) {
-          const excl: string[] = [];
-          for (let i = 0; i < count; i++) {
-            const text = (await page.locator(sel).nth(i).textContent())?.trim();
-            if (text) excl.push(text);
-          }
-          if (excl.length > 0) return excl;
-        }
-      } catch {
-        // try next
-      }
+    const exclusions: string[] = [];
+    // HackerOne v1/v2 fixtures: out-of-scope table has class "scope-table out-of-scope"
+    const outCells = page.locator('.scope-table.out-of-scope tbody tr td:first-child');
+    const count = await outCells.count();
+    for (let i = 0; i < count; i++) {
+      const text = (await outCells.nth(i).textContent())?.trim() ?? '';
+      if (text) exclusions.push(text);
     }
-    return [];
+    return exclusions;
+  }
+
+  private async extractRewardRange(page: Page): Promise<string> {
+    // Get the Critical severity row — highest bounty
+    try {
+      const criticalRow = page.locator('.rewards-table tr:has-text("Critical")');
+      if (await criticalRow.count() > 0) {
+        const cells = criticalRow.locator('td');
+        const cellCount = await cells.count();
+        if (cellCount >= 2) {
+          return (await cells.nth(cellCount - 1).textContent())?.trim() ?? '';
+        }
+      }
+    } catch { /* fall through */ }
+
+    // Fallback: any text with dollar amounts near severity labels
+    try {
+      const bodyText = await page.locator('body').textContent() ?? '';
+      // Match "$X,XXX – $XX,XXX" pattern near "Critical" or "High"
+      const match = bodyText.match(/(?:Critical|High|Medium|Low)\s*[\n\r]*\$[\d,]+[\s\u2013-]*\$?[\d,]+/);
+      if (match) return match[0].replace(/\s+/g, ' ').trim();
+    } catch { /* ignore */ }
+
+    return '';
   }
 
   private async extractAllowedTechniques(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="allowed-techniques"] li',
-      '.allowed-techniques li',
-      'tr:has-text("Allowed") td:last-child'
-    ];
-    for (const sel of selectors) {
-      try {
-        const count = await page.locator(sel).count();
-        if (count > 0) {
-          const techniques: string[] = [];
-          for (let i = 0; i < count; i++) {
-            const text = (await page.locator(sel).nth(i).textContent())?.trim();
-            if (text) techniques.push(text);
-          }
-          if (techniques.length > 0) return techniques;
-        }
-      } catch {
-        // try next
+    const techniques: string[] = [];
+    try {
+      const bodyText = await page.locator('body').textContent() ?? '';
+      const keywords = ['SQLi', 'XSS', 'CSRF', 'SSRF', 'IDOR', 'RCE', 'LFI', 'RFI', 'XXE', 'OAuth'];
+      for (const kw of keywords) {
+        if (bodyText.includes(kw)) techniques.push(kw);
       }
-    }
-    return [];
+    } catch { /* ignore */ }
+    return [...new Set(techniques)];
   }
 
-  private async extractProhibitedTechniques(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="prohibited-techniques"] li',
-      '.prohibited-techniques li',
-      'tr:has-text("Prohibited") td:last-child'
-    ];
-    for (const sel of selectors) {
+  private parseDate(text: string): string {
+    if (!text) return new Date().toISOString().split('T')[0];
+    // Extract "Updated November 12, 2024" → "2024-11-12"
+    const match = text.match(/Updated?\s*(\w+\s+\d{1,2},?\s+\d{4})/i);
+    if (match) {
       try {
-        const count = await page.locator(sel).count();
-        if (count > 0) {
-          const techniques: string[] = [];
-          for (let i = 0; i < count; i++) {
-            const text = (await page.locator(sel).nth(i).textContent())?.trim();
-            if (text) techniques.push(text);
-          }
-          if (techniques.length > 0) return techniques;
-        }
-      } catch {
-        // try next
-      }
+        return new Date(match[1]).toISOString().split('T')[0];
+      } catch { /* fall through */ }
     }
-    return [];
+    // Try plain date
+    try {
+      return new Date(text).toISOString().split('T')[0];
+    } catch { return new Date().toISOString().split('T')[0]; }
   }
 }

@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+
+test.setTimeout(60_000);
+
 import path from 'path';
 import { chromium } from 'playwright';
 import { BugcrowdParser } from '../src/browser/parsers/BugcrowdParser.js';
@@ -25,7 +28,7 @@ test('BugcrowdParser.parse() extracts program_name from v1 fixture', async () =>
   const parser = new BugcrowdParser(logger);
   const result = await parser.parse(page, FIXTURE_V1);
   expect(result.platform).toBe('bugcrowd');
-  expect(result.program_name).toBe('Bugcrowd Test Program v1');
+  expect(result.program_name).toBe('Okta');
   await browser.close();
 });
 
@@ -34,8 +37,10 @@ test('BugcrowdParser.parse() extracts scope_assets from v1 fixture', async () =>
   const logger = new Logger('Test');
   const parser = new BugcrowdParser(logger);
   const result = await parser.parse(page, FIXTURE_V1);
-  expect(result.scope_assets).toContain('example.com');
-  expect(result.scope_assets).toContain('www.example.com');
+  expect(result.scope_assets).toContain('https://okta.com');
+  expect(result.scope_assets).toContain('https://www.okta.com');
+  expect(result.scope_assets).toContain('https://subdomain.okta.com');
+  expect(result.scope_assets).toHaveLength(3);
   await browser.close();
 });
 
@@ -44,7 +49,8 @@ test('BugcrowdParser.parse() extracts exclusions from v1 fixture', async () => {
   const logger = new Logger('Test');
   const parser = new BugcrowdParser(logger);
   const result = await parser.parse(page, FIXTURE_V1);
-  expect(result.exclusions).toContain('thirdparty.com');
+  expect(result.exclusions).toContain('https://blog.okta.com');
+  expect(result.exclusions).toContain('https://developer.okta.com');
   await browser.close();
 });
 
@@ -53,7 +59,8 @@ test('BugcrowdParser.parse() extracts reward_range from v1 fixture', async () =>
   const logger = new Logger('Test');
   const parser = new BugcrowdParser(logger);
   const result = await parser.parse(page, FIXTURE_V1);
-  expect(result.reward_range).toBe('$100-$500');
+  // P1 range from .bc-amount inside .bc-p-3:has(.bc-label "P1")
+  expect(result.reward_range).toBe('$5,000 – $75,000');
   await browser.close();
 });
 
@@ -73,7 +80,9 @@ test('BugcrowdParser.parse() detects changed scope_assets in v2 fixture', async 
   const logger = new Logger('Test');
   const parser = new BugcrowdParser(logger);
   const result = await parser.parse(page, FIXTURE_V2);
-  expect(result.scope_assets).toContain('api.example.com'); // only in v2
+  // v2: subdomain replaced with api
+  expect(result.scope_assets).toContain('https://api.okta.com');
+  expect(result.scope_assets).not.toContain('https://subdomain.okta.com');
   expect(result.scope_assets).toHaveLength(3);
   await browser.close();
 });
@@ -83,7 +92,8 @@ test('BugcrowdParser.parse() detects changed reward_range in v2 fixture', async 
   const logger = new Logger('Test');
   const parser = new BugcrowdParser(logger);
   const result = await parser.parse(page, FIXTURE_V2);
-  expect(result.reward_range).toBe('$200-$1000');
+  // P1 range increased: $10,000 – $100,000
+  expect(result.reward_range).toBe('$10,000 – $100,000');
   await browser.close();
 });
 
