@@ -22,7 +22,8 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PIPELINE_ROOT = path.resolve(__dirname, '../..'); // src/scanner → pipeline root
+// Pipeline root is three levels up from dist/src/scanner/
+const PIPELINE_ROOT = path.resolve(__dirname, '../../..');
 const STATE_FILE = path.join(PIPELINE_ROOT, 'logs/scan-state.json');
 const RESULTS_DIR = path.join(PIPELINE_ROOT, 'logs/scan-results');
 
