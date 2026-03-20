@@ -163,8 +163,9 @@ async function fetchAndDiff(browser, snapshotMgr, platform, programUrl) {
         removedFields: [],
         changedFields: []
     };
+    let prevProg;
     if (prevHash && prevHash !== newHash) {
-        const prevProg = (await snapshotMgr.load(identifier, prevHash));
+        prevProg = await snapshotMgr.load(identifier, prevHash);
         const { diffPrograms } = await import('./diff/ProgramDiffer.js');
         const diff = diffPrograms(prevProg, program, prevHash, newHash, identifier);
         diffResult.addedFields = diff.addedFields.map((f) => f.field);
@@ -173,6 +174,7 @@ async function fetchAndDiff(browser, snapshotMgr, platform, programUrl) {
     }
     return {
         ...program,
+        prevProgram: prevProg,
         diff: diffResult
     };
 }

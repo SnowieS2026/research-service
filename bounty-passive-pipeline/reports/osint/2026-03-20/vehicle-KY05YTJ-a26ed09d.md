@@ -1,7 +1,7 @@
 # OSINT Report – vehicle: KY05YTJ
 
-**Generated:** 2026-03-20T01:50:26.984Z  
-**Duration:** 12s  
+**Generated:** 2026-03-20T04:07:07.348Z  
+**Duration:** 11s  
 **Flags:** (none)  
 
 ## Summary

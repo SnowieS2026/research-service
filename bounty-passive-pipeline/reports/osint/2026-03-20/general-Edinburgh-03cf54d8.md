@@ -1,7 +1,7 @@
 # OSINT Report – general: Edinburgh
 
-**Generated:** 2026-03-20T01:46:19.175Z  
-**Duration:** 2s  
+**Generated:** 2026-03-20T10:14:52.927Z  
+**Duration:** 20s  
 **Flags:** (none)  
 
 ## Summary
@@ -11,7 +11,7 @@
 | GeneralCollector | 0 | 0 |
 
 **Total unique findings:** 0  
-**Total errors:** 0  
+**Total errors:** 1  
 
 ### Confidence Distribution
 
@@ -23,13 +23,15 @@
 
 ## Key Findings
 
+## Errors
+
+- Web search failed: Error: All SearxNG instances failed
+
 ## Raw Data
 
 ```json
 {
-  "GeneralCollector": {
-    "webResults": []
-  }
+  "GeneralCollector": {}
 }
 ```
 

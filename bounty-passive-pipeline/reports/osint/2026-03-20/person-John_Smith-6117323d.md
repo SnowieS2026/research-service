@@ -1,17 +1,17 @@
 # OSINT Report – person: John Smith
 
-**Generated:** 2026-03-20T01:48:30.798Z  
-**Duration:** 4s  
+**Generated:** 2026-03-20T04:10:41.375Z  
+**Duration:** 60s  
 **Flags:** (none)  
 
 ## Summary
 
 | Collector | Findings | Errors |
 | --- | --- | --- |
-| PersonCollector | 0 | 0 |
+| PersonCollector | 0 | 1 |
 
 **Total unique findings:** 0  
-**Total errors:** 0  
+**Total errors:** 1  
 
 ### Confidence Distribution
 
@@ -23,13 +23,15 @@
 
 ## Key Findings
 
+## Errors
+
+- PersonCollector timed out after 60000ms
+
 ## Raw Data
 
 ```json
 {
-  "PersonCollector": {
-    "webResults": []
-  }
+  "PersonCollector": {}
 }
 ```
 

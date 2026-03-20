@@ -1,34 +1,6 @@
-import { osintFetch, osintDelay, tryParseJson } from '../http.js';
+import { searxngSearch, osintFetch, osintDelay, tryParseJson } from '../http.js';
 import { Logger } from '../../Logger.js';
 const LOG = new Logger('BusinessCollector');
-async function ddgSearch(query, count = 8) {
-    const url = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}&kl=en-us`;
-    const text = await osintFetch(url, { timeout: 12_000 });
-    const results = [];
-    const linkMatches = text.matchAll(/<a class="result__a"[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi);
-    for (const m of linkMatches) {
-        const href = decodeURIComponent(m[1]);
-        const title = m[2].replace(/<[^>]+>/g, '').trim();
-        if (href && title && !href.includes('duckduckgo')) {
-            results.push({ title, url: href });
-            if (results.length >= count)
-                break;
-        }
-    }
-    if (results.length === 0) {
-        const simpleMatches = text.matchAll(/<a[^>]+href="(https?[^"]+)"[^>]*>([^<]+)<\/a>/gi);
-        for (const m of simpleMatches) {
-            const href = m[1];
-            const title = m[2].replace(/<[^>]+>/g, '').trim();
-            if (href.startsWith('http') && title && !href.includes('duckduckgo') && title.length > 3) {
-                results.push({ title, url: href });
-                if (results.length >= count)
-                    break;
-            }
-        }
-    }
-    return results;
-}
 export class BusinessCollector {
     async collect(query) {
         const { target } = query;
@@ -46,63 +18,71 @@ export class BusinessCollector {
         }
         // ── CRTSH WHOIS-like lookup via certificate transparency ──────────────────
         if (isDomain) {
-            try {
-                const cleanDomain = target.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
-                const crtUrl = `https://crt.sh/?q=${encodeURIComponent(cleanDomain)}&output=json`;
-                const text = await osintFetch(crtUrl, { timeout: 15_000 });
-                const entries = tryParseJson(text, []);
-                rawData.crtsh = entries;
-                if (Array.isArray(entries) && entries.length > 0) {
-                    const entry = entries[0];
-                    findings.push({
-                        source: 'CRTSH',
-                        field: 'issuer',
-                        value: String(entry.issuer_name ?? 'Unknown'),
-                        confidence: 80
-                    });
-                    findings.push({
-                        source: 'CRTSH',
-                        field: 'common_name',
-                        value: String(entry.common_name ?? cleanDomain),
-                        confidence: 80
-                    });
-                    if (entry.not_before) {
+            let crtSuccess = false;
+            for (let attempt = 0; attempt < 3 && !crtSuccess; attempt++) {
+                try {
+                    if (attempt > 0)
+                        await osintDelay(2000 * attempt); // exponential backoff
+                    const cleanDomain = target.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
+                    const crtUrl = `https://crt.sh/?q=${encodeURIComponent(cleanDomain)}&output=json`;
+                    const text = await osintFetch(crtUrl, { timeout: 15_000 });
+                    const entries = tryParseJson(text, []);
+                    rawData.crtsh = entries;
+                    if (Array.isArray(entries) && entries.length > 0) {
+                        const entry = entries[0];
                         findings.push({
                             source: 'CRTSH',
-                            field: 'certificate_issued',
-                            value: String(entry.not_before),
-                            confidence: 70
+                            field: 'issuer',
+                            value: String(entry.issuer_name ?? 'Unknown'),
+                            confidence: 80
                         });
-                    }
-                    if (entry.not_after) {
                         findings.push({
                             source: 'CRTSH',
-                            field: 'certificate_expires',
-                            value: String(entry.not_after),
-                            confidence: 70
+                            field: 'common_name',
+                            value: String(entry.common_name ?? cleanDomain),
+                            confidence: 80
                         });
-                    }
-                    // Collect SAN names
-                    const sanMatch = String(entry.name_value ?? '').split('\n');
-                    if (sanMatch.length > 1) {
-                        rawData.san_domains = sanMatch;
-                        findings.push({
-                            source: 'CRTSH',
-                            field: 'san_domains',
-                            value: `${sanMatch.length} domains on certificate (incl. ${sanMatch[0]})`,
-                            confidence: 75
-                        });
+                        if (entry.not_before) {
+                            findings.push({
+                                source: 'CRTSH',
+                                field: 'certificate_issued',
+                                value: String(entry.not_before),
+                                confidence: 70
+                            });
+                        }
+                        if (entry.not_after) {
+                            findings.push({
+                                source: 'CRTSH',
+                                field: 'certificate_expires',
+                                value: String(entry.not_after),
+                                confidence: 70
+                            });
+                        }
+                        // Collect SAN names
+                        const sanMatch = String(entry.name_value ?? '').split('\n');
+                        if (sanMatch.length > 1) {
+                            rawData.san_domains = sanMatch;
+                            findings.push({
+                                source: 'CRTSH',
+                                field: 'san_domains',
+                                value: `${sanMatch.length} domains on certificate (incl. ${sanMatch[0]})`,
+                                confidence: 75
+                            });
+                        }
+                        crtSuccess = true;
                     }
                 }
-            }
-            catch (err) {
-                errors.push(`CRTSH lookup failed: ${err}`);
+                catch (err) {
+                    if (attempt === 2) {
+                        errors.push(`CRTSH lookup failed after 3 attempts: ${err}`);
+                    }
+                }
             }
             await osintDelay(500);
         }
         // ── Companies House (UK) ──────────────────────────────────────────────────
         try {
-            const chResults = await ddgSearch(`site:companieshouse.gov.uk "${target}"`, 5);
+            const chResults = await searxngSearch(`site:companieshouse.gov.uk "${target}"`, 5);
             for (const r of chResults) {
                 findings.push({
                     source: 'CompaniesHouse',
@@ -119,7 +99,7 @@ export class BusinessCollector {
         await osintDelay(500);
         // ── SEC EDGAR (US) ───────────────────────────────────────────────────────
         try {
-            const edgarResults = await ddgSearch(`site:sec.gov/edgar "${target}"`, 5);
+            const edgarResults = await searxngSearch(`site:sec.gov/edgar "${target}"`, 5);
             for (const r of edgarResults) {
                 findings.push({
                     source: 'SECEDGAR',
@@ -136,7 +116,7 @@ export class BusinessCollector {
         await osintDelay(500);
         // ── OpenCorporates ────────────────────────────────────────────────────────
         try {
-            const ocResults = await ddgSearch(`site:opencorporates.com "${target}"`, 5);
+            const ocResults = await searxngSearch(`site:opencorporates.com "${target}"`, 5);
             for (const r of ocResults) {
                 findings.push({
                     source: 'OpenCorporates',
@@ -153,7 +133,7 @@ export class BusinessCollector {
         await osintDelay(500);
         // ── LinkedIn company ───────────────────────────────────────────────────────
         try {
-            const liResults = await ddgSearch(`site:linkedin.com/company "${target}"`, 5);
+            const liResults = await searxngSearch(`site:linkedin.com/company "${target}"`, 5);
             for (const r of liResults) {
                 findings.push({
                     source: 'LinkedIn',
@@ -170,7 +150,7 @@ export class BusinessCollector {
         await osintDelay(500);
         // ── Google Maps ───────────────────────────────────────────────────────────
         try {
-            const mapsResults = await ddgSearch(`"${target}" site:google.com/maps`, 3);
+            const mapsResults = await searxngSearch(`"${target}" site:google.com/maps`, 3);
             for (const r of mapsResults) {
                 findings.push({
                     source: 'GoogleMaps',
@@ -187,7 +167,7 @@ export class BusinessCollector {
         await osintDelay(500);
         // ── General business search ───────────────────────────────────────────────
         try {
-            const bizResults = await ddgSearch(`"${target}" business OR company`, 8);
+            const bizResults = await searxngSearch(`"${target}" business OR company`, 8);
             rawData.businessSearch = bizResults;
             for (const r of bizResults) {
                 findings.push({

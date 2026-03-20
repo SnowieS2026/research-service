@@ -54,3 +54,50 @@ export function tryParseJson(text, fallback) {
 export async function osintDelay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+// ── SearxNG Search ───────────────────────────────────────────────────────────
+const SEARXNG_INSTANCES = [
+    'http://localhost:8080',
+    'https://searx.party',
+    'https://searx.mw.io',
+];
+/** Fallback public instances tried in order if no local instance is configured. */
+const SEARXNG_FALLBACK_INSTANCES = [
+    'https://searx.work',
+    'https://searxng.site',
+];
+/**
+ * Search via public SearxNG instances with fallback.
+ * Returns results in the same shape as the old ddgSearch() output.
+ */
+export async function searxngSearch(query, count = 10) {
+    const safesearch = 0;
+    const instances = [];
+    // 1. Local instance (best — no rate limits, no blocking)
+    const localUrl = process.env.SEARXNG_URL;
+    if (localUrl) {
+        instances.push(localUrl);
+    }
+    // 2. Primary public instances
+    instances.push(...SEARXNG_INSTANCES);
+    // 3. Additional fallback public instances
+    instances.push(...SEARXNG_FALLBACK_INSTANCES);
+    for (const base of instances) {
+        try {
+            const url = `${base}/search?q=${encodeURIComponent(query)}&format=json&safesearch=${safesearch}&engines=bing,mojeek`;
+            const text = await osintFetch(url, { timeout: 15_000 });
+            const json = tryParseJson(text, { results: [] });
+            if (!json.results)
+                continue;
+            // Return results if any (even 0 is a valid response — don't keep falling through)
+            return json.results.slice(0, count).map(r => ({
+                title: r.title,
+                url: r.url,
+                snippet: r.content,
+            }));
+        }
+        catch {
+            // network/http error — try next instance
+        }
+    }
+    throw new Error('All SearxNG instances failed');
+}

@@ -1,17 +1,17 @@
 # OSINT Report – business: Tesco
 
-**Generated:** 2026-03-20T01:47:53.587Z  
-**Duration:** 3s  
+**Generated:** 2026-03-20T04:09:34.449Z  
+**Duration:** 60s  
 **Flags:** (none)  
 
 ## Summary
 
 | Collector | Findings | Errors |
 | --- | --- | --- |
-| BusinessCollector | 0 | 0 |
+| BusinessCollector | 0 | 1 |
 
 **Total unique findings:** 0  
-**Total errors:** 0  
+**Total errors:** 1  
 
 ### Confidence Distribution
 
@@ -23,13 +23,15 @@
 
 ## Key Findings
 
+## Errors
+
+- BusinessCollector timed out after 60000ms
+
 ## Raw Data
 
 ```json
 {
-  "BusinessCollector": {
-    "businessSearch": []
-  }
+  "BusinessCollector": {}
 }
 ```
 

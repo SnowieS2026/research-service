@@ -10,21 +10,28 @@ function maxSeverity(a, b) {
     return order[Math.max(order.indexOf(a), order.indexOf(b))];
 }
 function parseRewardRange(range) {
-    // Handles formats like "$1,000 - $5,000", "€500 - €2000", "$500+", "Varies"
-    const cleaned = range.replace(/[€$£,]/g, '').replace(/\s+/g, ' ').trim();
-    const match = cleaned.match(/(\d+)\s*-\s*(\d+)/);
-    if (match) {
-        return { min: parseInt(match[1], 10), max: parseInt(match[2], 10) };
+    if (!range || range === 'unknown')
+        return null;
+    // Handles: "$1,000 - $5,000", "€500 - €2000", "$500+", "€500–€2000", "Varies"
+    const cleaned = range.replace(/[€$£¥]/g, '').replace(/,/g, '').trim();
+    const dashMatch = cleaned.match(/(\d+)\s*[-–—]\s*(\d+)/);
+    if (dashMatch) {
+        return { min: parseInt(dashMatch[1], 10), max: parseInt(dashMatch[2], 10) };
     }
-    const single = cleaned.match(/(\d+)/);
-    if (single) {
-        return { min: parseInt(single[1], 10), max: parseInt(single[1], 10) };
+    const plusMatch = cleaned.match(/(\d+)\s*\+/);
+    if (plusMatch) {
+        return { min: parseInt(plusMatch[1], 10), max: parseInt(plusMatch[1], 10) };
+    }
+    const singleMatch = cleaned.match(/(\d+)/);
+    if (singleMatch) {
+        return { min: parseInt(singleMatch[1], 10), max: parseInt(singleMatch[1], 10) };
     }
     return null;
 }
 function rewardDirection(oldRange, newRange) {
-    if (!oldRange || !newRange)
+    if (!oldRange || !newRange || oldRange === 'unknown' || newRange === 'unknown') {
         return 'unknown';
+    }
     const oldParsed = parseRewardRange(oldRange);
     const newParsed = parseRewardRange(newRange);
     if (!oldParsed || !newParsed)
@@ -39,11 +46,13 @@ function rewardDirection(oldRange, newRange) {
         return 'decreased';
     return 'unchanged';
 }
-function arrayAddedItems(oldArr, newArr) {
-    return newArr.filter((item) => !oldArr.includes(item));
-}
-function arrayRemovedItems(oldArr, newArr) {
-    return oldArr.filter((item) => !newArr.includes(item));
+function arrayDiff(oldArr, newArr) {
+    const oldSet = new Set(oldArr);
+    const newSet = new Set(newArr);
+    return {
+        added: newArr.filter(item => !oldSet.has(item)),
+        removed: oldArr.filter(item => !newSet.has(item))
+    };
 }
 /**
  * Classifies a DiffNotification into a severity level with reasons.
@@ -51,35 +60,30 @@ function arrayRemovedItems(oldArr, newArr) {
 export function classifyFinding(diff) {
     const reasons = [];
     let severity = 'LOW';
-    const changedFields = [
+    const allChangedFields = [
         ...diff.diff.addedFields,
         ...diff.diff.removedFields,
         ...diff.diff.changedFields
     ];
-    const changedFieldNames = changedFields;
-    const oldProg = {};
-    const newProg = {};
-    // We reconstruct partial old/new from the diff notification fields
-    // The diff notification IS the new program (it has current values)
-    // and the diff tells us what changed. We need old values from diff.
-    // Since diff.addedFields/removedFields/changedFields give field names,
-    // we use the notification's own arrays for the new values.
-    // Scope assets changed?
-    const scopeChanged = changedFieldNames.includes('scope_assets');
-    const newAssets = scopeChanged
-        ? arrayAddedItems([], diff.scope_assets) // diff alone can't give old list easily
-        : [];
-    const removedAssets = scopeChanged
-        ? arrayRemovedItems(diff.scope_assets, [])
-        : [];
-    // Reward changed?
-    const rewardChanged = changedFieldNames.includes('reward_range')
-        ? rewardDirection(diff.reward_range, diff.reward_range)
+    // Get old and new values where available
+    const prevProg = diff.prevProgram;
+    // Scope assets diff
+    let newAssets = [];
+    let removedAssets = [];
+    if (allChangedFields.includes('scope_assets')) {
+        const oldAssets = prevProg?.scope_assets ?? [];
+        const diffed = arrayDiff(oldAssets, diff.scope_assets);
+        newAssets = diffed.added;
+        removedAssets = diffed.removed;
+    }
+    // Reward change — use prevProgram when available, otherwise unknown
+    const rewardChanged = allChangedFields.includes('reward_range')
+        ? rewardDirection(prevProg?.reward_range, diff.reward_range)
         : 'unchanged';
     // ── Severity logic ──────────────────────────────────────────────────
     // New scope assets → MEDIUM
-    if (changedFieldNames.includes('scope_assets') && diff.scope_assets.length > 0) {
-        reasons.push('New assets added to scope');
+    if (newAssets.length > 0) {
+        reasons.push(`${newAssets.length} new asset(s) added to scope`);
         severity = maxSeverity(severity, 'MEDIUM');
     }
     // Reward range increased → HIGH
@@ -88,18 +92,18 @@ export function classifyFinding(diff) {
         severity = maxSeverity(severity, 'HIGH');
     }
     // New allowed techniques → MEDIUM
-    if (changedFieldNames.includes('allowed_techniques')) {
+    if (allChangedFields.includes('allowed_techniques')) {
         reasons.push('Allowed techniques updated');
         severity = maxSeverity(severity, 'MEDIUM');
     }
     // Prohibited techniques removed → HIGH
-    if (changedFieldNames.includes('prohibited_techniques')) {
+    if (allChangedFields.includes('prohibited_techniques')) {
         reasons.push('Prohibited/restricted techniques removed from scope');
         severity = maxSeverity(severity, 'HIGH');
     }
     // Scope assets removed → LOW
-    if (changedFieldNames.includes('scope_assets') && diff.scope_assets.length === 0) {
-        reasons.push('Scope assets removed from program');
+    if (removedAssets.length > 0) {
+        reasons.push(`${removedAssets.length} asset(s) removed from scope`);
         severity = maxSeverity(severity, 'LOW');
     }
     // Reward range decreased → MEDIUM
@@ -108,9 +112,14 @@ export function classifyFinding(diff) {
         severity = maxSeverity(severity, 'MEDIUM');
     }
     // Program closed / dead → CRITICAL
-    if (changedFieldNames.includes('program_name') && diff.program_name === 'Unknown') {
+    if (allChangedFields.includes('program_name') && diff.program_name === 'Unknown') {
         reasons.push('Program may have been closed or renamed');
         severity = maxSeverity(severity, 'CRITICAL');
+    }
+    // Payout notes changed → LOW
+    if (allChangedFields.includes('payout_notes') && diff.payout_notes) {
+        reasons.push('Program notes/triage status updated');
+        severity = maxSeverity(severity, 'LOW');
     }
     // Default – minor changes
     if (reasons.length === 0) {
@@ -121,7 +130,7 @@ export function classifyFinding(diff) {
         severity,
         reasons,
         cvss: SEVERITY_CVSS[severity],
-        changedFields: changedFieldNames,
+        changedFields: allChangedFields,
         newAssets,
         removedAssets,
         rewardChanged
