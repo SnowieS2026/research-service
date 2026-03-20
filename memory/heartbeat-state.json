@@ -1,0 +1,20 @@
+{
+  "lastHeartbeatAt": "2026-03-20T17:09:00Z",
+  "pipeline": {
+    "lastSnapshotAt": "2026-03-20T16:41:45Z",
+    "lastGoodAt": "2026-03-20T16:41:45Z",
+    "consecutiveEmpty": 0,
+    "cronJobId": "67d75617-a49c-4527-a15a-04ce5ec23f60"
+  },
+  "discovery": {
+    "lastRunAt": null,
+    "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4"
+  },
+  "heartbeatCycle": 0,
+  "notes": [
+    "Pipeline cron was timing out at 600s — extended to 1800s (30min)",
+    "Discovery cron was timing out at 300s — extended to 600s",
+    "Pipeline actually ran successfully at 16:41 despite cron showing error",
+    "Heartbeat loop now runs lightweight checks without blocking main session"
+  ]
+}

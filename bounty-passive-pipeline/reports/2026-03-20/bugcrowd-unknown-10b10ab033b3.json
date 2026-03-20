@@ -1,0 +1,93 @@
+{
+  "programName": "Unknown",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/engagements/underarmour",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "New assets added to scope"
+  ],
+  "reportDate": "2026-03-20",
+  "changes": [
+    {
+      "field": "program_url",
+      "oldValue": "https://bugcrowd.com/engagements/underarmour",
+      "newValue": "https://bugcrowd.com/engagements/underarmour"
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "Under Armour’s vision is to inspire you with performance solutions you never knew you needed and can’t imagine living without.",
+      "newValue": "Under Armour’s vision is to inspire you with performance solutions you never knew you needed and can’t imagine living without."
+    },
+    {
+      "field": "exclusions",
+      "oldValue": "Under Armour Mission & Values",
+      "newValue": "Under Armour Mission & Values"
+    },
+    {
+      "field": "reward_range",
+      "oldValue": "We want to engage the security research community as partners & teammates to Stay True, protect our athletes, and protect their data. Doing so enables our Global Community of athletes to Celebrate their Goals.",
+      "newValue": "We want to engage the security research community as partners & teammates to Stay True, protect our athletes, and protect their data. Doing so enables our Global Community of athletes to Celebrate their Goals."
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "Under Armour’s vision is to inspire you with performance solutions you never knew you needed and can’t imagine living without.",
+      "newValue": "Under Armour’s vision is to inspire you with performance solutions you never knew you needed and can’t imagine living without."
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "995c12e6227cb64d705058b7eb1d5f73081c7aaf5d0e1f17e0db5f2a4e96f43e",
+      "newValue": "995c12e6227cb64d705058b7eb1d5f73081c7aaf5d0e1f17e0db5f2a4e96f43e"
+    }
+  ],
+  "newAssets": [
+    "Under Armour’s vision is to inspire you with performance solutions you never knew you needed and can’t imagine living without."
+  ],
+  "removedAssets": [
+    "Under Armour’s vision is to inspire you with performance solutions you never knew you needed and can’t imagine living without."
+  ],
+  "rewardChange": "unknown",
+  "changedFields": [
+    "program_url",
+    "scope_assets",
+    "exclusions",
+    "reward_range",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 1 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: Under Armour’s vision is to inspire you with performance solutions you never knew you needed and can’t imagine living without."
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "Unknown",
+    "program_url": "https://bugcrowd.com/engagements/underarmour",
+    "scope_assets": [
+      "Under Armour’s vision is to inspire you with performance solutions you never knew you needed and can’t imagine living without."
+    ],
+    "exclusions": [
+      "Under Armour Mission & Values"
+    ],
+    "reward_range": "We want to engage the security research community as partners & teammates to Stay True, protect our athletes, and protect their data. Doing so enables our Global Community of athletes to Celebrate their Goals.",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "Under Armour’s vision is to inspire you with performance solutions you never knew you needed and can’t imagine living without.",
+    "source_snapshot_hash": "995c12e6227cb64d705058b7eb1d5f73081c7aaf5d0e1f17e0db5f2a4e96f43e",
+    "diff": {
+      "oldHash": "corp-084bfd40171b27af430235f199f1e60914a2ae6ff1e7e08974936d391a6e80de",
+      "newHash": "10b10ab033b3690aa5943225bccad128306fb40915acb868e01dab5618f90df0",
+      "addedFields": [],
+      "removedFields": [],
+      "changedFields": [
+        "program_url",
+        "scope_assets",
+        "exclusions",
+        "reward_range",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}

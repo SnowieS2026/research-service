@@ -1,0 +1,1 @@
+Get-ChildItem 'C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\logs\snapshots' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 1 | ForEach-Object { "$($_.Name)|$($_.LastWriteTime)" }

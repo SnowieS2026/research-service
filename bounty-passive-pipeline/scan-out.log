@@ -1,0 +1,123 @@
+[16:43:15] === Active Scan Test ===
+[16:43:15] Config: DRY_RUN=false, all tools enabled
+[16:43:15] Target: https://bugcrowd.com/engagements/okta
+[16:43:15] 
+[1] Fetching program scope...
+[16:43:22]   Program: Okta
+[16:43:22]   Scope assets: 48
+[16:43:22]   Reward range: $5000 – $75000
+[16:43:22] 
+[2] Scope URLs to scan: 6
+[16:43:22]   1. https://personal.trexcloud.com (https://personal.trexcloud.com)
+[16:43:22]   2. https://appdistribution.firebase.dev/i/4116040c826cc62f (https://appdistribution.firebase.dev/i/4116040c826cc62f)
+[16:43:22]   3. https://appdistribution.firebase.dev/i/2f6eccc30f6a70eb (https://appdistribution.firebase.dev/i/2f6eccc30f6a70eb)
+[16:43:22]   4. https://help.okta.com/en-us/content/topics/privileged-access/pam-overview.htm (https://help.okta.com/en-us/content/topics/privileged-access/pam-overview.htm)
+[16:43:22]   5. https://github.com/oktadev (https://github.com/oktadev)
+[16:43:22]   6. https://help.okta.com/wf/en-us/content/topics/workflows/access-control/access-control-roles.htm (https://help.okta.com/wf/en-us/content/topics/workflows/access-control/access-control-roles.htm)
+[16:43:22] 
+[3] Discovery scan (endpoint enumeration)...
+[16:43:22]   Probing: https://personal.trexcloud.com (https://personal.trexcloud.com)
+[16:43:22]     -> skipped
+[16:43:22]   Probing: https://appdistribution.firebase.dev/i/4116040c826cc62f (https://appdistribution.firebase.dev/i/4116040c826cc62f)
+[16:43:23]     Status: 200 | Content-Type: text/html; charset=utf-8
+[16:43:25]     Stack: unknown
+[16:43:25]     Server: ESF | CDN: none
+[16:43:28]     Endpoints found: 131
+[16:43:28]       - GET https://csp.withgoogle.com/csp/proto/ | params: 0 | formFields: 0
+[16:43:28]       - GET http://./ | params: 0 | formFields: 0
+[16:43:28]       - GET https://adservice.google.com/pagead/regclk | params: 0 | formFields: 0
+[16:43:28]       - GET https://cct.google/taggy/agent.js | params: 0 | formFields: 0
+[16:43:28]       - GET https://www.google.com/ | params: 0 | formFields: 0
+[16:43:29]   Probing: https://appdistribution.firebase.dev/i/2f6eccc30f6a70eb (https://appdistribution.firebase.dev/i/2f6eccc30f6a70eb)
+[16:43:29]     Status: 200 | Content-Type: text/html; charset=utf-8
+[16:43:30]     Stack: unknown
+[16:43:30]     Server: ESF | CDN: none
+[16:43:32]     Endpoints found: 131
+[16:43:32]       - GET https://csp.withgoogle.com/csp/proto/ | params: 0 | formFields: 0
+[16:43:32]       - GET http://./ | params: 0 | formFields: 0
+[16:43:32]       - GET https://adservice.google.com/pagead/regclk | params: 0 | formFields: 0
+[16:43:32]       - GET https://cct.google/taggy/agent.js | params: 0 | formFields: 0
+[16:43:32]       - GET https://www.google.com/ | params: 0 | formFields: 0
+[16:43:33]   Probing: https://help.okta.com/en-us/content/topics/privileged-access/pam-overview.htm (https://help.okta.com/en-us/content/topics/privileged-access/pam-overview.htm)
+[16:43:33]     Status: 404 | Content-Type: text/html; charset=UTF-8
+[16:43:34]     Stack: AWS CloudFront, jQuery, REST API
+[16:43:34]     Server: Netlify | CDN: AWS CloudFront
+[16:43:37]     Endpoints found: 114
+[16:43:37]       - GET https://help.okta.com/en-us/content/topics/privileged-access/pam-overview.htm%20(https://help.okta.com/en-us/content/topics/privileged-access/pam-overview.htm)# | params: 0 | formFields: 2
+[16:43:37]       - GET https://www.googletagmanager.com/gtm.js?id= | params: 1 | formFields: 0
+[16:43:37]       - GET https://www.googletagmanager.com/gtm.js?id= | params: 1 | formFields: 0
+[16:43:37]       - GET https://cdn.pendo.io/agent/static/ | params: 0 | formFields: 0
+[16:43:37]       - GET https://surveys.okta.com/jfe/form/SV_e4L0iW8a3tz8Yol?source= | params: 1 | formFields: 0
+[16:43:38]   Probing: https://github.com/oktadev (https://github.com/oktadev)
+[16:43:38]     Status: 404 | Content-Type: text/html; charset=utf-8
+[16:43:39]     Stack: React, GraphQL, tRPC, OAuth
+[16:43:39]     Server: github.com | CDN: none
+[16:43:41]     Endpoints found: 7
+[16:43:41]       - GET https://github.com/oktadev%20(https://github.com/oktadev) | params: 0 | formFields: 2
+[16:43:41]       - POST https://github.com/search/feedback | params: 0 | formFields: 4
+[16:43:41]       - POST https://github.com/search/custom_scopes | params: 0 | formFields: 6
+[16:43:41]       - POST https://github.com/session | params: 0 | formFields: 16
+[16:43:41]       - GET https://github.com/search | params: 0 | formFields: 2
+[16:43:42]   Probing: https://help.okta.com/wf/en-us/content/topics/workflows/access-control/access-control-roles.htm (https://help.okta.com/wf/en-us/content/topics/workflows/access-control/access-control-roles.htm)
+[16:43:42]     Status: 404 | Content-Type: text/html; charset=UTF-8
+[16:43:43]     Stack: AWS CloudFront, jQuery, REST API
+[16:43:43]     Server: Netlify | CDN: AWS CloudFront
+[16:43:45]     Endpoints found: 114
+[16:43:45]       - GET https://help.okta.com/wf/en-us/content/topics/workflows/access-control/access-control-roles.htm%20(https://help.okta.com/wf/en-us/content/topics/workflows/access-control/access-control-roles.htm)# | params: 0 | formFields: 2
+[16:43:45]       - GET https://www.googletagmanager.com/gtm.js?id= | params: 1 | formFields: 0
+[16:43:45]       - GET https://www.googletagmanager.com/gtm.js?id= | params: 1 | formFields: 0
+[16:43:45]       - GET https://cdn.pendo.io/agent/static/ | params: 0 | formFields: 0
+[16:43:45]       - GET https://surveys.okta.com/jfe/form/SV_e4L0iW8a3tz8Yol?source= | params: 1 | formFields: 0
+[16:43:46] 
+  Total endpoints discovered: 497
+[16:43:46]   Endpoints with parameters: 26
+[16:43:46] 
+[4] Running active scanners...
+[16:43:46] 
+  [4a] XSS scan (dalfox)...
+[16:49:34]     XSS findings: 0
+[16:49:34] 
+  [4b] SQLi scan (sqlmap)...
+[16:54:27]     SQLi findings: 0
+[16:54:27] 
+  [4c] SSRF scan...
+[16:55:39]     SSRF findings: 34
+[16:55:39]       - HIGH ssrf https://pagead2.googlesyndication.com/pagead/gen_204?id=tcfe @id
+[16:55:39]       - HIGH ssrf https://stats.g.doubleclick.net/g/collect?v=2& @v
+[16:55:39]       - HIGH ssrf https://www.google-analytics.com/gtm/js?id= @id
+[16:55:39]       - HIGH ssrf https://www.googletagmanager.com/gtag/js?id= @id
+[16:55:39]       - HIGH ssrf https://www.google-analytics.com/debug/bootstrap?id= @id
+[16:55:39]       - HIGH ssrf https://play.google.com/log?format=json&hasfast=true @format
+[16:55:39]       - HIGH ssrf https://play.google.com/log?format=json&hasfast=true @hasfast
+[16:55:39]       - HIGH ssrf https://play.google.com/log?format=json&hasfast=true @format
+[16:55:39]       - HIGH ssrf https://play.google.com/log?format=json&hasfast=true @hasfast
+[16:55:39]       - HIGH ssrf https://pagead2.googlesyndication.com/pagead/gen_204?id=tcfe @id
+[16:55:39]       - HIGH ssrf https://stats.g.doubleclick.net/g/collect?v=2& @v
+[16:55:39]       - HIGH ssrf https://www.google-analytics.com/gtm/js?id= @id
+[16:55:39]       - HIGH ssrf https://www.googletagmanager.com/gtag/js?id= @id
+[16:55:39]       - HIGH ssrf https://www.google-analytics.com/debug/bootstrap?id= @id
+[16:55:39]       - HIGH ssrf https://play.google.com/log?format=json&hasfast=true @format
+[16:55:39]       - HIGH ssrf https://play.google.com/log?format=json&hasfast=true @hasfast
+[16:55:39]       - HIGH ssrf https://play.google.com/log?format=json&hasfast=true @format
+[16:55:39]       - HIGH ssrf https://play.google.com/log?format=json&hasfast=true @hasfast
+[16:55:39]       - HIGH ssrf https://www.googletagmanager.com/gtm.js?id= @id
+[16:55:39]       - HIGH ssrf https://www.googletagmanager.com/gtm.js?id= @id
+[16:55:39]       - HIGH ssrf https://surveys.okta.com/jfe/form/SV_e4L0iW8a3tz8Yol?source= @source
+[16:55:39]       - HIGH ssrf https://pagead2.googlesyndication.com/pagead/gen_204?id=tcfe @id
+[16:55:39]       - HIGH ssrf https://www.pendo.io/pendo-free/nps?utm_source=pendo_app&utm_medium=branded-nps&utm_campaign=free-branded-nps @utm_source
+[16:55:39]       - HIGH ssrf https://www.pendo.io/pendo-free/nps?utm_source=pendo_app&utm_medium=branded-nps&utm_campaign=free-branded-nps @utm_medium
+[16:55:39]       - HIGH ssrf https://www.pendo.io/pendo-free/nps?utm_source=pendo_app&utm_medium=branded-nps&utm_campaign=free-branded-nps @utm_campaign
+[16:55:39]       - HIGH ssrf https://pagead2.googlesyndication.com/pagead/gen_204?id=tcfe @id
+[16:55:39]       - HIGH ssrf https://www.googletagmanager.com/gtm.js?id= @id
+[16:55:39]       - HIGH ssrf https://www.googletagmanager.com/gtm.js?id= @id
+[16:55:39]       - HIGH ssrf https://surveys.okta.com/jfe/form/SV_e4L0iW8a3tz8Yol?source= @source
+[16:55:39]       - HIGH ssrf https://pagead2.googlesyndication.com/pagead/gen_204?id=tcfe @id
+[16:55:39]       - HIGH ssrf https://www.pendo.io/pendo-free/nps?utm_source=pendo_app&utm_medium=branded-nps&utm_campaign=free-branded-nps @utm_source
+[16:55:39]       - HIGH ssrf https://www.pendo.io/pendo-free/nps?utm_source=pendo_app&utm_medium=branded-nps&utm_campaign=free-branded-nps @utm_medium
+[16:55:39]       - HIGH ssrf https://www.pendo.io/pendo-free/nps?utm_source=pendo_app&utm_medium=branded-nps&utm_campaign=free-branded-nps @utm_campaign
+[16:55:39]       - HIGH ssrf https://pagead2.googlesyndication.com/pagead/gen_204?id=tcfe @id
+[16:55:39] 
+  [4d] Auth scan...
+[16:56:34]     Auth findings: 0
+[16:56:34] 
+  [4e] API scan...

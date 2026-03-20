@@ -1,0 +1,1 @@
+Get-ChildItem 'C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\reports\2026-03-20' -File | Sort-Object Length -Descending | Select-Object -First 5 | ForEach-Object { "$($_.Name)  $($_.Length) bytes" }

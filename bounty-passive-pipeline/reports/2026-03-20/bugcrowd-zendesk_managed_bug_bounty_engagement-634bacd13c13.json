@@ -1,0 +1,173 @@
+{
+  "programName": "Zendesk Managed Bug Bounty Engagement",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/engagements/zendesk",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "19 new asset(s) added to scope",
+    "Allowed techniques updated",
+    "1 asset(s) removed from scope",
+    "Program notes/triage status updated"
+  ],
+  "reportDate": "2026-03-20",
+  "changes": [
+    {
+      "field": "program_name",
+      "oldValue": "Zendesk Managed Bug Bounty Engagement",
+      "newValue": "Zendesk Managed Bug Bounty Engagement"
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "BugCrowd Vulnerability Rating Taxonomy (https://bugcrowd.com/vulnerability-rating-taxonomy),here (https://www.zendesk.com/register/),form (https://forms.gle/XLVbqFQ3opensnt79),iOS (https://developer.zendesk.com/documentation/zendesk-sdks/#ios),Android (https://developer.zendesk.com/documentation/zendesk-sdks/#android),integrations (https://support.zendesk.com/hc/en-us/articles/4408831648794-Getting-started-with-social-messaging),Enabling private attachments (https://support.zendesk.com/hc/en-us/articles/4408832757146-Enabling-attachments-in-tickets#topic_nrp_bnx_xdb),About malware scanning (https://support.zendesk.com/hc/en-us/articles/4483794022170-Managing-malicious-attachments#topic_jyj_r25_xsb__ul_h5j_mf5_xsb),Apple App Store - Zendesk Support App (https://apps.apple.com/app/id1174276185),Google App Store - Zendesk Support (https://play.google.com/store/apps/details?id=com.zendesk.android&hl=en),Zendesk owned apps & integrations (https://www.zendesk.com/marketplace/partners/475/zendesk/),WFM app (https://www.zendesk.com/marketplace/apps/support/4895/zendesk-workforce-management/),Ultimate app (https://www.zendesk.com/marketplace/partners/2196/ultimate/),Klaus Chat app (https://www.zendesk.com/marketplace/apps/chat/181357/klaus/?queryID=9b0ed729ffdbec96657b1bd437baa91d),Klaus Support app (https://www.zendesk.com/marketplace/apps/support/181357/klaus/?queryID=9b0ed729ffdbec96657b1bd437baa91d),Responsible disclosure policy (https://www.zendesk.com/au/company/policies-and-guidelines/responsible-disclosure-policy/),Bugcrowd Support Portal (https://bugcrowd-support.freshdesk.com/),Bugcrowd Support (https://bugcrowd-support.freshdesk.com/support/tickets/new),standard disclosure terms. (https://www.bugcrowd.com/resource/standard-disclosure-terms/)",
+      "newValue": "BugCrowd Vulnerability Rating Taxonomy (https://bugcrowd.com/vulnerability-rating-taxonomy),here (https://www.zendesk.com/register/),form (https://forms.gle/XLVbqFQ3opensnt79),iOS (https://developer.zendesk.com/documentation/zendesk-sdks/#ios),Android (https://developer.zendesk.com/documentation/zendesk-sdks/#android),integrations (https://support.zendesk.com/hc/en-us/articles/4408831648794-Getting-started-with-social-messaging),Enabling private attachments (https://support.zendesk.com/hc/en-us/articles/4408832757146-Enabling-attachments-in-tickets#topic_nrp_bnx_xdb),About malware scanning (https://support.zendesk.com/hc/en-us/articles/4483794022170-Managing-malicious-attachments#topic_jyj_r25_xsb__ul_h5j_mf5_xsb),Apple App Store - Zendesk Support App (https://apps.apple.com/app/id1174276185),Google App Store - Zendesk Support (https://play.google.com/store/apps/details?id=com.zendesk.android&hl=en),Zendesk owned apps & integrations (https://www.zendesk.com/marketplace/partners/475/zendesk/),WFM app (https://www.zendesk.com/marketplace/apps/support/4895/zendesk-workforce-management/),Ultimate app (https://www.zendesk.com/marketplace/partners/2196/ultimate/),Klaus Chat app (https://www.zendesk.com/marketplace/apps/chat/181357/klaus/?queryID=9b0ed729ffdbec96657b1bd437baa91d),Klaus Support app (https://www.zendesk.com/marketplace/apps/support/181357/klaus/?queryID=9b0ed729ffdbec96657b1bd437baa91d),Responsible disclosure policy (https://www.zendesk.com/au/company/policies-and-guidelines/responsible-disclosure-policy/),Bugcrowd Support Portal (https://bugcrowd-support.freshdesk.com/),Bugcrowd Support (https://bugcrowd-support.freshdesk.com/support/tickets/new),standard disclosure terms. (https://www.bugcrowd.com/resource/standard-disclosure-terms/)"
+    },
+    {
+      "field": "exclusions",
+      "oldValue": "Out of Scope",
+      "newValue": "Out of Scope"
+    },
+    {
+      "field": "reward_range",
+      "oldValue": "$5000 – $50000",
+      "newValue": "$5000 – $50000"
+    },
+    {
+      "field": "payout_notes",
+      "oldValue": "Expedited triage: Expedited triage | Safe harbor: Safe harbor",
+      "newValue": "Expedited triage: Expedited triage | Safe harbor: Safe harbor"
+    },
+    {
+      "field": "allowed_techniques",
+      "oldValue": "XSS,RCE",
+      "newValue": "XSS,RCE"
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "Dec 11, 2025",
+      "newValue": "Dec 11, 2025"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "0a416caf401800e70d59b5d6de9d88e6a27470f04a9d6ffaa98be5868013ffbd",
+      "newValue": "0a416caf401800e70d59b5d6de9d88e6a27470f04a9d6ffaa98be5868013ffbd"
+    }
+  ],
+  "newAssets": [
+    "BugCrowd Vulnerability Rating Taxonomy (https://bugcrowd.com/vulnerability-rating-taxonomy)",
+    "here (https://www.zendesk.com/register/)",
+    "form (https://forms.gle/XLVbqFQ3opensnt79)",
+    "iOS (https://developer.zendesk.com/documentation/zendesk-sdks/#ios)",
+    "Android (https://developer.zendesk.com/documentation/zendesk-sdks/#android)",
+    "integrations (https://support.zendesk.com/hc/en-us/articles/4408831648794-Getting-started-with-social-messaging)",
+    "Enabling private attachments (https://support.zendesk.com/hc/en-us/articles/4408832757146-Enabling-attachments-in-tickets#topic_nrp_bnx_xdb)",
+    "About malware scanning (https://support.zendesk.com/hc/en-us/articles/4483794022170-Managing-malicious-attachments#topic_jyj_r25_xsb__ul_h5j_mf5_xsb)",
+    "Apple App Store - Zendesk Support App (https://apps.apple.com/app/id1174276185)",
+    "Google App Store - Zendesk Support (https://play.google.com/store/apps/details?id=com.zendesk.android&hl=en)",
+    "Zendesk owned apps & integrations (https://www.zendesk.com/marketplace/partners/475/zendesk/)",
+    "WFM app (https://www.zendesk.com/marketplace/apps/support/4895/zendesk-workforce-management/)",
+    "Ultimate app (https://www.zendesk.com/marketplace/partners/2196/ultimate/)",
+    "Klaus Chat app (https://www.zendesk.com/marketplace/apps/chat/181357/klaus/?queryID=9b0ed729ffdbec96657b1bd437baa91d)",
+    "Klaus Support app (https://www.zendesk.com/marketplace/apps/support/181357/klaus/?queryID=9b0ed729ffdbec96657b1bd437baa91d)",
+    "Responsible disclosure policy (https://www.zendesk.com/au/company/policies-and-guidelines/responsible-disclosure-policy/)",
+    "Bugcrowd Support Portal (https://bugcrowd-support.freshdesk.com/)",
+    "Bugcrowd Support (https://bugcrowd-support.freshdesk.com/support/tickets/new)",
+    "standard disclosure terms. (https://www.bugcrowd.com/resource/standard-disclosure-terms/)"
+  ],
+  "removedAssets": [
+    "Zendesk aims to keep its Services safe for everyone and the security of our products & data is of utmost priority."
+  ],
+  "rewardChange": "unknown",
+  "changedFields": [
+    "program_name",
+    "scope_assets",
+    "exclusions",
+    "reward_range",
+    "payout_notes",
+    "allowed_techniques",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 19 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: BugCrowd Vulnerability Rating Taxonomy (https://bugcrowd.com/vulnerability-rating-taxonomy), here (https://www.zendesk.com/register/), form (https://forms.gle/XLVbqFQ3opensnt79)",
+    "**New allowed techniques** – The program has explicitly listed new acceptable techniques. Incorporate these into your testing workflow."
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "Zendesk Managed Bug Bounty Engagement",
+    "program_url": "https://bugcrowd.com/engagements/zendesk",
+    "scope_assets": [
+      "BugCrowd Vulnerability Rating Taxonomy (https://bugcrowd.com/vulnerability-rating-taxonomy)",
+      "here (https://www.zendesk.com/register/)",
+      "form (https://forms.gle/XLVbqFQ3opensnt79)",
+      "iOS (https://developer.zendesk.com/documentation/zendesk-sdks/#ios)",
+      "Android (https://developer.zendesk.com/documentation/zendesk-sdks/#android)",
+      "integrations (https://support.zendesk.com/hc/en-us/articles/4408831648794-Getting-started-with-social-messaging)",
+      "Enabling private attachments (https://support.zendesk.com/hc/en-us/articles/4408832757146-Enabling-attachments-in-tickets#topic_nrp_bnx_xdb)",
+      "About malware scanning (https://support.zendesk.com/hc/en-us/articles/4483794022170-Managing-malicious-attachments#topic_jyj_r25_xsb__ul_h5j_mf5_xsb)",
+      "Apple App Store - Zendesk Support App (https://apps.apple.com/app/id1174276185)",
+      "Google App Store - Zendesk Support (https://play.google.com/store/apps/details?id=com.zendesk.android&hl=en)",
+      "Zendesk owned apps & integrations (https://www.zendesk.com/marketplace/partners/475/zendesk/)",
+      "WFM app (https://www.zendesk.com/marketplace/apps/support/4895/zendesk-workforce-management/)",
+      "Ultimate app (https://www.zendesk.com/marketplace/partners/2196/ultimate/)",
+      "Klaus Chat app (https://www.zendesk.com/marketplace/apps/chat/181357/klaus/?queryID=9b0ed729ffdbec96657b1bd437baa91d)",
+      "Klaus Support app (https://www.zendesk.com/marketplace/apps/support/181357/klaus/?queryID=9b0ed729ffdbec96657b1bd437baa91d)",
+      "Responsible disclosure policy (https://www.zendesk.com/au/company/policies-and-guidelines/responsible-disclosure-policy/)",
+      "Bugcrowd Support Portal (https://bugcrowd-support.freshdesk.com/)",
+      "Bugcrowd Support (https://bugcrowd-support.freshdesk.com/support/tickets/new)",
+      "standard disclosure terms. (https://www.bugcrowd.com/resource/standard-disclosure-terms/)"
+    ],
+    "exclusions": [
+      "Out of Scope"
+    ],
+    "reward_range": "$5000 – $50000",
+    "reward_currency": "USD",
+    "payout_notes": "Expedited triage: Expedited triage | Safe harbor: Safe harbor",
+    "allowed_techniques": [
+      "XSS",
+      "RCE"
+    ],
+    "prohibited_techniques": [],
+    "last_seen_at": "Dec 11, 2025",
+    "source_snapshot_hash": "0a416caf401800e70d59b5d6de9d88e6a27470f04a9d6ffaa98be5868013ffbd",
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Ratings/Rewards and Bounty Rules:",
+      "program_url": "https://bugcrowd.com/engagements/zendesk",
+      "scope_assets": [
+        "Zendesk aims to keep its Services safe for everyone and the security of our products & data is of utmost priority."
+      ],
+      "exclusions": [
+        "For the initial prioritisation/rating of findings",
+        "this program will use the BugCrowd Vulnerability Rating Taxonomy. However",
+        "it is important to note that in some cases a vulnerability priority will be modified due to its likelihood or impact. In any instance where an issue is downgraded",
+        "a full",
+        "detailed explanation will be provided to the researcher - along with the opportunity to appeal",
+        "and make a case for a higher priority."
+      ],
+      "reward_range": "The targets within scope are publicly accessible.",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "Zendesk aims to keep its Services safe for everyone and the security of our products & data is of utmost priority.",
+      "source_snapshot_hash": "cfc30e34f3f3b8d3bb0fb983b187e506a1e8e3407c7f561fc5d305ce85f8e0b3"
+    },
+    "diff": {
+      "oldHash": "08fe47567db7cec25e3fe2f80a1b21b5e3f004dbb2b6164cbba0714afaa622c7",
+      "newHash": "634bacd13c13220aa0959c20a01240f4dc7381a05776f5132cb06e6a1c87d600",
+      "addedFields": [],
+      "removedFields": [],
+      "changedFields": [
+        "program_name",
+        "scope_assets",
+        "exclusions",
+        "reward_range",
+        "payout_notes",
+        "allowed_techniques",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}

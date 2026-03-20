@@ -162,56 +162,56 @@
   ],
   "lastSnapshots": {
     "https://bugcrowd.com/user/sign_in": {
-      "hash": "b4ffa83154847467df4c8c3b163ac9c792d8791476643f3e8393a05cf2f89c40",
-      "fetchedAt": "2026-03-20T15:33:01.758Z"
+      "hash": "2b2137d5d1a16c9b69f237772cb4899ead1325a98760aee4b99a5e6d99c1e69a",
+      "fetchedAt": "2026-03-20T16:33:16.396Z"
     },
     "https://bugcrowd.com/engagements": {
-      "hash": "c853219301a6f742a3d7de8df3b752256d744a2e3aeb04acead1dc165aa268bb",
-      "fetchedAt": "2026-03-20T15:33:07.216Z"
+      "hash": "d389ad170e24855bafeaefcc0026c927595fc8d62ed3c0acffd86a4e47dcc74a",
+      "fetchedAt": "2026-03-20T16:33:56.506Z"
     },
     "https://bugcrowd.com/engagements/featured": {
-      "hash": "077d65b6618984c9592f255c9c56f41382ca1b0265f2ac7eb51006f1bcefca7b",
-      "fetchedAt": "2026-03-20T15:33:11.940Z"
+      "hash": "17eb2560a3dfccdb5f39c7b59cd41589b07500f05378f7321b335e03de37ac10",
+      "fetchedAt": "2026-03-20T16:35:04.970Z"
     },
     "https://bugcrowd.com/engagements/rapyd": {
-      "hash": "fef64253ba1917f271e90151150efc4cf8acc5c140822c1f7f1caf4405da302c",
-      "fetchedAt": "2026-03-20T15:33:16.770Z"
+      "hash": "6a810e4fe017890ab751f09e00cfdf3752520849a4bec221ab3cf742cc70add7",
+      "fetchedAt": "2026-03-20T16:35:45.159Z"
     },
     "https://bugcrowd.com/engagements/optus-mbb-og": {
-      "hash": "25c23266f5333710c25151628539700f1194062b7edeac1582986f7751cfd5ab",
-      "fetchedAt": "2026-03-20T15:33:23.953Z"
+      "hash": "e2e4f47d687473f53bb45be9421235d18bb1f0fb5e9320562b4ac2fdc1ca4fbc",
+      "fetchedAt": "2026-03-20T16:36:26.274Z"
     },
     "https://bugcrowd.com/engagements/moovit-mbb-og": {
-      "hash": "316f101801622410c34393b389b383dec6d3561d29be53b66d3f196e76e069a6",
-      "fetchedAt": "2026-03-20T15:33:28.659Z"
+      "hash": "35019b6bf7e6c830e2d93b7720491e305abb15348c189c4f0944725ae1350f83",
+      "fetchedAt": "2026-03-20T16:37:05.354Z"
     },
     "https://bugcrowd.com/engagements/fireblocks-mbb-og": {
-      "hash": "df3c36e8229de71d89f76fa9e939ca2f614ce6cba6faaac6fc1114c211c7c061",
-      "fetchedAt": "2026-03-20T15:33:33.650Z"
+      "hash": "c594ba86f867e919773cacf16078d356f708d2c915bdac377e9ffee47ffaea31",
+      "fetchedAt": "2026-03-20T16:37:44.506Z"
     },
     "https://bugcrowd.com/engagements/luno-og": {
-      "hash": "0c18d688a07f2a4bcb98a3b7dfb4d111caf81705f3239e9f7d041d11bdf05f27",
-      "fetchedAt": "2026-03-20T15:33:38.340Z"
+      "hash": "af1ba049183ad9a89b4c01305a170ce547fa92d3d57372df10ae4b2d66e88cc7",
+      "fetchedAt": "2026-03-20T16:38:23.672Z"
     },
     "https://bugcrowd.com/engagements/webdotcom": {
-      "hash": "37af0e04d0dce747917b13d57cc6f505c216bc248f179a12edd32e149d1fb385",
-      "fetchedAt": "2026-03-20T15:33:43.260Z"
+      "hash": "feb30a10e5043aa5002c0c42ab532db8ae0b937192817340c3f50c6d12f50b19",
+      "fetchedAt": "2026-03-20T16:39:02.962Z"
     },
     "https://bugcrowd.com/engagements/hostgator-latam-bb": {
-      "hash": "c39109ec71f71b5b7d85ba5c1d372eaba4abe2fbb556d7ba0c3f5c62614438c3",
-      "fetchedAt": "2026-03-20T15:33:48.378Z"
+      "hash": "524171c3b77ca733b9c3807041f18e357a298582cdefd906ef183755777f0233",
+      "fetchedAt": "2026-03-20T16:39:42.384Z"
     },
     "https://bugcrowd.com/engagements/blockchain-dot-com": {
-      "hash": "60ef28d360f9623f4a04e525a35a65485b5c852f8c6b90d94e04eeebe0070763",
-      "fetchedAt": "2026-03-20T15:33:53.056Z"
+      "hash": "1447cd98bcd39e72554ca5f54ad1c783a18f2cccdeb139b0a7fbf8fed3c14a12",
+      "fetchedAt": "2026-03-20T16:40:21.460Z"
     },
     "https://bugcrowd.com/engagements/magiclabs-mbb-og": {
-      "hash": "039512fb7c90375b2256347b24dfe22f7aaf10e70e37180f4900b62287aa4eee",
-      "fetchedAt": "2026-03-20T15:33:57.683Z"
+      "hash": "92844a003e06d8acbbd94991c94363e6a30e8f33b397c1754f56fce5d18b7614",
+      "fetchedAt": "2026-03-20T16:41:00.534Z"
     },
     "https://bugcrowd.com/engagements/chime": {
-      "hash": "d83090bec150cb8fce9e6c7bb261a7e114e2047cefb1a2d5265bf5563e60e1c9",
-      "fetchedAt": "2026-03-20T15:34:03.191Z"
+      "hash": "63367bc1d5bd24eeaecf675008e54e8f62f8ed1fc739a5408b09e94945b7baad",
+      "fetchedAt": "2026-03-20T16:41:40.004Z"
     },
     "https://bugcrowd.com/engagements/zendesk": {
       "hash": "32577aed24ad8149befc4d7fe50544a1b5af0e2d6a3ed78b23702420586a4072",

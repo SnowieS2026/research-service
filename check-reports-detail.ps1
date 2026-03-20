@@ -1,0 +1,1 @@
+Get-ChildItem 'C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\reports\2026-03-20' -File | Measure-Object -Property Length -Sum | ForEach-Object { "Files: $($_.Count)  Total: $($_.Sum) bytes" }

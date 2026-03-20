@@ -1,7 +1,54 @@
 import { buildFindingId } from './ScanResult.js';
 import { Logger } from '../Logger.js';
 const LOG = new Logger('SSRFScanner');
-// SSRF callback infrastructure
+// Domains that are third-party tracking pixels — never test these for SSRF
+// These legitimately forward URL params to external services (Google Analytics,
+// AdSense, etc.). A "response from localhost" when injecting a tracking pixel URL
+// is NOT SSRF — it's just the tracker doing its normal job.
+const THIRD_PARTY_TRACKING_DOMAINS = new Set([
+    // Google
+    'google-analytics.com', 'googletagmanager.com', 'googlesyndication.com',
+    'doubleclick.net', 'googleadservices.com', 'google.com', 'googleusercontent.com',
+    'googleapis.com', 'googletag.com', 'gstatic.com', 'googleads.g.doubleclick.net',
+    'pagead2.googlesyndication.com', 'stats.g.doubleclick.net',
+    'www.google-analytics.com', 'www.googletagmanager.com',
+    // Facebook/Meta
+    'facebook.net', 'facebook.com', 'fbcdn.net', 'connect.facebook.net',
+    // Analytics & tracking
+    'hotjar.com', 'segment.io', 'segment.com', 'mixpanel.com', 'amplitude.com',
+    'mouseflow.com', 'crazyegg.com', 'newrelic.com', 'nr-data.net', 'datadog.com',
+    // Customer success / NPS
+    'pendo.io', 'intercom.io', 'crisp.chat', 'drift.com', 'zendesk.com', 'zdassets.com',
+    'intercomassets.com', 'intercomcdn.com',
+    // Ad networks
+    'adsrvr.org', 'adnxs.com', 'rubiconproject.com', 'pubmatic.com',
+    'openx.net', 'casalemedia.com', 'sovrn.com', 'criteo.com',
+    'taboola.com', 'outbrain.com', 'revcontent.com', 'quantserve.com',
+    'scorecardresearch.com', 'comscore.com',
+    // Other known third-party
+    'crashlytics.com', 'fabric.io', 'appsflyer.com', 'braze.com', 'appboy.com',
+    'urbanairship.com', 'leanspring.com', 'bat.bing.com', 'bat.r.msn.com',
+    'px.ads.linkedin.com', 'snap.licdn.com',
+    'twitch.tv', 'twitchcdn.net', 'jtvnw.net', 'cloudflare.com', 'cloudfront.net',
+    'adj.st', 'adsymptotic.com',
+]);
+function isThirdPartyTrackingDomain(url) {
+    try {
+        const hostname = new URL(url).hostname;
+        // Check exact match and parent-domain match (e.g. www.google-analytics.com → google-analytics.com)
+        if (THIRD_PARTY_TRACKING_DOMAINS.has(hostname))
+            return true;
+        const parts = hostname.split('.');
+        if (parts.length >= 2) {
+            const parent = parts.slice(-(parts.length === 4 && parts[0] === 'www' ? 2 : 2)).join('.');
+            return THIRD_PARTY_TRACKING_DOMAINS.has(parent);
+        }
+        return false;
+    }
+    catch {
+        return false;
+    }
+}
 const SSRF_PAYLOADS = [
     // Standard SSRF
     'http://localhost/',
@@ -61,6 +108,11 @@ async function testParamForSSRF(endpoint, paramName, payload, config) {
 export async function scanForSSRF(targets, _stack, config) {
     const findings = [];
     for (const endpoint of targets) {
+        // Skip third-party tracking pixels — these are not SSRF vulnerabilities
+        if (isThirdPartyTrackingDomain(endpoint.url)) {
+            LOG.log(`[SSRF] Skipping third-party tracking domain: ${endpoint.url}`);
+            continue;
+        }
         // Only test endpoints that have URL parameters (SSRF is primarily in URL params)
         const urlParams = endpoint.params.filter(p => p.location === 'query');
         if (urlParams.length === 0)
