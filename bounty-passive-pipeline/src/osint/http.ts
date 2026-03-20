@@ -69,3 +69,69 @@ export function tryParseJson<T = unknown>(text: string, fallback: T): T {
 export async function osintDelay(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+// ── SearxNG Search ───────────────────────────────────────────────────────────
+
+const SEARXNG_INSTANCES = [
+  'https://searx.party',
+  'https://searx.mw.io',
+];
+
+/** Fallback public instances tried in order if no local instance is configured. */
+const SEARXNG_FALLBACK_INSTANCES = [
+  'https://searx.work',
+  'https://searxng.site',
+];
+
+export interface SearxngResult {
+  title: string;
+  url: string;
+  engines: string[];
+  content?: string;
+}
+
+export interface SearxngResponse {
+  results: SearxngResult[];
+}
+
+/**
+ * Search via public SearxNG instances with fallback.
+ * Returns results in the same shape as the old ddgSearch() output.
+ */
+export async function searxngSearch(
+  query: string,
+  count = 10
+): Promise<Array<{ title: string; url: string; snippet?: string }>> {
+  const safesearch = 0;
+  const instances: string[] = [];
+
+  // 1. Local instance (best — no rate limits, no blocking)
+  const localUrl = process.env.SEARXNG_URL;
+  if (localUrl) {
+    instances.push(localUrl);
+  }
+
+  // 2. Primary public instances
+  instances.push(...SEARXNG_INSTANCES);
+
+  // 3. Additional fallback public instances
+  instances.push(...SEARXNG_FALLBACK_INSTANCES);
+
+  for (const base of instances) {
+    try {
+      const url = `${base}/search?q=${encodeURIComponent(query)}&format=json&safesearch=${safesearch}`;
+      const text = await osintFetch(url, { timeout: 15_000 });
+      const json = tryParseJson<SearxngResponse>(text, { results: [] });
+      if (!json.results) continue;
+      // Return results if any (even 0 is a valid response — don't keep falling through)
+      return json.results.slice(0, count).map(r => ({
+        title: r.title,
+        url: r.url,
+        snippet: r.content,
+      }));
+    } catch {
+      // network/http error — try next instance
+    }
+  }
+  throw new Error('All SearxNG instances failed');
+}

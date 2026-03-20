@@ -1,53 +1,8 @@
-import { osintFetch, osintDelay } from '../http.js';
+import { searxngSearch, osintDelay } from '../http.js';
 import { Logger } from '../../Logger.js';
 import type { OsintQuery, CollectorResult, OsintFinding } from '../types.js';
 
 const LOG = new Logger('GeneralCollector');
-
-async function ddgSearch(query: string, count = 10): Promise<Array<{ title: string; url: string; snippet?: string }>> {
-  const url = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}&kl=en-us`;
-  const text = await osintFetch(url, { timeout: 12_000 });
-  const results: Array<{ title: string; url: string; snippet?: string }> = [];
-
-  const linkMatches = text.matchAll(/<a class="result__a"[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi);
-  for (const m of linkMatches) {
-    const href = decodeURIComponent(m[1]);
-    const title = m[2].replace(/<[^>]+>/g, '').trim();
-    if (href && title && !href.includes('duckduckgo')) {
-      results.push({ title, url: href });
-      if (results.length >= count) break;
-    }
-  }
-
-  if (results.length === 0) {
-    const simpleMatches = text.matchAll(/<a[^>]+href="(https?[^"]+)"[^>]*>([^<]+)<\/a>/gi);
-    for (const m of simpleMatches) {
-      const href = m[1];
-      const title = m[2].replace(/<[^>]+>/g, '').trim();
-      if (href.startsWith('http') && title && !href.includes('duckduckgo') && title.length > 3) {
-        results.push({ title, url: href });
-        if (results.length >= count) break;
-      }
-    }
-  }
-
-  // Try to extract snippets from result__snippets
-  const snippetMatches = text.matchAll(/<a class="result__a"[^>]*href="([^"]+)"[^>]*>[\s\S]*?<\/a>[\s\S]*?<a class="result__snippet"[^>]*>([\s\S]*?)<\/a>/gi);
-  const snippetMap = new Map<string, string>();
-  for (const m of snippetMatches) {
-    const href = decodeURIComponent(m[1]);
-    const snippet = m[2].replace(/<[^>]+>/g, '').trim();
-    if (href && snippet) snippetMap.set(href, snippet);
-  }
-
-  for (const r of results) {
-    if (snippetMap.has(r.url)) {
-      r.snippet = snippetMap.get(r.url);
-    }
-  }
-
-  return results;
-}
 
 export class GeneralCollector {
   async collect(query: OsintQuery): Promise<CollectorResult> {
@@ -58,10 +13,10 @@ export class GeneralCollector {
 
     // ── General web search ─────────────────────────────────────────────────────
     try {
-      const webResults = await ddgSearch(target, 15);
+      const webResults = await searxngSearch(target, 15);
       rawData['webResults'] = webResults;
       if (webResults.length === 0) {
-        errors.push('Web search returned no results (DuckDuckGo may be blocking requests — consider adding Brave Search API key)');
+        errors.push('Web search returned no results (SearxNG may be blocked — consider a local instance)');
       }
 
       for (const r of webResults) {
@@ -89,7 +44,7 @@ export class GeneralCollector {
 
     // ── Wikipedia ───────────────────────────────────────────────────────────────
     try {
-      const wikiResults = await ddgSearch(`site:wikipedia.org "${target}"`, 3);
+      const wikiResults = await searxngSearch(`site:wikipedia.org "${target}"`, 3);
       for (const r of wikiResults) {
         findings.push({
           source: 'Wikipedia',
@@ -107,7 +62,7 @@ export class GeneralCollector {
 
     // ── News articles ─────────────────────────────────────────────────────────
     try {
-      const newsResults = await ddgSearch(`"${target}" site:bbc.com OR site:theguardian.com OR site:reuters.com OR site:apnews.com`, 5);
+      const newsResults = await searxngSearch(`"${target}" site:bbc.com OR site:theguardian.com OR site:reuters.com OR site:apnews.com`, 5);
       for (const r of newsResults) {
         findings.push({
           source: 'NewsSearch',
@@ -125,7 +80,7 @@ export class GeneralCollector {
 
     // ── Image search (just find image URLs in results) ───────────────────────
     try {
-      const imgResults = await ddgSearch(`site:images.google.com OR site:google.com/images "${target}"`, 3);
+      const imgResults = await searxngSearch(`site:images.google.com OR site:google.com/images "${target}"`, 3);
       for (const r of imgResults) {
         if (r.url.includes('images')) {
           findings.push({
