@@ -1,28 +1,20 @@
 /**
  * SQL injection scanning using sqlmap.
  */
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { type DiscoveredEndpoint } from './DiscoveryScanner.js';
 import { type StackInfo } from '../stackdetector/StackDetector.js';
 import { type ScannerConfig } from './ScannerOrchestrator.js';
 import { type SQLiFinding, buildFindingId } from './ScanResult.js';
 import { Logger } from '../Logger.js';
+import { isToolAvailable } from './tool-utils.js';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
 
-const execAsync = promisify(exec);
+const execFileP = promisify(execFile);
 const LOG = new Logger('SQLScanner');
-
-async function isToolAvailable(name: string): Promise<boolean> {
-  try {
-    await execAsync(`which ${name} || where ${name}`, { timeout: 10_000 });
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 interface SqlmapResult {
   url: string;
@@ -102,7 +94,6 @@ async function runSqlmap(endpoint: DiscoveredEndpoint, config: ScannerConfig): P
   const risk = config.sqlmapRisk ?? 1;
 
   const args = [
-    'sqlmap',
     '-m', urlListPath,
     '--batch',
     `--level=${level}`,
@@ -118,9 +109,10 @@ async function runSqlmap(endpoint: DiscoveredEndpoint, config: ScannerConfig): P
   }
 
   try {
-    const { stdout, stderr } = await execAsync(args.join(' '), {
+    const { stdout, stderr } = await execFileP('sqlmap', args, {
       timeout: config.timeoutPerTarget,
-      cwd: tmpDir
+      cwd: tmpDir,
+      windowsHide: true
     });
     results.push(...parseSqlmapOutput(stdout, stderr));
   } catch (err: unknown) {

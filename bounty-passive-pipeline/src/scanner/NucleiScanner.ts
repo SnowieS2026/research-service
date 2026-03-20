@@ -1,26 +1,18 @@
 /**
  * Nuclei wrapper – runs nuclei with selected templates based on stack detection.
  */
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { type ScannerConfig } from './ScannerOrchestrator.js';
 import { type NucleiFinding, nucleiToFinding } from './ScanResult.js';
 import { Logger } from '../Logger.js';
+import { isToolAvailable } from './tool-utils.js';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
 
-const execAsync = promisify(exec);
+const execFileP = promisify(execFile);
 const LOG = new Logger('NucleiScanner');
-
-async function isToolAvailable(name: string): Promise<boolean> {
-  try {
-    await execAsync(`which ${name} || where ${name}`, { timeout: 10_000 });
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 interface NucleiOutputLine {
   matched_at: string;
@@ -168,14 +160,13 @@ export async function runNuclei(
 
   const outputPath = path.join(tmpDir, `nuclei-output-${Date.now()}.txt`);
 
-  const args = [
-    'nuclei',
+  const args: string[] = [
     '-l', urlsPath,
-    '-t', templatesDir,
-    ...tagArgs,
+    ...(config.nucleiTemplates ? ['-t', config.nucleiTemplates] : []),
+    ...tagArgs.flatMap(tag => ['-tags', tag]),
     '-json',
     '-o', outputPath,
-    '-rl', '50'  // rate limit 50/sec
+    '-rl', '50'
   ];
 
   if (config.dryRun) {
@@ -192,9 +183,10 @@ export async function runNuclei(
       args[args.indexOf(templatesDir)] = '';
     }
 
-    await execAsync(args.filter(Boolean).join(' '), {
+    await execFileP('nuclei', args.filter(Boolean) as string[], {
       timeout: config.timeoutPerTarget * Math.min(targets.length, 5),
-      cwd: tmpDir
+      cwd: tmpDir,
+      windowsHide: true
     });
 
     // Read output

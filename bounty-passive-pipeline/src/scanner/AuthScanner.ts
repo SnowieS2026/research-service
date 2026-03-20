@@ -1,16 +1,16 @@
 /**
  * Authentication / Authorization scanning.
- * Tests: JWT algorithm confusion, IDOR on numeric IDs, missing auth on JS-discovered endpoints.
  */
-import { exec } from 'child_process';
+import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { type DiscoveredEndpoint } from './DiscoveryScanner.js';
 import { type StackInfo } from '../stackdetector/StackDetector.js';
 import { type ScannerConfig } from './ScannerOrchestrator.js';
 import { type AuthFinding, type IDORFinding, type AnyFinding, buildFindingId } from './ScanResult.js';
 import { Logger } from '../Logger.js';
+import { isToolAvailable } from './tool-utils.js';
 
-const execAsync = promisify(exec);
+const execFileP = promisify(execFile);
 const LOG = new Logger('AuthScanner');
 
 // JWT test payloads
@@ -327,10 +327,5 @@ export async function scanForAuthIssues(
 }
 
 async function checkTool(name: string): Promise<boolean> {
-  try {
-    await execAsync(`which ${name} || where ${name}`, { timeout: 10_000 });
-    return true;
-  } catch {
-    return false;
-  }
+  return isToolAvailable(name);
 }
