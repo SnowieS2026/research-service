@@ -1,13 +1,14 @@
 import type { Page } from 'playwright';
-import { BaseParser, type NormalisedProgram } from './BaseParser.js';
+import { NormalisedProgram, BaseParser } from './BaseParser.js';
 import { Logger } from '../../Logger.js';
 import crypto from 'crypto';
+import https from 'https';
+import http from 'http';
 
 /**
  * Parses a Standoff365 program page into a NormalisedProgram.
- *
- * CSS selectors are based on Standoff365's public program page structure.
- * Adjust selectors as needed based on actual page markup.
+ * Scope is loaded via API after page load, so we fetch __NEXT_DATA__ from the
+ * HTML to get the program ID, then call the standoff365 scope API directly.
  */
 export class Standoff365Parser extends BaseParser {
   constructor(logger: Logger) {
@@ -18,44 +19,110 @@ export class Standoff365Parser extends BaseParser {
     return crypto.createHash('sha256').update(text).digest('hex');
   }
 
-  async parse(page: Page, url: string): Promise<NormalisedProgram> {
-    const title = await this.safeExtract(
-      page,
-      'h1, [data-testid="program-name"], .program-name, .program-header h2, .program-title'
-    );
-    const scopeAssets = await this.extractScopeAssets(page);
-    const exclusions = await this.extractExclusions(page);
-    const rewardRange = await this.safeExtract(
-      page,
-      '[data-testid="reward-range"], .reward-range, .bounty-range, [data-testid="bounty-range"], .payout-range, .reward-amount'
-    );
-    const rewardCurrency = 'USD'; // Standoff365 typically pays in USD
-    const payoutNotes = await this.safeExtract(
-      page,
-      '[data-testid="payout-notes"], .payout-notes, .reward-notes, .scope-notes'
-    );
-    const allowedTechniques = await this.extractAllowedTechniques(page);
-    const prohibitedTechniques = await this.extractProhibitedTechniques(page);
-    const lastSeenAt = await this.safeExtract(
-      page,
-      '[data-testid="last-updated"], .last-updated, time, tr:has-text("Updated") td:last-child, [data-testid="modified"]'
-    );
+  private async httpGet(url: string, headers?: Record<string, string>): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => reject(new Error('httpGet timeout')), 20000);
+      const mod = url.startsWith('https') ? https : http;
+      const opts: http.RequestOptions = {
+        headers: { 'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json', ...headers }
+      };
+      const req = mod.get(url, opts, (res) => {
+        let data = '';
+        res.on('data', (chunk: Buffer) => { data += chunk.toString(); });
+        res.on('end', () => { clearTimeout(timeout); resolve(data); });
+      });
+      req.on('error', (e) => { clearTimeout(timeout); reject(e); });
+    });
+  }
 
+  private extractProgramId(html: string): number | null {
+    try {
+      const match = html.match(/__NEXT_DATA__[^>]*>([^<]+)<\/script>/);
+      if (!match) return null;
+      const json = JSON.parse(match[1]);
+      return json.props?.pageProps?.program?.id ?? null;
+    } catch {
+      return null;
+    }
+  }
+
+  private async fetchScopeAssets(programId: number): Promise<string[]> {
+    const assets: string[] = [];
+    try {
+      const body = await this.httpGet(
+        `https://api.standoff365.com/api/bug-bounty/program/scope?program_id=${programId}&sort=severity`
+      );
+      const scopes = JSON.parse(body) as Array<{ scope: string; severity: string; appTypeName: string }>;
+      for (const s of scopes) {
+        const rawScope: string = s.scope?.trim() ?? '';
+        if (!rawScope || rawScope === '-' || rawScope === '*') continue;
+        // API returns multiple domains separated by newlines in a single string
+        const targets = rawScope.split('\n');
+        for (const rawTarget of targets) {
+          const target = rawTarget.trim();
+          if (!target) continue;
+          // CIDR or IP range — keep as-is
+          if (target.includes('/') || /^\d+\.\d+\.\d+\.\d+/.test(target)) {
+            assets.push(target);
+          } else if (target.startsWith('http')) {
+            assets.push(target);
+          } else {
+            // Domain — add https://
+            assets.push('https://' + target);
+          }
+        }
+      }
+    } catch (e) {
+      this.logger.log(`Standoff365Parser scope API error: ${(e as Error).message}`);
+    }
+    return assets;
+  }
+
+  async parse(page: Page, url: string): Promise<NormalisedProgram> {
+    const title = await this.safeExtract(page, 'h1');
     const html = await page.content();
     const hash = this.hashContent(html);
 
+    // Get program ID from the already-loaded page HTML
+    let programId = this.extractProgramId(html);
+    let programName = title || 'Unknown';
+
+    // If page content doesn't have __NEXT_DATA__ (navigation happened), refetch from network
+    if (!programId) {
+      try {
+        const pageHtml = await this.httpGet(url);
+        programId = this.extractProgramId(pageHtml);
+      } catch {}
+    }
+
+    // Try to get program name from API if not on page
+    if (!title) {
+      try {
+        const pageHtml = await page.content();
+        const match = pageHtml.match(/__NEXT_DATA__[^>]*>([^<]+)<\/script>/);
+        if (match) {
+          const json = JSON.parse(match[1]);
+          const name = json.props?.pageProps?.program?.name;
+          if (name) programName = name;
+        }
+      } catch {}
+    }
+
+    // Fetch scope assets via API
+    const scopeAssets = programId ? await this.fetchScopeAssets(programId) : [];
+
     const result: NormalisedProgram = {
       platform: 'standoff365',
-      program_name: title || 'Unknown',
+      program_name: programName,
       program_url: url,
       scope_assets: scopeAssets,
-      exclusions,
-      reward_range: rewardRange || 'unknown',
-      reward_currency: rewardCurrency,
-      payout_notes: payoutNotes || '',
-      allowed_techniques: allowedTechniques,
-      prohibited_techniques: prohibitedTechniques,
-      last_seen_at: lastSeenAt || new Date().toISOString().split('T')[0],
+      exclusions: [],
+      reward_range: 'unknown',
+      reward_currency: 'USD',
+      payout_notes: '',
+      allowed_techniques: [],
+      prohibited_techniques: [],
+      last_seen_at: new Date().toISOString().split('T')[0],
       source_snapshot_hash: hash
     };
 
@@ -69,88 +136,7 @@ export class Standoff365Parser extends BaseParser {
       if (await el.count() > 0) {
         return (await el.textContent())?.trim() ?? '';
       }
-    } catch {
-      // fall through
-    }
+    } catch {}
     return '';
-  }
-
-  private async extractScopeAssets(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="scope"] td:first-child',
-      '.scope-table td:first-child',
-      'table:has-text("In Scope") td:first-child',
-      '.in-scope .asset',
-      '.target-list .target-item',
-      '[data-testid="target"]',
-      '.program-scope .asset-item'
-    ];
-    return this.extractFromSelectors(page, selectors);
-  }
-
-  private async extractExclusions(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="out-of-scope"] td:first-child',
-      '.out-of-scope td:first-child',
-      'table:has-text("Out of Scope") td:first-child',
-      '.exclusion-list .exclusion-item'
-    ];
-    return this.extractFromSelectors(page, selectors);
-  }
-
-  private async extractAllowedTechniques(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="allowed-techniques"] li',
-      '.allowed-techniques li',
-      'tr:has-text("Allowed") td:last-child'
-    ];
-    return this.extractListFromSelectors(page, selectors);
-  }
-
-  private async extractProhibitedTechniques(page: Page): Promise<string[]> {
-    const selectors = [
-      '[data-testid="prohibited-techniques"] li',
-      '.prohibited-techniques li',
-      'tr:has-text("Prohibited") td:last-child'
-    ];
-    return this.extractListFromSelectors(page, selectors);
-  }
-
-  private async extractFromSelectors(page: Page, selectors: string[]): Promise<string[]> {
-    for (const sel of selectors) {
-      try {
-        const count = await page.locator(sel).count();
-        if (count > 0) {
-          const items: string[] = [];
-          for (let i = 0; i < count; i++) {
-            const text = (await page.locator(sel).nth(i).textContent())?.trim();
-            if (text && !items.includes(text)) items.push(text);
-          }
-          if (items.length > 0) return items;
-        }
-      } catch {
-        // try next
-      }
-    }
-    return [];
-  }
-
-  private async extractListFromSelectors(page: Page, selectors: string[]): Promise<string[]> {
-    for (const sel of selectors) {
-      try {
-        const count = await page.locator(sel).count();
-        if (count > 0) {
-          const items: string[] = [];
-          for (let i = 0; i < count; i++) {
-            const text = (await page.locator(sel).nth(i).textContent())?.trim();
-            if (text) items.push(text);
-          }
-          if (items.length > 0) return items;
-        }
-      } catch {
-        // try next
-      }
-    }
-    return [];
   }
 }

@@ -33,6 +33,10 @@ const DEFAULT_CONFIG = {
     SSRF_ENABLED: true,
     AUTH_ENABLED: true,
     API_ENABLED: true,
+    SUBFINDER_ENABLED: false,
+    GAU_ENABLED: false,
+    HTTPX_ENABLED: false,
+    GITLEAKS_ENABLED: false,
     // OSINT defaults
     OSINT_WEB_SEARCH_KEY: '',
     OSINT_HUNTER_API_KEY: '',

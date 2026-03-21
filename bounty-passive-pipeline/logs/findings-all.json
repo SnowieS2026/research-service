@@ -1,0 +1,2066 @@
+[
+  {
+    "tool": "ssrf-scanner",
+    "id": "3fd0aedbc76ed0f5289f3f5c25b828a403e4c3dedbf67d8e33c50e10e09f3d3e",
+    "url": "https://c.amazon-adsystem.com/cdn/prod/config?src=${t.id}`,n=await",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "src",
+    "description": "SSRF via parameter 'src' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 404) from internal resource",
+    "createdAt": "2026-03-21T18:39:00.080Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "6089f8261a4a7b66d4d993866e6e51e7fbc002d59c86f2b8be94a495b76b059a",
+    "url": "https://prod.tahoe-analytics.publishers.advertising.a2z.com/logevent/putRecords?encoded=true",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "encoded",
+    "description": "SSRF via parameter 'encoded' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 403) from internal resource",
+    "createdAt": "2026-03-21T18:39:01.649Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:02.773Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:03.840Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "3b83b564b6b56ef72fdbf32e05bc7c4242d3435047d40fb73b64a53846afc55e",
+    "url": "https://bh-eu.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:04.988Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "88f99b2226b214a82a8044e3951896a68ac70df99070bc19c7d8a1ea28e58a5b",
+    "url": "https://bh-eu.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:06.058Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:07.168Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:08.234Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:09.272Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:10.340Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "fa5081faff47703f561549fb602cfcf446018088d347e69684760bf58baeca7e",
+    "url": "https://contextual.media.net/dmedianet.js?cid=8CUU54RQD&infsc=1",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cid",
+    "description": "SSRF via parameter 'cid' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 403) from internal resource",
+    "createdAt": "2026-03-21T18:39:11.430Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "881b07fdf149b3457f27fcf234f2f8b343044c406fc7df7c277ef803c0baec8e",
+    "url": "https://contextual.media.net/dmedianet.js?cid=8CUU54RQD&infsc=1",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "infsc",
+    "description": "SSRF via parameter 'infsc' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 403) from internal resource",
+    "createdAt": "2026-03-21T18:39:12.514Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "d0a3f022976127b226b5e9a55a7c4daca2f9c55c18a3e33ef137dc4066c88c2f",
+    "url": "https://silo56.p7cloud.net/as1.js?uri=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "uri",
+    "description": "SSRF via parameter 'uri' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:14.531Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "aab74d14a51f713893fd8d5ee5fce36f07dcb6138729ab62ae0e838d98f0b3fe",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cv",
+    "description": "SSRF via parameter 'cv' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:15.695Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f41f98ddfe9068e98b7011d9f5c90857a22c14d50d63bd9be754cb34ed68e509",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:16.744Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "006f43e2f901eb40403c97dc74e4c1d92ab0c0719d3127593917bfd77d689840",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "us_privacy",
+    "description": "SSRF via parameter 'us_privacy' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:17.818Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "b3fd259c79cf5dd1a84afdf0af30d0d550a4d46ad6ca89a8aacb476f5257412d",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cv",
+    "description": "SSRF via parameter 'cv' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:18.926Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "d68f55343e1e9fa2ec4ec500dd6df6c2a29a1650f1e0334fe5e17cf8e1fe5456",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:19.965Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "10822e0b5f4ee5a55ae661601b90b30371a232755212d1047ce9e9885be5a178",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "us_privacy",
+    "description": "SSRF via parameter 'us_privacy' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:21.042Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "d2e66562d9805d096ee5d8d1989bd4b1825bce35b0d83da5f19eb3164ce04339",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp",
+    "description": "SSRF via parameter 'gpp' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:22.178Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "e4be1c8292390701d1647ada98fa94b475ccfc99e930c072f1a2745d2658e00e",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp_sid",
+    "description": "SSRF via parameter 'gpp_sid' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:23.314Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "864578348ad582b87a7e7e9626636aada93d0e6aef9f93d853a5768f2e571bba",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cv",
+    "description": "SSRF via parameter 'cv' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:24.410Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "048069d1ca91760989962ad1336d0bb6630621bdd95bccbb0935065f8c51ff0a",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:25.439Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "9effe2aa89d24a5981146534b1d976d1d8d262520a5f1210fd7aae60ac9279da",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "us_privacy",
+    "description": "SSRF via parameter 'us_privacy' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:26.500Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "a027a7cc492256eef811f9cc03ec82aa8888c8d86eb41bb01839baf3a3df854d",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp",
+    "description": "SSRF via parameter 'gpp' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:27.632Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "4f901b3ede538a5d55d5772bfe6eed9f6cd60a57df009af167deef54e570902e",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp_sid",
+    "description": "SSRF via parameter 'gpp_sid' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:28.757Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "048069d1ca91760989962ad1336d0bb6630621bdd95bccbb0935065f8c51ff0a",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:29.862Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:30.964Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:32.022Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "3b83b564b6b56ef72fdbf32e05bc7c4242d3435047d40fb73b64a53846afc55e",
+    "url": "https://bh-eu.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:33.117Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "88f99b2226b214a82a8044e3951896a68ac70df99070bc19c7d8a1ea28e58a5b",
+    "url": "https://bh-eu.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:34.197Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:35.303Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:36.375Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:37.474Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:38.543Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f4e6184966526fbcd3e8fbfd0b5fc6997a2c6b33f476a2740dc48d38ed41e84c",
+    "url": "https://appclip.apple.com/id?p=com.google.Recaptcha.VerifyClip&id=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:40.833Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "e0ade89c5216b29aead33d70c3e79981f0e2a65b366d38a7afa220a1deea2ce1",
+    "url": "https://appclip.apple.com/id?p=com.google.Recaptcha.VerifyClip&id=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "id",
+    "description": "SSRF via parameter 'id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:42.063Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "aab74d14a51f713893fd8d5ee5fce36f07dcb6138729ab62ae0e838d98f0b3fe",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cv",
+    "description": "SSRF via parameter 'cv' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:43.174Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f41f98ddfe9068e98b7011d9f5c90857a22c14d50d63bd9be754cb34ed68e509",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:44.210Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "006f43e2f901eb40403c97dc74e4c1d92ab0c0719d3127593917bfd77d689840",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "us_privacy",
+    "description": "SSRF via parameter 'us_privacy' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:45.286Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "b3fd259c79cf5dd1a84afdf0af30d0d550a4d46ad6ca89a8aacb476f5257412d",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cv",
+    "description": "SSRF via parameter 'cv' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:46.393Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "d68f55343e1e9fa2ec4ec500dd6df6c2a29a1650f1e0334fe5e17cf8e1fe5456",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:47.423Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "10822e0b5f4ee5a55ae661601b90b30371a232755212d1047ce9e9885be5a178",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "us_privacy",
+    "description": "SSRF via parameter 'us_privacy' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:48.501Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "d2e66562d9805d096ee5d8d1989bd4b1825bce35b0d83da5f19eb3164ce04339",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp",
+    "description": "SSRF via parameter 'gpp' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:49.638Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "e4be1c8292390701d1647ada98fa94b475ccfc99e930c072f1a2745d2658e00e",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp_sid",
+    "description": "SSRF via parameter 'gpp_sid' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:50.772Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "864578348ad582b87a7e7e9626636aada93d0e6aef9f93d853a5768f2e571bba",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cv",
+    "description": "SSRF via parameter 'cv' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:51.880Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "048069d1ca91760989962ad1336d0bb6630621bdd95bccbb0935065f8c51ff0a",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:52.915Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "9effe2aa89d24a5981146534b1d976d1d8d262520a5f1210fd7aae60ac9279da",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "us_privacy",
+    "description": "SSRF via parameter 'us_privacy' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:53.987Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "a027a7cc492256eef811f9cc03ec82aa8888c8d86eb41bb01839baf3a3df854d",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp",
+    "description": "SSRF via parameter 'gpp' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:55.118Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "4f901b3ede538a5d55d5772bfe6eed9f6cd60a57df009af167deef54e570902e",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp_sid",
+    "description": "SSRF via parameter 'gpp_sid' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:56.250Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "048069d1ca91760989962ad1336d0bb6630621bdd95bccbb0935065f8c51ff0a",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:57.346Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:58.468Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:39:59.549Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "3b83b564b6b56ef72fdbf32e05bc7c4242d3435047d40fb73b64a53846afc55e",
+    "url": "https://bh-eu.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:00.656Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "88f99b2226b214a82a8044e3951896a68ac70df99070bc19c7d8a1ea28e58a5b",
+    "url": "https://bh-eu.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:01.735Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:02.851Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:03.916Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:05.035Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:06.109Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f4e6184966526fbcd3e8fbfd0b5fc6997a2c6b33f476a2740dc48d38ed41e84c",
+    "url": "https://appclip.apple.com/id?p=com.google.Recaptcha.VerifyClip&id=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:08.346Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "e0ade89c5216b29aead33d70c3e79981f0e2a65b366d38a7afa220a1deea2ce1",
+    "url": "https://appclip.apple.com/id?p=com.google.Recaptcha.VerifyClip&id=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "id",
+    "description": "SSRF via parameter 'id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:09.558Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f4e6184966526fbcd3e8fbfd0b5fc6997a2c6b33f476a2740dc48d38ed41e84c",
+    "url": "https://appclip.apple.com/id?p=com.google.Recaptcha.VerifyClip&id=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:11.785Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "e0ade89c5216b29aead33d70c3e79981f0e2a65b366d38a7afa220a1deea2ce1",
+    "url": "https://appclip.apple.com/id?p=com.google.Recaptcha.VerifyClip&id=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "id",
+    "description": "SSRF via parameter 'id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:13.013Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "5b9f6bafc4e1ee796efc7f85fe6a81053f16aaf9ee55afe65771075b05699571",
+    "url": "https://cookiepedia.co.uk/host/.app.onetrust.com?_ga=2.157675898.1572084395.1556120090-1266459230.1555593548&_ga=2.157675898.1572084395.1556120090-1266459230.1555593548",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "_ga",
+    "description": "SSRF via parameter '_ga' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:14.482Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "5b9f6bafc4e1ee796efc7f85fe6a81053f16aaf9ee55afe65771075b05699571",
+    "url": "https://cookiepedia.co.uk/host/.app.onetrust.com?_ga=2.157675898.1572084395.1556120090-1266459230.1555593548&_ga=2.157675898.1572084395.1556120090-1266459230.1555593548",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "_ga",
+    "description": "SSRF via parameter '_ga' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:15.699Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "5b9f6bafc4e1ee796efc7f85fe6a81053f16aaf9ee55afe65771075b05699571",
+    "url": "https://cookiepedia.co.uk/host/.app.onetrust.com?_ga=2.157675898.1572084395.1556120090-1266459230.1555593548&_ga=2.157675898.1572084395.1556120090-1266459230.1555593548",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "_ga",
+    "description": "SSRF via parameter '_ga' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:16.919Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "5b9f6bafc4e1ee796efc7f85fe6a81053f16aaf9ee55afe65771075b05699571",
+    "url": "https://cookiepedia.co.uk/host/.app.onetrust.com?_ga=2.157675898.1572084395.1556120090-1266459230.1555593548&_ga=2.157675898.1572084395.1556120090-1266459230.1555593548",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "_ga",
+    "description": "SSRF via parameter '_ga' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:18.169Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "5b9f6bafc4e1ee796efc7f85fe6a81053f16aaf9ee55afe65771075b05699571",
+    "url": "https://cookiepedia.co.uk/host/.app.onetrust.com?_ga=2.157675898.1572084395.1556120090-1266459230.1555593548&_ga=2.157675898.1572084395.1556120090-1266459230.1555593548",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "_ga",
+    "description": "SSRF via parameter '_ga' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:19.391Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "5b9f6bafc4e1ee796efc7f85fe6a81053f16aaf9ee55afe65771075b05699571",
+    "url": "https://cookiepedia.co.uk/host/.app.onetrust.com?_ga=2.157675898.1572084395.1556120090-1266459230.1555593548&_ga=2.157675898.1572084395.1556120090-1266459230.1555593548",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "_ga",
+    "description": "SSRF via parameter '_ga' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:20.625Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "aab74d14a51f713893fd8d5ee5fce36f07dcb6138729ab62ae0e838d98f0b3fe",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cv",
+    "description": "SSRF via parameter 'cv' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:21.730Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f41f98ddfe9068e98b7011d9f5c90857a22c14d50d63bd9be754cb34ed68e509",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:22.780Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "006f43e2f901eb40403c97dc74e4c1d92ab0c0719d3127593917bfd77d689840",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "us_privacy",
+    "description": "SSRF via parameter 'us_privacy' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:23.847Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "b3fd259c79cf5dd1a84afdf0af30d0d550a4d46ad6ca89a8aacb476f5257412d",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cv",
+    "description": "SSRF via parameter 'cv' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:24.958Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "d68f55343e1e9fa2ec4ec500dd6df6c2a29a1650f1e0334fe5e17cf8e1fe5456",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:26.008Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "10822e0b5f4ee5a55ae661601b90b30371a232755212d1047ce9e9885be5a178",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "us_privacy",
+    "description": "SSRF via parameter 'us_privacy' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:27.074Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "d2e66562d9805d096ee5d8d1989bd4b1825bce35b0d83da5f19eb3164ce04339",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp",
+    "description": "SSRF via parameter 'gpp' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:28.207Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "e4be1c8292390701d1647ada98fa94b475ccfc99e930c072f1a2745d2658e00e",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp_sid",
+    "description": "SSRF via parameter 'gpp_sid' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:29.334Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "864578348ad582b87a7e7e9626636aada93d0e6aef9f93d853a5768f2e571bba",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "cv",
+    "description": "SSRF via parameter 'cv' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:30.429Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "048069d1ca91760989962ad1336d0bb6630621bdd95bccbb0935065f8c51ff0a",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:31.459Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "9effe2aa89d24a5981146534b1d976d1d8d262520a5f1210fd7aae60ac9279da",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "us_privacy",
+    "description": "SSRF via parameter 'us_privacy' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:32.522Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "a027a7cc492256eef811f9cc03ec82aa8888c8d86eb41bb01839baf3a3df854d",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp",
+    "description": "SSRF via parameter 'gpp' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:33.648Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "4f901b3ede538a5d55d5772bfe6eed9f6cd60a57df009af167deef54e570902e",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "gpp_sid",
+    "description": "SSRF via parameter 'gpp_sid' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:34.784Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "048069d1ca91760989962ad1336d0bb6630621bdd95bccbb0935065f8c51ff0a",
+    "url": "https://tr.contextweb.com/bh/at?cv=509152&t=scr&us_privacy=&gpp=&gpp_sid=&t=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "t",
+    "description": "SSRF via parameter 't' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:35.887Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:36.990Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:38.051Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "3b83b564b6b56ef72fdbf32e05bc7c4242d3435047d40fb73b64a53846afc55e",
+    "url": "https://bh-eu.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:39.154Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "88f99b2226b214a82a8044e3951896a68ac70df99070bc19c7d8a1ea28e58a5b",
+    "url": "https://bh-eu.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:40.200Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:41.305Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:42.380Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f7e88a1c51e006b1c8abf9584ad0ac278e670e99b050585727e045f134e955a8",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:43.497Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "60bad68a220955f572006c91652869dec5e32ef537ba3cf8883d843f97a81a4f",
+    "url": "https://bh.contextweb.com/cp?p=5488&pageurl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "pageurl",
+    "description": "SSRF via parameter 'pageurl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:44.559Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f4e6184966526fbcd3e8fbfd0b5fc6997a2c6b33f476a2740dc48d38ed41e84c",
+    "url": "https://appclip.apple.com/id?p=com.google.Recaptcha.VerifyClip&id=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "p",
+    "description": "SSRF via parameter 'p' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:46.809Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "e0ade89c5216b29aead33d70c3e79981f0e2a65b366d38a7afa220a1deea2ce1",
+    "url": "https://appclip.apple.com/id?p=com.google.Recaptcha.VerifyClip&id=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "id",
+    "description": "SSRF via parameter 'id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:40:48.034Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "b25453ecd91870863498a942af4690a48fb7cfac9285304f40e7d43ff22b027e",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&execution=41c5c1cd-fc0c-423d-9702-30542545a676&client_id=bp-lh360&tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "session_code",
+    "description": "SSRF via parameter 'session_code' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:40:49.683Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f673b6e7c854cec8aa27d2c071f4ffdc80801af78a7390aa947f409b66bcd6ed",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&execution=41c5c1cd-fc0c-423d-9702-30542545a676&client_id=bp-lh360&tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "execution",
+    "description": "SSRF via parameter 'execution' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:40:51.286Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "1f46fdb4134c969bfdf17858a3a20861e16c20e531cdb873ec46ce1425963c7e",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&execution=41c5c1cd-fc0c-423d-9702-30542545a676&client_id=bp-lh360&tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "client_id",
+    "description": "SSRF via parameter 'client_id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:40:52.471Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "cd70383bfaf8bd5d93241c93574f0a7106c10254b6393db5c071358102250c68",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&execution=41c5c1cd-fc0c-423d-9702-30542545a676&client_id=bp-lh360&tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "tab_id",
+    "description": "SSRF via parameter 'tab_id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:40:53.651Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f74f776eae6fa539d66f0fec70198695a4f66a77cf135d40e18ca430bb41f3ca",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&execution=41c5c1cd-fc0c-423d-9702-30542545a676&client_id=bp-lh360&tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "username",
+    "description": "SSRF via parameter 'username' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:40:54.829Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "53bdcafb7247789146094d82e4fbb0a5a962223d8abf342ee71615870e45e158",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&execution=41c5c1cd-fc0c-423d-9702-30542545a676&client_id=bp-lh360&tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "password",
+    "description": "SSRF via parameter 'password' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:40:56.011Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "f4ea82f0651a493651fac4bfd336944112a5aeebcfc1c0189274f1103279fa5f",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&amp;execution=41c5c1cd-fc0c-423d-9702-30542545a676&amp;client_id=bp-lh360&amp;tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "session_code",
+    "description": "SSRF via parameter 'session_code' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:40:57.183Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "2da26adeb476194cf3946a93ba4e4f01fcc8515d7f5f792f178e08b658d1ea02",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&amp;execution=41c5c1cd-fc0c-423d-9702-30542545a676&amp;client_id=bp-lh360&amp;tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "amp;execution",
+    "description": "SSRF via parameter 'amp;execution' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:40:58.353Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "568587f11a611c8adf08e29f89a6f7260e58c5149cba5ab20dd6c441d200b362",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&amp;execution=41c5c1cd-fc0c-423d-9702-30542545a676&amp;client_id=bp-lh360&amp;tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "amp;client_id",
+    "description": "SSRF via parameter 'amp;client_id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:40:59.526Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "8af6d7dbe8b72d3180a8fea9150d240975f5bb3f0cd5b01a1c4b032615c0665a",
+    "url": "https://loginv2.lh360.com/auth/realms/lh360/login-actions/authenticate?session_code=XsZyuI7Y4bjpuY04AS-ME_XgcN5374Lucx9DwzALOq0&amp;execution=41c5c1cd-fc0c-423d-9702-30542545a676&amp;client_id=bp-lh360&amp;tab_id=yePqCXD0GjE",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "amp;tab_id",
+    "description": "SSRF via parameter 'amp;tab_id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:00.686Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "435f989068d8128202e48a91ff91fa79b41cce1d9f95658ae0c54fa48877b2b0",
+    "url": "https://reactjs.org/docs/error-decoder.html?invariant=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "invariant",
+    "description": "SSRF via parameter 'invariant' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 404) from internal resource",
+    "createdAt": "2026-03-21T18:41:02.157Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "435f989068d8128202e48a91ff91fa79b41cce1d9f95658ae0c54fa48877b2b0",
+    "url": "https://reactjs.org/docs/error-decoder.html?invariant=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "invariant",
+    "description": "SSRF via parameter 'invariant' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 404) from internal resource",
+    "createdAt": "2026-03-21T18:41:03.304Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "49d995d9cf4a6cb7196b93965283660112ca3ee395032df9dd90d84ed6494c46",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&client_id=demandforce&tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "session_code",
+    "description": "SSRF via parameter 'session_code' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:04.959Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "177beaab0c3422fbeb03bcc53f6bdb80b1e39d7a69d33e898ee2474695e26001",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&client_id=demandforce&tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "execution",
+    "description": "SSRF via parameter 'execution' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:06.142Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "94d988b9ccb06a3889d1465c02a101ae7eee429047d96c91f3745f43e165a74c",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&client_id=demandforce&tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "client_id",
+    "description": "SSRF via parameter 'client_id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:07.329Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "90b0e376ebccaf743de14d93a1be429c6f8245470452752ac74350d3f90b3cf7",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&client_id=demandforce&tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "tab_id",
+    "description": "SSRF via parameter 'tab_id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:08.510Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "1599eddaf81b7357d1b21c22c761e17582ec59e660d861ffd6eaa6aa451a8891",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&client_id=demandforce&tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "username",
+    "description": "SSRF via parameter 'username' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:09.702Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "bc29fac8f281ffe41f3c6d5f045cb08a1360329433e9fb82c1ba6f080ce2e516",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&client_id=demandforce&tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "password",
+    "description": "SSRF via parameter 'password' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:10.886Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "aa9c2690ebaaec0dba1c115275288379451a41d42f0f0379e270ec63b663fd56",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&amp;execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&amp;client_id=demandforce&amp;tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "session_code",
+    "description": "SSRF via parameter 'session_code' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:12.103Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "73d7d86b366576946546a0b5d69b11bc2f33f6166b55fc79cd4197c49fb4dcd1",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&amp;execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&amp;client_id=demandforce&amp;tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "amp;execution",
+    "description": "SSRF via parameter 'amp;execution' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:13.295Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "2726c453c7cf7d26ba2ad49d0f444a4c1e4554dfd5650cd5c8c27f538380773a",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&amp;execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&amp;client_id=demandforce&amp;tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "amp;client_id",
+    "description": "SSRF via parameter 'amp;client_id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:14.474Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "5d6223648bebf92c2be3a15bc633f7ffc92afe248a634b323442d326b50420a5",
+    "url": "https://login.demandforced3.com/auth/realms/demandforce/login-actions/authenticate?session_code=1bMFCIMBS_laK8gXEGHv5T2efWL74hU9nF_dPktNXlQ&amp;execution=bb02ae94-86a2-4dfa-89e9-989cfe26c092&amp;client_id=demandforce&amp;tab_id=E27sT435teU",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "amp;tab_id",
+    "description": "SSRF via parameter 'amp;tab_id' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 400) from internal resource",
+    "createdAt": "2026-03-21T18:41:15.659Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "a30d6bdd58dcae0f6ff585c4436a80e1e89632dffcbce19593a03d15d83e9a5d",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "app",
+    "description": "SSRF via parameter 'app' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:17.375Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "c7ff0fddc1070c29a43d19431c6f06d0113e5bd767f4ecd21d044cdf23990fae",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "ReturnUrl",
+    "description": "SSRF via parameter 'ReturnUrl' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 403) from internal resource",
+    "createdAt": "2026-03-21T18:41:18.493Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "d2c6e29682551567d9511cd2a72353a2191853a07ef98be77bf03dba4e498435",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "__EVENTTARGET",
+    "description": "SSRF via parameter '__EVENTTARGET' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:19.735Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "e6b0943e8b6bf726ea1a678668964e9491936a70efd2295c6fd27c21ef065f2f",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "__VIEWSTATE",
+    "description": "SSRF via parameter '__VIEWSTATE' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:21.310Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "8fe8d210b1158e65aae20c9994dda8956b3dd65a21f006c3d699dec1e490092a",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "__VIEWSTATEGENERATOR",
+    "description": "SSRF via parameter '__VIEWSTATEGENERATOR' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:22.552Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "79d96c05cce1eccc331e16bd732897d5c67a937cc77f50a0162d4b74f9d90ff8",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "__VIEWSTATEENCRYPTED",
+    "description": "SSRF via parameter '__VIEWSTATEENCRYPTED' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:23.786Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "51a68213fee58cde15437bbf280f5dbca79c5f1f8d4d941cc8ba37047a7bc8fb",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "__EVENTVALIDATION",
+    "description": "SSRF via parameter '__EVENTVALIDATION' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:25.015Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "51ad572d0c894b23bd08be095fc4ba4ace671a17e87d2638af279483fb32cf8e",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "VIEWSTATEGENERATORCUSTID",
+    "description": "SSRF via parameter 'VIEWSTATEGENERATORCUSTID' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:26.260Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "af258d593352dffea8f851b1756207186315591e0d244530366b5a986735d256",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "VIEWSTATEGENERATORCUSTVAL1",
+    "description": "SSRF via parameter 'VIEWSTATEGENERATORCUSTVAL1' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:27.499Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "a0fe1ce8b1d60fb60fa79d16e7d35f47da8056f5f7cd90ed9aae8800f304adbd",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "VIEWSTATEGENERATORCUSTVAL2",
+    "description": "SSRF via parameter 'VIEWSTATEGENERATORCUSTVAL2' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:28.734Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "6da957f534d341f9f6920a97f20d5068a4f506c1812719ee97b99924f63fbee3",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "UserName",
+    "description": "SSRF via parameter 'UserName' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:29.972Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "9006795f6acffbb4ef7f1bd6af066b9f9fc43896aa945ad2720b960afedb412a",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "Password",
+    "description": "SSRF via parameter 'Password' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:31.215Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "2f12eeb6ff6aa40aec35973549c20e9f86c32f0b9474dfb2e4050f2d997ed1d5",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "usrSessionId",
+    "description": "SSRF via parameter 'usrSessionId' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:32.456Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  },
+  {
+    "tool": "ssrf-scanner",
+    "id": "74bf54588f6aa1b56398ec2db156e17035ebcfdeb3d967987aa1cb9691ef9249",
+    "url": "https://platform.pulsepoint.com/AccountMgmt/LifeLogin.aspx?app=buyer&ReturnUrl=",
+    "type": "ssrf",
+    "severity": "HIGH",
+    "cvss": 8.1,
+    "param": "usrAuthId",
+    "description": "SSRF via parameter 'usrAuthId' – payload targeted internal resource",
+    "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+    "createdAt": "2026-03-21T18:41:33.684Z",
+    "references": [
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://portswigger.net/web-security/ssrf"
+    ]
+  }
+]

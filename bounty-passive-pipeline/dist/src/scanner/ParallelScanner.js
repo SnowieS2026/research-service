@@ -28,7 +28,11 @@ const TOOL_FILES = {
     ssrf: 'ssrf-result.json',
     auth: 'auth-result.json',
     api: 'api-result.json',
-    nuclei: 'nuclei-result.json'
+    nuclei: 'nuclei-result.json',
+    subfinder: 'subfinder-result.json',
+    gau: 'gau-result.json',
+    httpx: 'httpx-result.json',
+    gitleaks: 'gitleaks-result.json'
 };
 const RESULT_POLL_MS = 10_000;
 const MAX_WAIT_MS = 25 * 60 * 1000;
@@ -42,7 +46,11 @@ function getScannerConfig() {
             nuclei: process.env.NUCLEI_ENABLED !== 'false',
             ssrf: process.env.SSRF_ENABLED !== 'false',
             auth: process.env.AUTH_ENABLED !== 'false',
-            api: process.env.API_ENABLED !== 'false'
+            api: process.env.API_ENABLED !== 'false',
+            subfinder: process.env.SUBFINDER_ENABLED !== 'false',
+            gau: process.env.GAU_ENABLED !== 'false',
+            httpx: process.env.HTTPX_ENABLED !== 'false',
+            gitleaks: process.env.GITLEAKS_ENABLED !== 'false'
         },
         nucleiTemplates: process.env.NUCLEI_TEMPLATES_DIR ?? '',
         rateLimitMs: Number(process.env.RATE_LIMIT_DELAY_MS ?? 2000),
@@ -184,7 +192,7 @@ async function runParallelScan(targets, _config, db) {
     await fs.promises.writeFile(path.join(PIPELINE_ROOT, STATE_FILE), JSON.stringify(sharedState, null, 2), 'utf8');
     LOG.log(`[ParallelScanner] Discovery done: ${allEndpoints.length} endpoints, ${capped.length} targets`);
     // Spawn tools
-    const enabledTools = ['xss', 'sql', 'ssrf', 'auth', 'api', 'nuclei'];
+    const enabledTools = ['xss', 'sql', 'ssrf', 'auth', 'api', 'nuclei', 'subfinder', 'gau', 'httpx', 'gitleaks'];
     const spawned = [];
     for (const tool of enabledTools) {
         spawnTool(tool);

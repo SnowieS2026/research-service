@@ -1,7 +1,2221 @@
 {
-  "scanId": "scan-1774116294823-obehid",
-  "startedAt": "2026-03-21T18:04:54.823Z",
-  "targets": [],
-  "endpoints": [],
-  "stackInfos": []
+  "scanId": "scan-1774117900744-6vwj8w",
+  "startedAt": "2026-03-21T18:31:40.744Z",
+  "targets": [
+    "https://www.bugcrowd.com/",
+    "https://bugcrowd.com/user/sign_up",
+    "https://bugcrowd.com/user/password/new",
+    "https://docs.bugcrowd.com/researchers/onboarding/welcome",
+    "https://docs.rapyd.net/",
+    "https://docs.rapyd.net/build-with-rapyd/docs",
+    "https://docs.rapyd.net/en/make-your-first-api-call.html",
+    "https://dashboard.rapyd.net/",
+    "https://docs.rapyd.net/client-portal/docs/client-portal-overview",
+    "https://docs.rapyd.net/build-with-rapyd/docs/rapyd-checkout-overview"
+  ],
+  "endpoints": [
+    {
+      "url": "https://www.bugcrowd.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://bugcrowd.com/user/sign_up",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://bugcrowd.com/user/password/new",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/researchers/onboarding/welcome",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://docs.rapyd.net/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://docs.rapyd.net/build-with-rapyd/docs",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://docs.rapyd.net/en/make-your-first-api-call.html",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://dashboard.rapyd.net/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://docs.rapyd.net/client-portal/docs/client-portal-overview",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://docs.rapyd.net/build-with-rapyd/docs/rapyd-checkout-overview",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://js-agent.newrelic.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://custom.transaction/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/handle",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://schema.org/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/#website",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/#organization",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/#breadcrumb",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/?s={search_term_string}",
+      "method": "GET",
+      "params": [
+        {
+          "name": "s",
+          "location": "query",
+          "type": "unknown"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/#/schema/logo/image/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.facebook.com/Bugcrowd",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://x.com/Bugcrowd",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.linkedin.com/company/bugcrowd",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.instagram.com/bugcrowd/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://cdn.segment.com/analytics.js/v1/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtm.js?id=",
+      "method": "GET",
+      "params": [
+        {
+          "name": "id",
+          "location": "query",
+          "type": "unknown"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/wp-content/uploads/2025/06/Hero-Animation.json",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.youtube.com/iframe_api",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/confirmation/demo-request-confirmation/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.clickcease.com/monitor/stat.js",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.youtube.com/embed/$%7BvideoId%7D%60;",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/v",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://connect.facebook.net/en_US/fbevents.js",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://snap.licdn.com/li.lms-analytics/insight.min.js",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://ws.zoominfo.com/pixel/aAvgbUXQ4qaFSHHMaIAr",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://tracking.g2crowd.com/attribution_tracking/conversions/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/hockeystack@latest/hockeystack.min.js",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://tracker.bugcrowd.com/user/sign_up?utm_source\\x3d",
+      "method": "GET",
+      "params": [
+        {
+          "name": "utm_source\\x3d",
+          "location": "query",
+          "type": "unknown"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://js.driftt.com/include/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://lltrck.com/scripts/lt-v3.js?llid\\x3d26080",
+      "method": "GET",
+      "params": [
+        {
+          "name": "llid\\x3d26080",
+          "location": "query",
+          "type": "unknown"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://core.crazyegg.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://${h}`).hostname,!/^[a-zA-Z0-9-.]%7B1,253%7D/?$/g.test(h)||(h.endsWith(",
+      "method": "GET",
+      "params": [
+        {
+          "name": "$/g.test(h)||(h.endsWith(",
+          "location": "query",
+          "type": "unknown"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://${e}/%60,t.hostname%7D,R=e=",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.google.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.youtube.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://developers.google.com/youtube/iframe_api_reference#Events",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd.com/user",
+      "method": "POST",
+      "params": [],
+      "formFields": [
+        {
+          "name": "utf8",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "authenticity_token",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "user[visibility]",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "utm_campaign",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "utm_source",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "utm_content",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "utm_medium",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "RFSITECompany__c",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "RFSITECity__c",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "RFSITEState__c",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "RFConfidenceLevel__c",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "RFConfidenceDescription__c",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "",
+          "type": "fieldset",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "user[first_name]",
+          "type": "text",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "user[last_name]",
+          "type": "text",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "user[email]",
+          "type": "email",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "user[password]",
+          "type": "password",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "user[password_confirmation]",
+          "type": "password",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "user[terms_and_conditions]",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "user[terms_and_conditions]",
+          "type": "checkbox",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        },
+        {
+          "name": "commit",
+          "type": "submit",
+          "action": "https://bugcrowd.com/user",
+          "method": "post"
+        }
+      ],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "http://fb.me/use-check-prop-types",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://fb.me/react-warning-dont-call-proptypes",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://www.w3.org/1999/xhtml",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://www.w3.org/2000/svg",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://www.w3.org/1999/xlink",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://www.w3.org/XML/1998/namespace",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://www.w3.org/2000/xmlns/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://reactjs.org/docs/error-decoder.html?invariant=",
+      "method": "GET",
+      "params": [
+        {
+          "name": "invariant",
+          "location": "query",
+          "type": "unknown"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://www.w3.org/1998/Math/MathML",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://momentjs.com/guides/#/warnings/define-locale/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://momentjs.com/guides/#/warnings/js-date/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://momentjs.com/guides/#/warnings/min-max/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://momentjs.com/guides/#/warnings/add-inverted-param/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://momentjs.com/guides/#/warnings/zone/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://momentjs.com/guides/#/warnings/dst-shifted/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://github.com/harc/ohm",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://ohmlang.github.io/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://github.com/harc/ohm/issues",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://tinlizzie.org/~awarth)",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://stripe.com/docs/stripe-js/react#elements-props-stripe",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://stripe.com/docs/stripe-js/react",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://js.stripe.com/v3",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://momentjs.com/timezone/docs/#/use-it/browser/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://momentjs.com/timezone/docs/#/data-loading/.",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/$%7Br%7D)%60%7D,%7Blabel:",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd.com/vulnerability-rating-taxonomy)",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://github.com/uuidjs/uuid#getrandomvalues-not-supported",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md%60%7Dvar",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/resource/standard-disclosure-terms/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://disclose.io/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/products/vulnerability-rating-taxonomy/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd-support.freshdesk.com/support/tickets/new",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://${y.original.asset}`,rel/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://radix-ui.com/primitives/docs/components/$%7Bt.docsSlug%7D%60;return",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://${a.asset}`,rel/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/researchers/reporting-managing-submissions/submission-page/filtering-submissions",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd.com/markdown-help",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/api/headers/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/api/versioning/#bugcrowd-version-header",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/api/versioning/#accept-header",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/api/getting-started/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8",
+      "method": "GET",
+      "params": [
+        {
+          "name": "mt",
+          "location": "query",
+          "type": "number"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en",
+      "method": "GET",
+      "params": [
+        {
+          "name": "id",
+          "location": "query",
+          "type": "unknown"
+        },
+        {
+          "name": "hl",
+          "location": "query",
+          "type": "unknown"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://{youroktadomain}.com/oauth2/%7BauthServerId%7D",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://{youroktadomain}.com})/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/researchers/reporting-managing-submissions/disclosure/disclosing-submissions/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://www.bugcrowd.com/termsandconditions",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://stripe.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://secure.server.com/some/path/file.php",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/resources/hacker-resources/platform-behavior-standards/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.facebook.com/share.php?u=${r}&title=${n}`,target:",
+      "method": "GET",
+      "params": [
+        {
+          "name": "u",
+          "location": "query",
+          "type": "unknown"
+        },
+        {
+          "name": "title",
+          "location": "query",
+          "type": "array"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://twitter.com/intent/tweet?${i}`,target:",
+      "method": "GET",
+      "params": [
+        {
+          "name": "${i}`,target:",
+          "location": "query",
+          "type": "unknown"
+        }
+      ],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/engagement-management/engagement-overview-page/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/integration-management/incoming-integrations-embedded-submission-form/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://example.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/integration-management/mapping-integrations-to-saved-search-filters/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://confluence.atlassian.com/jiracoreserver/working-with-search-results-939937784.html#Workingwithsearchresults-Exportingyoursearchresults",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/docs",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://webhook-url.example/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/quick-start/notification-settings/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://*.bugcrowd.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/ai-capabilities/ai-analytics/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/ai-capabilities/ai-triage-assistant/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/ai-capabilities/global-controls-of-llm/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/ai-capabilities/ai-privacy-security/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/api/webhooks/#validating-the-signature",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/privacy/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd.com/vulnerability-rating-taxonomy",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.wappalyzer.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/products/pen-test-as-a-service/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://home.treasury.gov/policy-issues/office-of-foreign-assets-control-sanctions-programs-and-information",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/integration-management/qualys/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/#linux",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/#windows",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/#macos",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/resources/essentials/standard-disclosure-terms/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/researchers/disclosure/disclosure/#f-coordinated-disclosure",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/blog/how-to-get-private-invites-on-the-bugcrowd-platform/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://reactrouter.com/en/main/routers/picking-a-router.%60%7Dfunction",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/researchers/reporting-managing-submissions/researchers-unread-comments/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/researchers/reporting-managing-submissions/submission-page/filtering-submissions/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/docs/slack",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.first.org/cvss/v4-0/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.first.org/cvss/v3-1/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://json-schema.org/draft/2020-12/schema",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://json-schema.org/draft-07/schema#",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://json-schema.org/draft-04/schema#",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://github.com/syntax-tree/hast-util-to-jsx-runtime",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://github.com/remarkjs/react-markdown/blob/main/changelog.md",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/submission-management/filtering/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/submission-management/reassign-or-move-individual-submissions/#requirements-for-reassigning-or-moving-a-submission",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd-support.freshdesk.com/support/home",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://tracker.bugcrowd.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://tracker.bugcrowd.com)/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://tracker.bugcrowd.com)./",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd.com/vrt",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/engagements",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/submission-management/sharing-known-issues-with-researchers",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://www.bugcrowd.com/support",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/integration-management/servicenow",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd.com)/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/customers/ai-capabilities/ai-connect/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://stream.bugcrowd.com/mcp",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://c3js.org/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://github.com/focus-trap/tabbable/blob/master/LICENSE",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://github.com/focus-trap/focus-trap/blob/master/LICENSE",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://feross.org/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://github.com/awslabs/amazon-quicksight-embedding-sdk",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://kentcdodds.com)/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "http://www.apache.org/licenses/LICENSE-2.0",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://bugcrowd.com/user/password",
+      "method": "POST",
+      "params": [],
+      "formFields": [
+        {
+          "name": "utf8",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user/password",
+          "method": "post"
+        },
+        {
+          "name": "authenticity_token",
+          "type": "hidden",
+          "action": "https://bugcrowd.com/user/password",
+          "method": "post"
+        },
+        {
+          "name": "user[email]",
+          "type": "email",
+          "action": "https://bugcrowd.com/user/password",
+          "method": "post"
+        },
+        {
+          "name": "commit",
+          "type": "submit",
+          "action": "https://bugcrowd.com/user/password",
+          "method": "post"
+        }
+      ],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/researchers/onboarding/welcome/",
+      "method": "GET",
+      "params": [],
+      "formFields": [
+        {
+          "name": "",
+          "type": "search",
+          "action": "https://docs.bugcrowd.com/researchers/onboarding/welcome/",
+          "method": "get"
+        }
+      ],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/api/getting-started",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "api"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/api/latest",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "api"
+    },
+    {
+      "url": "https://docs.bugcrowd.com/api/changelog",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": false,
+      "source": "api"
+    },
+    {
+      "url": "https://d1wnclalxop6x4.cloudfront.net/instrumentation-spec-",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://cdn.segment.com/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://cdn.segment.com/analytics-next/bundles/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/upgrade-to-ajs2/#using-a-strict-content-security-policy-on-the-page",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.7.0/polyfill.min.js",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.rapyd.net/en/index-en.html",
+      "method": "GET",
+      "params": [],
+      "formFields": [
+        {
+          "name": "",
+          "type": "text",
+          "action": "https://docs.rapyd.net/en/index-en.html",
+          "method": "get"
+        }
+      ],
+      "inJS": false,
+      "source": "html"
+    },
+    {
+      "url": "http://materializecss.com)/",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)",
+      "method": "GET",
+      "params": [],
+      "formFields": [],
+      "inJS": true,
+      "source": "js"
+    },
+    {
+      "url": "https://docs.rapyd.net/en/rapyd-checkout-overview.html",
+      "method": "GET",
+      "params": [],
+      "formFields": [
+        {
+          "name": "",
+          "type": "text",
+          "action": "https://docs.rapyd.net/en/rapyd-checkout-overview.html",
+          "method": "get"
+        }
+      ],
+      "inJS": false,
+      "source": "html"
+    }
+  ],
+  "stackInfos": [
+    {
+      "url": "https://www.bugcrowd.com/",
+      "technologies": [
+        {
+          "name": "nginx",
+          "version": null,
+          "confidence": 90,
+          "category": "server"
+        },
+        {
+          "name": "jQuery",
+          "version": null,
+          "confidence": 90,
+          "category": "frontend"
+        },
+        {
+          "name": "WordPress",
+          "version": null,
+          "confidence": 95,
+          "category": "cms"
+        }
+      ],
+      "server": "nginx",
+      "cdn": null,
+      "cms": "WordPress",
+      "frontend": [
+        "jQuery"
+      ],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "server": "nginx",
+        "strict-transport-security": "max-age=31557600",
+        "x-served-by": "cache-man4175-MAN, cache-man4149-MAN"
+      },
+      "scanRecommendations": [
+        {
+          "category": "misc",
+          "priority": "CRITICAL",
+          "reason": "WordPress detected – enumerate plugins/themes/users, test for RCE via known CVEs",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "wordpress/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        },
+        {
+          "category": "xss",
+          "priority": "HIGH",
+          "reason": "WordPress admin / login pages are high-value XSS targets",
+          "tool": "dalfox",
+          "toolArgs": [
+            "--blind",
+            "~"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "Content-Security-Policy missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://bugcrowd.com/user/sign_up",
+      "technologies": [
+        {
+          "name": "React",
+          "version": null,
+          "confidence": 85,
+          "category": "frontend"
+        }
+      ],
+      "server": null,
+      "cdn": null,
+      "cms": null,
+      "frontend": [
+        "React"
+      ],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "content-security-policy": "default-src 'self'; base-uri 'self'; block-all-mixed-content; connect-src 'self' *.heapanalytics.com heapanalytics.com *.intercom.io *.intercomcdn.com *.freshworks.com *.freshdesk.com wss://*.intercom.io syndication.twitter.com bugcrowd-attachments-us-east-1-production.s3.us-east-1.amazonaws.com bugcrowd-attachments-us-east-1-production.s3.amazonaws.com cloudflare-zero-trust-logs-us-east-1-production.s3.amazonaws.com *.flippercloud.io browser-intake-datadoghq.com stream.bugcrowd.com/chat *.quicksight.aws.amazon.com client.quicksight.aws.amazon.com wss://*.quicksight.aws.amazon.com login.hackers.bugcrowd.com login.bugcrowd.com; font-src data: assets.bugcrowdusercontent.com *.heapanalytics.com heapanalytics.com *.intercomcdn.com fonts.bunny.net fonts.gstatic.com; form-action 'self' identity.bugcrowd.com login.hackers.bugcrowd.com/oauth2/default/v1/authorize login.bugcrowd.com/oauth2/default/v1/authorize; frame-src 'self' *.facebook.com *.twitter.com *.freshworks.com *.freshdesk.com www.youtube.com *.quicksight.aws.amazon.com; img-src 'self' assets.bugcrowdusercontent.com bugcrowd.com *.bugcrowdusercontent.com bugcrowd-attachments-us-east-1-production.s3.us-east-1.amazonaws.com data: *.facebook.com *.google-analytics.com *.heapanalytics.com heapanalytics.com *.intercomassets.com *.intercomcdn.com *.freshworks.com *.freshdesk.com *.twitter.com *.wp.com t.co platform.slack-edge.com bugcrowd-static-us-east-1-production.s3.amazonaws.com bugcrowd-scanner-results-us-east-1-production.s3.amazonaws.com bugcrowd-attachments-us-east-1-production.s3.amazonaws.com profiles.bugcrowdusercontent.com *.quicksight.aws.amazon.com *.bugcrowd.net; media-src 'self' js.intercomcdn.com fonts.bunny.net bugcrowd.com bugcrowd-attachments-us-east-1-production.s3.us-east-1.amazonaws.com bugcrowd-attachments-us-east-1-production.s3.amazonaws.com; script-src 'strict-dynamic' 'self' assets.bugcrowdusercontent.com *.bugcrowdusercontent.com *.facebook.com *.facebook.net *.google-analytics.com *.heapanalytics.com heapanalytics.com *.intercom.io *.intercomcdn.com *.freshworks.com *.freshdesk.com *.twitter.com api.usemessages.com *.quicksight.aws.amazon.com client.quicksight.aws.amazon.com static.quicksight.aws.amazon.com 'nonce-nyPkoNga5TuCP9IL7mKfpgghvGpP+rReleDVIZ+42lM=' 'unsafe-inline'; style-src 'unsafe-inline' *.freshworks.com *.freshdesk.com assets.bugcrowdusercontent.com fonts.bunny.net *.quicksight.aws.amazon.com static.quicksight.aws.amazon.com; upgrade-insecure-requests; report-uri /csp",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31557600",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "x-served-by": "cache-lcy-egml8630095-LCY, cache-lcy-egml8630050-LCY"
+      },
+      "scanRecommendations": [
+        {
+          "category": "xss",
+          "priority": "MEDIUM",
+          "reason": "Generic web application – standard XSS scan",
+          "tool": "dalfox",
+          "toolArgs": [
+            "--blind",
+            "~"
+          ]
+        },
+        {
+          "category": "sqli",
+          "priority": "MEDIUM",
+          "reason": "Generic web application – standard SQLi scan",
+          "tool": "sqlmap",
+          "toolArgs": [
+            "--batch",
+            "--level=1"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "MEDIUM",
+          "reason": "Generic scan with standard web templates",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "vulnerabilities/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://bugcrowd.com/user/password/new",
+      "technologies": [
+        {
+          "name": "React",
+          "version": null,
+          "confidence": 85,
+          "category": "frontend"
+        }
+      ],
+      "server": null,
+      "cdn": null,
+      "cms": null,
+      "frontend": [
+        "React"
+      ],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "content-security-policy": "default-src 'self'; base-uri 'self'; block-all-mixed-content; connect-src 'self' *.heapanalytics.com heapanalytics.com *.intercom.io *.intercomcdn.com *.freshworks.com *.freshdesk.com wss://*.intercom.io syndication.twitter.com bugcrowd-attachments-us-east-1-production.s3.us-east-1.amazonaws.com bugcrowd-attachments-us-east-1-production.s3.amazonaws.com cloudflare-zero-trust-logs-us-east-1-production.s3.amazonaws.com *.flippercloud.io browser-intake-datadoghq.com stream.bugcrowd.com/chat *.quicksight.aws.amazon.com client.quicksight.aws.amazon.com wss://*.quicksight.aws.amazon.com login.hackers.bugcrowd.com login.bugcrowd.com; font-src data: assets.bugcrowdusercontent.com *.heapanalytics.com heapanalytics.com *.intercomcdn.com fonts.bunny.net fonts.gstatic.com; form-action 'self' identity.bugcrowd.com login.hackers.bugcrowd.com/oauth2/default/v1/authorize login.bugcrowd.com/oauth2/default/v1/authorize; frame-src 'self' *.facebook.com *.twitter.com *.freshworks.com *.freshdesk.com www.youtube.com *.quicksight.aws.amazon.com; img-src 'self' assets.bugcrowdusercontent.com bugcrowd.com *.bugcrowdusercontent.com bugcrowd-attachments-us-east-1-production.s3.us-east-1.amazonaws.com data: *.facebook.com *.google-analytics.com *.heapanalytics.com heapanalytics.com *.intercomassets.com *.intercomcdn.com *.freshworks.com *.freshdesk.com *.twitter.com *.wp.com t.co platform.slack-edge.com bugcrowd-static-us-east-1-production.s3.amazonaws.com bugcrowd-scanner-results-us-east-1-production.s3.amazonaws.com bugcrowd-attachments-us-east-1-production.s3.amazonaws.com profiles.bugcrowdusercontent.com *.quicksight.aws.amazon.com *.bugcrowd.net; media-src 'self' js.intercomcdn.com fonts.bunny.net bugcrowd.com bugcrowd-attachments-us-east-1-production.s3.us-east-1.amazonaws.com bugcrowd-attachments-us-east-1-production.s3.amazonaws.com; script-src 'strict-dynamic' 'self' assets.bugcrowdusercontent.com *.bugcrowdusercontent.com *.facebook.com *.facebook.net *.google-analytics.com *.heapanalytics.com heapanalytics.com *.intercom.io *.intercomcdn.com *.freshworks.com *.freshdesk.com *.twitter.com api.usemessages.com *.quicksight.aws.amazon.com client.quicksight.aws.amazon.com static.quicksight.aws.amazon.com 'nonce-RneL+dmhrl3bMfgIl3iQU5N+FwVWbVCFBPSG0Qh3r9s=' 'unsafe-inline'; style-src 'unsafe-inline' *.freshworks.com *.freshdesk.com assets.bugcrowdusercontent.com fonts.bunny.net *.quicksight.aws.amazon.com static.quicksight.aws.amazon.com; upgrade-insecure-requests; report-uri /csp",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "strict-transport-security": "max-age=31557600",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "x-served-by": "cache-lcy-egml8630042-LCY, cache-lcy-egml8630029-LCY"
+      },
+      "scanRecommendations": [
+        {
+          "category": "xss",
+          "priority": "MEDIUM",
+          "reason": "Generic web application – standard XSS scan",
+          "tool": "dalfox",
+          "toolArgs": [
+            "--blind",
+            "~"
+          ]
+        },
+        {
+          "category": "sqli",
+          "priority": "MEDIUM",
+          "reason": "Generic web application – standard SQLi scan",
+          "tool": "sqlmap",
+          "toolArgs": [
+            "--batch",
+            "--level=1"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "MEDIUM",
+          "reason": "Generic scan with standard web templates",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "vulnerabilities/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://docs.bugcrowd.com/researchers/onboarding/welcome/",
+      "technologies": [
+        {
+          "name": "jQuery",
+          "version": null,
+          "confidence": 90,
+          "category": "frontend"
+        }
+      ],
+      "server": "AmazonS3",
+      "cdn": null,
+      "cms": null,
+      "frontend": [
+        "jQuery"
+      ],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "server": "AmazonS3",
+        "strict-transport-security": "max-age=31557600",
+        "x-served-by": "cache-man4161-MAN"
+      },
+      "scanRecommendations": [
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "Content-Security-Policy missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://docs.rapyd.net/",
+      "technologies": [
+        {
+          "name": "AWS CloudFront",
+          "version": null,
+          "confidence": 90,
+          "category": "cdn"
+        }
+      ],
+      "server": "AmazonS3",
+      "cdn": "AWS CloudFront",
+      "cms": null,
+      "frontend": [],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "server": "AmazonS3",
+        "x-amz-cf-id": "fZuTuC9XO2HUx0lD4IB7C8eMbsR2fO3WyMNq44CA0tLgmX1lHG90Zw=="
+      },
+      "scanRecommendations": [
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "Content-Security-Policy missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "HSTS header missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://docs.rapyd.net/build-with-rapyd/docs",
+      "technologies": [
+        {
+          "name": "AWS CloudFront",
+          "version": null,
+          "confidence": 90,
+          "category": "cdn"
+        }
+      ],
+      "server": "AmazonS3",
+      "cdn": "AWS CloudFront",
+      "cms": null,
+      "frontend": [],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "server": "AmazonS3",
+        "x-amz-cf-id": "nzIy5FDpNHVBQ7CgR-AW-ORW_5C0-ZpAC90h-V9NoCyJ60_IDPw08g=="
+      },
+      "scanRecommendations": [
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "Content-Security-Policy missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "HSTS header missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://docs.rapyd.net/en/make-your-first-api-call.html",
+      "technologies": [
+        {
+          "name": "AWS CloudFront",
+          "version": null,
+          "confidence": 90,
+          "category": "cdn"
+        },
+        {
+          "name": "jQuery",
+          "version": null,
+          "confidence": 90,
+          "category": "frontend"
+        },
+        {
+          "name": "REST API",
+          "version": null,
+          "confidence": 60,
+          "category": "api"
+        }
+      ],
+      "server": "AmazonS3",
+      "cdn": "AWS CloudFront",
+      "cms": null,
+      "frontend": [
+        "jQuery"
+      ],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "server": "AmazonS3",
+        "x-amz-cf-id": "j0nwAC-Vo9OEsCISvgm2gz6aZmHiGwau66fcAnhcgQtMsrbo3e8EOQ=="
+      },
+      "scanRecommendations": [
+        {
+          "category": "api",
+          "priority": "HIGH",
+          "reason": "OpenAPI/Swagger docs detected – test for information disclosure and auth bypass",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "api/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "Content-Security-Policy missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "HSTS header missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://dashboard.rapyd.net/",
+      "technologies": [
+        {
+          "name": "Cloudflare",
+          "version": null,
+          "confidence": 95,
+          "category": "cdn"
+        },
+        {
+          "name": "AWS CloudFront",
+          "version": null,
+          "confidence": 90,
+          "category": "cdn"
+        }
+      ],
+      "server": "cloudflare",
+      "cdn": "Cloudflare",
+      "cms": null,
+      "frontend": [],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "9dff0a316d666974-MAN",
+        "server": "cloudflare",
+        "x-amz-cf-id": "yTZYijiwTztP7kncyiwzG-O2EbIeAzPzAUuNFb5I3YntD4M5OFwBkQ=="
+      },
+      "scanRecommendations": [
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "Content-Security-Policy missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "HSTS header missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://docs.rapyd.net/client-portal/docs/client-portal-overview",
+      "technologies": [
+        {
+          "name": "AWS CloudFront",
+          "version": null,
+          "confidence": 90,
+          "category": "cdn"
+        }
+      ],
+      "server": "AmazonS3",
+      "cdn": "AWS CloudFront",
+      "cms": null,
+      "frontend": [],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "server": "AmazonS3",
+        "x-amz-cf-id": "JSnT1ef53BGcW-wy8mQd396H58sTuZZQBhxY3X7lcwblkd4MVsUXBA=="
+      },
+      "scanRecommendations": [
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "Content-Security-Policy missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "HSTS header missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "url": "https://docs.rapyd.net/build-with-rapyd/docs/rapyd-checkout-overview",
+      "technologies": [
+        {
+          "name": "AWS CloudFront",
+          "version": null,
+          "confidence": 90,
+          "category": "cdn"
+        }
+      ],
+      "server": "AmazonS3",
+      "cdn": "AWS CloudFront",
+      "cms": null,
+      "frontend": [],
+      "backend": [],
+      "language": null,
+      "framework": null,
+      "interestingHeaders": {
+        "server": "AmazonS3",
+        "x-amz-cf-id": "2NWfSLeLlvfHodPejuMd8q-XKxVtHjLv9OlJZ3tE05WsUt68YSi29Q=="
+      },
+      "scanRecommendations": [
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "Content-Security-Policy missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        },
+        {
+          "category": "misc",
+          "priority": "LOW",
+          "reason": "HSTS header missing – passive finding",
+          "tool": "nuclei",
+          "toolArgs": [
+            "-t",
+            "security-headers/",
+            "-o",
+            "~/nuclei-output.txt"
+          ]
+        }
+      ]
+    }
+  ]
 }

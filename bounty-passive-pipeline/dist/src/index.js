@@ -271,7 +271,11 @@ async function runActiveScan(cfg, targets) {
                 nuclei: cfg.NUCLEI_ENABLED ?? true,
                 ssrf: cfg.SSRF_ENABLED ?? true,
                 auth: cfg.AUTH_ENABLED ?? true,
-                api: cfg.API_ENABLED ?? true
+                api: cfg.API_ENABLED ?? true,
+                subfinder: cfg.SUBFINDER_ENABLED ?? false,
+                gau: cfg.GAU_ENABLED ?? false,
+                httpx: cfg.HTTPX_ENABLED ?? false,
+                gitleaks: cfg.GITLEAKS_ENABLED ?? false
             },
             nucleiTemplates: cfg.NUCLEI_TEMPLATES_DIR ?? '',
             rateLimitMs: cfg.RATE_LIMIT_DELAY_MS ?? 2000,
