@@ -91,8 +91,15 @@ function parseNucleiOutput(stdout) {
     for (const line of lines) {
         try {
             const parsed = JSON.parse(line);
-            if (parsed.host && parsed.template) {
-                findings.push(nucleiToFinding(parsed.host, parsed.template, parsed.severity ?? 'info', parsed.matched_at ?? new Date().toISOString(), parsed.description ?? '', `Template: ${parsed.template} | Type: ${parsed.type}`));
+            // New nuclei v3 JSONL format: { "host": "...", "info": { "severity": "...", "description": "..." }, ... }
+            const host = (parsed.host ?? parsed.matched_at ?? '');
+            const info = (parsed.info ?? {});
+            const severity = (info.severity ?? parsed.severity ?? 'info');
+            const description = (info.description ?? parsed.description ?? '');
+            const template = (parsed.template_id ?? parsed.template ?? '');
+            const matchedAt = (parsed.matched_at ?? new Date().toISOString());
+            if (host) {
+                findings.push(nucleiToFinding(host, template, severity, matchedAt, description, `Template: ${template}`));
             }
         }
         catch {
@@ -126,15 +133,19 @@ export async function runNuclei(targets, stackTechs, config) {
     const tags = selectTemplateTags(stackTechs);
     const templatesDir = config.nucleiTemplates || path.join(os.homedir(), 'nuclei-templates');
     // Build tag filter args
-    const tagArgs = tags.flatMap(tag => ['-tags', tag]);
+    const tagArgs = tags.flatMap(tag => ['-it', tag]);
+    const templatesArg = templatesDir || '~/.nuclei-templates';
     const outputPath = path.join(tmpDir, `nuclei-output-${Date.now()}.txt`);
     const args = [
         '-l', urlsPath,
-        ...(config.nucleiTemplates ? ['-t', config.nucleiTemplates] : []),
-        ...tagArgs.flatMap(tag => ['-tags', tag]),
-        '-json',
-        '-o', outputPath,
-        '-rl', '50'
+        '-t', templatesArg,
+        ...tagArgs,
+        '-rl', '50',
+        '-timeout', String(Math.min(config.timeoutPerTarget ?? 30, 30)),
+        '-retries', '0',
+        '-nc',
+        '-j',
+        '-o', outputPath
     ];
     if (config.dryRun) {
         LOG.log(`[DRY_RUN] nuclei ${args.join(' ')}`);
@@ -142,15 +153,16 @@ export async function runNuclei(targets, stackTechs, config) {
         return findings;
     }
     try {
-        // Check templates directory exists
-        if (!fs.existsSync(templatesDir)) {
-            LOG.warn(`Nuclei templates directory not found: ${templatesDir}`);
-            // Fall back to default nuclei templates path
-            args[args.indexOf(templatesDir)] = '';
+        // Expand ~ to home dir
+        const expandedTemplates = templatesArg.replace(/^~/, os.homedir());
+        if (!fs.existsSync(expandedTemplates)) {
+            LOG.warn(`Nuclei templates directory not found: ${expandedTemplates} – skipping`);
+            await fs.promises.unlink(urlsPath).catch(() => { });
+            return findings;
         }
-        await execFileP('nuclei', args.filter(Boolean), {
+        const finalArgs = args.map(a => a === templatesArg ? expandedTemplates : a);
+        await execFileP('nuclei', finalArgs, {
             timeout: config.timeoutPerTarget * Math.min(targets.length, 5),
-            cwd: tmpDir,
             windowsHide: true
         });
         // Read output

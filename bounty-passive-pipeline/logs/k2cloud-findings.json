@@ -1,0 +1,71 @@
+{
+  "program": "K2 Cloud",
+  "program_url": "https://bugbounty.standoff365.com/en-US/programs/k2cloud",
+  "targets": [
+    "https://autoscaling.ru-msk.k2.cloud",
+    "https://autoscaling.ru-spb.k2.cloud",
+    "https://backup.ru-msk.k2.cloud",
+    "https://backup.ru-spb.k2.cloud",
+    "https://cloudtrail.ru-msk.k2.cloud",
+    "https://cloudtrail.ru-spb.k2.cloud",
+    "https://cloudwatch.ru-msk.k2.cloud",
+    "https://cloudwatch.ru-spb.k2.cloud",
+    "https://console.k2.cloud",
+    "https://directconnect.ru-msk.k2.cloud",
+    "https://directconnect.ru-spb.k2.cloud",
+    "https://ec2.ru-msk.k2.cloud",
+    "https://ec2.ru-spb.k2.cloud",
+    "https://efs.ru-msk.k2.cloud",
+    "https://efs.ru-spb.k2.cloud",
+    "https://eks.ru-msk.k2.cloud",
+    "https://eks.ru-spb.k2.cloud",
+    "https://elb.ru-msk.k2.cloud",
+    "https://elb.ru-spb.k2.cloud",
+    "https://ext.ru-msk.k2.cloud",
+    "https://ext.ru-spb.k2.cloud",
+    "https://iam.k2.cloud",
+    "https://paas.ru-msk.k2.cloud",
+    "https://paas.ru-spb.k2.cloud",
+    "https://primary.k2.cloud",
+    "https://route53.k2.cloud",
+    "https://ru-msk.console.k2.cloud",
+    "https://ru-spb.console.k2.cloud",
+    "https://s3.ru-msk.k2.cloud",
+    "https://s3.ru-spb.k2.cloud"
+  ],
+  "findings": [
+    {
+      "tool": "ssrf-scanner",
+      "id": "435f989068d8128202e48a91ff91fa79b41cce1d9f95658ae0c54fa48877b2b0",
+      "url": "https://reactjs.org/docs/error-decoder.html?invariant=",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "param": "invariant",
+      "description": "SSRF via parameter 'invariant' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 404) from internal resource",
+      "createdAt": "2026-03-21T19:21:35.360Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "tool": "ssrf-scanner",
+      "id": "8a217dab0a1f9e7780b6ad3b77acf6c1f1f88ba15d4f76fc42599ad8b0647530",
+      "url": "https://redux.js.org/Errors?code=",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "param": "code",
+      "description": "SSRF via parameter 'code' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+      "createdAt": "2026-03-21T19:21:36.671Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    }
+  ],
+  "scannedAt": "2026-03-21T19:22:23.300Z"
+}
