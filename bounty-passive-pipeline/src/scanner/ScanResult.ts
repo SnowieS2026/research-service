@@ -92,6 +92,10 @@ export interface ScannerConfig {
     ssrf: boolean;
     auth: boolean;
     api: boolean;
+    subfinder: boolean;
+    gau: boolean;
+    httpx: boolean;
+    gitleaks: boolean;
   };
   nucleiTemplates: string;
   rateLimitMs: number;

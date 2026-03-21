@@ -13,6 +13,10 @@ import { scanForSSRF } from './SSRFScanner.js';
 import { scanForAuthIssues } from './AuthScanner.js';
 import { scanAPI } from './ApiScanner.js';
 import { runNuclei } from './NucleiScanner.js';
+import { scanSubfinder } from './SubfinderScanner.js';
+import { scanGau } from './GauScanner.js';
+import { scanHttpx } from './HttpxScanner.js';
+import { scanGitleaks } from './GitleaksScanner.js';
 import {
   type BaseFinding,
   type AnyFinding,
@@ -238,6 +242,67 @@ export class ScannerOrchestrator {
           })
           .catch((err) => {
             const msg = `Nuclei scan error: ${err}`;
+            LOG.warn(msg);
+            errors.push(msg);
+          })
+      );
+    }
+
+    // OSINT scanners – subdomain, URL archive, HTTP probing, secret scanning
+    if (this.config.tools.subfinder) {
+      scanPromises.push(
+        scanSubfinder(capped, {} as StackInfo, this.config)
+          .then((f) => {
+            allFindings.push(...f);
+            LOG.log(`Subfinder scan complete: ${f.length} findings`);
+          })
+          .catch((err) => {
+            const msg = `Subfinder scan error: ${err}`;
+            LOG.warn(msg);
+            errors.push(msg);
+          })
+      );
+    }
+
+    if (this.config.tools.gau) {
+      scanPromises.push(
+        scanGau(capped, {} as StackInfo, this.config)
+          .then((f) => {
+            allFindings.push(...f);
+            LOG.log(`Gau scan complete: ${f.length} findings`);
+          })
+          .catch((err) => {
+            const msg = `Gau scan error: ${err}`;
+            LOG.warn(msg);
+            errors.push(msg);
+          })
+      );
+    }
+
+    if (this.config.tools.httpx) {
+      scanPromises.push(
+        scanHttpx(capped, {} as StackInfo, this.config)
+          .then((f) => {
+            allFindings.push(...f);
+            LOG.log(`Httpx scan complete: ${f.length} findings`);
+          })
+          .catch((err) => {
+            const msg = `Httpx scan error: ${err}`;
+            LOG.warn(msg);
+            errors.push(msg);
+          })
+      );
+    }
+
+    if (this.config.tools.gitleaks) {
+      scanPromises.push(
+        scanGitleaks(capped, {} as StackInfo, this.config)
+          .then((f) => {
+            allFindings.push(...f);
+            LOG.log(`Gitleaks scan complete: ${f.length} findings`);
+          })
+          .catch((err) => {
+            const msg = `Gitleaks scan error: ${err}`;
             LOG.warn(msg);
             errors.push(msg);
           })

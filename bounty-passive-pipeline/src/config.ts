@@ -25,6 +25,10 @@ export interface PipelineConfig {
   SSRF_ENABLED: boolean;
   AUTH_ENABLED: boolean;
   API_ENABLED: boolean;
+  SUBFINDER_ENABLED: boolean;
+  GAU_ENABLED: boolean;
+  HTTPX_ENABLED: boolean;
+  GITLEAKS_ENABLED: boolean;
   // OSINT config
   OSINT_WEB_SEARCH_KEY?: string;
   OSINT_HUNTER_API_KEY?: string;
@@ -70,6 +74,10 @@ const DEFAULT_CONFIG: PipelineConfig = {
   SSRF_ENABLED: true,
   AUTH_ENABLED: true,
   API_ENABLED: true,
+  SUBFINDER_ENABLED: false,
+  GAU_ENABLED: false,
+  HTTPX_ENABLED: false,
+  GITLEAKS_ENABLED: false,
   // OSINT defaults
   OSINT_WEB_SEARCH_KEY: '',
   OSINT_HUNTER_API_KEY: '',

@@ -16,6 +16,10 @@ import { scanForSSRF } from './SSRFScanner.js';
 import { scanForAuthIssues } from './AuthScanner.js';
 import { scanAPI } from './ApiScanner.js';
 import { runNuclei } from './NucleiScanner.js';
+import { scanSubfinder } from './SubfinderScanner.js';
+import { scanGau } from './GauScanner.js';
+import { scanHttpx } from './HttpxScanner.js';
+import { scanGitleaks } from './GitleaksScanner.js';
 import { type BaseFinding, type ScanRunResult } from './ScanResult.js';
 import path from 'path';
 import fs from 'fs';
@@ -77,7 +81,11 @@ async function main() {
       nuclei: cfg.NUCLEI_ENABLED ?? true,
       ssrf: cfg.SSRF_ENABLED ?? true,
       auth: cfg.AUTH_ENABLED ?? true,
-      api: cfg.API_ENABLED ?? true
+      api: cfg.API_ENABLED ?? true,
+      subfinder: cfg.SUBFINDER_ENABLED ?? true,
+      gau: cfg.GAU_ENABLED ?? true,
+      httpx: cfg.HTTPX_ENABLED ?? true,
+      gitleaks: cfg.GITLEAKS_ENABLED ?? true
     },
     nucleiTemplates: cfg.NUCLEI_TEMPLATES_DIR ?? '',
     rateLimitMs: cfg.RATE_LIMIT_DELAY_MS ?? 2000,
@@ -132,6 +140,26 @@ async function main() {
         if (config.tools.nuclei) {
           const stackTechs = state.stackInfos.flatMap((s) => s.technologies.map((t) => t.name));
           findings.push(...await runNuclei(state.targets, stackTechs, config));
+        }
+        break;
+      case 'subfinder':
+        if (config.tools.subfinder) {
+          findings.push(...await scanSubfinder(state.targets, {} as StackInfo, config));
+        }
+        break;
+      case 'gau':
+        if (config.tools.gau) {
+          findings.push(...await scanGau(state.targets, {} as StackInfo, config));
+        }
+        break;
+      case 'httpx':
+        if (config.tools.httpx) {
+          findings.push(...await scanHttpx(state.targets, {} as StackInfo, config));
+        }
+        break;
+      case 'gitleaks':
+        if (config.tools.gitleaks) {
+          findings.push(...await scanGitleaks(state.targets, {} as StackInfo, config));
         }
         break;
       default:
