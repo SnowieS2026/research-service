@@ -34,10 +34,17 @@ async function runDalfox(endpoint, config) {
         }
         args.push('--format', 'json');
         try {
-            const { stdout } = await execFileP('dalfox', args, { timeout: config.timeoutPerTarget });
+            const { stdout } = await execFileP('dalfox', args, {
+                signal: AbortSignal.timeout(20_000),
+                timeout: config.timeoutPerTarget
+            });
             results.push(...parseDalfoxOutput(stdout));
         }
-        catch {
+        catch (err) {
+            const e = err;
+            if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {
+                LOG.warn(`dalfox timeout on ${endpoint.url} – skipping`);
+            }
             // dalfox non-zero exit is expected when vulnerabilities are found
         }
         return results;
@@ -54,10 +61,18 @@ async function runDalfox(endpoint, config) {
         }
         args.push('--format', 'json');
         try {
-            const { stdout } = await execFileP('dalfox', args, { timeout: config.timeoutPerTarget });
+            const { stdout } = await execFileP('dalfox', args, {
+                signal: AbortSignal.timeout(20_000),
+                timeout: config.timeoutPerTarget
+            });
             results.push(...parseDalfoxOutput(stdout));
         }
-        catch {
+        catch (err) {
+            const e = err;
+            if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {
+                LOG.warn(`dalfox timeout on ${endpoint.url} param=${param.name} – skipping`);
+                break; // stop targeting further params on this endpoint
+            }
             // non-zero exit is expected when vulnerabilities are found
         }
     }

@@ -8,7 +8,7 @@
   "RATE_LIMIT_DELAY_MS": 2000,
   "DRY_RUN": false,
   "MIN_SEVERITY_TO_NOTIFY": "MEDIUM",
-  "WATCH_INTERVAL_MS": 21600000,
+  "WATCH_INTERVAL_MS": 1800000,
   "TARGET_PROGRAMS": [
     "https://bugcrowd.com/engagements/rapyd",
     "https://bugcrowd.com/engagements/optus-mbb-og",
@@ -39,7 +39,6 @@
     "https://bugcrowd.com/engagements/corticon-vdp",
     "https://bugcrowd.com/engagements/datadirect-vdp",
     "https://bugcrowd.com/engagements/devtools-vdp",
-    "https://bugcrowd.com/engagements/progress-software-vdphub",
     "https://bugcrowd.com/engagements/kucoin",
     "https://bugcrowd.com/engagements/tempusex-public-mbb-og",
     "https://bugcrowd.com/engagements/abmc-vdp",
@@ -47,7 +46,7 @@
     "https://bugcrowd.com/engagements/bie-vdp",
     "https://bugcrowd.com/engagements/blm-vdp",
     "https://bugcrowd.com/engagements/cfpb-vdp",
-    "https://bugcrowd.com/engagements/cisa",
+    "https://hackerone.com/",
     "https://app.intigriti.com/programs/intigriti/challenge0326",
     "https://app.intigriti.com/programs/coveo/coveopublicbugbounty",
     "https://app.intigriti.com/programs/aswatson/iciparisxl",
@@ -71,7 +70,9 @@
     "https://app.intigriti.com/programs/liferay/liferay-vdp",
     "https://app.intigriti.com/programs/waterlink/water-linkvdp",
     "https://app.intigriti.com/programs/ubisoft/ubisoftgamesecbbp",
-    "https://app.intigriti.com/programs/liferay/liferaydxp"
+    "https://app.intigriti.com/programs/liferay/liferaydxp",
+    "https://standoff365.com/en-US/",
+    "https://bugbounty.standoff365.com/en-US/"
   ],
   "REPORTS_DIR": "reports",
   "SNAPSHOT_STORE": "logs/snapshots",

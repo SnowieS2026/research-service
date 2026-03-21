@@ -1,0 +1,155 @@
+# Bug Bounty Report – Chime Managed Bug Bounty Engagement
+
+## Meta
+
+| Field | Value |
+| --- | --- |
+| Platform | bugcrowd |
+| Program URL | https://bugcrowd.com/engagements/chime |
+| Report Date | 2026-03-20 |
+| Severity | **MEDIUM** |
+| CVSS | 6 |
+| Reasons | 24 new asset(s) added to scope; Allowed techniques updated; 1 asset(s) removed from scope; Program notes/triage status updated |
+
+## Summary
+
+24 new assets added to the scope of Chime Managed Bug Bounty Engagement on bugcrowd. 1 asset removed from scope. Allowed testing techniques list updated.
+
+## Changes Detected
+
+| Field | Old Value | New Value |
+| --- | --- | --- |
+| program_name | Chime Managed Bug Bounty Engagement | Chime Managed Bug Bounty Engagement |
+| scope_assets | *.chime.com (https://*.chime.com),www.chime.com (https://www.chime.com),app.chim… | *.chime.com (https://*.chime.com),www.chime.com (https://www.chime.com),app.chim… |
+| exclusions | All Chime Assets, excluding Secondary Targets and Out of Scope assets. | All Chime Assets, excluding Secondary Targets and Out of Scope assets. |
+| reward_range | $10000 – $20000 | $10000 – $20000 |
+| payout_notes | Safe harbor: Safe harbor | Safe harbor: Safe harbor |
+| allowed_techniques | SQLi,XSS,CSRF,SSRF,RCE | SQLi,XSS,CSRF,SSRF,RCE |
+| last_seen_at | May 06, 2025 | May 06, 2025 |
+| source_snapshot_hash | 9d9c007f93f904e83a6c23ef919bb9720ceba6ce43a3bc19f64c5bdced0a7094 | 9d9c007f93f904e83a6c23ef919bb9720ceba6ce43a3bc19f64c5bdced0a7094 |
+
+## New Scope Assets
+
+- *.chime.com (https://*.chime.com)
+- www.chime.com (https://www.chime.com)
+- app.chime.com (https://app.chime.com)
+- Chime - Android App (Prod) (https://play.google.com/store/apps/details?id=com.onedebit.chime)
+- Chime - iOS App (Prod) (https://apps.apple.com/us/app/chime-mobile-banking/id836215269)
+- Chime - iOS App (Beta) (https://app.bitrise.io/app/5bec038cb1e318cd/installable-artifacts/9ad837caadc77d33/public-install-page/ef39a3be131d116b6da3f9d05c70d757)
+- Chime - Android App (Beta) (https://app.bitrise.io/app/5bec038cb1e318cd/installable-artifacts/d2424d9760af75d5/public-install-page/4883ab94cee43b34c597ad1df833911f)
+- Enrollment - (QA) (http://member-qa.chime.com/enroll)
+- Sign In - (QA) (http://app-qa.chime.com/users/sign_in)
+- app.saltlabs.com (https://app.saltlabs.com/)
+- Salt Labs - Android App (https://play.google.com/store/apps/details?id=com.saltlabs.app)
+- Salt Labs - iOS App (https://apps.apple.com/us/app/salt-work-and-get-rewarded/id1668462142)
+- Salt Labs - Staging Environment (https://app.staging.saltlabs.com/)
+- chime.financial (https://chime.financial)
+- chimescholars.org (https://chimescholars.org)
+- here (https://www.chime.com/online-banking/)
+- see here (https://docs.bugcrowd.com/researchers/participating-in-program/your-bugcrowdninja-email-address/)
+- How do I update my email address? (https://help.chime.com/hc/en-us/articles/11128310132759-How-do-I-update-my-email-address)
+- https://member-qa.chime.com/enroll/ (https://member-qa.chime.com/enroll/)
+- https://app-qa.chime.com/ (https://app-qa.chime.com/)
+- https://app.saltlabs.com/session/new (https://app.saltlabs.com/session/new)
+- create a ticket with Bugcrowd Support (https://bugcrowd-support.freshdesk.com/support/tickets/new)
+- standard disclosure terms. (https://www.bugcrowd.com/resource/standard-disclosure-terms/)
+- Public Disclosure Policy (https://docs.bugcrowd.com/researchers/disclosure/disclosure/#f-coordinated-disclosure)
+
+## Removed Scope Assets
+
+- ~~We unite everyday people to unlock their financial progress!~~
+
+## Recommendations
+
+**Scope expansion detected** – 24 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: *.chime.com (https://*.chime.com), www.chime.com (https://www.chime.com), app.chime.com (https://app.chime.com)
+
+**New allowed techniques** – The program has explicitly listed new acceptable techniques. Incorporate these into your testing workflow.
+
+## Raw Diff
+
+```json
+{
+  "platform": "bugcrowd",
+  "program_name": "Chime Managed Bug Bounty Engagement",
+  "program_url": "https://bugcrowd.com/engagements/chime",
+  "scope_assets": [
+    "*.chime.com (https://*.chime.com)",
+    "www.chime.com (https://www.chime.com)",
+    "app.chime.com (https://app.chime.com)",
+    "Chime - Android App (Prod) (https://play.google.com/store/apps/details?id=com.onedebit.chime)",
+    "Chime - iOS App (Prod) (https://apps.apple.com/us/app/chime-mobile-banking/id836215269)",
+    "Chime - iOS App (Beta) (https://app.bitrise.io/app/5bec038cb1e318cd/installable-artifacts/9ad837caadc77d33/public-install-page/ef39a3be131d116b6da3f9d05c70d757)",
+    "Chime - Android App (Beta) (https://app.bitrise.io/app/5bec038cb1e318cd/installable-artifacts/d2424d9760af75d5/public-install-page/4883ab94cee43b34c597ad1df833911f)",
+    "Enrollment - (QA) (http://member-qa.chime.com/enroll)",
+    "Sign In - (QA) (http://app-qa.chime.com/users/sign_in)",
+    "app.saltlabs.com (https://app.saltlabs.com/)",
+    "Salt Labs - Android App (https://play.google.com/store/apps/details?id=com.saltlabs.app)",
+    "Salt Labs - iOS App (https://apps.apple.com/us/app/salt-work-and-get-rewarded/id1668462142)",
+    "Salt Labs - Staging Environment (https://app.staging.saltlabs.com/)",
+    "chime.financial (https://chime.financial)",
+    "chimescholars.org (https://chimescholars.org)",
+    "here (https://www.chime.com/online-banking/)",
+    "see here (https://docs.bugcrowd.com/researchers/participating-in-program/your-bugcrowdninja-email-address/)",
+    "How do I update my email address? (https://help.chime.com/hc/en-us/articles/11128310132759-How-do-I-update-my-email-address)",
+    "https://member-qa.chime.com/enroll/ (https://member-qa.chime.com/enroll/)",
+    "https://app-qa.chime.com/ (https://app-qa.chime.com/)",
+    "https://app.saltlabs.com/session/new (https://app.saltlabs.com/session/new)",
+    "create a ticket with Bugcrowd Support (https://bugcrowd-support.freshdesk.com/support/tickets/new)",
+    "standard disclosure terms. (https://www.bugcrowd.com/resource/standard-disclosure-terms/)",
+    "Public Disclosure Policy (https://docs.bugcrowd.com/researchers/disclosure/disclosure/#f-coordinated-disclosure)"
+  ],
+  "exclusions": [
+    "All Chime Assets, excluding Secondary Targets and Out of Scope assets."
+  ],
+  "reward_range": "$10000 – $20000",
+  "reward_currency": "USD",
+  "payout_notes": "Safe harbor: Safe harbor",
+  "allowed_techniques": [
+    "SQLi",
+    "XSS",
+    "CSRF",
+    "SSRF",
+    "RCE"
+  ],
+  "prohibited_techniques": [],
+  "last_seen_at": "May 06, 2025",
+  "source_snapshot_hash": "9d9c007f93f904e83a6c23ef919bb9720ceba6ce43a3bc19f64c5bdced0a7094",
+  "prevProgram": {
+    "platform": "bugcrowd",
+    "program_name": "Disclosure Policy",
+    "program_url": "https://bugcrowd.com/engagements/chime",
+    "scope_assets": [
+      "We unite everyday people to unlock their financial progress!"
+    ],
+    "exclusions": [
+      "As a fintech leader",
+      "security is at the heart of everything we do. We’re committed to providing our members with a safe",
+      "reliable banking experience",
+      "and your expertise as a security researcher plays a vital role in making that possible."
+    ],
+    "reward_range": "At Chime, our mission is to bring financial peace of mind to everyone. We’ve helped millions of Americans by removing unnecessary fees, enabling automatic savings, and offering financial wellness features such as fee-free overdrafts, early paycheck access through MyPay, credit building tools, and Chime at Workplace. These benefits only matter if they’re secure, and that’s where you come in.",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "We unite everyday people to unlock their financial progress!",
+    "source_snapshot_hash": "5f348c718ec5b2539d9043bcf276b39932b5c0c7f8d849f9ef16f536470e22bd"
+  },
+  "diff": {
+    "oldHash": "01ddf245b14767ea696c6f1bbf89aa43cf50717ce4e1496061a0eb02790e02ce",
+    "newHash": "c90782ead51b942c3d0d2234fc5b52af00f676476325ecbc2bd412b37afe2418",
+    "addedFields": [],
+    "removedFields": [],
+    "changedFields": [
+      "program_name",
+      "scope_assets",
+      "exclusions",
+      "reward_range",
+      "payout_notes",
+      "allowed_techniques",
+      "last_seen_at",
+      "source_snapshot_hash"
+    ]
+  }
+}
+```

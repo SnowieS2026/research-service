@@ -1,0 +1,132 @@
+{
+  "programName": "Bitso Managed Bug Bounty Engagement",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/engagements/bitso-mbb-og",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "7 new asset(s) added to scope",
+    "1 asset(s) removed from scope"
+  ],
+  "reportDate": "2026-03-20",
+  "changes": [
+    {
+      "field": "rewards",
+      "oldValue": "(new)",
+      "newValue": ""
+    },
+    {
+      "field": "program_name",
+      "oldValue": "Bitso Managed Bug Bounty Engagement",
+      "newValue": "Bitso Managed Bug Bounty Engagement"
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "https://bitso.com/,https://nvio.mx/,https://nvio.ar/,https://apps.apple.com/us/app/bitso-buy-bitcoin-easily/id1292836438,https://apps.apple.com/us/app/bitso-alpha-crypto-trade-pro/id1539469172,https://play.google.com/store/apps/details?id=com.bitso.wallet&pcampaignid=web_share,https://play.google.com/store/apps/details?id=com.bitso.alpha",
+      "newValue": "https://bitso.com/,https://nvio.mx/,https://nvio.ar/,https://apps.apple.com/us/app/bitso-buy-bitcoin-easily/id1292836438,https://apps.apple.com/us/app/bitso-alpha-crypto-trade-pro/id1539469172,https://play.google.com/store/apps/details?id=com.bitso.wallet&pcampaignid=web_share,https://play.google.com/store/apps/details?id=com.bitso.alpha"
+    },
+    {
+      "field": "exclusions",
+      "oldValue": "",
+      "newValue": ""
+    },
+    {
+      "field": "reward_range",
+      "oldValue": "unknown",
+      "newValue": "unknown"
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "2026-03-20T22:30:19.844Z",
+      "newValue": "2026-03-20T22:30:19.844Z"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "e8e7b222f3d6",
+      "newValue": "e8e7b222f3d6"
+    }
+  ],
+  "newAssets": [
+    "https://bitso.com/",
+    "https://nvio.mx/",
+    "https://nvio.ar/",
+    "https://apps.apple.com/us/app/bitso-buy-bitcoin-easily/id1292836438",
+    "https://apps.apple.com/us/app/bitso-alpha-crypto-trade-pro/id1539469172",
+    "https://play.google.com/store/apps/details?id=com.bitso.wallet&pcampaignid=web_share",
+    "https://play.google.com/store/apps/details?id=com.bitso.alpha"
+  ],
+  "removedAssets": [
+    "Bitso is Latin America’s leading Financial Services company powered by crypto."
+  ],
+  "rewardChange": "unknown",
+  "changedFields": [
+    "rewards",
+    "program_name",
+    "scope_assets",
+    "exclusions",
+    "reward_range",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 7 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://bitso.com/, https://nvio.mx/, https://nvio.ar/"
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "Bitso Managed Bug Bounty Engagement",
+    "program_url": "https://bugcrowd.com/engagements/bitso-mbb-og",
+    "scope_assets": [
+      "https://bitso.com/",
+      "https://nvio.mx/",
+      "https://nvio.ar/",
+      "https://apps.apple.com/us/app/bitso-buy-bitcoin-easily/id1292836438",
+      "https://apps.apple.com/us/app/bitso-alpha-crypto-trade-pro/id1539469172",
+      "https://play.google.com/store/apps/details?id=com.bitso.wallet&pcampaignid=web_share",
+      "https://play.google.com/store/apps/details?id=com.bitso.alpha"
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "2026-03-20T22:30:19.844Z",
+    "source_snapshot_hash": "e8e7b222f3d6",
+    "rewards": [],
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Unknown",
+      "program_url": "https://bugcrowd.com/engagements/bitso-mbb-og",
+      "scope_assets": [
+        "Bitso is Latin America’s leading Financial Services company powered by crypto."
+      ],
+      "exclusions": [
+        "No technology is perfect and Bitso believes that working with skilled security researchers across the globe is crucial in identifying weaknesses in any technology. We are excited for you to participate as a security researcher to help us identify vulnerabilities in our assets. Good luck",
+        "and happy hunting!"
+      ],
+      "reward_range": "For the initial prioritization/rating of findings, this program will use the Bugcrowd Vulnerability Rating Taxonomy. However, it is important to note that in some cases a vulnerability priority will be modified due to its likelihood or impact. In any instance where an issue is downgraded, a full, detailed explanation will be provided to the researcher - along with the opportunity to appeal, and make a case for a higher priority.",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "Bitso is Latin America’s leading Financial Services company powered by crypto.",
+      "source_snapshot_hash": "e641df8f4d1e223db4a9164a375274d7cb0129ba9757e1fdc82955f0a7ddf96c"
+    },
+    "diff": {
+      "oldHash": "2679ada6bc6bd6a3c949fbd3ab170856bb6ea592689e2b0e49314d2f9b04d72b",
+      "newHash": "0fb29a38d729da6a70db04c981255755df0cc6ecd2d2db1bc444c990dbc82112",
+      "addedFields": [
+        "rewards"
+      ],
+      "removedFields": [],
+      "changedFields": [
+        "program_name",
+        "scope_assets",
+        "exclusions",
+        "reward_range",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}

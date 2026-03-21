@@ -1,0 +1,139 @@
+{
+  "programName": "BitGo Mobile Apps Bug Bounty Engagement",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/engagements/bitgo-mobileapps-mbb-og",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "4 new asset(s) added to scope",
+    "6 asset(s) removed from scope"
+  ],
+  "reportDate": "2026-03-21",
+  "changes": [
+    {
+      "field": "rewards",
+      "oldValue": "(new)",
+      "newValue": ""
+    },
+    {
+      "field": "program_name",
+      "oldValue": "BitGo Mobile Apps Bug Bounty Engagement",
+      "newValue": "BitGo Mobile Apps Bug Bounty Engagement"
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "https://play.google.com/store/apps/details?id=com.bitgo.verify&hl=en_US,https://apps.apple.com/us/app/bitgo-verify/id1608937235,https://play.google.com/store/apps/details?id=com.bitgo.mobileapp,https://apps.apple.com/us/app/bitgo/id6739010408",
+      "newValue": "https://play.google.com/store/apps/details?id=com.bitgo.verify&hl=en_US,https://apps.apple.com/us/app/bitgo-verify/id1608937235,https://play.google.com/store/apps/details?id=com.bitgo.mobileapp,https://apps.apple.com/us/app/bitgo/id6739010408"
+    },
+    {
+      "field": "exclusions",
+      "oldValue": "",
+      "newValue": ""
+    },
+    {
+      "field": "reward_range",
+      "oldValue": "unknown",
+      "newValue": "unknown"
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "2026-03-21T12:07:53.481Z",
+      "newValue": "2026-03-21T12:07:53.481Z"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "cb2f32f96ada",
+      "newValue": "cb2f32f96ada"
+    }
+  ],
+  "newAssets": [
+    "https://play.google.com/store/apps/details?id=com.bitgo.verify&hl=en_US",
+    "https://apps.apple.com/us/app/bitgo-verify/id1608937235",
+    "https://play.google.com/store/apps/details?id=com.bitgo.mobileapp",
+    "https://apps.apple.com/us/app/bitgo/id6739010408"
+  ],
+  "removedAssets": [
+    "BitGo offers secure",
+    "scalable solutions for the digital asset economy",
+    "including regulated custody",
+    "borrowing",
+    "lending",
+    "and core infrastructure for investors and builders."
+  ],
+  "rewardChange": "unknown",
+  "changedFields": [
+    "rewards",
+    "program_name",
+    "scope_assets",
+    "exclusions",
+    "reward_range",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 4 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://play.google.com/store/apps/details?id=com.bitgo.verify&hl=en_US, https://apps.apple.com/us/app/bitgo-verify/id1608937235, https://play.google.com/store/apps/details?id=com.bitgo.mobileapp"
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "BitGo Mobile Apps Bug Bounty Engagement",
+    "program_url": "https://bugcrowd.com/engagements/bitgo-mobileapps-mbb-og",
+    "scope_assets": [
+      "https://play.google.com/store/apps/details?id=com.bitgo.verify&hl=en_US",
+      "https://apps.apple.com/us/app/bitgo-verify/id1608937235",
+      "https://play.google.com/store/apps/details?id=com.bitgo.mobileapp",
+      "https://apps.apple.com/us/app/bitgo/id6739010408"
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "2026-03-21T12:07:53.481Z",
+    "source_snapshot_hash": "cb2f32f96ada",
+    "rewards": [],
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Unknown",
+      "program_url": "https://bugcrowd.com/engagements/bitgo-mobileapps-mbb-og",
+      "scope_assets": [
+        "BitGo offers secure",
+        "scalable solutions for the digital asset economy",
+        "including regulated custody",
+        "borrowing",
+        "lending",
+        "and core infrastructure for investors and builders."
+      ],
+      "exclusions": [
+        "Today",
+        "BitGo is the leader in digital asset security",
+        "custody",
+        "and liquidity",
+        "providing the operational backbone for more than 700 institutional clients in over 50 countries — a list that includes many regulated entities and the world’s top cryptocurrency exchanges and platforms. BitGo also processes approximately 20% of all global Bitcoin transactions by value."
+      ],
+      "reward_range": "This bug bounty program targets the pending approval workflow in BitGo’s mobile application. In organizational crypto operations, sensitive actions require review and approval by multiple parties before execution in production. These include Transactions, User management, Policy updates. The mobile app enables approvers to review and take action on these pending approvals directly from their devices.",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "BitGo offers secure, scalable solutions for the digital asset economy, including regulated custody, borrowing, lending, and core infrastructure for investors and builders.",
+      "source_snapshot_hash": "3de140eab9bf3f4ec88bc45e497e7fc7e17b71f25ba022c3fc71daab828e03f9"
+    },
+    "diff": {
+      "oldHash": "01c1933c17054a7fcbef12c14d8e2a0e0c35d0a765efbf27992a5eec444c1219",
+      "newHash": "c0daa1bf45fdc538f50c10ebd9b3e6d1759c5a7ab32c3a55c962762620d61b88",
+      "addedFields": [
+        "rewards"
+      ],
+      "removedFields": [],
+      "changedFields": [
+        "program_name",
+        "scope_assets",
+        "exclusions",
+        "reward_range",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}

@@ -1,0 +1,177 @@
+# Bug Bounty Report – Just Eat Takeaway.com
+
+## Meta
+
+| Field | Value |
+| --- | --- |
+| Platform | bugcrowd |
+| Program URL | https://bugcrowd.com/engagements/justeattakeaway |
+| Report Date | 2026-03-20 |
+| Severity | **MEDIUM** |
+| CVSS | 6 |
+| Reasons | 39 new asset(s) added to scope; 3 asset(s) removed from scope |
+
+## Summary
+
+39 new assets added to the scope of Just Eat Takeaway.com on bugcrowd. 3 assets removed from scope.
+
+## Changes Detected
+
+| Field | Old Value | New Value |
+| --- | --- | --- |
+| rewards | (new) |  |
+| program_name | Just Eat Takeaway.com | Just Eat Takeaway.com |
+| scope_assets | https://api-payments-secure-prod.skippayments.com/,https://takeawaypay.azurefd.n… | https://api-payments-secure-prod.skippayments.com/,https://takeawaypay.azurefd.n… |
+| exclusions |  |  |
+| reward_range | unknown | unknown |
+| last_seen_at | 2026-03-20T22:30:47.615Z | 2026-03-20T22:30:47.615Z |
+| source_snapshot_hash | b9fa70a007eb | b9fa70a007eb |
+
+## New Scope Assets
+
+- https://api-payments-secure-prod.skippayments.com/
+- https://takeawaypay.azurefd.net/en/takeawaypay/
+- https://takeaway.pay-creditcard.takeaway.com/
+- https://global-payments-web.payments.pmt-1.eu-west-1.production.jet-external.com/
+- https://uk.api.just-eat.io/docs
+- https://rest.api.eu-central-1.production.jet-external.com/
+- https://uk.api.just-eat.io/
+- https://aus.api.just-eat.io/
+- https://api-skipthedishes.skipthedishes.com/
+- https://i18n.api.just-eat.io/
+- https://cw-api.takeaway.com/
+- https://www.thuisbezorgd.nl/
+- https://takeaway.com/
+- https://skipthedishes.com/
+- https://just-eat.dk/
+- https://lieferando.de/
+- https://pyszne.pl/
+- https://bistro.sk/
+- https://just-eat.es/
+- https://www.just-eat.co.uk/
+- https://just-eat.ch/
+- https://10bis.co.il/
+- https://scoober.com/
+- https://just-eat.com/
+- https://skippayments.com/
+- https://play.google.com/store/apps/developer?id=Takeaway.com
+- https://play.google.com/store/apps/developer?id=Just-Eat+Holding+Limited
+- https://play.google.com/store/apps/developer?id=10bis.co.il+ltd.
+- https://play.google.com/store/apps/developer?id=Skip+Canada
+- https://apps.apple.com/nz/developer/just-eat-com/id383091095
+- https://apps.apple.com/it/developer/takeaway-com-central-core-b-v/id329472762
+- https://apps.apple.com/us/developer/skipthedishes/id969229980
+- https://apps.apple.com/us/developer/10bis-co-il-ltd/id434368194
+- https://www.justeattakeaway.com/
+- https://just-eat.io/
+- https://api.justeat-int.com/
+- https://yourdelivery.de/
+- https://just-data.io/
+- https://jet-external.com/
+
+## Removed Scope Assets
+
+- ~~Lead~~
+- ~~Deliver~~
+- ~~Care - Justeattakeaway.com~~
+
+## Recommendations
+
+**Scope expansion detected** – 39 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://api-payments-secure-prod.skippayments.com/, https://takeawaypay.azurefd.net/en/takeawaypay/, https://takeaway.pay-creditcard.takeaway.com/
+
+## Raw Diff
+
+```json
+{
+  "platform": "bugcrowd",
+  "program_name": "Just Eat Takeaway.com",
+  "program_url": "https://bugcrowd.com/engagements/justeattakeaway",
+  "scope_assets": [
+    "https://api-payments-secure-prod.skippayments.com/",
+    "https://takeawaypay.azurefd.net/en/takeawaypay/",
+    "https://takeaway.pay-creditcard.takeaway.com/",
+    "https://global-payments-web.payments.pmt-1.eu-west-1.production.jet-external.com/",
+    "https://uk.api.just-eat.io/docs",
+    "https://rest.api.eu-central-1.production.jet-external.com/",
+    "https://uk.api.just-eat.io/",
+    "https://aus.api.just-eat.io/",
+    "https://api-skipthedishes.skipthedishes.com/",
+    "https://i18n.api.just-eat.io/",
+    "https://cw-api.takeaway.com/",
+    "https://www.thuisbezorgd.nl/",
+    "https://takeaway.com/",
+    "https://skipthedishes.com/",
+    "https://just-eat.dk/",
+    "https://lieferando.de/",
+    "https://pyszne.pl/",
+    "https://bistro.sk/",
+    "https://just-eat.es/",
+    "https://www.just-eat.co.uk/",
+    "https://just-eat.ch/",
+    "https://10bis.co.il/",
+    "https://scoober.com/",
+    "https://just-eat.com/",
+    "https://skippayments.com/",
+    "https://play.google.com/store/apps/developer?id=Takeaway.com",
+    "https://play.google.com/store/apps/developer?id=Just-Eat+Holding+Limited",
+    "https://play.google.com/store/apps/developer?id=10bis.co.il+ltd.",
+    "https://play.google.com/store/apps/developer?id=Skip+Canada",
+    "https://apps.apple.com/nz/developer/just-eat-com/id383091095",
+    "https://apps.apple.com/it/developer/takeaway-com-central-core-b-v/id329472762",
+    "https://apps.apple.com/us/developer/skipthedishes/id969229980",
+    "https://apps.apple.com/us/developer/10bis-co-il-ltd/id434368194",
+    "https://www.justeattakeaway.com/",
+    "https://just-eat.io/",
+    "https://api.justeat-int.com/",
+    "https://yourdelivery.de/",
+    "https://just-data.io/",
+    "https://jet-external.com/"
+  ],
+  "exclusions": [],
+  "reward_range": "unknown",
+  "reward_currency": "USD",
+  "payout_notes": "",
+  "allowed_techniques": [],
+  "prohibited_techniques": [],
+  "last_seen_at": "2026-03-20T22:30:47.615Z",
+  "source_snapshot_hash": "b9fa70a007eb",
+  "rewards": [],
+  "prevProgram": {
+    "platform": "bugcrowd",
+    "program_name": "General Guidance",
+    "program_url": "https://bugcrowd.com/engagements/justeattakeaway",
+    "scope_assets": [
+      "Lead",
+      "Deliver",
+      "Care - Justeattakeaway.com"
+    ],
+    "exclusions": [
+      "We follow the Bugcrowd Vulnerability Rating Taxonomy for the initial classification of reported issues. This means certain vulnerability types have a capped to maximum level of severity. We may adjust prioritization based on real-world likelihood and business impact to JustEatTakeaway.com ’s platform. Submissions based purely on automated scanning output are generally not accepted unless they uncover a clearly significant issue. If a submission is reprioritized or downgraded",
+      "we will provide a detailed explanation and invite the researcher to appeal with further evidence or reasoning."
+    ],
+    "reward_range": "Testing is only authorized on the targets listed as In-Scope. Any domain/property of JustEatTakeaway not listed in the targets section is out of scope. This includes any/all subdomains not listed above.  If you believe you've identified a vulnerability on a system outside the scope, please inquire through the Bugcrowd Support Portal before submitting.",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "Lead, Deliver, Care - Justeattakeaway.com",
+    "source_snapshot_hash": "671314778ced24b60a90b1e1bb442dc264179573e9a285a259b2c7c37f193d99"
+  },
+  "diff": {
+    "oldHash": "0722b6673b5efaa2719ecb38bb77a33e77878862ece0848e2142c687d5bd8c62",
+    "newHash": "854d2c7a89eb1177fb296679f428e80c75a9a014ff2339a7f7875584185eb828",
+    "addedFields": [
+      "rewards"
+    ],
+    "removedFields": [],
+    "changedFields": [
+      "program_name",
+      "scope_assets",
+      "exclusions",
+      "reward_range",
+      "last_seen_at",
+      "source_snapshot_hash"
+    ]
+  }
+}
+```

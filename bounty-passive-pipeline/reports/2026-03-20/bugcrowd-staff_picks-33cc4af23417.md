@@ -1,0 +1,106 @@
+# Bug Bounty Report – Staff Picks
+
+## Meta
+
+| Field | Value |
+| --- | --- |
+| Platform | bugcrowd |
+| Program URL | https://bugcrowd.com/engagements/featured/staff-picks |
+| Report Date | 2026-03-20 |
+| Severity | **MEDIUM** |
+| CVSS | 6 |
+| Reasons | 10 new asset(s) added to scope; 1 asset(s) removed from scope |
+
+## Summary
+
+10 new assets added to the scope of Staff Picks on bugcrowd. 1 asset removed from scope.
+
+## Changes Detected
+
+| Field | Old Value | New Value |
+| --- | --- | --- |
+| rewards | (new) |  |
+| scope_assets | https://www.bugcrowd.com/,https://www.bugcrowd.com/terms-and-conditions/,https:/… | https://www.bugcrowd.com/,https://www.bugcrowd.com/terms-and-conditions/,https:/… |
+| last_seen_at | 2026-03-20T22:32:32.656Z | 2026-03-20T22:32:32.656Z |
+| source_snapshot_hash | 790be91875d0 | 790be91875d0 |
+
+## New Scope Assets
+
+- https://www.bugcrowd.com/
+- https://www.bugcrowd.com/terms-and-conditions/
+- https://www.bugcrowd.com/privacy/
+- https://www.bugcrowd.com/solutions/security-companies
+- https://www.bugcrowd.com/privacy/do-not-sell-my-information/
+- https://docs.bugcrowd.com/researchers/onboarding/welcome
+- https://www.bugcrowd.com/hackers/faqs/
+- https://www.bugcrowd.com/resources
+- https://www.bugcrowd.com/blog
+- https://www.bugcrowd.com/about/contact
+
+## Removed Scope Assets
+
+- ~~A collection of our favorite engagements for hackers.~~
+
+## Recommendations
+
+**Scope expansion detected** – 10 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://www.bugcrowd.com/, https://www.bugcrowd.com/terms-and-conditions/, https://www.bugcrowd.com/privacy/
+
+## Raw Diff
+
+```json
+{
+  "platform": "bugcrowd",
+  "program_name": "Staff Picks",
+  "program_url": "https://bugcrowd.com/engagements/featured/staff-picks",
+  "scope_assets": [
+    "https://www.bugcrowd.com/",
+    "https://www.bugcrowd.com/terms-and-conditions/",
+    "https://www.bugcrowd.com/privacy/",
+    "https://www.bugcrowd.com/solutions/security-companies",
+    "https://www.bugcrowd.com/privacy/do-not-sell-my-information/",
+    "https://docs.bugcrowd.com/researchers/onboarding/welcome",
+    "https://www.bugcrowd.com/hackers/faqs/",
+    "https://www.bugcrowd.com/resources",
+    "https://www.bugcrowd.com/blog",
+    "https://www.bugcrowd.com/about/contact"
+  ],
+  "exclusions": [],
+  "reward_range": "unknown",
+  "reward_currency": "USD",
+  "payout_notes": "",
+  "allowed_techniques": [],
+  "prohibited_techniques": [],
+  "last_seen_at": "2026-03-20T22:32:32.656Z",
+  "source_snapshot_hash": "790be91875d0",
+  "rewards": [],
+  "prevProgram": {
+    "platform": "bugcrowd",
+    "program_name": "Staff Picks",
+    "program_url": "https://bugcrowd.com/engagements/featured/staff-picks",
+    "scope_assets": [
+      "A collection of our favorite engagements for hackers."
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "A collection of our favorite engagements for hackers.",
+    "source_snapshot_hash": "ef6ae3ec860270269b00264002d2e8859c7fa859d3cc2d9ac4c1ac0c888a0a65"
+  },
+  "diff": {
+    "oldHash": "2514663f991ca10fe6248317f58ec9732ff94830e8602c0748b2188eee1fecd9",
+    "newHash": "33cc4af23417387eeb8d85de3fa8b74dda89eceeda3e0a07a034356a038c32f4",
+    "addedFields": [
+      "rewards"
+    ],
+    "removedFields": [],
+    "changedFields": [
+      "scope_assets",
+      "last_seen_at",
+      "source_snapshot_hash"
+    ]
+  }
+}
+```

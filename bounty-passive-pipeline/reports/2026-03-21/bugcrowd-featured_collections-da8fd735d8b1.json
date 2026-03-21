@@ -1,0 +1,93 @@
+{
+  "programName": "Featured collections",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/engagements/featured",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "2 new asset(s) added to scope"
+  ],
+  "reportDate": "2026-03-21",
+  "changes": [
+    {
+      "field": "rewards",
+      "oldValue": "(new)",
+      "newValue": ""
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "https://www.bugcrowd.com/,https://docs.bugcrowd.com/researchers/onboarding/welcome",
+      "newValue": "https://www.bugcrowd.com/,https://docs.bugcrowd.com/researchers/onboarding/welcome"
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "2026-03-21T12:12:53.964Z",
+      "newValue": "2026-03-21T12:12:53.964Z"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "f2caee4f5d28",
+      "newValue": "f2caee4f5d28"
+    }
+  ],
+  "newAssets": [
+    "https://www.bugcrowd.com/",
+    "https://docs.bugcrowd.com/researchers/onboarding/welcome"
+  ],
+  "removedAssets": [],
+  "rewardChange": "unchanged",
+  "changedFields": [
+    "rewards",
+    "scope_assets",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 2 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://www.bugcrowd.com/, https://docs.bugcrowd.com/researchers/onboarding/welcome"
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "Featured collections",
+    "program_url": "https://bugcrowd.com/engagements/featured",
+    "scope_assets": [
+      "https://www.bugcrowd.com/",
+      "https://docs.bugcrowd.com/researchers/onboarding/welcome"
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "2026-03-21T12:12:53.964Z",
+    "source_snapshot_hash": "f2caee4f5d28",
+    "rewards": [],
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Featured collections",
+      "program_url": "https://bugcrowd.com/engagements/featured",
+      "scope_assets": [],
+      "exclusions": [],
+      "reward_range": "unknown",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "2026-03-20",
+      "source_snapshot_hash": "f38ff99acb7d9864744476ce9318e7dfdecfaa9114506d07fe9fbd806e03d76f"
+    },
+    "diff": {
+      "oldHash": "077d65b6618984c9592f255c9c56f41382ca1b0265f2ac7eb51006f1bcefca7b",
+      "newHash": "da8fd735d8b1ca22cde109899acfe8e83a137c1cab6db707088994e8a2799a3f",
+      "addedFields": [
+        "rewards"
+      ],
+      "removedFields": [],
+      "changedFields": [
+        "scope_assets",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "programName": "Moovit Managed Bug Bounty Program",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/engagements/moovit-mbb-og",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "3 new asset(s) added to scope",
+    "1 asset(s) removed from scope"
+  ],
+  "reportDate": "2026-03-20",
+  "changes": [
+    {
+      "field": "rewards",
+      "oldValue": "(new)",
+      "newValue": ""
+    },
+    {
+      "field": "program_name",
+      "oldValue": "Moovit Managed Bug Bounty Program",
+      "newValue": "Moovit Managed Bug Bounty Program"
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "https://play.google.com/store/apps/details?id=com.tranzmate&hl=en_US,https://apps.apple.com/us/app/moovit-all-transit-options/id498477945,https://support.moovitapp.com/hc/en-us/articles/11389054527122-WayFinder-Augmented-Reality-helper-to-find-your-stop-iPhone-only",
+      "newValue": "https://play.google.com/store/apps/details?id=com.tranzmate&hl=en_US,https://apps.apple.com/us/app/moovit-all-transit-options/id498477945,https://support.moovitapp.com/hc/en-us/articles/11389054527122-WayFinder-Augmented-Reality-helper-to-find-your-stop-iPhone-only"
+    },
+    {
+      "field": "exclusions",
+      "oldValue": "",
+      "newValue": ""
+    },
+    {
+      "field": "reward_range",
+      "oldValue": "unknown",
+      "newValue": "unknown"
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "2026-03-20T22:28:06.706Z",
+      "newValue": "2026-03-20T22:28:06.706Z"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "bd2b8449a2ef",
+      "newValue": "bd2b8449a2ef"
+    }
+  ],
+  "newAssets": [
+    "https://play.google.com/store/apps/details?id=com.tranzmate&hl=en_US",
+    "https://apps.apple.com/us/app/moovit-all-transit-options/id498477945",
+    "https://support.moovitapp.com/hc/en-us/articles/11389054527122-WayFinder-Augmented-Reality-helper-to-find-your-stop-iPhone-only"
+  ],
+  "removedAssets": [
+    "Moovit is a leading Mobility as a Service (MaaS) solutions company and the #1 urban mobility app. Please submit your findings to this Bug Bounty Program."
+  ],
+  "rewardChange": "unknown",
+  "changedFields": [
+    "rewards",
+    "program_name",
+    "scope_assets",
+    "exclusions",
+    "reward_range",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 3 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://play.google.com/store/apps/details?id=com.tranzmate&hl=en_US, https://apps.apple.com/us/app/moovit-all-transit-options/id498477945, https://support.moovitapp.com/hc/en-us/articles/11389054527122-WayFinder-Augmented-Reality-helper-to-find-your-stop-iPhone-only"
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "Moovit Managed Bug Bounty Program",
+    "program_url": "https://bugcrowd.com/engagements/moovit-mbb-og",
+    "scope_assets": [
+      "https://play.google.com/store/apps/details?id=com.tranzmate&hl=en_US",
+      "https://apps.apple.com/us/app/moovit-all-transit-options/id498477945",
+      "https://support.moovitapp.com/hc/en-us/articles/11389054527122-WayFinder-Augmented-Reality-helper-to-find-your-stop-iPhone-only"
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "2026-03-20T22:28:06.706Z",
+    "source_snapshot_hash": "bd2b8449a2ef",
+    "rewards": [],
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Unknown",
+      "program_url": "https://bugcrowd.com/engagements/moovit-mbb-og",
+      "scope_assets": [
+        "Moovit is a leading Mobility as a Service (MaaS) solutions company and the #1 urban mobility app. Please submit your findings to this Bug Bounty Program."
+      ],
+      "exclusions": [
+        "As further elaborated below",
+        "we expect you to provide us with the full scope of information you come across when conducting your vulnerability research. Please try to minimize your access to personal information to the minimal extent possible."
+      ],
+      "reward_range": "Moovit is an innovative app that revolutionizes the way people navigate and use public transportation, allowing commuters to plan their journeys seamlessly. With real-time data, accurate schedules, and detailed routes, Moovit provides reliable information on buses, trains, metros, trams, and other public transportation options available in over 3,200 cities worldwide.",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "Moovit is a leading Mobility as a Service (MaaS) solutions company and the #1 urban mobility app. Please submit your findings to this Bug Bounty Program.",
+      "source_snapshot_hash": "c5c5880805340b56b751bc48802c0c7324832f37ecac7a2cee2e8836c76c1e78"
+    },
+    "diff": {
+      "oldHash": "0a186f80cad3eedd012ed7aabc7e8ab1d367126c38fcf66071e32d5d1f23d808",
+      "newHash": "747a3553662da17a72d27dc2ab4c513d12f52b9b49d31c7e3dbe6a7ab696618e",
+      "addedFields": [
+        "rewards"
+      ],
+      "removedFields": [],
+      "changedFields": [
+        "program_name",
+        "scope_assets",
+        "exclusions",
+        "reward_range",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}

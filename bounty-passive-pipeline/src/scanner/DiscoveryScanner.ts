@@ -77,7 +77,7 @@ function isStaticAsset(url: string): boolean {
   }
 }
 
-function extractQueryParams(url: string): ParameterInfo[] {
+export function extractQueryParams(url: string): ParameterInfo[] {
   try {
     const u = new URL(url);
     const params: ParameterInfo[] = [];

@@ -23,7 +23,7 @@ function isStaticAsset(url) {
         return false;
     }
 }
-function extractQueryParams(url) {
+export function extractQueryParams(url) {
     try {
         const u = new URL(url);
         const params = [];

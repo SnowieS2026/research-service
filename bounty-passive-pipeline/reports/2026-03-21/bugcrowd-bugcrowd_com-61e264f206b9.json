@@ -1,0 +1,110 @@
+{
+  "programName": "bugcrowd.com",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/engagements/bitso-mbb-og",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "2 new asset(s) added to scope",
+    "7 asset(s) removed from scope"
+  ],
+  "reportDate": "2026-03-21",
+  "changes": [
+    {
+      "field": "program_name",
+      "oldValue": "bugcrowd.com",
+      "newValue": "bugcrowd.com"
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "https://www.bugcrowd.com/,https://docs.bugcrowd.com/researchers/onboarding/welcome",
+      "newValue": "https://www.bugcrowd.com/,https://docs.bugcrowd.com/researchers/onboarding/welcome"
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "2026-03-21T12:18:06.227Z",
+      "newValue": "2026-03-21T12:18:06.227Z"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "974ba9d818a9",
+      "newValue": "974ba9d818a9"
+    }
+  ],
+  "newAssets": [
+    "https://www.bugcrowd.com/",
+    "https://docs.bugcrowd.com/researchers/onboarding/welcome"
+  ],
+  "removedAssets": [
+    "https://bitso.com/",
+    "https://nvio.mx/",
+    "https://nvio.ar/",
+    "https://apps.apple.com/us/app/bitso-buy-bitcoin-easily/id1292836438",
+    "https://apps.apple.com/us/app/bitso-alpha-crypto-trade-pro/id1539469172",
+    "https://play.google.com/store/apps/details?id=com.bitso.wallet&pcampaignid=web_share",
+    "https://play.google.com/store/apps/details?id=com.bitso.alpha"
+  ],
+  "rewardChange": "unchanged",
+  "changedFields": [
+    "program_name",
+    "scope_assets",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 2 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://www.bugcrowd.com/, https://docs.bugcrowd.com/researchers/onboarding/welcome"
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "bugcrowd.com",
+    "program_url": "https://bugcrowd.com/engagements/bitso-mbb-og",
+    "scope_assets": [
+      "https://www.bugcrowd.com/",
+      "https://docs.bugcrowd.com/researchers/onboarding/welcome"
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "2026-03-21T12:18:06.227Z",
+    "source_snapshot_hash": "974ba9d818a9",
+    "rewards": [],
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Bitso Managed Bug Bounty Engagement",
+      "program_url": "https://bugcrowd.com/engagements/bitso-mbb-og",
+      "scope_assets": [
+        "https://bitso.com/",
+        "https://nvio.mx/",
+        "https://nvio.ar/",
+        "https://apps.apple.com/us/app/bitso-buy-bitcoin-easily/id1292836438",
+        "https://apps.apple.com/us/app/bitso-alpha-crypto-trade-pro/id1539469172",
+        "https://play.google.com/store/apps/details?id=com.bitso.wallet&pcampaignid=web_share",
+        "https://play.google.com/store/apps/details?id=com.bitso.alpha"
+      ],
+      "exclusions": [],
+      "reward_range": "unknown",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "2026-03-20T22:30:19.844Z",
+      "source_snapshot_hash": "e8e7b222f3d6",
+      "rewards": []
+    },
+    "diff": {
+      "oldHash": "0fb29a38d729da6a70db04c981255755df0cc6ecd2d2db1bc444c990dbc82112",
+      "newHash": "61e264f206b94dd6b5f0c9fd399ebbb1a838e335d6e62e55c53aaef1ac9076c8",
+      "addedFields": [],
+      "removedFields": [],
+      "changedFields": [
+        "program_name",
+        "scope_assets",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}

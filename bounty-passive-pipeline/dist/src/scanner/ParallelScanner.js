@@ -1,14 +1,26 @@
+/**
+ * ParallelScanner - runs each scan tool as an independent child process.
+ *
+ * Architecture:
+ * 1. Run discovery ONCE, save endpoints to logs/scan-state.json
+ * 2. Spawn one `node run-tool.ts <tool>` child process per enabled scanner
+ * 3. Each tool runs independently and writes its results to logs/scan-results/<tool>-result.json
+ * 4. Coordinator polls for results and merges when all complete
+ *
+ * Each child process runs in its own Node.js instance - no shared memory,
+ * no one tool's timeout affecting another.
+ */
+import { DiscoveryScanner, extractQueryParams } from './DiscoveryScanner.js';
 import { deduplicateFindings } from './ScanResult.js';
 import { Logger } from '../Logger.js';
-import { DiscoveryScanner } from './DiscoveryScanner.js';
 import { spawn } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PIPELINE_ROOT = path.resolve(__dirname, '../..');
-const STATE_FILE = path.join(PIPELINE_ROOT, 'logs/scan-state.json');
-const RESULTS_DIR = path.join(PIPELINE_ROOT, 'logs/scan-results');
+const PIPELINE_ROOT = path.resolve(__dirname, '../../..');
+const STATE_FILE = 'logs/scan-state.json';
+const RESULTS_DIR = 'logs/scan-results';
 const LOG = new Logger('ParallelScanner');
 const TOOL_FILES = {
     xss: 'xss-result.json',
@@ -70,8 +82,8 @@ function spawnTool(tool) {
         tool
     ], {
         cwd: PIPELINE_ROOT,
-        detached: true, // run independently of parent
-        stdio: 'pipe', // capture output but don't hold pipe open
+        detached: true,
+        stdio: 'pipe',
         windowsHide: true,
         env: {
             ...process.env,
@@ -93,11 +105,11 @@ function spawnTool(tool) {
     child.on('error', (err) => {
         LOG.warn(`[ParallelScanner:${tool}] process error: ${err.message}`);
     });
-    child.unref(); // Let parent exit without killing child
+    child.unref();
     LOG.log(`[ParallelScanner] Spawned ${tool} (pid ${child.pid})`);
 }
 /**
- * Main parallel scan: discovery → spawn tools → collect results.
+ * Main parallel scan: discovery -> spawn tools -> collect results.
  */
 async function runParallelScan(targets, _config, db) {
     const startTime = Date.now();
@@ -113,7 +125,7 @@ async function runParallelScan(targets, _config, db) {
         }
         catch { /* noop */ }
     }
-    // ── Discovery (run once) ──────────────────────────────────────────────────
+    // Discovery (run once)
     const discoveryScanner = new DiscoveryScanner();
     const seen = new Set();
     const filtered = targets.filter((t) => {
@@ -141,39 +153,55 @@ async function runParallelScan(targets, _config, db) {
         await new Promise((r) => setTimeout(r, 2000));
     }
     await discoveryScanner.close();
-    // Deduplicate
-    const allEndpoints = [];
-    const stackInfos = [];
-    for (const result of discoveryResults) {
-        allEndpoints.push(...result.endpoints);
-        stackInfos.push(result.stackInfo);
-    }
-    const seenE = new Set();
-    const uniqueEndpoints = allEndpoints.filter((e) => {
-        if (seenE.has(e.url))
-            return false;
-        seenE.add(e.url);
-        return true;
+    // Convert scope assets to endpoints directly
+    // Every scope asset becomes a scan target even if DiscoveryScanner found no endpoints.
+    // Wildcard scopes (e.g. *.okta.com) will never yield crawled endpoints.
+    const scopeEndpoints = capped.map((url) => {
+        const params = extractQueryParams(url);
+        return {
+            url,
+            method: 'GET',
+            params,
+            formFields: [],
+            inJS: false,
+            source: 'html'
+        };
     });
+    // Merge crawled endpoints with scope endpoints, deduplicating by URL
+    const allEndpoints = [...scopeEndpoints];
+    const seenE = new Set(capped);
+    for (const result of discoveryResults) {
+        for (const ep of result.endpoints) {
+            if (!seenE.has(ep.url)) {
+                seenE.add(ep.url);
+                allEndpoints.push(ep);
+            }
+        }
+    }
+    const stackInfos = discoveryResults.map((r) => r.stackInfo);
     // Save shared state
-    const sharedState = { scanId, startedAt, targets: capped, endpoints: uniqueEndpoints, stackInfos };
+    const sharedState = { scanId, startedAt, targets: capped, endpoints: allEndpoints, stackInfos };
     await fs.promises.writeFile(path.join(PIPELINE_ROOT, STATE_FILE), JSON.stringify(sharedState, null, 2), 'utf8');
-    LOG.log(`[ParallelScanner] Discovery done: ${uniqueEndpoints.length} endpoints`);
-    // ── Spawn tools ─────────────────────────────────────────────────────────────
+    LOG.log(`[ParallelScanner] Discovery done: ${allEndpoints.length} endpoints, ${capped.length} targets`);
+    // Spawn tools
     const enabledTools = ['xss', 'sql', 'ssrf', 'auth', 'api', 'nuclei'];
     const spawned = [];
     for (const tool of enabledTools) {
         spawnTool(tool);
         spawned.push(tool);
-        await new Promise((r) => setTimeout(r, SPAWN_DELAY_MS)); // stagger spawns
+        await new Promise((r) => setTimeout(r, SPAWN_DELAY_MS));
     }
     LOG.log(`[ParallelScanner] Spawned ${spawned.length} tools`);
-    // ── Collect results ─────────────────────────────────────────────────────────
+    // Collect results (wait for ALL tools in parallel)
     const allFindings = [];
     const allErrors = [];
-    for (const tool of spawned) {
+    const resultPromises = spawned.map(async (tool) => {
         LOG.log(`[ParallelScanner] Waiting for ${tool}...`);
         const result = await waitForTool(tool);
+        return { tool, result };
+    });
+    const results = await Promise.all(resultPromises);
+    for (const { tool, result } of results) {
         if (result) {
             allFindings.push(...result.findings);
             allErrors.push(...result.errors);
@@ -184,7 +212,7 @@ async function runParallelScan(targets, _config, db) {
             LOG.warn(`[ParallelScanner] ${tool} timed out`);
         }
     }
-    // ── Merge ──────────────────────────────────────────────────────────────────
+    // Merge
     const deduped = deduplicateFindings(allFindings);
     const summary = {
         xss: deduped.filter((f) => f.type === 'xss').length,

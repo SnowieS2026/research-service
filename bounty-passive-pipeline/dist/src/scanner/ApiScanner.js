@@ -233,7 +233,7 @@ async function probeRESTApi(baseUrl) {
  */
 export async function scanAPI(targets, stack, config) {
     const findings = [];
-    const hasGraphQL = stack.technologies.some(t => t.name === 'GraphQL');
+    const hasGraphQL = (stack?.technologies ?? []).some(t => t.name === 'GraphQL');
     // ── GraphQL testing ────────────────────────────────────────────────────────
     if (hasGraphQL) {
         const graphqlEndpoints = targets.filter(e => e.url.includes('graphql') || e.url.includes('api'));

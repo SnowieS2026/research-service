@@ -266,7 +266,7 @@ export async function scanAPI(
   config: ScannerConfig
 ): Promise<ApiFinding[]> {
   const findings: ApiFinding[] = [];
-  const hasGraphQL = stack.technologies.some(t => t.name === 'GraphQL');
+  const hasGraphQL = (stack?.technologies ?? []).some(t => t.name === 'GraphQL');
 
   // ── GraphQL testing ────────────────────────────────────────────────────────
   if (hasGraphQL) {

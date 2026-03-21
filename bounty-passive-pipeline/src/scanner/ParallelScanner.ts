@@ -1,5 +1,5 @@
-/**
- * ParallelScanner – runs each scan tool as an independent child process.
+﻿/**
+ * ParallelScanner - runs each scan tool as an independent child process.
  *
  * Architecture:
  * 1. Run discovery ONCE, save endpoints to logs/scan-state.json
@@ -7,26 +7,24 @@
  * 3. Each tool runs independently and writes its results to logs/scan-results/<tool>-result.json
  * 4. Coordinator polls for results and merges when all complete
  *
- * Each child process runs in its own Node.js instance — no shared memory,
+ * Each child process runs in its own Node.js instance - no shared memory,
  * no one tool's timeout affecting another.
  */
-import { type DiscoveredEndpoint } from './DiscoveryScanner.js';
-import { type ScanResult } from './DiscoveryScanner.js';
+import { DiscoveryScanner, type DiscoveredEndpoint, type ScanResult, extractQueryParams } from './DiscoveryScanner.js';
 import { type StackInfo } from '../stackdetector/StackDetector.js';
 import { type ScannerConfig, type ScanRunResult, type BaseFinding } from './ScanResult.js';
 import { deduplicateFindings } from './ScanResult.js';
 import { Logger } from '../Logger.js';
 import { BountyDB } from '../storage/BountyDB.js';
-import { DiscoveryScanner } from './DiscoveryScanner.js';
 import { spawn } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PIPELINE_ROOT = path.resolve(__dirname, '../..');
-const STATE_FILE = path.join(PIPELINE_ROOT, 'logs/scan-state.json');
-const RESULTS_DIR = path.join(PIPELINE_ROOT, 'logs/scan-results');
+const PIPELINE_ROOT = path.resolve(__dirname, '../../..');
+const STATE_FILE = 'logs/scan-state.json';
+const RESULTS_DIR = 'logs/scan-results';
 
 const LOG = new Logger('ParallelScanner');
 
@@ -107,8 +105,8 @@ function spawnTool(tool: string): void {
     tool
   ], {
     cwd: PIPELINE_ROOT,
-    detached: true,     // run independently of parent
-    stdio: 'pipe',      // capture output but don't hold pipe open
+    detached: true,
+    stdio: 'pipe',
     windowsHide: true,
     env: {
       ...process.env,
@@ -133,12 +131,12 @@ function spawnTool(tool: string): void {
     LOG.warn(`[ParallelScanner:${tool}] process error: ${err.message}`);
   });
 
-  child.unref(); // Let parent exit without killing child
+  child.unref();
   LOG.log(`[ParallelScanner] Spawned ${tool} (pid ${child.pid})`);
 }
 
 /**
- * Main parallel scan: discovery → spawn tools → collect results.
+ * Main parallel scan: discovery -> spawn tools -> collect results.
  */
 async function runParallelScan(
   targets: string[],
@@ -161,7 +159,7 @@ async function runParallelScan(
     } catch { /* noop */ }
   }
 
-  // ── Discovery (run once) ──────────────────────────────────────────────────
+  // Discovery (run once)
   const discoveryScanner = new DiscoveryScanner();
 
   const seen = new Set<string>();
@@ -188,43 +186,57 @@ async function runParallelScan(
 
   await discoveryScanner.close();
 
-  // Deduplicate
-  const allEndpoints: DiscoveredEndpoint[] = [];
-  const stackInfos: StackInfo[] = [];
-  for (const result of discoveryResults) {
-    allEndpoints.push(...result.endpoints);
-    stackInfos.push(result.stackInfo);
-  }
-
-  const seenE = new Set<string>();
-  const uniqueEndpoints = allEndpoints.filter((e) => {
-    if (seenE.has(e.url)) return false;
-    seenE.add(e.url); return true;
+  // Convert scope assets to endpoints directly
+  // Every scope asset becomes a scan target even if DiscoveryScanner found no endpoints.
+  // Wildcard scopes (e.g. *.okta.com) will never yield crawled endpoints.
+  const scopeEndpoints: DiscoveredEndpoint[] = capped.map((url) => {
+    const params = extractQueryParams(url);
+    return {
+      url,
+      method: 'GET',
+      params,
+      formFields: [],
+      inJS: false,
+      source: ('html' as DiscoveredEndpoint['source'])
+    };
   });
 
+  // Merge crawled endpoints with scope endpoints, deduplicating by URL
+  const allEndpoints: DiscoveredEndpoint[] = [...scopeEndpoints];
+  const seenE = new Set<string>(capped);
+  for (const result of discoveryResults) {
+    for (const ep of result.endpoints) {
+      if (!seenE.has(ep.url)) {
+        seenE.add(ep.url);
+        allEndpoints.push(ep);
+      }
+    }
+  }
+
+  const stackInfos = discoveryResults.map((r) => r.stackInfo);
+
   // Save shared state
-  const sharedState: SharedState = { scanId, startedAt, targets: capped, endpoints: uniqueEndpoints, stackInfos };
+  const sharedState: SharedState = { scanId, startedAt, targets: capped, endpoints: allEndpoints, stackInfos };
   await fs.promises.writeFile(path.join(PIPELINE_ROOT, STATE_FILE), JSON.stringify(sharedState, null, 2), 'utf8');
 
-  LOG.log(`[ParallelScanner] Discovery done: ${uniqueEndpoints.length} endpoints`);
+  LOG.log(`[ParallelScanner] Discovery done: ${allEndpoints.length} endpoints, ${capped.length} targets`);
 
-  // ── Spawn tools ─────────────────────────────────────────────────────────────
+  // Spawn tools
   const enabledTools = ['xss', 'sql', 'ssrf', 'auth', 'api', 'nuclei'];
   const spawned: string[] = [];
 
   for (const tool of enabledTools) {
     spawnTool(tool);
     spawned.push(tool);
-    await new Promise((r) => setTimeout(r, SPAWN_DELAY_MS)); // stagger spawns
+    await new Promise((r) => setTimeout(r, SPAWN_DELAY_MS));
   }
 
   LOG.log(`[ParallelScanner] Spawned ${spawned.length} tools`);
 
-  // ── Collect results (wait for ALL tools in parallel) ──────────────────────────
+  // Collect results (wait for ALL tools in parallel)
   const allFindings: BaseFinding[] = [];
   const allErrors: string[] = [];
 
-  // Wait for all tools concurrently
   const resultPromises = spawned.map(async (tool) => {
     LOG.log(`[ParallelScanner] Waiting for ${tool}...`);
     const result = await waitForTool(tool);
@@ -244,7 +256,7 @@ async function runParallelScan(
     }
   }
 
-  // ── Merge ──────────────────────────────────────────────────────────────────
+  // Merge
   const deduped = deduplicateFindings(allFindings);
 
   const summary = {

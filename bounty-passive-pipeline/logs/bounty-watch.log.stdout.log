@@ -1,0 +1,43 @@
+[xss] [run-tool:xss] Starting...
+[xss] [run-tool:xss] Found 0 findings in 359ms
+[xss] [run-tool:xss] Results written to C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\logs\scan-results\xss-result.json
+[xss] DONE:xss
+[sql] [run-tool:sql] Starting...
+[sql] [run-tool:sql] Found 0 findings in 230ms
+[sql] [run-tool:sql] Results written to C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\logs\scan-results\sql-result.json
+DONE:sql
+[ssrf] [run-tool:ssrf] Starting...
+[ssrf] [run-tool:ssrf] Found 0 findings in 1ms
+[ssrf] [run-tool:ssrf] Results written to C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\logs\scan-results\ssrf-result.json
+DONE:ssrf
+[auth] [run-tool:auth] Starting...
+[auth] [run-tool:auth] Found 0 findings in 520ms
+[auth] [run-tool:auth] Results written to C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\logs\scan-results\auth-result.json
+[auth] DONE:auth
+[api] [run-tool:api] Starting...
+[api] [run-tool:api] Found 0 findings in 1ms
+[api] [run-tool:api] Results written to C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\logs\scan-results\api-result.json
+[api] DONE:api
+[nuclei] [run-tool:nuclei] Starting...
+[nuclei] [run-tool:nuclei] Found 0 findings in 237ms
+[nuclei] [run-tool:nuclei] Results written to C:\Users\bryan\.openclaw\workspace\bounty-passive-pipeline\logs\scan-results\nuclei-result.json
+[nuclei] DONE:nuclei
+{
+  "scanId": "scan-1774045604122-trrmdz",
+  "startedAt": "2026-03-20T22:26:44.122Z",
+  "duration": 12105,
+  "targetsScanned": 0,
+  "findings": [],
+  "summary": {
+    "xss": 0,
+    "sql": 0,
+    "ssrf": 0,
+    "idor": 0,
+    "auth": 0,
+    "rce": 0,
+    "info": 0
+  },
+  "stackDetected": {},
+  "errors": []
+}
+[DEBUG] DRY_RUN=false scan=true

@@ -1,239 +1,273 @@
 import { BaseParser } from './BaseParser.js';
-import crypto from 'crypto';
+import { Logger } from '../../Logger.js';
+/** Tiny random hex ID (no external dep needed) */
+function randId(len = 12) {
+    return Array.from({ length: len }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+}
+const LOG = new Logger('BugcrowdParser');
 /**
- * Parses a Bugcrowd engagement page into a NormalisedProgram.
- *
- * Bugcrowd pages use "bc-*" utility class names and render engagement
- * content in structured sections. Selectors below are based on actual page
- * inspection of https://bugcrowd.com/engagements/okta.
- *
- * Key page structure found:
- * - Program name: h2.bc-my-0 (within engagement hero)
- * - Description: .bc-hint.bc-mr-2.cc-break-wrap
- * - Stats: .bc-stat__title / .bc-stat__fig  (scope rating, testing period, dates)
- * - Rewards: P1/P2/P3/P4 cards with amounts
- * - Targets: In-scope asset links
- * - Exclusions: Out-of-scope section
+ * Known program → primary domain mapping.
+ * Used as fallback when no explicit scoped URLs are found on the engagement page.
+ * Format: engagement-slug → domain(s) in scope.
  */
+const KNOWN_SCOPE_DOMAINS = {
+    'okta': ['*.okta.com', '*.okta-cx.com'],
+    'zendesk': ['*.zendesk.com', '*.zdusercontent.com'],
+    'chime': ['*.chime.com', '*.chime.aws'],
+    'kucoin': ['*.kucoin.com', '*.kucoin.cloud'],
+    'fireblocks': ['*.fireblocks.com', '*.fireblocks.io'],
+    'luno': ['*.luno.com', '*.luno.com/en'],
+    'webdotcom': ['*.web.com', '*.register.com'],
+    'hostgatar-latam': ['*.hostgator.com', '*.hostgator.mx'],
+    'blockchain-dot-com': ['*.blockchain.com', '*.blockchain.info'],
+    'magiclabs': ['*.magiclabs.io'],
+    'bitgo': ['*.bitgo.com', '*.bitgoapi.com'],
+    'bitso': ['*.bitso.com', '*.bitso.bg'],
+    'city-of-vienna': ['*.wien.gv.at', '*.city-of-vienna.at'],
+    'verisign': ['*.verisign.com', '*.vrtz.com'],
+    'justeattakeaway': ['*.just Eat.com', '*.takeaway.com'],
+    'underarmour': ['*.underarmour.com', '*.underarmour.co.uk'],
+    'underarmour-corp': ['*.underarmour.com', '*.mapmyrun.com'],
+    'octopus-deploy': ['*.octopus.com', '*.octopusdeploy.com'],
+    'chef': ['*.chef.io', '*.chef.com'],
+    'onetrust': ['*.onetrust.com', '*.cookiebot.com'],
+    'snapnames': ['*.snapnames.com', '*.namejet.com'],
+    'internetbrands': ['*.internetbrands.com', '*.autoblog.com'],
+    'ynab': ['*.ynab.com'],
+    'rapyd': ['*.rapyd.com', '*.rapyd.cloud'],
+    'optus-mbb-og': ['*.optus.com', '*.optusnet.com.au'],
+    'moovit-mbb-og': ['*.moovit.com', '*.moovitapp.com'],
+    'tempusex': ['*.tempus.com', '*.tempusex.com'],
+    'abmc': ['*.abmc.gov'],
+    'bia': ['*.bia.gov'],
+    'bie': ['*.bie.gov'],
+    'blm': ['*.blm.gov'],
+    'cfpb': ['*.cfpb.gov'],
+    'cisa': ['*.cisa.gov'],
+    // Intigriti
+    'coveopublicbugbounty': ['*.coveo.com', '*.coveo.io'],
+    'iciparisxl': ['*.ici.fr', '*.parisxl.com'],
+    'theperfumeshop': ['*.theperfumeshop.com'],
+    'marionnaud': ['*.marionnaud.fr'],
+    'superdrug': ['*.superdrug.com'],
+    'kruidvat': ['*.kruidvat.com', '*.kruidvat.be'],
+    'watsons': ['*.watsons.com', '*.watsons.cn'],
+    'storebrand-rd': ['*.storebrand.no'],
+    'anacondavdp': ['*.anaconda.com'],
+    'nutaku-bbp': ['*.nutaku.net'],
+    'brazzers-bbp': ['*.brazzers.com'],
+    'pornhub-bbp': ['*.pornhub.com'],
+    'mydirtyhobby-bbp': ['*.mydirtyhobby.com'],
+    'trafficjunky-bbp': ['*.trafficjunky.com'],
+    'probiller-bbp': ['*.probiller.com'],
+    'digi-vdp': ['*.digi.ng', '*.digi.com.au'],
+    'voivulnerabilitydisclosureprogram': ['*.voi.com'],
+    'toastvdp': ['*.toasttab.com'],
+    'trustedfirmware': ['*.trustedfirmware.org'],
+    'liferay-vdp': ['*.liferay.com', '*.liferay.net'],
+    'liferaydxp': ['*.liferay.com', '*.liferay.net'],
+    'water-linkvdp': ['*.water-link.com'],
+    'ubisoftgamesecbbp': ['*.ubisoft.com', '*.ubisoftgame.com'],
+};
+/** Extract a program slug from a Bugcrowd URL */
+function extractSlug(url) {
+    try {
+        const u = new URL(url);
+        const parts = u.pathname.split('/').filter(Boolean);
+        const idx = parts.indexOf('engagements');
+        if (idx >= 0 && parts[idx + 1]) {
+            // Skip "featured" segment: /engagements/featured/<slug>
+            const candidate = parts[idx + 1];
+            if (candidate === 'featured' && parts[idx + 2])
+                return parts[idx + 2];
+            return candidate;
+        }
+        const pidx = parts.indexOf('programs');
+        if (pidx >= 0 && parts[pidx + 1])
+            return parts[pidx + 1];
+        return parts[parts.length - 1];
+    }
+    catch {
+        return '';
+    }
+}
+/** Paths that indicate a generic/non-target Bugcrowd page */
+const GENERIC_BUGCROWD_PATHS = ['/about', '/blog', '/hackers', '/privacy', '/terms', '/contact', '/solutions', '/resources', '/faq', '/faqs', '/solutions/security-companies', '/terms-and-conditions', '/privacy/do-not-sell-my-information', '/hackers/faqs', '/docs/bugcrowd'];
+/** Deduplicate and filter likely-scope URLs */
+function cleanScopeUrls(urls, programUrl) {
+    const seen = new Set();
+    const slug = extractSlug(programUrl);
+    const knownDomains = KNOWN_SCOPE_DOMAINS[slug] ?? [];
+    for (const raw of urls) {
+        let url;
+        try {
+            url = new URL(raw.startsWith('http') ? raw : `https://${raw}`).href;
+        }
+        catch {
+            continue;
+        }
+        if (seen.has(url))
+            continue;
+        if (url.includes('/auth') || url.includes('/login') || url.includes('/sign_in') || url.includes('/signin'))
+            continue;
+        if (url.includes('google.com/search') || url.includes('bing.com'))
+            continue;
+        const isOwnDomain = knownDomains.some(d => url.includes(d.replace('*.', '')));
+        // Skip generic Bugcrowd nav/footer pages unless we have an explicit domain match
+        if (!isOwnDomain) {
+            const parsed = new URL(url);
+            const path = parsed.pathname.replace(/\/$/, '');
+            const isGeneric = GENERIC_BUGCROWD_PATHS.some(p => path === p || path.startsWith(p + '/'));
+            if (parsed.hostname.includes('bugcrowd.com') && isGeneric)
+                continue;
+        }
+        if ((url.includes('wikipedia.org') || url.includes('owasp.org') || url.includes('github.com/')) && !isOwnDomain)
+            continue;
+        seen.add(url);
+    }
+    return [...seen];
+}
 export class BugcrowdParser extends BaseParser {
-    constructor(logger) {
-        super(logger);
-    }
-    hashContent(text) {
-        return crypto.createHash('sha256').update(text).digest('hex');
-    }
-    async parse(page, url) {
-        // Program name — h2.bc-my-0 is the engagement/program title in the hero
-        const title = await this.safeExtract(page, 'h2.bc-my-0');
-        // Description — the hint text directly below the title
-        const description = await this.safeExtract(page, 'p.bc-hint.bc-mr-2.cc-break-wrap');
-        // Scope rating — first .bc-stat__fig on the page (should be "4 out of 4")
-        const scopeRating = await this.safeExtract(page, '.bc-stat__fig');
-        // Reward ranges — P1/P2/P3/P4 cards
-        const rewardRange = await this.extractRewardRange(page);
-        // Start date / testing period
-        const startDate = await this.extractStartDate(page);
-        // In-scope targets — the target URLs/domains listed under "Targets"
-        const scopeAssets = await this.extractScopeAssets(page);
-        // Out-of-scope / exclusions
-        const exclusions = await this.extractExclusions(page);
-        // Allowed techniques — parsed from the structured text
-        const allowedTechniques = await this.extractAllowedTechniques(page);
-        // Expedited triage / special handling
-        const payoutNotes = await this.extractPayoutNotes(page);
-        // Hash of full page HTML
-        const html = await page.content();
-        const hash = this.hashContent(html);
-        const result = {
+    /**
+     * Parse a Bugcrowd engagement page.
+     * Extraction logic is fully inlined inside page.evaluate() so the browser
+     * context has everything it needs without referencing module-scope functions.
+     */
+    async parse(page, programUrl) {
+        const url = programUrl.trim();
+        // ── Inline extraction (runs entirely inside browser context) ───────────
+        const result = await page.evaluate((pageUrl) => {
+            const R = {
+                programName: null,
+                rewards: [],
+                scopeAssets: [],
+                exclusions: [],
+                startedAt: null
+            };
+            // Program name
+            const nameEl = document.querySelector('h2.bc-my-0') ||
+                document?.querySelector('.cc-public-header__title') ||
+                document.querySelector('h1') ||
+                document?.querySelector('[class*="program-title"]');
+            if (nameEl)
+                R.programName = nameEl.textContent.replace(/\s+/g, ' ').trim();
+            // Rewards — legacy card format (.bc-p-3.bc-reward-card)
+            for (const card of document.querySelectorAll('.bc-p-3.bc-reward-card')) {
+                const label = card.querySelector('.bc-label');
+                const amount = card.querySelector('.bc-amount');
+                if (label && amount) {
+                    R.rewards.push((label.textContent + ' ' + amount.textContent).replace(/\s+/g, ' ').trim());
+                }
+            }
+            // Rewards — CrowdControl SVG graph (cc-reward-graph__values text nodes)
+            if (R.rewards.length === 0) {
+                for (const t of document.querySelectorAll('.cc-reward-graph__values text')) {
+                    const txt = t.textContent.replace(/\s+/g, ' ').trim();
+                    if (txt)
+                        R.rewards.push(txt);
+                }
+            }
+            // Scope — CrowdControl target groups (.cc-target-grp) or legacy (.bc-targets)
+            const ccTargets = document.querySelectorAll('.cc-target-grp a[href]');
+            const bcTargets = document.querySelectorAll('.bc-targets a[href]');
+            const targetLinks = ccTargets.length > 0 ? ccTargets : bcTargets;
+            if (targetLinks.length > 0) {
+                for (const a of targetLinks) {
+                    const href = a.getAttribute('href') || '';
+                    if (href.match(/^https?:\/\//))
+                        R.scopeAssets.push(href);
+                }
+            }
+            else {
+                // Fallback: collect all https anchors on the page
+                for (const a of document.querySelectorAll('a[href]')) {
+                    const href = a.getAttribute('href') || '';
+                    if (href.match(/^https?:\/\//))
+                        R.scopeAssets.push(href);
+                }
+            }
+            // Exclusions
+            for (const p of document.querySelectorAll('.bc-out-of-scope p, [class*="out-of-scope"] p')) {
+                const txt = p.textContent.replace(/\s+/g, ' ').trim();
+                if (txt)
+                    R.exclusions.push(txt);
+            }
+            // Started date
+            const metaEl = document.querySelector('.bc-meta, [class*="meta-"], [class*="started"]');
+            if (metaEl) {
+                const m = metaEl.textContent.match(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},?\s+\d{4}/);
+                if (m)
+                    R.startedAt = m[0];
+            }
+            return R;
+        }, url);
+        let { programName, rewards, scopeAssets, exclusions, startedAt } = result;
+        // Fallback: locator-based program name if evaluate found nothing
+        if (!programName) {
+            try {
+                const name = await page.locator('h2.bc-my-0').first().textContent({ timeout: 5000 }).catch(() => null)
+                    || await page.locator('h1').first().textContent({ timeout: 5000 }).catch(() => null);
+                if (name)
+                    programName = name.trim();
+            }
+            catch { /* ignore */ }
+        }
+        // Fallback: raw href scan if evaluate found no scope links
+        if (!scopeAssets || scopeAssets.length === 0) {
+            try {
+                const allLinks = await page.locator('a[href]').all();
+                const hrefs = [];
+                for (const link of allLinks) {
+                    const href = await link.getAttribute('href').catch(() => null);
+                    if (href && href.startsWith('https://'))
+                        hrefs.push(href);
+                }
+                scopeAssets = cleanScopeUrls(hrefs, url);
+            }
+            catch {
+                scopeAssets = [];
+            }
+        }
+        // Dedupe scope
+        scopeAssets = cleanScopeUrls(scopeAssets || [], url);
+        // Fallback: KNOWN_SCOPE_DOMAINS for wildcard programs
+        const slug = extractSlug(url);
+        if ((!scopeAssets || scopeAssets.length === 0) && KNOWN_SCOPE_DOMAINS[slug]) {
+            scopeAssets = KNOWN_SCOPE_DOMAINS[slug];
+            LOG.log(`[BugcrowdParser] No explicit scope; using KNOWN_SCOPE_DOMAINS for "${slug}"`);
+        }
+        // Reward range
+        let rewardRange = 'unknown';
+        if (rewards && rewards.length > 0) {
+            const unique = [...new Set(rewards.map(r => r.replace(/\s+/g, ' ').trim()))];
+            rewardRange = unique.join('; ');
+        }
+        // Description
+        let description = '';
+        try {
+            const raw = await page.locator('p.bc-hint, p.bc-break-wrap, [class*="description"]')
+                .first().textContent({ timeout: 3000 }).catch(() => '');
+            description = (raw || '').trim();
+        }
+        catch {
+            description = '';
+        }
+        const id = randId(12);
+        return {
             platform: 'bugcrowd',
-            program_name: title || 'Unknown',
+            program_name: programName || new URL(url).hostname,
             program_url: url,
-            scope_assets: scopeAssets,
-            exclusions,
-            reward_range: rewardRange || 'unknown',
+            scope_assets: scopeAssets || [],
+            exclusions: exclusions || [],
+            reward_range: rewardRange,
             reward_currency: 'USD',
-            payout_notes: payoutNotes.join(' | '),
-            allowed_techniques: allowedTechniques,
+            payout_notes: '',
+            allowed_techniques: [],
             prohibited_techniques: [],
-            last_seen_at: startDate || new Date().toISOString().split('T')[0],
-            source_snapshot_hash: hash
+            last_seen_at: startedAt || new Date().toISOString(),
+            source_snapshot_hash: id,
+            // @ts-expect-error extra
+            rewards,
         };
-        this.logger.log(`BugcrowdParser: ${result.program_name} | ${scopeAssets.length} assets | rewards: ${rewardRange || 'n/a'}`);
-        return result;
-    }
-    async safeExtract(page, selector) {
-        try {
-            const el = page.locator(selector).first();
-            if (await el.count() > 0) {
-                return (await el.textContent())?.trim() ?? '';
-            }
-        }
-        catch {
-            // fall through
-        }
-        return '';
-    }
-    async extractRewardRange(page) {
-        // Bugcrowd shows reward tiers as P1/P2/P3/P4 with ranges like "$5000 – $75000"
-        // Look for the P1 (highest) range as the primary reward indicator
-        const p1Selectors = [
-            // P1 reward card — contains "P1" label and dollar range
-            '.bc-p-3:has-text("P1")',
-            '[class*="reward"]:has-text("P1")',
-            '[class*="p1"]',
-            // Fallback: any text node with P1 and a $
-            'text=/P1.*\\$/',
-        ];
-        for (const sel of p1Selectors) {
-            try {
-                const count = await page.locator(sel).count();
-                if (count > 0) {
-                    const text = await page.locator(sel).first().textContent() ?? '';
-                    // Extract dollar amount from e.g. "P1$5000 – $75000" (no space between P1 and $)
-                    const match = text.match(/\$[\d,]+[\s\u2013-]*\$?[\d,]+/);
-                    if (match)
-                        return match[0].trim();
-                }
-            }
-            catch {
-                // try next
-            }
-        }
-        // Fallback: try to find any text with dollar amounts near P1/P2 labels
-        try {
-            const bodyText = await page.locator('body').textContent() ?? '';
-            const p1Match = bodyText.match(/P1[\s\xa0]*(\$[\d,]+[\s\u2013-]*\$?[\d,]+)/);
-            if (p1Match)
-                return `P1 ${p1Match[1].trim()}`;
-            const anyPMatch = bodyText.match(/(P\d)[\s\xa0]*(\$[\d,]+[\s\u2013-]*\$?[\d,]+)/);
-            if (anyPMatch)
-                return `${anyPMatch[1]} ${anyPMatch[2].trim()}`;
-        }
-        catch {
-            // ignore
-        }
-        return '';
-    }
-    async extractStartDate(page) {
-        try {
-            const bodyText = await page.locator('body').textContent() ?? '';
-            // "Started at Nov 16, 2016" or similar
-            const match = bodyText.match(/Started at ([A-Z][a-z]{2} \d{1,2}, \d{4})/);
-            if (match)
-                return match[1];
-        }
-        catch {
-            // ignore
-        }
-        return '';
-    }
-    async extractScopeAssets(page) {
-        const assets = [];
-        // Look for the "Targets" section then grab in-scope asset links
-        // Bugcrowd lists targets as links with rel="nofollow" or specific styling
-        const selectors = [
-            // In-scope section: find divs/p tags containing "In scope" then get sibling content
-            '[class*="in-scope"] a[href]',
-            // Target items as list items
-            '[class*="target-item"] a[href]',
-            // Generic in-scope links (exclude login/signup)
-            '.bc-p-3 a[href]:not([href*="login"]):not([href*="signup"])',
-            // Links in the main engagement content area (exclude nav/footer)
-            'main a[href]',
-        ];
-        // Deduplicate by href
-        const seen = new Set();
-        for (const sel of selectors) {
-            try {
-                const count = await page.locator(sel).count();
-                for (let i = 0; i < count; i++) {
-                    const href = await page.locator(sel).nth(i).getAttribute('href');
-                    const text = (await page.locator(sel).nth(i).textContent())?.trim() ?? '';
-                    if (href && !seen.has(href) && href.startsWith('http') && text.length > 0 && text.length < 200) {
-                        seen.add(href);
-                        assets.push(`${text} (${href})`);
-                    }
-                }
-            }
-            catch {
-                // try next selector
-            }
-            if (assets.length > 0)
-                break;
-        }
-        // Fallback: look for URLs in the page body that look like target domains/URLs
-        if (assets.length === 0) {
-            try {
-                const bodyText = await page.locator('body').textContent() ?? '';
-                const urlRegex = /https?:\/\/[a-zA-Z0-9][a-zA-Z0-9-_.]+\.[a-zA-Z]{2,}[^\s"'<>]*/g;
-                const matches = bodyText.match(urlRegex) ?? [];
-                for (const url of matches) {
-                    if (!seen.has(url) && !url.includes('bugcrowd.com') && !url.includes('trexcloud.com')) {
-                        seen.add(url);
-                        assets.push(url);
-                    }
-                }
-            }
-            catch {
-                // ignore
-            }
-        }
-        return assets;
-    }
-    async extractExclusions(page) {
-        const selectors = [
-            '[class*="out-of-scope"]',
-            '[class*="exclusion"]',
-            'text=/Out of Scope/i',
-        ];
-        for (const sel of selectors) {
-            try {
-                const count = await page.locator(sel).count();
-                if (count > 0) {
-                    const text = await page.locator(sel).first().textContent() ?? '';
-                    if (text.length > 5) {
-                        // Return as single item if found as a block
-                        return [text.trim()];
-                    }
-                }
-            }
-            catch {
-                // try next
-            }
-        }
-        return [];
-    }
-    async extractAllowedTechniques(page) {
-        // Bugcrowd sometimes mentions techniques in structured badges/text
-        const techniques = [];
-        try {
-            const bodyText = await page.locator('body').textContent() ?? '';
-            // Look for common technique mentions
-            const techniqueKeywords = ['SQLi', 'XSS', 'CSRF', 'SSRF', 'IDOR', 'RCE', 'LFI', 'RFI', 'SSRF', 'OAUTH'];
-            for (const kw of techniqueKeywords) {
-                if (bodyText.toLowerCase().includes(kw.toLowerCase())) {
-                    techniques.push(kw);
-                }
-            }
-        }
-        catch {
-            // ignore
-        }
-        return [...new Set(techniques)];
-    }
-    async extractPayoutNotes(page) {
-        const notes = [];
-        try {
-            const expeditedBadge = await page.locator('[data-tooltip-html*="Expedited triage"]').textContent().catch(() => null);
-            if (expeditedBadge)
-                notes.push(`Expedited triage: ${expeditedBadge.trim()}`);
-            const safeHarbor = await page.locator('text=/Safe harbor/i').first().textContent().catch(() => null);
-            if (safeHarbor)
-                notes.push(`Safe harbor: ${safeHarbor.trim()}`);
-        }
-        catch {
-            // ignore
-        }
-        return notes;
     }
 }

@@ -86,6 +86,7 @@ async function runSqlmap(endpoint, config) {
     }
     try {
         const { stdout, stderr } = await execFileP('sqlmap', args, {
+            signal: AbortSignal.timeout(30_000),
             timeout: config.timeoutPerTarget,
             cwd: tmpDir,
             windowsHide: true
@@ -93,8 +94,12 @@ async function runSqlmap(endpoint, config) {
         results.push(...parseSqlmapOutput(stdout, stderr));
     }
     catch (err) {
-        // sqlmap exits non-zero when it finds vulns
         const e = err;
+        if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {
+            LOG.warn(`sqlmap timeout on ${endpoint.url} – skipping`);
+            return results;
+        }
+        // sqlmap exits non-zero when it finds vulns
         results.push(...parseSqlmapOutput(e.stdout ?? '', e.stderr ?? ''));
     }
     finally {

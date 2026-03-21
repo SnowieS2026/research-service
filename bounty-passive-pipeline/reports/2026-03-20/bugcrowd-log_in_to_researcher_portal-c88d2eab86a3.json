@@ -1,0 +1,117 @@
+{
+  "programName": "Log in to Researcher portal",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/user/sign_in",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "7 new asset(s) added to scope",
+    "1 asset(s) removed from scope"
+  ],
+  "reportDate": "2026-03-20",
+  "changes": [
+    {
+      "field": "rewards",
+      "oldValue": "(new)",
+      "newValue": ""
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "https://www.bugcrowd.com/,https://bugcrowd.com/user/sign_up,https://bugcrowd.com/user/password/new,https://www.bugcrowd.com/terms-and-conditions/,https://www.bugcrowd.com/privacy/,https://www.bugcrowd.com/solutions/security-companies,https://www.bugcrowd.com/privacy/do-not-sell-my-information/",
+      "newValue": "https://www.bugcrowd.com/,https://bugcrowd.com/user/sign_up,https://bugcrowd.com/user/password/new,https://www.bugcrowd.com/terms-and-conditions/,https://www.bugcrowd.com/privacy/,https://www.bugcrowd.com/solutions/security-companies,https://www.bugcrowd.com/privacy/do-not-sell-my-information/"
+    },
+    {
+      "field": "exclusions",
+      "oldValue": "",
+      "newValue": ""
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "2026-03-20T22:24:20.713Z",
+      "newValue": "2026-03-20T22:24:20.713Z"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "0718a082fbe9",
+      "newValue": "0718a082fbe9"
+    }
+  ],
+  "newAssets": [
+    "https://www.bugcrowd.com/",
+    "https://bugcrowd.com/user/sign_up",
+    "https://bugcrowd.com/user/password/new",
+    "https://www.bugcrowd.com/terms-and-conditions/",
+    "https://www.bugcrowd.com/privacy/",
+    "https://www.bugcrowd.com/solutions/security-companies",
+    "https://www.bugcrowd.com/privacy/do-not-sell-my-information/"
+  ],
+  "removedAssets": [
+    "Forgot your password? Reset password"
+  ],
+  "rewardChange": "unchanged",
+  "changedFields": [
+    "rewards",
+    "scope_assets",
+    "exclusions",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 7 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://www.bugcrowd.com/, https://bugcrowd.com/user/sign_up, https://bugcrowd.com/user/password/new"
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "Log in to Researcher portal",
+    "program_url": "https://bugcrowd.com/user/sign_in",
+    "scope_assets": [
+      "https://www.bugcrowd.com/",
+      "https://bugcrowd.com/user/sign_up",
+      "https://bugcrowd.com/user/password/new",
+      "https://www.bugcrowd.com/terms-and-conditions/",
+      "https://www.bugcrowd.com/privacy/",
+      "https://www.bugcrowd.com/solutions/security-companies",
+      "https://www.bugcrowd.com/privacy/do-not-sell-my-information/"
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "2026-03-20T22:24:20.713Z",
+    "source_snapshot_hash": "0718a082fbe9",
+    "rewards": [],
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Log in to Researcher portal",
+      "program_url": "https://bugcrowd.com/user/sign_in",
+      "scope_assets": [
+        "Forgot your password? Reset password"
+      ],
+      "exclusions": [
+        "Looking for the Customer portal? Go to Customer portal"
+      ],
+      "reward_range": "unknown",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "Looking for the Customer portal? Go to Customer portal",
+      "source_snapshot_hash": "8b6d5c6a5c928e37f018d600019098d876d1a0acd914dd2e00b5c2af9fd2ce0b"
+    },
+    "diff": {
+      "oldHash": "11d526110de3e900d51b1aab796293fe202862e79af3e81db4c80f8ddf45e010",
+      "newHash": "c88d2eab86a3d069ab5c579ced8fe5cec98c62a55ad58bb9071220cd257924ea",
+      "addedFields": [
+        "rewards"
+      ],
+      "removedFields": [],
+      "changedFields": [
+        "scope_assets",
+        "exclusions",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}
