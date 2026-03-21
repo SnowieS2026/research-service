@@ -99,19 +99,38 @@ async function runPipeline(cfg: ReturnType<typeof loadConfig>, cli: CliArgs): Pr
     }
   }
 
+  // Filter out non-program URLs from discovery results (sign-in, listings, etc.)
+  const PROGRAM_PATH_PREFIXES = ['/engagements/', '/programs/'];
+  const filteredUrls = discoveredUrls.filter((url) => {
+    const u = new URL(url);
+    const path = u.pathname;
+    // Must have a program path segment
+    return PROGRAM_PATH_PREFIXES.some((p) => path.includes(p)) &&
+      !path.includes('/user/') &&
+      !path.includes('/sign_in') &&
+      !path.includes('/login') &&
+      !path.includes('/signup') &&
+      !path.includes('/featured') &&
+      !path.includes('/staff-picks') &&
+      !path.includes('/settings') &&
+      !path.includes('/search');
+  });
+
   // Seed from explicit TARGET_PROGRAMS
   const seeded = seedFromTargets(cfg.TARGET_PROGRAMS);
   for (const seed of seeded) {
-    if (!discoveredUrls.includes(seed.url)) {
-      discoveredUrls.push(seed.url);
+    if (!filteredUrls.includes(seed.url)) {
+      filteredUrls.push(seed.url);
     }
   }
 
-  totalPrograms = discoveredUrls.length;
+  totalPrograms = filteredUrls.length;
 
   LOG.log(`Pipeline: ${totalPrograms} programs to process`);
 
   const scanTargets: string[] = [];
+
+  console.info(`[DEBUG] DRY_RUN=${cfg.DRY_RUN} scan=${cli.scan}`);
 
   for (const programUrl of discoveredUrls) {
     const platform = detectPlatform(programUrl);
@@ -128,29 +147,35 @@ async function runPipeline(cfg: ReturnType<typeof loadConfig>, cli: CliArgs): Pr
           notification.diff.removedFields.length > 0 ||
           notification.diff.changedFields.length > 0;
 
-        if (hasChanges) {
+        if (hasChanges || notification.diff.oldHash === notification.diff.newHash) {
           totalChanges++;
           const paths = await reporter.process(notification);
           if (paths) {
             totalReports++;
-            // Collect new scope assets for active scanning
-            if (cli.scan) {
-              scanTargets.push(...notification.scope_assets);
-            }
           }
         }
 
+        // Always collect scope assets for active scanning (every tick, not just on changes)
+        if (cli.scan) {
+          console.info(`[SCAN] ${programUrl} → ${notification.scope_assets.length} scope assets: ${JSON.stringify(notification.scope_assets.slice(0,3))}`);
+          scanTargets.push(...notification.scope_assets);
+        }
+
         runState.recordSnapshot(programUrl, notification.diff.newHash);
+      } else {
+        console.info(`[SCAN] ${programUrl} → NO NOTIFICATION (null)`);
       }
 
-      // Rate limiting
+      // Rate limiting between programs (200ms for Bugcrowd/HackerOne listing pages, faster than the 2s config)
       if (cfg.RATE_LIMIT_DELAY_MS > 0) {
-        await sleep(cfg.RATE_LIMIT_DELAY_MS);
+        await sleep(200);
       }
     } catch (err) {
       LOG.error(`Error processing ${programUrl}: ${err}`);
     }
   }
+
+  console.info(`[SCAN] Total scan targets collected: ${scanTargets.length}`);
 
   // ── Active scanning ─────────────────────────────────────────────────────────
   if (cli.scan && scanTargets.length > 0 && !cfg.DRY_RUN) {
@@ -460,7 +485,12 @@ switch (cli.mode) {
   }
 
   case 'once': {
-    await runPipeline(cfg, cli);
+    try {
+      await runPipeline(cfg, cli);
+    } catch (err) {
+      console.error('[FATAL] runOnce error:', err);
+      process.exit(1);
+    }
     break;
   }
 
