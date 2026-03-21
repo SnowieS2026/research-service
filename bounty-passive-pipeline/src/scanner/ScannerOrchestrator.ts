@@ -244,8 +244,10 @@ export class ScannerOrchestrator {
       );
     }
 
-    // Run all scan promises concurrently (max 3 at a time handled by individual scanners)
-    await Promise.allSettled(scanPromises);
+    // Run all scan tools sequentially to avoid concurrent-crash issues
+    for (const p of scanPromises) {
+      await p;
+    }
 
     // 6. Deduplicate findings
     const dedupedFindings = deduplicateFindings(allFindings);
