@@ -111,16 +111,14 @@ export async function scanGau(
 ): Promise<InfoFinding[]> {
   const findings: InfoFinding[] = [];
 
-  // Extract unique base domains from scope assets
+  // Extract unique base domains from scope assets (handle string or ScanTarget object)
   const baseDomains = new Set<string>();
-  for (const target of targets) {
-    try {
-      new URL(target);
-      const base = extractBaseDomain(target);
-      if (base) baseDomains.add(base);
-    } catch {
-      // skip non-URL targets
-    }
+  for (const raw of targets) {
+    const target = typeof raw === 'string' ? raw : (raw as Record<string, unknown>).url as string | undefined;
+    if (!target) continue;
+    try { new URL(target); } catch { continue; }
+    const base = extractBaseDomain(target);
+    if (base) baseDomains.add(base);
   }
 
   LOG.log(`GauScanner: ${baseDomains.size} base domains to query`);

@@ -104,15 +104,14 @@ export async function scanSubfinder(
 ): Promise<InfoFinding[]> {
   const findings: InfoFinding[] = [];
 
-  // Filter to only URL-like scope assets (not git:github.com/org/repo)
-  const urlTargets = targets.filter((t) => {
-    try {
-      new URL(t);
+  // Filter to only URL-like scope assets (not git:github.com/org/repo, not objects)
+  const urlTargets = targets
+    .map(t => typeof t === 'string' ? t : (t as Record<string, unknown>).url as string | undefined)
+    .filter((t): t is string => {
+      if (!t) return false;
+      try { new URL(t); } catch { return false; }
       return !isStaticAsset(t) && !t.startsWith('git@') && !t.includes(':');
-    } catch {
-      return false;
-    }
-  });
+    });
 
   // Extract unique base domains from wildcard scopes
   const baseDomains = new Set<string>();

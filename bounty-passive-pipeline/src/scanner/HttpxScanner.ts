@@ -16,6 +16,9 @@ import os from 'os';
 const execFileP = promisify(execFile);
 const LOG = new Logger('HttpxScanner');
 
+/** Full path to the Go httpx binary (not Python's httpx). */
+const HTTPX_BIN = 'C:\\Users\\bryan\\go\\bin\\httpx.exe';
+
 // Static asset extensions to skip
 const STATIC_EXTENSIONS = new Set([
   '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.webp',
@@ -82,9 +85,10 @@ async function runHttpx(
   domains: string[],
   timeoutMs = 120_000
 ): Promise<HttpxResult[]> {
-  const hasHttpx = await isToolAvailable('httpx');
+  // Check for Go httpx binary specifically (not Python's httpx)
+  const hasHttpx = fs.existsSync(HTTPX_BIN);
   if (!hasHttpx) {
-    LOG.warn('httpx not available – skipping HTTP probing');
+    LOG.warn('httpx (Go binary) not available – skipping HTTP probing');
     return [];
   }
 
@@ -102,7 +106,7 @@ async function runHttpx(
   ];
 
   try {
-    await execFileP('httpx', args, { signal: AbortSignal.timeout(timeoutMs) });
+    await execFileP(HTTPX_BIN, args, { signal: AbortSignal.timeout(timeoutMs) });
   } catch (err) {
     const e = err as Error & { name?: string; code?: string };
     if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {

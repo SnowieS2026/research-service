@@ -94,15 +94,19 @@ async function runSubfinder(domain, timeoutMs = 60_000) {
  */
 export async function scanSubfinder(targets, _stack, config) {
     const findings = [];
-    // Filter to only URL-like scope assets (not git:github.com/org/repo)
-    const urlTargets = targets.filter((t) => {
+    // Filter to only URL-like scope assets (not git:github.com/org/repo, not objects)
+    const urlTargets = targets
+        .map(t => typeof t === 'string' ? t : t.url)
+        .filter((t) => {
+        if (!t)
+            return false;
         try {
             new URL(t);
-            return !isStaticAsset(t) && !t.startsWith('git@') && !t.includes(':');
         }
         catch {
             return false;
         }
+        return !isStaticAsset(t) && !t.startsWith('git@') && !t.includes(':');
     });
     // Extract unique base domains from wildcard scopes
     const baseDomains = new Set();

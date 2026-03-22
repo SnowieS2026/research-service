@@ -1,0 +1,89 @@
+{
+  "timestamp": "2026-03-22T00:49:20.046Z",
+  "results": [
+    {
+      "domain": "okta.com",
+      "totalSubs": 11561,
+      "prodSubs": 1258,
+      "alive": 33,
+      "aliveSample": [
+        "https://accounts.okta.com",
+        "https://cosmotech.okta.com",
+        "https://d2l.okta.com",
+        "https://convatec.okta.com",
+        "https://company.okta.com"
+      ],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    },
+    {
+      "domain": "webmd.com",
+      "totalSubs": 652,
+      "prodSubs": 588,
+      "alive": 15,
+      "aliveSample": [
+        "https://evergreen.webmd.com",
+        "https://data.webmd.com",
+        "https://freelancers.webmd.com",
+        "https://reputations.webmd.com",
+        "https://st-0044014.webmd.com"
+      ],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    },
+    {
+      "domain": "carsdirect.com",
+      "totalSubs": 55,
+      "prodSubs": 53,
+      "alive": 2,
+      "aliveSample": [
+        "https://go.carsdirect.com",
+        "http://xxrmyp.carsdirect.com"
+      ],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    },
+    {
+      "domain": "mdedge.com",
+      "totalSubs": 91,
+      "prodSubs": 86,
+      "alive": 4,
+      "aliveSample": [
+        "https://ssl.o.mdedge.com",
+        "https://bytes.mdedge.com",
+        "https://www.hospitalist.qa00.mdedge.com",
+        "https://www.mdedge9.qa00.mdedge.com"
+      ],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    },
+    {
+      "domain": "github.com",
+      "totalSubs": 4333,
+      "prodSubs": 4327,
+      "alive": 4,
+      "aliveSample": [
+        "https://innovationgraph.github.com",
+        "https://lb-140-82-113-22-iad.github.com",
+        "https://lb-140-82-112-21-iad.github.com",
+        "https://pages.github.com"
+      ],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    },
+    {
+      "domain": "shopify.com",
+      "totalSubs": 1306,
+      "prodSubs": 1233,
+      "alive": 4,
+      "aliveSample": [
+        "https://appointments.shopify.com",
+        "https://cla.shopify.com",
+        "https://cdn2.shopify.com",
+        "https://performance.shopify.com"
+      ],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    }
+  ]
+}

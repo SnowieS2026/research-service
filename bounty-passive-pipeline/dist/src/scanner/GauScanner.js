@@ -98,18 +98,21 @@ async function runGau(domain, timeoutMs = 60_000) {
  */
 export async function scanGau(targets, _stack, config) {
     const findings = [];
-    // Extract unique base domains from scope assets
+    // Extract unique base domains from scope assets (handle string or ScanTarget object)
     const baseDomains = new Set();
-    for (const target of targets) {
+    for (const raw of targets) {
+        const target = typeof raw === 'string' ? raw : raw.url;
+        if (!target)
+            continue;
         try {
             new URL(target);
-            const base = extractBaseDomain(target);
-            if (base)
-                baseDomains.add(base);
         }
         catch {
-            // skip non-URL targets
+            continue;
         }
+        const base = extractBaseDomain(target);
+        if (base)
+            baseDomains.add(base);
     }
     LOG.log(`GauScanner: ${baseDomains.size} base domains to query`);
     for (const domain of baseDomains) {

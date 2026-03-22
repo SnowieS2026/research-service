@@ -7,12 +7,13 @@ import { execFile } from 'child_process';
 import { promisify } from 'util';
 import { buildFindingId } from './ScanResult.js';
 import { Logger } from '../Logger.js';
-import { isToolAvailable } from './tool-utils.js';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
 const execFileP = promisify(execFile);
 const LOG = new Logger('HttpxScanner');
+/** Full path to the Go httpx binary (not Python's httpx). */
+const HTTPX_BIN = 'C:\\Users\\bryan\\go\\bin\\httpx.exe';
 // Static asset extensions to skip
 const STATIC_EXTENSIONS = new Set([
     '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.webp',
@@ -70,9 +71,10 @@ function isInterestingStatus(statusCode) {
  * Returns parsed httpx results.
  */
 async function runHttpx(domains, timeoutMs = 120_000) {
-    const hasHttpx = await isToolAvailable('httpx');
+    // Check for Go httpx binary specifically (not Python's httpx)
+    const hasHttpx = fs.existsSync(HTTPX_BIN);
     if (!hasHttpx) {
-        LOG.warn('httpx not available – skipping HTTP probing');
+        LOG.warn('httpx (Go binary) not available – skipping HTTP probing');
         return [];
     }
     const tmpDir = os.tmpdir();
@@ -86,7 +88,7 @@ async function runHttpx(domains, timeoutMs = 120_000) {
         '-json', '-o', outFile
     ];
     try {
-        await execFileP('httpx', args, { signal: AbortSignal.timeout(timeoutMs) });
+        await execFileP(HTTPX_BIN, args, { signal: AbortSignal.timeout(timeoutMs) });
     }
     catch (err) {
         const e = err;

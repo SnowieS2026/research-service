@@ -1,0 +1,30 @@
+{
+  "findings": [
+    {
+      "host": "www.webmd.com",
+      "severity": "INFO",
+      "description": "A DNS WAF was detected."
+    },
+    {
+      "host": "www.credentials.okta.com",
+      "severity": "INFO",
+      "description": "A wildcard DNS configuration was detected. Wildcard DNS records can resolve all subdomains to the same IP address, which may indicate a catch-all configuration.\n"
+    },
+    {
+      "host": "partners.okta.com",
+      "severity": "INFO",
+      "description": "A wildcard DNS configuration was detected. Wildcard DNS records can resolve all subdomains to the same IP address, which may indicate a catch-all configuration.\n"
+    },
+    {
+      "host": "acmeinc.okta.com",
+      "severity": "INFO",
+      "description": "A wildcard DNS configuration was detected. Wildcard DNS records can resolve all subdomains to the same IP address, which may indicate a catch-all configuration.\n"
+    },
+    {
+      "host": "www.okta.com",
+      "severity": "INFO",
+      "description": "A wildcard DNS configuration was detected. Wildcard DNS records can resolve all subdomains to the same IP address, which may indicate a catch-all configuration.\n"
+    }
+  ],
+  "elapsed": "301.9"
+}

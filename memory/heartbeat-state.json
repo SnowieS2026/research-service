@@ -1,21 +1,23 @@
 {
-  "lastHeartbeatAt": "2026-03-21T19:08:00Z",
+  "lastHeartbeatAt": "2026-03-21T21:09:00Z",
   "pipeline": {
     "lastSnapshotAt": "2026-03-21T18:33:57Z",
     "lastGoodAt": "2026-03-21T18:33:57Z",
     "consecutiveEmpty": 0,
     "cronJobId": "67d75617-a49c-4527-a15a-04ce5ec23f60",
-    "notes": "Pipeline ran successfully via --once --scan (18:26-19:03). OSINT scanners (subfinder, gau, httpx, gitleaks) added and built cleanly. All tools returning 0 findings (not installed on this machine). Active scanners also 0 findings — scope assets are mostly docs/app store links, not parameterized web targets."
+    "notes": "Pipeline running normally. Last snapshot 18:33 (snapnames program). No issues."
   },
   "discovery": {
     "lastRunAt": null,
     "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4"
   },
-  "heartbeatCycle": 1,
+  "heartbeatCycle": 3,
   "notes": [
     "Pipeline cron was timing out at 600s — extended to 1800s (30min)",
     "Discovery cron was timing out at 300s — extended to 600s",
-    "21 Mar 14:50 - Many uncommitted files: debug scripts, test-results, snapshots. User is active/WIP.",
-    "21 Mar 19:08 - OSINT scanners committed: subfinder, gau, httpx, gitleaks. All returning 0 because tools not installed. Pipeline ran 18:26-19:03, collected scope assets, generated snapshots. Many WIP uncommitted files (probe-*.cjs, scan-step*.cjs, reports/, snapshots/)."
+    "Pipeline ran successfully throughout today - snapshots confirmed at 11:49, 12:20, and 18:33",
+    "Bug fixed: RESULTS_DIR and STATE_FILE were absolute paths causing path.join double-expand on Windows",
+    "Bug fixed: PIPELINE_ROOT was '../..' (wrong) — needed '../../..' to reach pipeline root from dist/src/scanner/",
+    "21 Mar 14:50 - Many uncommitted files: debug scripts, test-results, new snapshots. User is active/WIP."
   ]
 }
