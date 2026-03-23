@@ -1,22 +1,21 @@
 {
-  "lastHeartbeatAt": "2026-03-22T10:23:00Z",
+  "lastHeartbeatAt": "2026-03-23T10:44:00Z",
   "pipeline": {
-    "lastSnapshotAt": "2026-03-22T10:14:59Z",
-    "lastGoodAt": "2026-03-22T10:14:59Z",
+    "lastSnapshotAt": "2026-03-23T10:41:39Z",
+    "lastGoodAt": "2026-03-23T10:41:39Z",
     "consecutiveEmpty": 0,
     "cronJobId": "67d75617-a49c-4527-a15a-04ce5ec23f60",
-    "notes": "Pipeline running normally. Discovery run today found 0 new programs — scan-state shows targets:[]. httpx took 5min. All other tools sub-second. No new targets discovered."
+    "notes": "Pipeline running normally. Auth scan completed (0 findings, 24905ms)."
   },
   "discovery": {
     "lastRunAt": "2026-03-22T10:18:05Z",
     "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4",
-    "notes": "Daily discovery run complete. No new programs found. Bugcrowd/HackerOne/Intigriti/Standoff365 all scanned."
+    "notes": "Daily discovery ran 22 Mar. No new programs found."
   },
   "heartbeatCycle": 3,
   "notes": [
-    "Pipeline cron was timing out at 600s — extended to 1800s (30min)",
-    "Discovery cron was timing out at 300s — extended to 600s",
-    "22 Mar 10:18 - Daily discovery ran: 0 new programs, targets[] empty. httpx slow (5min). Pipeline healthy.",
-    "22 Mar 10:08-10:14 - Snapshots refreshed for all programs (standoff365 bugbounty, ratings, ambassadors)"
+    "23 Mar 10:44 - Pipeline healthy. Snapshot from 3min ago. Auth scan done (0 findings).",
+    "22 Mar - Pipeline cron extended to 1800s, discovery to 600s.",
+    "22 Mar 10:18 - Daily discovery: 0 new programs. httpx slow (5min)."
   ]
 }
