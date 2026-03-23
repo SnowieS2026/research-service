@@ -79,20 +79,11 @@ export class VehicleCollector {
                 // Extract ALL advisory items from the full raw text — don't split by MOT block.
                 // The advisory items appear in the text as "Advice ..." or "Advisory ...".
                 const advisoryLines = [];
-                const allItemsRe = /(?:^|\s)(Advice|Advisory)\s+([^\n]{10,250}?)(?=\s+(?:Advice|Advisory)|$)/gim;
+                const allItemsRe = /(?:^|\s)(Advice|Advisory)\s+([^\n]{10,200})/gim;
                 for (const match of rawText.matchAll(allItemsRe)) {
                     const item = match[2]?.trim();
                     if (item && item.length > 5)
                         advisoryLines.push(item);
-                }
-                // Fallback: if regex missed them, try splitting by keyword
-                if (advisoryLines.length === 0) {
-                    const parts = rawText.split(/(?=Advice\s{2,}|Advisory\s{2,})/gi);
-                    for (const part of parts) {
-                        const line = part.replace(/^Advice\s*/i, '').replace(/^Advisory\s*/i, '').trim();
-                        if (line.length > 5 && line.length < 300)
-                            advisoryLines.push(line);
-                    }
                 }
                 const motFailedStr = String(rawData['DVLA'] ? rawData['DVLA']['Failed MOT tests'] || '0' : '0');
                 const motFailed = parseInt(motFailedStr, 10) || 0;
