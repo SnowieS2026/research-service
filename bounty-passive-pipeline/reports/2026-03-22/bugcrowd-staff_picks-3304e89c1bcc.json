@@ -1,0 +1,98 @@
+{
+  "programName": "Staff Picks",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/engagements/featured/staff-picks",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "2 new asset(s) added to scope",
+    "1 asset(s) removed from scope"
+  ],
+  "reportDate": "2026-03-22",
+  "changes": [
+    {
+      "field": "rewards",
+      "oldValue": "(new)",
+      "newValue": ""
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "https://www.bugcrowd.com/,https://docs.bugcrowd.com/researchers/onboarding/welcome",
+      "newValue": "https://www.bugcrowd.com/,https://docs.bugcrowd.com/researchers/onboarding/welcome"
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "2026-03-22T10:11:25.396Z",
+      "newValue": "2026-03-22T10:11:25.396Z"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "b5777981d01f",
+      "newValue": "b5777981d01f"
+    }
+  ],
+  "newAssets": [
+    "https://www.bugcrowd.com/",
+    "https://docs.bugcrowd.com/researchers/onboarding/welcome"
+  ],
+  "removedAssets": [
+    "A collection of our favorite engagements for hackers."
+  ],
+  "rewardChange": "unchanged",
+  "changedFields": [
+    "rewards",
+    "scope_assets",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 2 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://www.bugcrowd.com/, https://docs.bugcrowd.com/researchers/onboarding/welcome"
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "Staff Picks",
+    "program_url": "https://bugcrowd.com/engagements/featured/staff-picks",
+    "scope_assets": [
+      "https://www.bugcrowd.com/",
+      "https://docs.bugcrowd.com/researchers/onboarding/welcome"
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "2026-03-22T10:11:25.396Z",
+    "source_snapshot_hash": "b5777981d01f",
+    "rewards": [],
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Staff Picks",
+      "program_url": "https://bugcrowd.com/engagements/featured/staff-picks",
+      "scope_assets": [
+        "A collection of our favorite engagements for hackers."
+      ],
+      "exclusions": [],
+      "reward_range": "unknown",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "A collection of our favorite engagements for hackers.",
+      "source_snapshot_hash": "ef6ae3ec860270269b00264002d2e8859c7fa859d3cc2d9ac4c1ac0c888a0a65"
+    },
+    "diff": {
+      "oldHash": "2514663f991ca10fe6248317f58ec9732ff94830e8602c0748b2188eee1fecd9",
+      "newHash": "3304e89c1bccdcf6d55bd2ad513e010e52ddc7effbdba12865708a162e43f372",
+      "addedFields": [
+        "rewards"
+      ],
+      "removedFields": [],
+      "changedFields": [
+        "scope_assets",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}

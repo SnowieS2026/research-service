@@ -1,0 +1,41 @@
+{
+  "timestamp": "2026-03-22T02:05:56.955Z",
+  "results": [
+    {
+      "domain": "okta.com",
+      "totalSubs": 11561,
+      "prodSubs": 1258,
+      "alive": 0,
+      "aliveSample": [],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    },
+    {
+      "domain": "webmd.com",
+      "totalSubs": 643,
+      "prodSubs": 580,
+      "alive": 0,
+      "aliveSample": [],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    },
+    {
+      "domain": "carsdirect.com",
+      "totalSubs": 55,
+      "prodSubs": 53,
+      "alive": 0,
+      "aliveSample": [],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    },
+    {
+      "domain": "mdedge.com",
+      "totalSubs": 91,
+      "prodSubs": 86,
+      "alive": 0,
+      "aliveSample": [],
+      "nucleiFindings": 0,
+      "nucleiBySev": {}
+    }
+  ]
+}

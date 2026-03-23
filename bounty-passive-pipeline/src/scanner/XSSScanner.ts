@@ -1,16 +1,14 @@
 /**
  * XSS scanning using dalfox + manual reflection analysis.
  */
-import { execFile } from 'child_process';
-import { promisify } from 'util';
 import { type DiscoveredEndpoint } from './DiscoveryScanner.js';
 import { type StackInfo } from '../stackdetector/StackDetector.js';
 import { type ScannerConfig } from './ScannerOrchestrator.js';
 import { type XSSFinding, buildFindingId } from './ScanResult.js';
 import { Logger } from '../Logger.js';
 import { isToolAvailable } from './tool-utils.js';
+import { spawnTool } from './tool-spawn.js';
 
-const execFileP = promisify(execFile);
 const LOG = new Logger('XSSScanner');
 
 // Common XSS payloads
@@ -41,6 +39,8 @@ async function runDalfox(endpoint: DiscoveredEndpoint, config: ScannerConfig): P
     return results;
   }
 
+  const timeoutMs = Math.min(config.timeoutPerTarget ?? 30, 30) * 1000;
+
   if (endpoint.params.length === 0) {
     // Scan the URL directly (no params to target)
     const args = ['url', endpoint.url];
@@ -50,17 +50,12 @@ async function runDalfox(endpoint: DiscoveredEndpoint, config: ScannerConfig): P
     args.push('--format', 'json');
 
     try {
-      const { stdout } = await execFileP('dalfox', args, {
-        signal: AbortSignal.timeout(20_000),
-        timeout: config.timeoutPerTarget
-      });
-      results.push(...parseDalfoxOutput(stdout));
-    } catch (err) {
-      const e = err as Error & { code?: string };
-      if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {
-        LOG.warn(`dalfox timeout on ${endpoint.url} – skipping`);
+      const res = await spawnTool('dalfox', args, { timeoutMs });
+      if (res.stdout) {
+        results.push(...parseDalfoxOutput(res.stdout));
       }
-      // dalfox non-zero exit is expected when vulnerabilities are found
+    } catch (err) {
+      LOG.warn(`dalfox error on ${endpoint.url}: ${err}`);
     }
     return results;
   }
@@ -79,18 +74,13 @@ async function runDalfox(endpoint: DiscoveredEndpoint, config: ScannerConfig): P
     args.push('--format', 'json');
 
     try {
-      const { stdout } = await execFileP('dalfox', args, {
-        signal: AbortSignal.timeout(20_000),
-        timeout: config.timeoutPerTarget
-      });
-      results.push(...parseDalfoxOutput(stdout));
-    } catch (err) {
-      const e = err as Error & { code?: string };
-      if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {
-        LOG.warn(`dalfox timeout on ${endpoint.url} param=${param.name} – skipping`);
-        break; // stop targeting further params on this endpoint
+      const res = await spawnTool('dalfox', args, { timeoutMs });
+      if (res.stdout) {
+        results.push(...parseDalfoxOutput(res.stdout));
       }
-      // non-zero exit is expected when vulnerabilities are found
+    } catch (err) {
+      LOG.warn(`dalfox error on ${endpoint.url} param=${param.name}: ${err}`);
+      break; // stop targeting further params on this endpoint
     }
   }
 
@@ -100,7 +90,6 @@ async function runDalfox(endpoint: DiscoveredEndpoint, config: ScannerConfig): P
 function parseDalfoxOutput(stdout: string): DalfoxResult[] {
   const results: DalfoxResult[] = [];
   try {
-    // Try JSON format first
     const lines = stdout.split('\n').filter(Boolean);
     for (const line of lines) {
       try {
@@ -117,18 +106,11 @@ function parseDalfoxOutput(stdout: string): DalfoxResult[] {
         // Try text parsing
         const match = stdout.match(/\[XSS\]\s+(.+?)\s+\[(.+?)\]/);
         if (match) {
-          results.push({
-            url: match[1],
-            param: '',
-            payload: match[2],
-            severity: 'HIGH'
-          });
+          results.push({ url: match[1], param: '', payload: match[2], severity: 'HIGH' });
         }
       }
     }
-  } catch {
-    // ignore
-  }
+  } catch { /* ignore */ }
   return results;
 }
 
@@ -140,23 +122,14 @@ async function checkReflectedParams(endpoint: DiscoveredEndpoint): Promise<strin
       headers: { 'User-Agent': 'Mozilla/5.0' }
     });
     const html = await response.text();
-
     for (const param of endpoint.params) {
       const val = `${param.name}=test`;
-      if (html.includes(val)) {
-        reflected.push(param.name);
-      }
+      if (html.includes(val)) reflected.push(param.name);
     }
-  } catch {
-    // ignore
-  }
+  } catch { /* ignore */ }
   return reflected;
 }
 
-/**
- * Scan targets for XSS vulnerabilities.
- * Uses dalfox for active testing + manual reflection checks.
- */
 export async function scanForXSS(
   targets: DiscoveredEndpoint[],
   _stack: StackInfo,
@@ -172,7 +145,6 @@ export async function scanForXSS(
   for (const endpoint of targets) {
     if (endpoint.params.length === 0) continue;
 
-    // Check for reflected parameters first
     const reflected = await checkReflectedParams(endpoint);
 
     if (hasDalfox) {
@@ -200,7 +172,6 @@ export async function scanForXSS(
         LOG.warn(`dalfox error on ${endpoint.url}: ${err}`);
       }
     } else {
-      // Manual payload injection for reflected params
       for (const paramName of reflected) {
         for (const payload of REFLECTED_XSS_PAYLOADS) {
           const testUrl = injectParam(endpoint.url, paramName, payload);
@@ -227,16 +198,13 @@ export async function scanForXSS(
                   'https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/01-Testing_for_XSS_Injection'
                 ]
               });
-              break; // one finding per param
+              break;
             }
-          } catch {
-            // ignore
-          }
+          } catch { /* ignore */ }
         }
       }
     }
 
-    // Rate limit
     await new Promise((r) => setTimeout(r, config.rateLimitMs));
   }
 

@@ -1,23 +1,22 @@
 {
-  "lastHeartbeatAt": "2026-03-21T21:09:00Z",
+  "lastHeartbeatAt": "2026-03-22T10:23:00Z",
   "pipeline": {
-    "lastSnapshotAt": "2026-03-21T18:33:57Z",
-    "lastGoodAt": "2026-03-21T18:33:57Z",
+    "lastSnapshotAt": "2026-03-22T10:14:59Z",
+    "lastGoodAt": "2026-03-22T10:14:59Z",
     "consecutiveEmpty": 0,
     "cronJobId": "67d75617-a49c-4527-a15a-04ce5ec23f60",
-    "notes": "Pipeline running normally. Last snapshot 18:33 (snapnames program). No issues."
+    "notes": "Pipeline running normally. Discovery run today found 0 new programs — scan-state shows targets:[]. httpx took 5min. All other tools sub-second. No new targets discovered."
   },
   "discovery": {
-    "lastRunAt": null,
-    "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4"
+    "lastRunAt": "2026-03-22T10:18:05Z",
+    "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4",
+    "notes": "Daily discovery run complete. No new programs found. Bugcrowd/HackerOne/Intigriti/Standoff365 all scanned."
   },
   "heartbeatCycle": 3,
   "notes": [
     "Pipeline cron was timing out at 600s — extended to 1800s (30min)",
     "Discovery cron was timing out at 300s — extended to 600s",
-    "Pipeline ran successfully throughout today - snapshots confirmed at 11:49, 12:20, and 18:33",
-    "Bug fixed: RESULTS_DIR and STATE_FILE were absolute paths causing path.join double-expand on Windows",
-    "Bug fixed: PIPELINE_ROOT was '../..' (wrong) — needed '../../..' to reach pipeline root from dist/src/scanner/",
-    "21 Mar 14:50 - Many uncommitted files: debug scripts, test-results, new snapshots. User is active/WIP."
+    "22 Mar 10:18 - Daily discovery ran: 0 new programs, targets[] empty. httpx slow (5min). Pipeline healthy.",
+    "22 Mar 10:08-10:14 - Snapshots refreshed for all programs (standoff365 bugbounty, ratings, ambassadors)"
   ]
 }

@@ -1,19 +1,17 @@
 /**
  * SQL injection scanning using sqlmap.
  */
-import { execFile } from 'child_process';
-import { promisify } from 'util';
 import { type DiscoveredEndpoint } from './DiscoveryScanner.js';
 import { type StackInfo } from '../stackdetector/StackDetector.js';
 import { type ScannerConfig } from './ScannerOrchestrator.js';
 import { type SQLiFinding, buildFindingId } from './ScanResult.js';
 import { Logger } from '../Logger.js';
 import { isToolAvailable } from './tool-utils.js';
+import { spawnTool } from './tool-spawn.js';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
 
-const execFileP = promisify(execFile);
 const LOG = new Logger('SQLScanner');
 
 interface SqlmapResult {
@@ -108,21 +106,18 @@ async function runSqlmap(endpoint: DiscoveredEndpoint, config: ScannerConfig): P
     return results;
   }
 
+  const timeoutMs = Math.min(config.timeoutPerTarget ?? 30, 30) * 1000;
+
   try {
-    const { stdout, stderr } = await execFileP('sqlmap', args, {
-      signal: AbortSignal.timeout(30_000),
-      timeout: config.timeoutPerTarget,
-      cwd: tmpDir,
-      windowsHide: true
-    });
-    results.push(...parseSqlmapOutput(stdout, stderr));
+    const res = await spawnTool('sqlmap', args, { timeoutMs, cwd: tmpDir });
+    // sqlmap exits non-zero when it finds vulns or on error — capture both
+    results.push(...parseSqlmapOutput(res.stdout, res.stderr));
   } catch (err: unknown) {
     const e = err as Error & { code?: string; stdout?: string; stderr?: string };
     if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {
       LOG.warn(`sqlmap timeout on ${endpoint.url} – skipping`);
       return results;
     }
-    // sqlmap exits non-zero when it finds vulns
     results.push(...parseSqlmapOutput(e.stdout ?? '', e.stderr ?? ''));
   } finally {
     await fs.promises.unlink(urlListPath).catch(() => {});

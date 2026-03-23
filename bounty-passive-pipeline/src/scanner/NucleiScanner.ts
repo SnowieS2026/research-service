@@ -2,21 +2,19 @@
  * Nuclei wrapper – runs nuclei with selected templates based on stack detection.
  * Uses nuclei v3.7 flags:
  *   -t <dir>   — template directory (can be repeated)
- *   -json-export <path> — write JSON output to file (not stdout)
+ *   -jsonl <path> — write JSON Lines output to file (not stdout)
  *
- * On Windows: execFileP with windowsHide:true + timeout is reliable.
+ * Fixed: uses spawnTool() instead of execFileP() to avoid ANSI deadlock on Windows.
  */
-import { execFile } from 'child_process';
-import { promisify } from 'util';
 import { type ScannerConfig } from './ScannerOrchestrator.js';
 import { type NucleiFinding, nucleiToFinding } from './ScanResult.js';
 import { Logger } from '../Logger.js';
 import { isToolAvailable } from './tool-utils.js';
+import { spawnTool } from './tool-spawn.js';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
 
-const execFileP = promisify(execFile);
 const LOG = new Logger('NucleiScanner');
 
 /** Template sub-dirs to run from the nuclei-templates directory. Templates live under http/. */
@@ -126,23 +124,17 @@ export async function runNuclei(
   const timeout = Math.min(config.timeoutPerTarget ?? 60, 120) * 1000;
 
   try {
-    await execFileP('nuclei', args, { timeout, windowsHide: true });
+    const res = await spawnTool('nuclei', args, { timeoutMs: timeout, cwd: tmpDir });
 
     if (fs.existsSync(jsonOutPath)) {
       const output = await fs.promises.readFile(jsonOutPath, 'utf8');
       findings.push(...parseNucleiOutput(output));
       await fs.promises.unlink(jsonOutPath).catch(() => {});
     } else {
-      LOG.log('NucleiScanner: no JSON output (exit 0 = no findings, normal)');
+      LOG.log(`NucleiScanner: no JSON output (exit ${res.exitCode ?? '?'} = no findings, normal)`);
     }
   } catch (err: unknown) {
-    const e = err as Error & { name?: string; code?: number };
-    if (e.name === 'TimeoutError') {
-      LOG.warn(`NucleiScanner: nuclei timeout after ${timeout}ms`);
-    } else {
-      const code = (err as Record<string, unknown>).code;
-      LOG.log(`NucleiScanner: nuclei exited, code=${code ?? '?'}`);
-    }
+    LOG.warn(`NucleiScanner: nuclei error: ${err}`);
     if (fs.existsSync(jsonOutPath)) {
       try {
         const output = await fs.promises.readFile(jsonOutPath, 'utf8');

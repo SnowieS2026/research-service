@@ -1,12 +1,7 @@
-/**
- * XSS scanning using dalfox + manual reflection analysis.
- */
-import { execFile } from 'child_process';
-import { promisify } from 'util';
 import { buildFindingId } from './ScanResult.js';
 import { Logger } from '../Logger.js';
 import { isToolAvailable } from './tool-utils.js';
-const execFileP = promisify(execFile);
+import { spawnTool } from './tool-spawn.js';
 const LOG = new Logger('XSSScanner');
 // Common XSS payloads
 const REFLECTED_XSS_PAYLOADS = [
@@ -26,6 +21,7 @@ async function runDalfox(endpoint, config) {
         LOG.warn('dalfox not available – skipping XSS scan');
         return results;
     }
+    const timeoutMs = Math.min(config.timeoutPerTarget ?? 30, 30) * 1000;
     if (endpoint.params.length === 0) {
         // Scan the URL directly (no params to target)
         const args = ['url', endpoint.url];
@@ -34,18 +30,13 @@ async function runDalfox(endpoint, config) {
         }
         args.push('--format', 'json');
         try {
-            const { stdout } = await execFileP('dalfox', args, {
-                signal: AbortSignal.timeout(20_000),
-                timeout: config.timeoutPerTarget
-            });
-            results.push(...parseDalfoxOutput(stdout));
+            const res = await spawnTool('dalfox', args, { timeoutMs });
+            if (res.stdout) {
+                results.push(...parseDalfoxOutput(res.stdout));
+            }
         }
         catch (err) {
-            const e = err;
-            if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {
-                LOG.warn(`dalfox timeout on ${endpoint.url} – skipping`);
-            }
-            // dalfox non-zero exit is expected when vulnerabilities are found
+            LOG.warn(`dalfox error on ${endpoint.url}: ${err}`);
         }
         return results;
     }
@@ -61,19 +52,14 @@ async function runDalfox(endpoint, config) {
         }
         args.push('--format', 'json');
         try {
-            const { stdout } = await execFileP('dalfox', args, {
-                signal: AbortSignal.timeout(20_000),
-                timeout: config.timeoutPerTarget
-            });
-            results.push(...parseDalfoxOutput(stdout));
+            const res = await spawnTool('dalfox', args, { timeoutMs });
+            if (res.stdout) {
+                results.push(...parseDalfoxOutput(res.stdout));
+            }
         }
         catch (err) {
-            const e = err;
-            if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {
-                LOG.warn(`dalfox timeout on ${endpoint.url} param=${param.name} – skipping`);
-                break; // stop targeting further params on this endpoint
-            }
-            // non-zero exit is expected when vulnerabilities are found
+            LOG.warn(`dalfox error on ${endpoint.url} param=${param.name}: ${err}`);
+            break; // stop targeting further params on this endpoint
         }
     }
     return results;
@@ -81,7 +67,6 @@ async function runDalfox(endpoint, config) {
 function parseDalfoxOutput(stdout) {
     const results = [];
     try {
-        // Try JSON format first
         const lines = stdout.split('\n').filter(Boolean);
         for (const line of lines) {
             try {
@@ -99,19 +84,12 @@ function parseDalfoxOutput(stdout) {
                 // Try text parsing
                 const match = stdout.match(/\[XSS\]\s+(.+?)\s+\[(.+?)\]/);
                 if (match) {
-                    results.push({
-                        url: match[1],
-                        param: '',
-                        payload: match[2],
-                        severity: 'HIGH'
-                    });
+                    results.push({ url: match[1], param: '', payload: match[2], severity: 'HIGH' });
                 }
             }
         }
     }
-    catch {
-        // ignore
-    }
+    catch { /* ignore */ }
     return results;
 }
 async function checkReflectedParams(endpoint) {
@@ -124,20 +102,13 @@ async function checkReflectedParams(endpoint) {
         const html = await response.text();
         for (const param of endpoint.params) {
             const val = `${param.name}=test`;
-            if (html.includes(val)) {
+            if (html.includes(val))
                 reflected.push(param.name);
-            }
         }
     }
-    catch {
-        // ignore
-    }
+    catch { /* ignore */ }
     return reflected;
 }
-/**
- * Scan targets for XSS vulnerabilities.
- * Uses dalfox for active testing + manual reflection checks.
- */
 export async function scanForXSS(targets, _stack, config) {
     const findings = [];
     const hasDalfox = await isToolAvailable('dalfox');
@@ -147,7 +118,6 @@ export async function scanForXSS(targets, _stack, config) {
     for (const endpoint of targets) {
         if (endpoint.params.length === 0)
             continue;
-        // Check for reflected parameters first
         const reflected = await checkReflectedParams(endpoint);
         if (hasDalfox) {
             try {
@@ -176,7 +146,6 @@ export async function scanForXSS(targets, _stack, config) {
             }
         }
         else {
-            // Manual payload injection for reflected params
             for (const paramName of reflected) {
                 for (const payload of REFLECTED_XSS_PAYLOADS) {
                     const testUrl = injectParam(endpoint.url, paramName, payload);
@@ -203,16 +172,13 @@ export async function scanForXSS(targets, _stack, config) {
                                     'https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/01-Testing_for_XSS_Injection'
                                 ]
                             });
-                            break; // one finding per param
+                            break;
                         }
                     }
-                    catch {
-                        // ignore
-                    }
+                    catch { /* ignore */ }
                 }
             }
         }
-        // Rate limit
         await new Promise((r) => setTimeout(r, config.rateLimitMs));
     }
     LOG.log(`XSSScanner: ${findings.length} findings`);

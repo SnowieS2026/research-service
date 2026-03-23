@@ -1,0 +1,109 @@
+{
+  "programName": "Log in to Researcher portal",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/user/sign_in",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "3 new asset(s) added to scope",
+    "1 asset(s) removed from scope"
+  ],
+  "reportDate": "2026-03-22",
+  "changes": [
+    {
+      "field": "rewards",
+      "oldValue": "(new)",
+      "newValue": ""
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "https://www.bugcrowd.com/,https://bugcrowd.com/user/sign_up,https://bugcrowd.com/user/password/new",
+      "newValue": "https://www.bugcrowd.com/,https://bugcrowd.com/user/sign_up,https://bugcrowd.com/user/password/new"
+    },
+    {
+      "field": "exclusions",
+      "oldValue": "",
+      "newValue": ""
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "2026-03-22T10:08:21.006Z",
+      "newValue": "2026-03-22T10:08:21.006Z"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "ac06fb09fdac",
+      "newValue": "ac06fb09fdac"
+    }
+  ],
+  "newAssets": [
+    "https://www.bugcrowd.com/",
+    "https://bugcrowd.com/user/sign_up",
+    "https://bugcrowd.com/user/password/new"
+  ],
+  "removedAssets": [
+    "Forgot your password? Reset password"
+  ],
+  "rewardChange": "unchanged",
+  "changedFields": [
+    "rewards",
+    "scope_assets",
+    "exclusions",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 3 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://www.bugcrowd.com/, https://bugcrowd.com/user/sign_up, https://bugcrowd.com/user/password/new"
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "Log in to Researcher portal",
+    "program_url": "https://bugcrowd.com/user/sign_in",
+    "scope_assets": [
+      "https://www.bugcrowd.com/",
+      "https://bugcrowd.com/user/sign_up",
+      "https://bugcrowd.com/user/password/new"
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "2026-03-22T10:08:21.006Z",
+    "source_snapshot_hash": "ac06fb09fdac",
+    "rewards": [],
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Log in to Researcher portal",
+      "program_url": "https://bugcrowd.com/user/sign_in",
+      "scope_assets": [
+        "Forgot your password? Reset password"
+      ],
+      "exclusions": [
+        "Looking for the Customer portal? Go to Customer portal"
+      ],
+      "reward_range": "unknown",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "Looking for the Customer portal? Go to Customer portal",
+      "source_snapshot_hash": "8b6d5c6a5c928e37f018d600019098d876d1a0acd914dd2e00b5c2af9fd2ce0b"
+    },
+    "diff": {
+      "oldHash": "11d526110de3e900d51b1aab796293fe202862e79af3e81db4c80f8ddf45e010",
+      "newHash": "5ab89e044f004d657477c42a643575f4965d9b587dfeac1e85e1d1c83be01f6f",
+      "addedFields": [
+        "rewards"
+      ],
+      "removedFields": [],
+      "changedFields": [
+        "scope_assets",
+        "exclusions",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}
