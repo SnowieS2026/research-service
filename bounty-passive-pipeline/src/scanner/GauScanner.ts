@@ -1,18 +1,14 @@
 /**
  * GauScanner – Get All URLs from web archives (gau).
- * Runs `gau --subs <domain>` for each scope domain to fetch historically
- * scraped URLs from CommonCrawl, Wayback Machine, AlienVault OTX, etc.
- * Filters to HTML/JSON/API paths (no images, CSS, fonts, etc.).
+ * Runs gau with explicit providers for each scope domain to fetch
+ * historically scraped URLs from CommonCrawl, Wayback Machine, AlienVault OTX, URLScan.
  */
-import { execFile } from 'child_process';
-import { promisify } from 'util';
 import { type ScannerConfig } from './ScannerOrchestrator.js';
 import { type InfoFinding, buildFindingId } from './ScanResult.js';
 import { Logger } from '../Logger.js';
 import { isToolAvailable } from './tool-utils.js';
-import path from 'path';
+import { spawn } from 'child_process';
 
-const execFileP = promisify(execFile);
 const LOG = new Logger('GauScanner');
 
 // Extensions we want to keep (HTML, JSON, API, JS)
@@ -40,27 +36,21 @@ function isInterestingUrl(url: string): boolean {
     const u = new URL(url);
     const pathname = u.pathname.toLowerCase();
 
-    // Skip common static asset extensions
     for (const ext of SKIP_EXTENSIONS) {
       if (pathname.endsWith(ext)) return false;
     }
 
-    // Keep if no extension (e.g. /api/users) or interesting extension
     const lastSegment = pathname.split('/').pop() ?? '';
     const dotIdx = lastSegment.lastIndexOf('.');
     const ext = dotIdx >= 0 ? lastSegment.slice(dotIdx) : '';
 
-    if (ext === '') return true; // no extension → likely a page or API path
+    if (ext === '') return true;
     return INTERESTING_EXTENSIONS.has(ext);
   } catch {
     return false;
   }
 }
 
-/**
- * Extract the base domain from a scope asset URL.
- * e.g. https://*.okta.com/ or https://okta.com/ → okta.com
- */
 function extractBaseDomain(url: string): string | null {
   try {
     const u = new URL(url);
@@ -73,37 +63,67 @@ function extractBaseDomain(url: string): string | null {
   }
 }
 
+/** Gau binary path */
+const GAU_BIN = 'C:\\Users\\bryan\\go\\bin\\gau.exe';
+
 /**
  * Run gau for a single domain.
- * Returns an array of discovered URLs.
+ * Uses spawn() directly with event-based stdout collection.
+ * gau requires --providers flag — without it, defaults fail and produce 0 results.
  */
 async function runGau(domain: string, timeoutMs = 60_000): Promise<string[]> {
-  const hasGau = await isToolAvailable('gau');
+  const hasGau = await isToolAvailable(GAU_BIN);
   if (!hasGau) {
     LOG.warn('gau not available – skipping URL enumeration');
     return [];
   }
 
-  const args = ['--subs', domain];
+  // CRITICAL: --providers is required. Without it, gau produces 0 results.
+  const args = [
+    '--providers', 'wayback,commoncrawl,otx,urlscan',
+    domain
+  ];
 
-  try {
-    const { stdout } = await execFileP('gau', args, { signal: AbortSignal.timeout(timeoutMs) });
-    const urls = stdout.split('\n').map((l) => l.trim()).filter(Boolean);
-    return urls;
-  } catch (err) {
-    const e = err as Error & { name?: string; code?: string };
-    if (e.name === 'TimeoutError' || e.code === 'ETIMEDOUT') {
+  return new Promise((resolve) => {
+    const chunks: Buffer[] = [];
+    let killed = false;
+
+    const proc = spawn(GAU_BIN, args, {
+      stdio: ['ignore', 'pipe', 'pipe'],
+      shell: false,
+      windowsHide: true,
+    });
+
+    proc.stdout?.on('data', (d: Buffer) => chunks.push(d));
+    // Suppress .gau.toml config warnings on stderr
+    proc.stderr?.on('data', (d: Buffer) => {
+      const s = d.toString();
+      if (s.includes('.gau.toml')) return; // suppress config warning
+    });
+
+    const timer = setTimeout(() => {
+      killed = true;
+      try { proc.kill('SIGKILL'); } catch { /* ignore */ }
       LOG.warn(`gau timeout on ${domain}`);
-    }
-    // gau exits non-zero when no results found – that's fine
-    return [];
-  }
+      resolve([]);
+    }, timeoutMs);
+
+    proc.on('close', () => {
+      if (killed) return;
+      clearTimeout(timer);
+      const stdout = Buffer.concat(chunks).toString('utf8');
+      const urls = stdout.split('\n').map((l) => l.trim()).filter(Boolean);
+      resolve(urls);
+    });
+
+    proc.on('error', () => {
+      if (killed) return;
+      clearTimeout(timer);
+      resolve([]);
+    });
+  });
 }
 
-/**
- * Scan targets for archived URLs using gau.
- * Returns info-severity findings for discovered endpoints.
- */
 export async function scanGau(
   targets: string[],
   _stack: unknown,
@@ -111,7 +131,6 @@ export async function scanGau(
 ): Promise<InfoFinding[]> {
   const findings: InfoFinding[] = [];
 
-  // Extract unique base domains from scope assets (handle string or ScanTarget object)
   const baseDomains = new Set<string>();
   for (const raw of targets) {
     const target = typeof raw === 'string' ? raw : (raw as Record<string, unknown>).url as string | undefined;
@@ -125,13 +144,11 @@ export async function scanGau(
 
   for (const domain of baseDomains) {
     if (config.dryRun) {
-      LOG.log(`[DRY_RUN] gau --subs ${domain}`);
+      LOG.log(`[DRY_RUN] gau ${domain}`);
       continue;
     }
 
     const urls = await runGau(domain, config.timeoutPerTarget ?? 60_000);
-
-    // Filter to interesting URLs
     const interesting = urls.filter(isInterestingUrl);
     LOG.log(`GauScanner: ${domain} → ${urls.length} total URLs, ${interesting.length} interesting`);
 
@@ -144,13 +161,12 @@ export async function scanGau(
         cvss: 0,
         tool: 'gau',
         description: `Archived URL discovered: ${url}`,
-        evidence: `Found via gau (CommonCrawl/Wayback/AlienVault OTX) for ${domain}`,
+        evidence: `Found via gau (wayback/commoncrawl/otx/urlscan) for ${domain}`,
         createdAt: new Date().toISOString(),
         references: []
       });
     }
 
-    // Rate limit between domains
     await new Promise((r) => setTimeout(r, config.rateLimitMs));
   }
 
