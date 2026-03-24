@@ -40,9 +40,13 @@ export class VehicleCollector {
         else if (plateType === 'UK') {
             const clean = target.replace(/\s/g, '').toUpperCase();
             // Run UK checks in parallel
-            const [dvla, carCheck, mibResult] = await Promise.allSettled([
+            const [dvla, carCheck, govUkMot, motors, parkers, motorCheck, mibResult] = await Promise.allSettled([
                 this.collectDVLA(clean, {}, [], []),
                 this.collectCarCheck(clean, [], [], {}),
+                this.collectGovUkMot(clean, [], []),
+                this.collectMotors(clean, [], []),
+                this.collectParkers(clean, [], []),
+                this.collectMotorCheck(clean, [], []),
                 this.collectMIB(clean, [], [])
             ]);
             if (dvla.status === 'fulfilled') {
@@ -57,6 +61,38 @@ export class VehicleCollector {
             }
             else {
                 errors.push(`car-checking.com: ${carCheck.reason}`);
+            }
+            if (govUkMot.status === 'fulfilled') {
+                findings.push(...govUkMot.value.findings);
+                errors.push(...govUkMot.value.errors);
+                Object.assign(rawData, { GovUkMot: govUkMot.value.rawData });
+            }
+            else {
+                errors.push(`gov.uk MOT: ${govUkMot.reason}`);
+            }
+            if (motors.status === 'fulfilled') {
+                findings.push(...motors.value.findings);
+                errors.push(...motors.value.errors);
+                Object.assign(rawData, { Motors: motors.value.rawData });
+            }
+            else {
+                errors.push(`motors.co.uk: ${motors.reason}`);
+            }
+            if (parkers.status === 'fulfilled') {
+                findings.push(...parkers.value.findings);
+                errors.push(...parkers.value.errors);
+                Object.assign(rawData, { Parkers: parkers.value.rawData });
+            }
+            else {
+                errors.push(`parkers.co.uk: ${parkers.reason}`);
+            }
+            if (motorCheck.status === 'fulfilled') {
+                findings.push(...motorCheck.value.findings);
+                errors.push(...motorCheck.value.errors);
+                Object.assign(rawData, { MotorCheck: motorCheck.value.rawData });
+            }
+            else {
+                errors.push(`motorcheck.co.uk: ${motorCheck.reason}`);
             }
             if (mibResult.status === 'fulfilled') {
                 findings.push(...mibResult.value.findings);
@@ -73,7 +109,16 @@ export class VehicleCollector {
                 const rawText = carCheckRaw['raw_text'] || '';
                 const valuationMake = rawData['DVLA']?.['Make']
                     || carCheckRaw['make'] || '';
-                const valuationModel = carCheckRaw['model'] || '';
+                const modelRaw = carCheckRaw['model'] || '';
+                const modelClean = modelRaw
+                    .replace(/Colour\s+[\w\s]+/i, '')
+                    .replace(/Year of manufacture\s+\d{4}/i, '')
+                    .replace(/\d+\s*(?:mph|seconds?|mph)/gi, '')
+                    .replace(/\d+\s*(?:cc|bhp|rpm|mpg|km|l|kg)/gi, '')
+                    .replace(/\s+/g, ' ')
+                    .trim()
+                    .substring(0, 60);
+                const valuationModel = modelClean || '';
                 const valuationYear = parseInt(carCheckRaw['year'] || '0', 10) || 0;
                 const mileage = null; // not available from DVLA/car-check free tier
                 // Extract ALL advisory items from the full raw text — don't split by MOT block.
@@ -224,7 +269,7 @@ export class VehicleCollector {
             const { chromium } = await import('@playwright/test');
             browser = await chromium.launch({ headless: true });
             const page = await browser.newPage();
-            await page.goto('https://www.car-checking.com/', { waitUntil: 'domcontentloaded', timeout: 15_000 });
+            await page.goto('https://www.car-checking.com/', { waitUntil: 'domcontentloaded', timeout: 45_000 });
             await page.waitForTimeout(2000);
             // Fill the reg input and submit
             const regInput = page.locator('#subForm1');
@@ -234,7 +279,23 @@ export class VehicleCollector {
             }
             await regInput.fill(plate);
             await page.locator('button[type="submit"]').first().click();
-            await page.waitForTimeout(5000);
+            // Wait for results with selector — with fallback to timeout retry
+            try {
+                await page.waitForSelector('body', { timeout: 20_000 });
+            }
+            catch {
+                // Retry once after a short pause
+                await page.waitForTimeout(3000);
+                try {
+                    await page.locator('button[type="submit"]').first().click();
+                    await page.waitForSelector('body', { timeout: 20_000 });
+                }
+                catch {
+                    errors.push('car-checking.com: timeout waiting for report after retry');
+                    return { collector: 'VehicleCollector', findings, errors, rawData };
+                }
+            }
+            await page.waitForTimeout(3000);
             // Pull all text from the report page
             const bodyText = await page.locator('body').textContent();
             if (!bodyText || bodyText.trim().length < 50) {
@@ -315,6 +376,244 @@ export class VehicleCollector {
                 await browser.close();
         }
         await osintDelay(500);
+        return { collector: 'VehicleCollector', findings, errors, rawData };
+    }
+    // ── UK: gov.uk MOT history ─────────────────────────────────────────────────
+    async collectGovUkMot(plate, _findings, _errors) {
+        const findings = [];
+        const errors = [];
+        const rawData = {};
+        let browser;
+        try {
+            const { chromium } = await import('@playwright/test');
+            browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage();
+            await page.goto('https://www.gov.uk/check-mot-history', { waitUntil: 'domcontentloaded', timeout: 30_000 });
+            await page.waitForTimeout(1000);
+            // Fill the registration field
+            const regInput = page.locator('#vrm');
+            if (await regInput.count() === 0) {
+                errors.push('gov.uk MOT: reg input not found');
+                return { collector: 'VehicleCollector', findings, errors, rawData };
+            }
+            await regInput.fill(plate);
+            await page.locator('button[type="submit"], a[href*="mot-history"]').first().click();
+            await page.waitForLoadState('domcontentloaded', { timeout: 30_000 });
+            await page.waitForTimeout(2000);
+            const bodyText = await page.locator('body').textContent() ?? '';
+            rawData['raw_text'] = bodyText.substring(0, 4000);
+            // Extract MOT expiry date
+            const expiryMatch = bodyText.match(/expiry date[\s\n]+(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/i);
+            if (expiryMatch) {
+                findings.push({ source: 'GovUK-MOT', field: 'mot_expiry', value: expiryMatch[1], confidence: 95 });
+                rawData['mot_expiry'] = expiryMatch[1];
+            }
+            // Extract last test date
+            const testDateMatch = bodyText.match(/test date[\s\n]+(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/i);
+            if (testDateMatch) {
+                findings.push({ source: 'GovUK-MOT', field: 'last_mot_date', value: testDateMatch[1], confidence: 95 });
+                rawData['last_mot_date'] = testDateMatch[1];
+            }
+            // Extract mileage at last test
+            const mileageMatch = bodyText.match(/(\d{4,6})\s*(?:miles|mi)/i);
+            if (mileageMatch) {
+                findings.push({ source: 'GovUK-MOT', field: 'last_odometer', value: mileageMatch[1] + ' miles', confidence: 90 });
+                rawData['last_odometer'] = mileageMatch[1];
+            }
+            // Extract test result
+            if (/MOT pass|PASSED/i.test(bodyText)) {
+                findings.push({ source: 'GovUK-MOT', field: 'mot_result', value: 'PASS', confidence: 95 });
+                rawData['mot_result'] = 'PASS';
+            }
+            else if (/MOT fail|FAILED/i.test(bodyText)) {
+                findings.push({ source: 'GovUK-MOT', field: 'mot_result', value: 'FAIL', confidence: 95 });
+                rawData['mot_result'] = 'FAIL';
+            }
+            // Extract advisory items
+            const advisoryRe = /(Advisory|Advice)[\s\n]+([^\n]{5,150})/gi;
+            const advisories = [];
+            for (const m of bodyText.matchAll(advisoryRe)) {
+                const item = m[2]?.trim();
+                if (item && item.length > 5)
+                    advisories.push(item);
+            }
+            if (advisories.length > 0)
+                rawData['govuk_advisories'] = advisories;
+        }
+        catch (err) {
+            errors.push(`GovUK MOT: ${err}`);
+        }
+        finally {
+            if (browser)
+                await browser.close();
+        }
+        await osintDelay(300);
+        return { collector: 'VehicleCollector', findings, errors, rawData };
+    }
+    // ── UK: motors.co.uk — market listings & pricing ─────────────────────────────
+    async collectMotors(plate, _findings, _errors) {
+        const findings = [];
+        const errors = [];
+        const rawData = {};
+        let browser;
+        try {
+            const { chromium } = await import('@playwright/test');
+            browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage();
+            await page.setExtraHTTPHeaders({ 'Accept-Language': 'en-GB' });
+            // Search by registration on motors.co.uk
+            const url = `https://www.motors.co.uk/cars/?q=${encodeURIComponent(plate)}`;
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+            await page.waitForTimeout(2000);
+            const bodyText = await page.locator('body').textContent() ?? '';
+            rawData['raw_text'] = bodyText.substring(0, 3000);
+            // Extract price listings
+            const priceRe = /£(\d{1,3}(?:,\d{3})*)/g;
+            const prices = [];
+            for (const m of bodyText.matchAll(priceRe)) {
+                const p = parseInt(m[1].replace(/,/g, ''), 10);
+                if (p > 500 && p < 100000)
+                    prices.push(p);
+            }
+            if (prices.length > 0) {
+                prices.sort((a, b) => a - b);
+                const min = prices[0];
+                const max = prices[Math.min(prices.length - 1, 4)];
+                findings.push({ source: 'Motors.co.uk', field: 'market_price_min', value: String(min), confidence: 75 });
+                findings.push({ source: 'Motors.co.uk', field: 'market_price_max', value: String(max), confidence: 75 });
+                rawData['market_price_min'] = min;
+                rawData['market_price_max'] = max;
+                rawData['sample_size'] = prices.length;
+            }
+            // Extract make/model if present
+            const makeMatch = bodyText.match(/(Vauxhall|Ford|Toyota|BMW|Audi|Mercedes|VW|Volkswagen|Honda|Nissan)/i);
+            if (makeMatch) {
+                findings.push({ source: 'Motors.co.uk', field: 'make_hint', value: makeMatch[1], confidence: 60 });
+                rawData['make_hint'] = makeMatch[1];
+            }
+        }
+        catch (err) {
+            errors.push(`Motors.co.uk: ${err}`);
+        }
+        finally {
+            if (browser)
+                await browser.close();
+        }
+        await osintDelay(300);
+        return { collector: 'VehicleCollector', findings, errors, rawData };
+    }
+    // ── UK: parkers.co.uk — valuations, specs & reviews ─────────────────────────
+    async collectParkers(plate, _findings, _errors) {
+        const findings = [];
+        const errors = [];
+        const rawData = {};
+        // Parkers requires make/model — use plate search page
+        let browser;
+        try {
+            const { chromium } = await import('@playwright/test');
+            browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage();
+            await page.setExtraHTTPHeaders({ 'Accept-Language': 'en-GB' });
+            // Try plate search on parkers
+            const url = `https://www.parkers.co.uk/car-value/?reg=${encodeURIComponent(plate)}`;
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+            await page.waitForTimeout(3000);
+            const bodyText = await page.locator('body').textContent() ?? '';
+            rawData['raw_text'] = bodyText.substring(0, 3000);
+            // Extract price range
+            const priceRe = /£(\d{1,3}(?:,\d{3})*)\s*[-–to]+\s*£?(\d{1,3}(?:,\d{3})*)/i;
+            const priceMatch = bodyText.match(priceRe);
+            if (priceMatch) {
+                const min = parseInt(priceMatch[1].replace(/,/g, ''), 10);
+                const max = parseInt(priceMatch[2].replace(/,/g, ''), 10);
+                if (min > 0 && max > 0) {
+                    findings.push({ source: 'Parkers', field: 'parkers_value_min', value: String(min), confidence: 80 });
+                    findings.push({ source: 'Parkers', field: 'parkers_value_max', value: String(max), confidence: 80 });
+                    rawData['parkers_value_min'] = min;
+                    rawData['parkers_value_max'] = max;
+                }
+            }
+            // Extract key specs (engine, fuel, transmission)
+            const engineMatch = bodyText.match(/(\d+\.?\d*)\s*(?:litre|L|cc|engine)/i);
+            if (engineMatch) {
+                findings.push({ source: 'Parkers', field: 'engine_size_hint', value: engineMatch[1], confidence: 70 });
+                rawData['engine_size_hint'] = engineMatch[1];
+            }
+            const fuelMatch = bodyText.match(/(Petrol|Diesel|Electric|Hybrid|Plugin)/i);
+            if (fuelMatch) {
+                findings.push({ source: 'Parkers', field: 'fuel_hint', value: fuelMatch[1], confidence: 70 });
+                rawData['fuel_hint'] = fuelMatch[1];
+            }
+            const transMatch = bodyText.match(/(Manual|Automatic)/i);
+            if (transMatch) {
+                findings.push({ source: 'Parkers', field: 'transmission_hint', value: transMatch[1], confidence: 70 });
+                rawData['transmission_hint'] = transMatch[1];
+            }
+            // Extract model year if visible
+            const yearMatch = bodyText.match(/(20\d{2}|19\d{2})\s*(?:reg|registration|plate|year)/i);
+            if (yearMatch) {
+                findings.push({ source: 'Parkers', field: 'year_hint', value: yearMatch[1], confidence: 70 });
+                rawData['year_hint'] = yearMatch[1];
+            }
+        }
+        catch (err) {
+            errors.push(`Parkers: ${err}`);
+        }
+        finally {
+            if (browser)
+                await browser.close();
+        }
+        await osintDelay(300);
+        return { collector: 'VehicleCollector', findings, errors, rawData };
+    }
+    // ── UK: motorcheck.co.uk — free MOT & vehicle data ──────────────────────────
+    async collectMotorCheck(plate, _findings, _errors) {
+        const findings = [];
+        const errors = [];
+        const rawData = {};
+        let browser;
+        try {
+            const { chromium } = await import('@playwright/test');
+            browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage();
+            const url = `https://www.motorcheck.co.uk/free-mot-check?reg=${encodeURIComponent(plate)}`;
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+            await page.waitForTimeout(3000);
+            const bodyText = await page.locator('body').textContent() ?? '';
+            rawData['raw_text'] = bodyText.substring(0, 3000);
+            // Extract MOT expiry
+            const expiryMatch = bodyText.match(/expiry.*?(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/i);
+            if (expiryMatch) {
+                findings.push({ source: 'MotorCheck', field: 'mot_expiry', value: expiryMatch[1], confidence: 90 });
+                rawData['mot_expiry'] = expiryMatch[1];
+            }
+            // Extract last MOT mileage
+            const mileageMatch = bodyText.match(/(\d{5,6})\s*(?:miles|mi)/i);
+            if (mileageMatch) {
+                findings.push({ source: 'MotorCheck', field: 'last_odometer', value: mileageMatch[1] + ' miles', confidence: 85 });
+                rawData['last_odometer'] = mileageMatch[1];
+            }
+            // Extract make if present
+            const makeMatch = bodyText.match(/\b(Vauxhall|Ford|Toyota|BMW|Audi|Mercedes|VW|Volkswagen|Honda|Nissan|Fiat|Peugeot|VW|Seat|Skoda|Citroen|Renault|Hyundai|Kia)\b/i);
+            if (makeMatch) {
+                findings.push({ source: 'MotorCheck', field: 'make_hint', value: makeMatch[1], confidence: 70 });
+                rawData['make_hint'] = makeMatch[1];
+            }
+            // Extract fuel type
+            const fuelMatch = bodyText.match(/\b(Petrol|Diesel|Electric|Hybrid)\b/i);
+            if (fuelMatch) {
+                findings.push({ source: 'MotorCheck', field: 'fuel_hint', value: fuelMatch[1], confidence: 70 });
+                rawData['fuel_hint'] = fuelMatch[1];
+            }
+        }
+        catch (err) {
+            errors.push(`MotorCheck: ${err}`);
+        }
+        finally {
+            if (browser)
+                await browser.close();
+        }
+        await osintDelay(300);
         return { collector: 'VehicleCollector', findings, errors, rawData };
     }
     // ── UK: MIB Navigate — free insurance check ──────────────────────────────────
