@@ -1,7 +1,7 @@
 # OSINT Report – vehicle: KY05YTJ
 
-**Generated:** 2026-03-24T20:04:40.643Z  
-**Duration:** 10s  
+**Generated:** 2026-03-24T20:24:05.381Z  
+**Duration:** 20s  
 **Flags:** (none)  
 
 ## Summary
@@ -38,7 +38,7 @@
 ### VehicleValuation
 
 - **🟢 [90%]** `make`: VAUXHALL
-- **🟢 [90%]** `model`: CORSA SXI CDTI Colour BLACK Year of manufacture 2005 Top speed mph 0 to 60 MPH 13.5seconds Gearbox MANUAL 5 GEARS Engine & fuel consumption Power 70 BHP Torque 1750 rpm Engine capacity 1248 cc Cylind
+- **🟢 [90%]** `model`: CORSA SXI CDTI . Gearbox MANUAL 5 GEARS Engine & fuel consum
 - **🟢 [90%]** `year`: 2005
 - **🟢 [90%]** `advisory_total_min`: 600
 - **🟢 [90%]** `advisory_total_max`: 2325
@@ -64,7 +64,7 @@
 ## 🚗 Vehicle OSINT Report
 
 **Target:** KY05YTJ  
-**Generated:** 2026-03-24T20:04:40.643Z  
+**Generated:** 2026-03-24T20:24:05.381Z  
 **Flags:** (none)  
 
 ### 1. Vehicle Header Card
@@ -72,7 +72,7 @@
 ```
   Registration: KY05YTJ
   Make: VAUXHALL
-  Model: CORSA SXI CDTI Colour BLACK Year of manufacture 2005 Top speed mph 0 to 60 MPH 13.5seconds Gearbox MANUAL 5 GEARS Engine & fuel consumption Power 70 BHP Torque 1750 rpm Engine capacity 1248 cc Cylind
+  Model: CORSA SXI CDTI . Gearbox MANUAL 5 GEARS Engine & fuel consum
   Year: 2005
   Colour: BLACK
   Body Type: N/A
@@ -148,7 +148,7 @@ No geographic data available from MOT records.
 
 ### 13. Analyst Summary
 
-VAUXHALL CORSA SXI CDTI Colour BLACK Year of manufacture 2005 Top speed mph 0 to 60 MPH 13.5seconds Gearbox MANUAL 5 GEARS Engine & fuel consumption Power 70 BHP Torque 1750 rpm Engine capacity 1248 cc Cylind (2005) in BLACK has an valid MOT expiring 21/04/2026 with 18 pass(es) and 6 fail(s) on record. No advisories were raised on the most recent MOT, suggesting the vehicle is in reasonable mechanical condition. Overall risk profile is rated **LOW**.
+VAUXHALL CORSA SXI CDTI . Gearbox MANUAL 5 GEARS Engine & fuel consum (2005) in BLACK has an valid MOT expiring 21/04/2026 with 18 pass(es) and 6 fail(s) on record. No advisories were raised on the most recent MOT, suggesting the vehicle is in reasonable mechanical condition. Overall risk profile is rated **LOW**.
 
 ### 14. Overall OSINT Risk Rating
 
@@ -206,7 +206,7 @@ VAUXHALL CORSA SXI CDTI Colour BLACK Year of manufacture 2005 Top speed mph 0 to
     "MIB": {},
     "valuation": {
       "make": "VAUXHALL",
-      "model": "CORSA SXI CDTI Colour BLACK Year of manufacture 2005 Top speed mph 0 to 60 MPH 13.5seconds Gearbox MANUAL 5 GEARS Engine & fuel consumption Power 70 BHP Torque 1750 rpm Engine capacity 1248 cc Cylind",
+      "model": "CORSA SXI CDTI . Gearbox MANUAL 5 GEARS Engine & fuel consum",
       "year": 2005,
       "currentValueMin": 700,
       "currentValueMax": 840,
@@ -314,6 +314,6 @@ High-confidence findings to investigate further:
 - mot_passed → 18 (car-checking.com)
 - mot_failed → 6 (car-checking.com)
 - make → VAUXHALL (VehicleValuation)
-- model → CORSA SXI CDTI Colour BLACK Year of manufacture 2005 Top speed mph 0 to 60 MPH 13.5seconds Gearbox MANUAL 5 GEARS Engine & fuel consumption Power 70 BHP Torque 1750 rpm Engine capacity 1248 cc Cylind (VehicleValuation)
+- model → CORSA SXI CDTI . Gearbox MANUAL 5 GEARS Engine & fuel consum (VehicleValuation)
 - year → 2005 (VehicleValuation)
 - advisory_total_min → 600 (VehicleValuation)

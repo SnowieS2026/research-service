@@ -38,10 +38,9 @@ export class VehicleCollector {
     } else if (plateType === 'UK') {
       const clean = target.replace(/\s/g, '').toUpperCase();
       // Run UK checks in parallel
-      const [dvla, carCheck, govUkMot, motors, parkers, motorCheck, mibResult] = await Promise.allSettled([
+      const [dvla, carCheck, motors, parkers, motorCheck, mibResult] = await Promise.allSettled([
         this.collectDVLA(clean, {}, [], []),
         this.collectCarCheck(clean, [], [], {}),
-        this.collectGovUkMot(clean, [], []),
         this.collectMotors(clean, [], []),
         this.collectParkers(clean, [], []),
         this.collectMotorCheck(clean, [], []),
@@ -59,13 +58,6 @@ export class VehicleCollector {
         Object.assign(rawData, { CarCheck: carCheck.value.rawData });
       } else {
         errors.push(`car-checking.com: ${carCheck.reason}`);
-      }
-      if (govUkMot.status === 'fulfilled') {
-        findings.push(...govUkMot.value.findings);
-        errors.push(...govUkMot.value.errors);
-        Object.assign(rawData, { GovUkMot: govUkMot.value.rawData });
-      } else {
-        errors.push(`gov.uk MOT: ${govUkMot.reason}`);
       }
       if (motors.status === 'fulfilled') {
         findings.push(...motors.value.findings);
@@ -104,11 +96,22 @@ export class VehicleCollector {
         const valuationMake = (rawData['DVLA'] as Record<string, string>)?.['Make']
           || carCheckRaw['make'] as string || '';
         const modelRaw = carCheckRaw['model'] as string || '';
+        // Strip spec noise: "CORSA SXI CDTI Colour BLACK Year of manufacture 2005 Top speed..."
         const modelClean = modelRaw
-          .replace(/Colour\s+[\w\s]+/i, '')
-          .replace(/Year of manufacture\s+\d{4}/i, '')
-          .replace(/\d+\s*(?:mph|seconds?|mph)/gi, '')
-          .replace(/\d+\s*(?:cc|bhp|rpm|mpg|km|l|kg)/gi, '')
+          .replace(/\bColour\b.*$/i, '')
+          .replace(/\bYear of manufacture\s+\d{4}\b/gi, '')
+          .replace(/\bTop speed\b.*$/gi, '')
+          .replace(/\b0 to \d+\s*(?:mph|seconds?)\b/gi, '')
+          .replace(/\bGearbox\b.*$/gi, '')
+          .replace(/\bEngine\s*&\s*fuel consumption\b.*$/gi, '')
+          .replace(/\bPower\b.*$/gi, '')
+          .replace(/\bTorque\b.*$/gi, '')
+          .replace(/\bEngine capacity\b.*$/gi, '')
+          .replace(/\bCylinders\b.*$/gi, '')
+          .replace(/\bFuel type\b.*$/gi, '')
+          .replace(/\bConsumption\b.*$/gi, '')
+          .replace(/\bCO2\b.*$/gi, '')
+          .replace(/\d+\.?\d*\s*(?:mph|seconds?|cc|bhp|rpm|mpg|km|l|kg)\b/gi, '')
           .replace(/\s+/g, ' ')
           .trim()
           .substring(0, 60);
@@ -348,12 +351,12 @@ export class VehicleCollector {
       const text = bodyText || '';
 
       for (const [label, field] of specPairs) {
-        const regex = new RegExp(`${label}[\\s\\S]{0,200}`);
+        // Only match the label followed by a single line of text (not 200 chars of everything)
+        const regex = new RegExp(`${label}\\s*\\n\\s*([\\S ]{2,80})`, 'i');
         const m = text.match(regex);
         if (m) {
-          // value is typically after the label, on the same or next line
-          const snippet = m[0].replace(label, '').trim().split(/\n/)[0].trim();
-          if (snippet && snippet.length < 200 && !snippet.includes('YOUR CAR REPORT')) {
+          const snippet = m[1]?.trim().replace(/\s+/g, ' ') ?? '';
+          if (snippet && snippet.length > 1 && snippet.length < 100) {
             rawData[field] = snippet;
           }
         }

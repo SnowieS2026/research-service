@@ -1,5 +1,5 @@
 {
-  "lastHeartbeatAt": "2026-03-24T17:41:00Z",
+  "lastHeartbeatAt": "2026-03-24T20:06:00Z",
   "pipeline": {
     "lastSnapshotAt": "2026-03-24T12:10:00Z",
     "lastGoodAt": "2026-03-24T06:11:00Z",
@@ -12,14 +12,19 @@
     "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4",
     "notes": "DISABLED."
   },
-  "heartbeatCycle": 3,
+  "heartbeatCycle": 4,
   "viennaScan": {
     "status": "complete",
     "findings": 3,
     "reportPath": "reports/2026-03-24/vienna-scan-report.md",
     "note": "3 info findings (SSRF, 2x CORS)."
   },
+  "vehicleSources": {
+    "status": "updated",
+    "commit": "ba3d156e",
+    "note": "6 sources now active. KY05YTJ returned 22 findings, 0 errors."
+  },
   "notes": [
-    "24 Mar 17:41 - Pipeline healthy. Snapshots 5.5h old (<8h threshold OK)."
+    "24 Mar 20:06 - All clean. Pipeline disabled. Vehicle sources updated with 6 sources. Git clean."
   ]
 }
