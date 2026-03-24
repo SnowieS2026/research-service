@@ -262,6 +262,8 @@ export class VehicleCollector {
         return { collector: 'VehicleCollector', findings, errors, rawData };
     }
     // ── UK: car-checking.com (full MOT history + specs) ─────────────────────────
+    // NOTE: Site is slow (~11s load). Has per-IP rate limiting — wait 60s between runs.
+    // Returns: full MOT history, pass/fail counts, expiry, specs, advisory items.
     async collectCarCheck(plate, _findings, _errors, _rawData) {
         const findings = [];
         const errors = [];
@@ -270,41 +272,53 @@ export class VehicleCollector {
         try {
             const { chromium } = await import('@playwright/test');
             browser = await chromium.launch({ headless: true });
-            const page = await browser.newPage();
-            await page.goto('https://www.car-checking.com/', { waitUntil: 'domcontentloaded', timeout: 45_000 });
-            await page.waitForTimeout(2000);
-            // Fill the reg input and submit
+            const ctx = await browser.newContext({
+                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                extraHTTPHeaders: { 'Accept-Language': 'en-GB,en;q=0.9' }
+            });
+            const page = await ctx.newPage();
+            // Accept cookie banners
+            page.on('dialog', async (d) => { try {
+                await d.accept();
+            }
+            catch { } });
+            // Step 1: load the page (slow — allow 20s)
+            await page.goto('https://www.car-checking.com/', { waitUntil: 'domcontentloaded', timeout: 20_000 });
+            // Wait for the form to actually render
+            await page.waitForSelector('#subForm1, form', { timeout: 15_000 });
+            await page.waitForTimeout(2000); // Extra settle time for JS
+            // Step 2: fill and submit
             const regInput = page.locator('#subForm1');
             if (await regInput.count() === 0) {
                 errors.push('car-checking.com: reg input not found');
                 return { collector: 'VehicleCollector', findings, errors, rawData };
             }
             await regInput.fill(plate);
-            await page.locator('button[type="submit"]').first().click();
-            // Wait for results with selector — with fallback to timeout retry
-            try {
-                await page.waitForSelector('body', { timeout: 20_000 });
-            }
-            catch {
-                // Retry once after a short pause
-                await page.waitForTimeout(3000);
-                try {
-                    await page.locator('button[type="submit"]').first().click();
-                    await page.waitForSelector('body', { timeout: 20_000 });
-                }
-                catch {
-                    errors.push('car-checking.com: timeout waiting for report after retry');
-                    return { collector: 'VehicleCollector', findings, errors, rawData };
-                }
-            }
-            await page.waitForTimeout(3000);
-            // Pull all text from the report page
-            const bodyText = await page.locator('body').textContent();
-            if (!bodyText || bodyText.trim().length < 50) {
-                errors.push('car-checking.com: no report data returned');
+            // Click submit and wait for navigation or result to load
+            await Promise.all([
+                page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 25_000 }).catch(() => { }),
+                page.locator('button[type="submit"]').first().click()
+            ]);
+            // Step 3: wait for the report to render (up to 25s)
+            await page.waitForTimeout(5000);
+            // Check for rate limit message
+            const bodyText = await page.locator('body').textContent() ?? '';
+            if (/wait a bit longer|please wait|try again later/i.test(bodyText)) {
+                errors.push('car-checking.com: rate limited (wait between lookups)');
+                await ctx.close();
                 return { collector: 'VehicleCollector', findings, errors, rawData };
             }
-            rawData['raw_text'] = bodyText?.substring(0, 5000);
+            if (bodyText.length < 200) {
+                // Wait a bit more for SPA to render
+                await page.waitForTimeout(5000);
+            }
+            const finalText = await page.locator('body').textContent() ?? '';
+            rawData['raw_text'] = finalText.substring(0, 5000);
+            if (finalText.trim().length < 50) {
+                errors.push('car-checking.com: no report data returned');
+                await ctx.close();
+                return { collector: 'VehicleCollector', findings, errors, rawData };
+            }
             // Parse specification section
             const specPairs = [
                 ['Make', 'make'],
@@ -326,11 +340,9 @@ export class VehicleCollector {
                 ['CO2 emission', 'co2_emission'],
                 ['CO2 label', 'co2_label'],
             ];
-            const text = bodyText || '';
             for (const [label, field] of specPairs) {
-                // Only match the label followed by a single line of text (not 200 chars of everything)
                 const regex = new RegExp(`${label}\\s*\\n\\s*([\\S ]{2,80})`, 'i');
-                const m = text.match(regex);
+                const m = finalText.match(regex);
                 if (m) {
                     const snippet = m[1]?.trim().replace(/\s+/g, ' ') ?? '';
                     if (snippet && snippet.length > 1 && snippet.length < 100) {
@@ -339,25 +351,25 @@ export class VehicleCollector {
                 }
             }
             // Parse MOT section
-            const motExpiryMatch = text.match(/MOT expiry date[\s\n]+(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/i);
+            const motExpiryMatch = finalText.match(/MOT expiry date[\s\n]+(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/i);
             if (motExpiryMatch) {
                 findings.push({ source: 'car-checking.com', field: 'mot_expiry', value: motExpiryMatch[1], confidence: 95 });
                 rawData['mot_expiry'] = motExpiryMatch[1];
             }
-            const motPassRateMatch = text.match(/MOT pass rate[\s\n]+(\d+)\s*%/i);
+            const motPassRateMatch = finalText.match(/MOT pass rate[\s\n]+(\d+)\s*%/i);
             if (motPassRateMatch) {
                 findings.push({ source: 'car-checking.com', field: 'mot_pass_rate', value: motPassRateMatch[1] + '%', confidence: 90 });
             }
-            const motPassedMatch = text.match(/MOT passed[\s\n]+(\d+)/i);
+            const motPassedMatch = finalText.match(/MOT passed[\s\n]+(\d+)/i);
             if (motPassedMatch) {
                 findings.push({ source: 'car-checking.com', field: 'mot_passed', value: motPassedMatch[1], confidence: 90 });
             }
-            const motFailedMatch = text.match(/Failed MOT tests[\s\n]+(\d+)/i);
+            const motFailedMatch = finalText.match(/Failed MOT tests[\s\n]+(\d+)/i);
             if (motFailedMatch) {
                 findings.push({ source: 'car-checking.com', field: 'mot_failed', value: motFailedMatch[1], confidence: 90 });
             }
             // Make/model/year from the report header
-            const makeModelMatch = text.match(/(VAUXHALL|OPEL|FORD|TOYOTA|BMW|MERCEDES|AUDI|VOLKSWAGEN|CHRYSLER|JAGUAR|LAND ROVER|OTHER)[\s\n]+([A-Z0-9 \-+]+)[\s\n]+(\d{4})/i);
+            const makeModelMatch = finalText.match(/(VAUXHALL|OPEL|FORD|TOYOTA|BMW|MERCEDES|AUDI|VOLKSWAGEN|CHRYSLER|JAGUAR|LAND ROVER|OTHER)[\s\n]+([A-Z0-9 \-+]+)[\s\n]+(\d{4})/i);
             if (makeModelMatch) {
                 const m = makeModelMatch[1].toUpperCase();
                 const mod = makeModelMatch[2].trim();
@@ -369,6 +381,7 @@ export class VehicleCollector {
                 if (!rawData['year'])
                     findings.push({ source: 'car-checking.com', field: 'year', value: yr, confidence: 95 });
             }
+            await ctx.close();
         }
         catch (err) {
             errors.push(`car-checking.com failed: ${err}`);
