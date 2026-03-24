@@ -75,6 +75,10 @@ export async function runNuclei(targets, _stackTechs, config) {
     // Rate limit and timeout
     args.push('-rl', '20', '-timeout', String(Math.min(config.timeoutPerTarget ?? 30, 30)), '-retries', '0', '-nc', '-jsonl', // JSON Lines output (nuclei v3.7.1 compatible)
     '-o', jsonOutPath);
+    // NOTE: nuclei exits 1 when no templates match (0 findings).
+    // The jsonl file is ONLY created on exit 0 (findings found).
+    // Exit 1 with no file = normal "no matches" — not an error.
+    // Exit 2 = no hosts could be matched.
     if (config.dryRun) {
         LOG.log(`[DRY_RUN] nuclei ${args.join(' ')}`);
         await fs.promises.unlink(urlsPath).catch(() => { });
@@ -95,7 +99,16 @@ export async function runNuclei(targets, _stackTechs, config) {
             await fs.promises.unlink(jsonOutPath).catch(() => { });
         }
         else {
-            LOG.log(`NucleiScanner: no JSON output (exit ${res.exitCode ?? '?'} = no findings, normal)`);
+            // Exit 1 = no templates matched = normal, no file created
+            // Exit 0 = findings found, file should exist
+            // Exit 2 = no hosts matched
+            const code = res.exitCode;
+            if (code === 0 || code === null) {
+                LOG.log(`NucleiScanner: no JSON output file (exit ${code ?? '?'})`);
+            }
+            else {
+                LOG.log(`NucleiScanner: no findings (exit ${code} = no template matches, normal)`);
+            }
         }
     }
     catch (err) {

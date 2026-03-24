@@ -1,0 +1,132 @@
+{
+  "programName": "Web.com Bug Bounty",
+  "platform": "bugcrowd",
+  "programUrl": "https://bugcrowd.com/engagements/webdotcom",
+  "severity": "MEDIUM",
+  "cvss": 6,
+  "reasons": [
+    "3 new asset(s) added to scope",
+    "1 asset(s) removed from scope"
+  ],
+  "reportDate": "2026-03-23",
+  "changes": [
+    {
+      "field": "rewards",
+      "oldValue": "(new)",
+      "newValue": ""
+    },
+    {
+      "field": "program_name",
+      "oldValue": "Web.com Bug Bounty",
+      "newValue": "Web.com Bug Bounty"
+    },
+    {
+      "field": "scope_assets",
+      "oldValue": "https://www.networksolutions.com/,https://www.bluehost.com/,https://www.hostgator.com/",
+      "newValue": "https://www.networksolutions.com/,https://www.bluehost.com/,https://www.hostgator.com/"
+    },
+    {
+      "field": "exclusions",
+      "oldValue": "",
+      "newValue": ""
+    },
+    {
+      "field": "reward_range",
+      "oldValue": "unknown",
+      "newValue": "unknown"
+    },
+    {
+      "field": "last_seen_at",
+      "oldValue": "2026-03-23T11:58:05.129Z",
+      "newValue": "2026-03-23T11:58:05.129Z"
+    },
+    {
+      "field": "source_snapshot_hash",
+      "oldValue": "fc9244893f2d",
+      "newValue": "fc9244893f2d"
+    }
+  ],
+  "newAssets": [
+    "https://www.networksolutions.com/",
+    "https://www.bluehost.com/",
+    "https://www.hostgator.com/"
+  ],
+  "removedAssets": [
+    "You say it. We build it. It's as easy as Web.com!"
+  ],
+  "rewardChange": "unknown",
+  "changedFields": [
+    "rewards",
+    "program_name",
+    "scope_assets",
+    "exclusions",
+    "reward_range",
+    "last_seen_at",
+    "source_snapshot_hash"
+  ],
+  "recommendations": [
+    "**Scope expansion detected** – 3 new asset(s) added. Review the new targets and begin reconnaissance. Priority targets: https://www.networksolutions.com/, https://www.bluehost.com/, https://www.hostgator.com/"
+  ],
+  "rawDiff": {
+    "platform": "bugcrowd",
+    "program_name": "Web.com Bug Bounty",
+    "program_url": "https://bugcrowd.com/engagements/webdotcom",
+    "scope_assets": [
+      "https://www.networksolutions.com/",
+      "https://www.bluehost.com/",
+      "https://www.hostgator.com/"
+    ],
+    "exclusions": [],
+    "reward_range": "unknown",
+    "reward_currency": "USD",
+    "payout_notes": "",
+    "allowed_techniques": [],
+    "prohibited_techniques": [],
+    "last_seen_at": "2026-03-23T11:58:05.129Z",
+    "source_snapshot_hash": "fc9244893f2d",
+    "rewards": [],
+    "prevProgram": {
+      "platform": "bugcrowd",
+      "program_name": "Unknown",
+      "program_url": "https://bugcrowd.com/engagements/webdotcom",
+      "scope_assets": [
+        "You say it. We build it. It's as easy as Web.com!"
+      ],
+      "exclusions": [
+        "You may not participate in this program if you are an employee or family member of an employee",
+        "or a current vendor or employee of such vendor of Newfold Digital and any of its subsidiaries. You are also prohibited from participating if you are (i) in a country or territory that is the target of U.S. sanctions (including Cuba",
+        "Iran",
+        "Syria",
+        "North Korea",
+        "or the Crimea region of Ukraine)",
+        "(ii) designated as a Specially Designated National or Blocked Person by the U.S. Department of the Treasury’s Office of Foreign Assets Control or otherwise owned",
+        "controlled",
+        "or acting on behalf of such a person or entity",
+        "or (iii) otherwise a prohibited party under U.S. trade and export control laws."
+      ],
+      "reward_range": "The program relies on CVSS to evaluate impact and determine reward allocations. It is essential to highlight that the priority of a vulnerability might be altered due to its likelihood or impact.",
+      "reward_currency": "USD",
+      "payout_notes": "",
+      "allowed_techniques": [],
+      "prohibited_techniques": [],
+      "last_seen_at": "You say it. We build it. It's as easy as Web.com!",
+      "source_snapshot_hash": "cae76d920051ceacd39e9c9bd9b3a85b5ec593b199e4749639f218f9231dae0c"
+    },
+    "diff": {
+      "oldHash": "18ab9478bfc024ab5ce9723b81b4143f233da63c0a89d8aeccd2156a63754f25",
+      "newHash": "4573a1d97bc2a33a0a7d369e0f43a2bd22506e807f787da40ea35095176f2307",
+      "addedFields": [
+        "rewards"
+      ],
+      "removedFields": [],
+      "changedFields": [
+        "program_name",
+        "scope_assets",
+        "exclusions",
+        "reward_range",
+        "last_seen_at",
+        "source_snapshot_hash"
+      ]
+    }
+  }
+}

@@ -1,22 +1,14 @@
-import { spawn } from 'child_process';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { VehicleCollector } from './dist/src/osint/collectors/VehicleCollector.js';
 import { writeFileSync } from 'fs';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const child = spawn('node', ['dist/src/osint/index.js', '--osint', 'vehicle', 'KY05YTJ'], {
-  cwd: __dirname,
-  stdio: ['ignore', 'pipe', 'pipe']
-});
+const collector = new VehicleCollector();
+const result = await collector.collect({ target: 'KY05YTJ' });
 
-let stdout = '';
-let stderr = '';
+writeFileSync('vehicle-test-out.json', JSON.stringify(result, null, 2));
 
-child.stdout.on('data', (d) => { stdout += d.toString(); });
-child.stderr.on('data', (d) => { stderr += d.toString(); });
+const advisoryTotal = result.findings.find(f => f.field === 'advisory_total_min');
+console.log('advisory_total_min:', advisoryTotal ? advisoryTotal.value : 'NOT FOUND');
 
-child.on('close', (code) => {
-  writeFileSync('vehicle-output.json', stdout);
-  writeFileSync('vehicle-error.txt', stderr);
-  console.log(`Exit: ${code}, stdout bytes: ${stdout.length}, stderr bytes: ${stderr.length}`);
-});
+const advisoryCosts = result.findings.filter(f => f.field.startsWith('cost__'));
+console.log('Individual advisory costs:', advisoryCosts.length);
+advisoryCosts.forEach(ac => console.log(' ', ac.field, '=', ac.value));

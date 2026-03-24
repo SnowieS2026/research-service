@@ -1,21 +1,25 @@
 {
-  "lastHeartbeatAt": "2026-03-23T10:44:00Z",
+  "lastHeartbeatAt": "2026-03-24T17:41:00Z",
   "pipeline": {
-    "lastSnapshotAt": "2026-03-23T10:41:39Z",
-    "lastGoodAt": "2026-03-23T10:41:39Z",
+    "lastSnapshotAt": "2026-03-24T12:10:00Z",
+    "lastGoodAt": "2026-03-24T06:11:00Z",
     "consecutiveEmpty": 0,
     "cronJobId": "67d75617-a49c-4527-a15a-04ce5ec23f60",
-    "notes": "Pipeline running normally. Auth scan completed (0 findings, 24905ms)."
+    "notes": "DISABLED. Manual scans in progress."
   },
   "discovery": {
-    "lastRunAt": "2026-03-22T10:18:05Z",
+    "lastRunAt": "2026-03-23T10:31:00Z",
     "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4",
-    "notes": "Daily discovery ran 22 Mar. No new programs found."
+    "notes": "DISABLED."
   },
   "heartbeatCycle": 3,
+  "viennaScan": {
+    "status": "complete",
+    "findings": 3,
+    "reportPath": "reports/2026-03-24/vienna-scan-report.md",
+    "note": "3 info findings (SSRF, 2x CORS)."
+  },
   "notes": [
-    "23 Mar 10:44 - Pipeline healthy. Snapshot from 3min ago. Auth scan done (0 findings).",
-    "22 Mar - Pipeline cron extended to 1800s, discovery to 600s.",
-    "22 Mar 10:18 - Daily discovery: 0 new programs. httpx slow (5min)."
+    "24 Mar 17:41 - Pipeline healthy. Snapshots 5.5h old (<8h threshold OK)."
   ]
 }

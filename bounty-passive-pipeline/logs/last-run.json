@@ -162,416 +162,420 @@
   ],
   "lastSnapshots": {
     "https://bugcrowd.com/user/sign_in": {
-      "hash": "4f91e3030f92ff65367415e44a0cef850f8eb8ed86475023997d5d9f22272a02",
-      "fetchedAt": "2026-03-23T09:41:00.567Z"
+      "hash": "ea4a86a22860a07314efeda4b9dbcd29a0b479af1171d8785a5e87cf49ed9fdf",
+      "fetchedAt": "2026-03-24T18:05:26.301Z"
     },
     "https://bugcrowd.com/engagements": {
-      "hash": "b16a2788a92e7b1651a39f465b8c1dda8ba3b5e61648a4b4a2adb0b03cfc56c2",
-      "fetchedAt": "2026-03-23T09:41:17.348Z"
+      "hash": "e2ef9a1cf445c85b28b89e22de4dca472633e8503315c43dd84c0161670533eb",
+      "fetchedAt": "2026-03-24T18:05:42.967Z"
     },
     "https://bugcrowd.com/engagements/featured": {
-      "hash": "e4757ad22a8d1bf3df554a63f1efb3b1b9a86f4630b95e719d42d69ff06042fb",
-      "fetchedAt": "2026-03-23T09:41:26.918Z"
+      "hash": "8ce4c7a3450ed2ff1849187a68d5828ba8cd17ca090d73ed409fbb584de10c8d",
+      "fetchedAt": "2026-03-24T18:05:52.148Z"
     },
     "https://bugcrowd.com/engagements/rapyd": {
-      "hash": "a619a0f2f8b99360b65b24f028968041e4860106e3034e2f4b31e50fd65b8991",
-      "fetchedAt": "2026-03-23T09:41:35.094Z"
+      "hash": "47366fa5a4f7e55fd17c69d12e7f8fbbc7d176a3fdd31034facbf89d03375c44",
+      "fetchedAt": "2026-03-24T18:05:55.370Z"
     },
     "https://bugcrowd.com/engagements/optus-mbb-og": {
-      "hash": "02453e74dcbc53d067728843876a40e228a35b41177460bba3e7dd95d154f5eb",
-      "fetchedAt": "2026-03-23T09:41:39.894Z"
+      "hash": "d5a77a9098f6891de647b18baaa9ad32a4e51ff0a1a3d43a1b660e630a77b56e",
+      "fetchedAt": "2026-03-24T18:06:00.115Z"
     },
     "https://bugcrowd.com/engagements/moovit-mbb-og": {
-      "hash": "a91e520f0f366071d4146375ab186de84473da46eaf494778fbc45d2d5517acf",
-      "fetchedAt": "2026-03-23T09:41:43.190Z"
+      "hash": "1933e032b783554b87d0cfd17f3fa961e91228ae042bd8b6610b214975d1d2a3",
+      "fetchedAt": "2026-03-24T18:06:03.428Z"
     },
     "https://bugcrowd.com/engagements/fireblocks-mbb-og": {
-      "hash": "72404c35254812af298e6f3618c66099fd946d85568370054dd7d36be0d16c3c",
-      "fetchedAt": "2026-03-23T09:41:46.420Z"
+      "hash": "b2c387458a8853cf5efdb59c047015d40e25a8beef803a58cc7e9948e29af5f2",
+      "fetchedAt": "2026-03-24T18:06:06.337Z"
     },
     "https://bugcrowd.com/engagements/luno-og": {
-      "hash": "404b170190d79f1a9e2fd9cc5fbe6ed93f6a060463fa7049cedddd31bc98ccc0",
-      "fetchedAt": "2026-03-23T09:41:49.732Z"
+      "hash": "7cb56f638b6e7594f43613ee90681a06aa21f377c8a0578384976a871b5b3558",
+      "fetchedAt": "2026-03-24T18:06:09.437Z"
     },
     "https://bugcrowd.com/engagements/webdotcom": {
-      "hash": "d8b3e1b5f3e790bff7d274040b982fdc76118ba42ad51e111573f4ef8115fab4",
-      "fetchedAt": "2026-03-23T09:41:56.486Z"
+      "hash": "0c2f90568715dba4366e29f5a0f242d5477a26ff8e88468fa42cc68cdc029794",
+      "fetchedAt": "2026-03-24T18:06:12.309Z"
     },
     "https://bugcrowd.com/engagements/hostgator-latam-bb": {
-      "hash": "78836d621cb9bcb0935add5e2936b31f09eead3b6240a2a801121b8a3180fecf",
-      "fetchedAt": "2026-03-23T09:42:00.185Z"
+      "hash": "9d0eb7fba0925da456ff465df26976641e6b119839c016baa38701391f4df768",
+      "fetchedAt": "2026-03-24T18:06:15.579Z"
     },
     "https://bugcrowd.com/engagements/blockchain-dot-com": {
-      "hash": "48a3d9ae39c640de641022006ede1ef5874121b016bb9d9ad5fc8cb474d6e467",
-      "fetchedAt": "2026-03-23T09:42:06.979Z"
+      "hash": "68f1042d31942747af8e1ec1006bfc9f4ab9def565df9ea453675d8d3da4c100",
+      "fetchedAt": "2026-03-24T18:06:21.755Z"
     },
     "https://bugcrowd.com/engagements/magiclabs-mbb-og": {
-      "hash": "ab23b7b76a3abf540e983b2baad675cefe9c86dc41621880015a1b181c1c5fc7",
-      "fetchedAt": "2026-03-23T09:42:13.544Z"
+      "hash": "281d672e873abfdcfb3e56d0d3a7d3fcefd3407a817a3c8efd1d533e8f8eef81",
+      "fetchedAt": "2026-03-24T18:06:28.167Z"
     },
     "https://bugcrowd.com/engagements/chime": {
-      "hash": "8c2062c4b8ade83db2301bdd7dda67f7a6482f7dfe1f6aa8c7d482e27da3c03b",
-      "fetchedAt": "2026-03-23T09:42:20.605Z"
+      "hash": "6da23705eb6bb8b92a875bd5dc92c4d000e01fb16e01dc9dde6eb3659437a2be",
+      "fetchedAt": "2026-03-24T18:06:35.400Z"
     },
     "https://bugcrowd.com/engagements/zendesk": {
-      "hash": "df1a4b0adef7433323dafb69c329d0af32b6b67346fbb5985f4cf1fef18ac310",
-      "fetchedAt": "2026-03-23T09:42:27.210Z"
+      "hash": "fca72a4914e10c4c22b8f6fe01368e5f3c1eda05da01379ff0d915ac150e5c63",
+      "fetchedAt": "2026-03-24T18:06:41.799Z"
     },
     "https://bugcrowd.com/engagements/okta": {
-      "hash": "03038beb0732784ed85c75b23e1224487bc33cb90360b008009eeea6f084eb55",
-      "fetchedAt": "2026-03-23T09:42:34.522Z"
+      "hash": "08e5b8fb2aff28b6be411b91789693238120382e78939f93939bd7373005feac",
+      "fetchedAt": "2026-03-24T18:06:44.779Z"
     },
     "https://bugcrowd.com/engagements/onetrust": {
-      "hash": "0198dc6f34324d65015e7bc0d925fa8d75d142a8e2479793e214378e5227530c",
-      "fetchedAt": "2026-03-23T09:42:38.064Z"
+      "hash": "3a238cfa82588b012869fd6c29b0d6e2128a3296ace5a5217adcd6a02ea95d69",
+      "fetchedAt": "2026-03-24T18:06:47.547Z"
     },
     "https://bugcrowd.com/engagements/snapnames": {
-      "hash": "9956a17e06dd850dc950807834bc6735ae82ebed0065ea12f43e553b2752622e",
-      "fetchedAt": "2026-03-23T09:42:41.316Z"
+      "hash": "a9831385beb332820b988040890bae659f13dea5ade8320e14260b225a767be5",
+      "fetchedAt": "2026-03-24T18:06:50.615Z"
     },
     "https://bugcrowd.com/engagements/bitgo-mobileapps-mbb-og": {
-      "hash": "f590814ce43eed924aadbf0e31117208cb2d6f44fe803f0d5994eecb146d42fa",
-      "fetchedAt": "2026-03-23T09:42:47.594Z"
+      "hash": "25734df5bbbc84ec1472356c8d695bc5882a676e219992aa95b24d100741a3b9",
+      "fetchedAt": "2026-03-24T18:06:53.210Z"
     },
     "https://bugcrowd.com/engagements/internetbrands-public": {
-      "hash": "541a3b0afd7e28ea03b99f001530411c58c69d90873749ca48f15355a9ffed6a",
-      "fetchedAt": "2026-03-23T09:42:50.439Z"
+      "hash": "0f8c9c63482ebea3826b466f77d38d7ad4a08f4236b55fa195b8f20c4820e8ee",
+      "fetchedAt": "2026-03-24T18:06:57.171Z"
     },
     "https://bugcrowd.com/engagements/ynab": {
-      "hash": "f134e8f9440ac8b8fb3aaf6837ccb32282d9a837babae786e9a577141b26f385",
-      "fetchedAt": "2026-03-23T09:42:53.670Z"
+      "hash": "ca1959e660b7404d3e9d1675de83b55f6d78c475a267436e3fda791b54d44169",
+      "fetchedAt": "2026-03-24T18:07:00.112Z"
     },
     "https://bugcrowd.com/engagements/bitso-mbb-og": {
-      "hash": "edce573ff43453fdd7525d23da8c185af6c86a571c9c35218b8185d6dce567a9",
-      "fetchedAt": "2026-03-23T09:42:56.870Z"
+      "hash": "6a1130c68c4ae3cd9a140a492a530a93472f8f24a69d94803cd378897425e9cb",
+      "fetchedAt": "2026-03-24T18:07:02.677Z"
     },
     "https://bugcrowd.com/engagements/city-of-vienna-mbb-og": {
-      "hash": "d7ee4a8f4b45b183e9daf3b4913a31c07587a11e9aed2083109dbc5081b925b0",
-      "fetchedAt": "2026-03-23T09:43:03.909Z"
+      "hash": "557b672e6f9d5af26a1486e4c215ef433c239a76c0aef243bc8376cac5554d6f",
+      "fetchedAt": "2026-03-24T18:07:09.126Z"
     },
     "https://bugcrowd.com/engagements/verisign": {
-      "hash": "c76b3257516f4d400b730bb8ce4113bc140171315d95c9265e6bc4de5139325d",
-      "fetchedAt": "2026-03-23T09:43:07.151Z"
+      "hash": "cab3b75f410b21b18337b9370ae0aa09f24ed0c33638087397630578578b6cdf",
+      "fetchedAt": "2026-03-24T18:07:12.246Z"
     },
     "https://bugcrowd.com/engagements/justeattakeaway": {
-      "hash": "1d32d6accae18ae083ebe03e85cc598aa53a9174c36384eb2f3a580b4ce12435",
-      "fetchedAt": "2026-03-23T09:43:10.892Z"
+      "hash": "51fe0b1297f245dfc42c0dc3354baea3f98470eeccb59d612266ff6c6f8a0ea1",
+      "fetchedAt": "2026-03-24T18:07:15.064Z"
     },
     "https://bugcrowd.com/engagements/underarmour": {
-      "hash": "489da5c96590b8edf5e0ac435aecbddd55485d9135889b1097fdddf1662fe37e",
-      "fetchedAt": "2026-03-23T09:43:18.117Z"
+      "hash": "5f7b07c16a3b8906bcf5e189ea5d90bf952f098010eb047ac95aab0edccaaf29",
+      "fetchedAt": "2026-03-24T18:07:17.785Z"
     },
     "https://bugcrowd.com/engagements/underarmour-corp": {
-      "hash": "05d823b9d9e996db6568283c0211ff613eb7ce514a767acd33565502d53f0ad5",
-      "fetchedAt": "2026-03-23T09:43:25.115Z"
+      "hash": "a5c09285ea4fd32249326b47f0e67541333ed6a01eccbb8906d09a2555ae1a50",
+      "fetchedAt": "2026-03-24T18:07:21.859Z"
     },
     "https://bugcrowd.com/engagements/octopus-deploy": {
-      "hash": "64c10c46b6eb29264d4642d29015c41f8f7426ae3e84872a6927381fa032fbcd",
-      "fetchedAt": "2026-03-23T09:43:28.327Z"
+      "hash": "144b9cf0560d168d91c333137552f87d927945b97dcc1289580a709e579de1ac",
+      "fetchedAt": "2026-03-24T18:07:24.830Z"
     },
     "https://bugcrowd.com/engagements/chef-vdp": {
-      "hash": "d133614cd002bc751d6d6a68844ccb58eeb8faf38a7d9544afe048cf362316a7",
-      "fetchedAt": "2026-03-23T09:43:34.360Z"
+      "hash": "d3fef65ecf929b5caaf9e4f8d13b807609ad64c9327d5dfa7e1a3e3a4b42ae34",
+      "fetchedAt": "2026-03-24T18:07:30.522Z"
     },
     "https://bugcrowd.com/engagements/corporatewebsites-vdp": {
-      "hash": "12e3d653603903b5e905e53e00692ff6cdd7eff126f495942e21c78e42c15204",
-      "fetchedAt": "2026-03-23T09:43:36.649Z"
+      "hash": "27b8630216c285dea0ededc786933fb6a93edcde27b4a83da16f03bc5f829fdd",
+      "fetchedAt": "2026-03-24T18:07:32.772Z"
     },
     "https://bugcrowd.com/engagements/corticon-vdp": {
-      "hash": "f75da6a3f22362e0e6bcacec83ec30e231b8a5e9f1d88623d72e0c84c781f805",
-      "fetchedAt": "2026-03-23T09:43:38.983Z"
+      "hash": "79c6b6581df4e3aa11a437a92b264d5b41410bd8b429fa8ec921c5c5f47f7a74",
+      "fetchedAt": "2026-03-24T18:07:34.781Z"
     },
     "https://bugcrowd.com/engagements/datadirect-vdp": {
-      "hash": "dd6bfbce3c63e1594c6f58da9401f16de45b46aa4871cbe22e9b261404479efd",
-      "fetchedAt": "2026-03-23T09:43:41.320Z"
+      "hash": "045c60fa514126309e752ad77509fdfcc8904aeef3a21ee4e6e94ed350e01934",
+      "fetchedAt": "2026-03-24T18:07:36.938Z"
     },
     "https://bugcrowd.com/engagements/devtools-vdp": {
-      "hash": "abbff39b8f56a51ec1964c01b4e46622a0fac4b88d1edcd97215455d443d59f6",
-      "fetchedAt": "2026-03-23T09:43:43.787Z"
+      "hash": "e15fd1394b199b2744c8dc1f935daff964170128263f2125770cd5d4e0d1bcdc",
+      "fetchedAt": "2026-03-24T18:07:39.137Z"
     },
     "https://bugcrowd.com/engagements/featured/progress-software-vdphub": {
-      "hash": "b646219274b54aa9f56ef2a149bf59f88f5d3af4219d360c984f617451ef09f3",
-      "fetchedAt": "2026-03-23T09:43:46.688Z"
+      "hash": "c443f1b4899b01d2878d9052ecd8e1e4fd922241d865964f020cab4ff291ebdc",
+      "fetchedAt": "2026-03-24T18:07:41.990Z"
     },
     "https://bugcrowd.com/engagements/kucoin": {
-      "hash": "7846f4212edb3196efec719026d489c5ef7f167dc4149d0ed490eb7f7c7b17b2",
-      "fetchedAt": "2026-03-23T09:43:53.727Z"
+      "hash": "298fdf17897f6fcc6383f2ae8c1c97fdeee380bab7ed1021c6ce8088fdd05758",
+      "fetchedAt": "2026-03-24T18:07:48.299Z"
     },
     "https://bugcrowd.com/engagements/tempusex-public-mbb-og": {
-      "hash": "ea30f94221e38133defae20b8fd70b89ff00b84359c905b3a3930513d816def9",
-      "fetchedAt": "2026-03-23T09:43:57.351Z"
+      "hash": "54392ff4e5d2b0ce440a072690c7468cffa24decb1b30a450b87ce699a008d55",
+      "fetchedAt": "2026-03-24T18:07:51.116Z"
     },
     "https://bugcrowd.com/engagements/featured/staff-picks": {
-      "hash": "6e0531318e4f49e5fe0b2e67f896e9b00fb38f18dc251caa300cc9027e562706",
-      "fetchedAt": "2026-03-23T09:44:03.828Z"
+      "hash": "7aad28505c27a21e13a3b21b588d8583ec89cf2e1c54256811597526935e386a",
+      "fetchedAt": "2026-03-24T18:07:57.290Z"
     },
     "https://bugcrowd.com/engagements/abmc-vdp": {
-      "hash": "c9e398ed844fb3d8620128f024a0cfdd5442c7593566a18701f1f310e0ef8266",
-      "fetchedAt": "2026-03-23T09:44:06.157Z"
+      "hash": "7119d9625ff2828703451b834ea0119aa8dfd3294ce9ed0b68f1ceecb5c013fd",
+      "fetchedAt": "2026-03-24T18:08:00.601Z"
     },
     "https://bugcrowd.com/engagements/bia-vdp": {
-      "hash": "56bd05d8849bee1ad5ec07c51964dd10c6abc320fe8228d16af4454ee99ff36c",
-      "fetchedAt": "2026-03-23T09:44:12.496Z"
+      "hash": "ddb530580d02b3f7b8295c800e492dcac40b657a4902f445faf8287ca91bed63",
+      "fetchedAt": "2026-03-24T18:08:02.988Z"
     },
     "https://bugcrowd.com/engagements/bie-vdp": {
-      "hash": "f29b7b2091e184b3cb2676ed0ec16702e91339b5a6c6f059114133ea293f7095",
-      "fetchedAt": "2026-03-23T09:44:15.232Z"
+      "hash": "b6e100ec06c3ff235d351a3c316c29cbfe521b590403d2d96d651c515295cbcb",
+      "fetchedAt": "2026-03-24T18:08:05.741Z"
     },
     "https://bugcrowd.com/engagements/blm-vdp": {
-      "hash": "ab64ab208e0d1cb54997664814dd1e22cf59344cf49c7ea2233f8427c4f17828",
-      "fetchedAt": "2026-03-23T09:44:21.541Z"
+      "hash": "c9411264f9409ab82e2f3356d559c70f09c379c2c30f573423df8937f4ca248b",
+      "fetchedAt": "2026-03-24T18:08:12.048Z"
     },
     "https://bugcrowd.com/engagements/cfpb-vdp": {
-      "hash": "56f5c41f7625b6395d7511bdf9316541f7aeda4d331f0048cb57a70e200fd3e4",
-      "fetchedAt": "2026-03-23T09:44:24.020Z"
+      "hash": "c0d11ac20bd35091ce9b0544ef02c0c3abe7a54c891f082d4e003d17d9fdf6e5",
+      "fetchedAt": "2026-03-24T18:08:14.908Z"
     },
     "https://bugcrowd.com/engagements/featured/cisa": {
-      "hash": "337f86c2158503bb5619876da3625053a62dbdc99cce9c1885d633dab2f34730",
-      "fetchedAt": "2026-03-23T09:44:27.407Z"
+      "hash": "331deb80e3cab939863c88ab02a5b1b78f90ecac92b87ce3789929f0cb9a794f",
+      "fetchedAt": "2026-03-24T18:08:17.969Z"
     },
     "https://hackerone.com/hacktivity/overview": {
-      "hash": "50f172f8daa21905cff5cf542a55a21ef03e325eeed89f34f8e20af44ac74a25",
-      "fetchedAt": "2026-03-23T09:45:00.451Z"
+      "hash": "a73f209719a603a4eeff62887ab5c03cdc5cba6f8c796c9e8cd7757314055a6d",
+      "fetchedAt": "2026-03-24T18:08:51.800Z"
     },
     "https://standoff365.com/en-US/": {
-      "hash": "4a5f82110ee75f33021edc2a72d87f2c08caee834600b30184914db422fbdef2",
-      "fetchedAt": "2026-03-22T10:14:34.075Z"
+      "hash": "22e49bbcc15364290ec803b0c68ae6fd4863a0252bf445eefea01bb6643937ba",
+      "fetchedAt": "2026-03-23T10:41:20.255Z"
     },
     "https://standoff365.com/en-US/ratings/": {
-      "hash": "5d3127010987f860cfd8232c9ace9994271247e0e4957a026c39410ae5954b89",
-      "fetchedAt": "2026-03-22T10:14:38.797Z"
+      "hash": "2cfc0cfba5e6b43b4d21ceb10f6192dacc05cd0dcfa43ad7f538411f9d6bdf12",
+      "fetchedAt": "2026-03-23T10:41:25.764Z"
     },
     "https://standoff365.com/en-US/ambassadors/": {
-      "hash": "6137cbb832f33500476b07c5444ec8af7d91b2f366b0beb74352bfa6d3fa7254",
-      "fetchedAt": "2026-03-22T10:14:47.346Z"
+      "hash": "ca25769d7b3b263a7da887dc2dce85eea3b709b4cc4f2f1025a7085464268e81",
+      "fetchedAt": "2026-03-23T10:41:34.016Z"
     },
     "https://bugcrowd.com/engagements/progress-software-vdphub": {
       "hash": "29e0558d896d0a1161a2419f55bf59085a7254e406544ac7c66d08ff75e825c4",
       "fetchedAt": "2026-03-20T22:34:48.047Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-programs?programs_prod%5Bpage%5D=1": {
-      "hash": "603974c92e742f9f61ce94da2d28b73c9d0598693ff6c6b621c2d4bd82f62fbc",
-      "fetchedAt": "2026-03-23T09:45:02.992Z"
+      "hash": "8b9d836272b196ae1f3d1b6dbf65ed9d90bfacf446b5af52ea50f8ed5c2dc1a0",
+      "fetchedAt": "2026-03-24T18:08:54.165Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-programs?programs_prod%5Bpage%5D=2": {
-      "hash": "f542032a0ab173a03264ae064f1bdc44b4faa34011b25b2b579b6884f437cb22",
-      "fetchedAt": "2026-03-23T09:45:05.149Z"
+      "hash": "06000e1d5a89b1407a3d3cd065718e18f6647933af94efd84b0156641c235dff",
+      "fetchedAt": "2026-03-24T18:08:56.200Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-programs?programs_prod%5Bpage%5D=3": {
-      "hash": "94d6d846c72e84f860a52dda2f3c3fc5ac3402f9b5efe049ec9c2acf9d84cf88",
-      "fetchedAt": "2026-03-23T09:45:07.210Z"
+      "hash": "bcd546cd70b4f0c68b6324f630fc653f06cdde831f920afb89bc67798f7848ef",
+      "fetchedAt": "2026-03-24T18:08:57.930Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-programs?programs_prod%5Bpage%5D=4": {
-      "hash": "aa687680e305b6b8a261b30f23f7a0732c274dbc36195ecbd6aee338d2864821",
-      "fetchedAt": "2026-03-23T09:45:09.122Z"
+      "hash": "377b051a79d87e598a4630399fbb45aae757e64da2845c48ac44c1af6b3b901a",
+      "fetchedAt": "2026-03-24T18:08:59.708Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-programs?programs_prod%5Bpage%5D=5": {
-      "hash": "8e9320197fd870f913301683246802f57d0b01a0436afca45a551feafde816c7",
-      "fetchedAt": "2026-03-23T09:45:11.242Z"
+      "hash": "8e24a26c6363fc87f213921fc028cd8303b59b5124127c410543bf09fccdd051",
+      "fetchedAt": "2026-03-24T18:09:01.558Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-programs?programs_prod%5Bpage%5D=6": {
-      "hash": "4592c9e0359bc1fc53dd8fefb1abce13edc8aae21775c4aa792616ac734fd797",
-      "fetchedAt": "2026-03-23T09:45:13.191Z"
+      "hash": "3eea043eb8f430224923ab34e9d7f2bdd2b70fea22626bc839cf72192566aeff",
+      "fetchedAt": "2026-03-24T18:09:03.409Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-programs?programs_prod%5Bpage%5D=7": {
-      "hash": "e44049e6c58d49e0bea4f9b09b1c59fb846ca23baf0fd2eea35bad4bc1cdf90b",
-      "fetchedAt": "2026-03-23T09:45:15.193Z"
+      "hash": "3b91d38034eb0503887a4d30811d2d80b69bbba7554b5ea34eb5a795f976d57f",
+      "fetchedAt": "2026-03-24T18:09:05.208Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-programs#cookies": {
-      "hash": "3659ee6346498c0d69b09ed87caf0eedc7b6072148567fb995ffdaa48c0da9e8",
-      "fetchedAt": "2026-03-22T18:44:25.407Z"
+      "hash": "d9715be79ad321fcb78d2e49e21d683140e759689d0652db02cfdeda41860860",
+      "fetchedAt": "2026-03-24T18:09:07.616Z"
     },
     "https://www.intigriti.com/": {
-      "hash": "b69cae87808e8a3ef69cde56b06b3dea8c980ad80d6dd514d04b59e6a18e3d67",
-      "fetchedAt": "2026-03-22T18:44:27.168Z"
+      "hash": "f12bd525b603efb66413791122d20a26a63e85c0c31e86edea98248d0c0f2168",
+      "fetchedAt": "2026-03-24T18:09:09.177Z"
     },
     "https://www.intigriti.com/product/bug-bounty": {
-      "hash": "2c5258b64185a3d0a08dcb9ef32fdf239d83737ecf132b395d740de4f3d39f29",
-      "fetchedAt": "2026-03-22T18:44:29.792Z"
+      "hash": "133788d9234dad6d461b2a2325ba72ed0cbf55df4c5daeddf063e5ee20d15954",
+      "fetchedAt": "2026-03-24T18:09:11.534Z"
     },
     "https://www.intigriti.com/product/pentest-as-a-service": {
-      "hash": "a4f351251dac901f766fcb55624dbd5822861963a0a3105fffed66645119d17b",
-      "fetchedAt": "2026-03-22T10:12:48.759Z"
+      "hash": "4403ef88d2b87cd65fca40106a93d17db4ba6b58e6b063118dea0055ae37e0ba",
+      "fetchedAt": "2026-03-24T18:09:13.731Z"
     },
     "https://www.intigriti.com/product/intigriti-vdp": {
-      "hash": "720e980db7cdb3a66e1aabbc9ca8a6b6c6baf2880bffad3b9798e1d0ed1e6f8a",
-      "fetchedAt": "2026-03-22T10:12:51.052Z"
+      "hash": "f9bb62e761f70201c6054c717f5a42b79180a7c8faf84e3e833141425ca71c78",
+      "fetchedAt": "2026-03-24T18:09:16.028Z"
     },
     "https://www.intigriti.com/product/live-hacking-events": {
-      "hash": "629ba163c5018811851f577a52dd7c1858862d6f4b6cb30e17752ac66977a4ae",
-      "fetchedAt": "2026-03-22T10:12:53.336Z"
+      "hash": "46b70ab66a4b8767191f954baf0b1c75fe0bca758f852df4d60773cadc6ed7e2",
+      "fetchedAt": "2026-03-24T18:09:18.332Z"
     },
     "https://www.intigriti.com/product/platform-tour": {
-      "hash": "ffc70be52bbe97db09fd865e888a2080e71aeb584e94b2bb881bcea2092754da",
-      "fetchedAt": "2026-03-22T10:12:55.083Z"
+      "hash": "af6a4bac26dcda115ac27cf7e1c202962c22a9b9cde798cdbbb60db2fa5f19a1",
+      "fetchedAt": "2026-03-24T18:09:20.009Z"
     },
     "https://www.intigriti.com/product#integrations": {
-      "hash": "083b16c46daf7783f209477b6614a4da73a0afbcd36765ea2cdf99b609ea929d",
-      "fetchedAt": "2026-03-22T10:12:56.873Z"
+      "hash": "58c94005d6c6d65a74b7c09f54a549be54145e971aef1641560836217090e788",
+      "fetchedAt": "2026-03-24T18:09:21.789Z"
     },
     "https://www.intigriti.com/tours": {
-      "hash": "7d51f54ebb7fe0270a46961c49645614bb273ef8265491984a4be0a1460c9d4d",
-      "fetchedAt": "2026-03-22T10:12:58.980Z"
+      "hash": "4eee17262441d9cda9dd76ebfeac7f4132d2048263a98694cc1997d29bcdef0c",
+      "fetchedAt": "2026-03-24T18:09:23.455Z"
     },
     "https://www.intigriti.com/changelog": {
-      "hash": "9f0b86d2500f30ff9271d534b5ca7e8ce310cb0cb354c41ad6766d3aff7d9dac",
-      "fetchedAt": "2026-03-22T10:13:00.378Z"
+      "hash": "a1dd295f4a73cd8c5764f0d675766735d1637a024bbec13d7549a13eeb50a5e1",
+      "fetchedAt": "2026-03-24T18:09:25.137Z"
     },
     "https://www.intigriti.com/solutions/retail": {
-      "hash": "ccd92110c4a0aa59a4627aa423a90e1df2cbb1fdbb480ef4a21a4fa097c70638",
-      "fetchedAt": "2026-03-22T10:13:02.246Z"
+      "hash": "cf26e3ebcb83aabcbb669cff5efce56ea5d59ff7bc0562fa258be76962803370",
+      "fetchedAt": "2026-03-24T18:09:26.990Z"
     },
     "https://www.intigriti.com/solutions/gaming-and-esports": {
-      "hash": "b31fd70ba3f755800e09bb6f48c4f2cfdc4c34ce146ac520d1b8614cdcd9241c",
-      "fetchedAt": "2026-03-22T10:13:04.050Z"
+      "hash": "d4f9a920c97f838b542cc8a19f3745db1cd75f4e10e962e306b47b08956791b4",
+      "fetchedAt": "2026-03-24T18:09:28.813Z"
     },
     "https://www.intigriti.com/solutions/finance": {
-      "hash": "8396de2ed6510bbc4d5b42afb02db57f9f57ebfbeb799b943ff52e073d3477f5",
-      "fetchedAt": "2026-03-22T10:13:05.825Z"
+      "hash": "8a210b19c55b17f111f60966b789d0e86ca8ed5c0c647319e86e627fd7eab5a1",
+      "fetchedAt": "2026-03-24T18:09:30.601Z"
     },
     "https://www.intigriti.com/solutions/travel-leisure-and-hospitality": {
-      "hash": "4fde15fe23fd9b2144ed035f3e555fda25f76351d33c428b5ba484ec46c6fe72",
-      "fetchedAt": "2026-03-22T10:13:07.545Z"
+      "hash": "c6e73b1c70e14f6e5fbb32afb43b90386786edb20b290be068fd461873c314db",
+      "fetchedAt": "2026-03-24T18:09:32.488Z"
     },
     "https://www.intigriti.com/solutions/saas": {
-      "hash": "b17a900c31fcecf960db8c4a9791fcaf341dcf3beaa1396c18759bfedf03381d",
-      "fetchedAt": "2026-03-22T10:13:09.570Z"
+      "hash": "36057545f7970a2f02029e4c69c651b44c379ab60e1cf9b55748e96cb5eac9cd",
+      "fetchedAt": "2026-03-24T18:09:34.282Z"
     },
     "https://www.intigriti.com/solutions/telecommunications": {
-      "hash": "56701dc5bcbfe26fde060359d3c4204bfb735dcecff0c7113a3665e94108d5c3",
-      "fetchedAt": "2026-03-22T10:13:11.345Z"
+      "hash": "75b32a22b3974640e3383f562d40d4b515b36c363d2721fdb77694acab7197e0",
+      "fetchedAt": "2026-03-24T18:09:35.816Z"
     },
     "https://www.intigriti.com/solutions/government-and-public-services": {
-      "hash": "6f6ba6475e845e79b789de872ff146aebfca2cd9771c64b3991ea8d83b480abe",
-      "fetchedAt": "2026-03-22T10:13:13.386Z"
+      "hash": "aa461e8b99f41fa2b354c80850e1c83564f4c3b3da338332f39281a5674ba639",
+      "fetchedAt": "2026-03-24T18:09:37.614Z"
     },
     "https://www.intigriti.com/solutions/transport-and-logistics": {
-      "hash": "2399fb84eba1b907a4f911080e7c3c3edbfd0a39189f46443692bdbf24292c3e",
-      "fetchedAt": "2026-03-22T10:13:15.203Z"
+      "hash": "bb74e8ec0f58e8ced8ed824813015bbb8eee21ebc5ca65f320b3dc6cdd3969d0",
+      "fetchedAt": "2026-03-24T18:09:39.331Z"
     },
     "https://www.intigriti.com/solutions/healthcare": {
-      "hash": "83fac560f3f2229e2980dfa5f3912d9e2a10f0460601574630b00e2728f79b50",
-      "fetchedAt": "2026-03-22T10:13:16.941Z"
+      "hash": "56f4a15ae25cc420926b231315ecd2b845db563452a9a564b3684654ca73561d",
+      "fetchedAt": "2026-03-24T18:09:43.448Z"
     },
     "https://www.intigriti.com/solutions/news-media-published-content": {
-      "hash": "07a9dd7e1b771f49838107e6f4493ec20a630966119e46b71197b851ba0754a2",
-      "fetchedAt": "2026-03-22T10:13:18.986Z"
+      "hash": "6544fc3e8de3c2d70b314f6506e591c17c04f6f142a7cf65ede25fad5fb395c8",
+      "fetchedAt": "2026-03-24T18:09:45.245Z"
     },
     "https://www.intigriti.com/solutions/ecommerce-and-transactional-websites": {
-      "hash": "e20a151c54f762fc58a07990354ebba48a177362b8c7212aad33c2015ac7f597",
-      "fetchedAt": "2026-03-22T10:13:21.211Z"
+      "hash": "16e46ae864b222fa2f2f49a75e2003cc705b1267115ef4e027a01a4da3897bcc",
+      "fetchedAt": "2026-03-24T18:09:47.033Z"
     },
     "https://www.intigriti.com/solutions/iot-and-b2b-ecosystems": {
-      "hash": "ad3e8a3fdf1af59efb8fc9840af3016d689fbc6e9b1856b965178654d7f58a31",
-      "fetchedAt": "2026-03-22T10:13:23.258Z"
+      "hash": "6891505eb1b8bda335e7a4f40ff86709f7cca4ccd8e9df10f404d13c2e8fbcc3",
+      "fetchedAt": "2026-03-24T18:09:48.782Z"
     },
     "https://www.intigriti.com/resources?filter=customer-stories": {
-      "hash": "7fa9a202fede011a2ed32932df77b44e124c97c1779ef02361e8a0f2daeacb42",
-      "fetchedAt": "2026-03-22T10:13:25.324Z"
+      "hash": "1fc8ac08102d65213c142e9d9ef0db3a9c74b21614f7a3f35427969013d7aa59",
+      "fetchedAt": "2026-03-24T18:09:50.432Z"
     },
     "https://www.intigriti.com/blog": {
-      "hash": "c637289e0faff8e10cad621e47545088502fee81a8337e5e1976b8cde199144d",
-      "fetchedAt": "2026-03-22T10:13:28.896Z"
+      "hash": "1fa5ac4d402d97277da19feb6f2a555e94fd2af8c337f967732cf3cdf0cae712",
+      "fetchedAt": "2026-03-24T18:09:52.540Z"
     },
     "https://www.intigriti.com/resources?filter=datasheets": {
-      "hash": "153cc166f58dc0d8aa155ad265421c4d0259bdce7b47f45f469fe881ac82855f",
-      "fetchedAt": "2026-03-22T10:13:30.280Z"
+      "hash": "6a882a1ca7130037e7bb7d933949691711ddaeae58e0041886cfb56475c96d30",
+      "fetchedAt": "2026-03-24T18:09:53.883Z"
     },
     "https://www.intigriti.com/resources?filter=ebooks": {
-      "hash": "e0c7c450b93ca2ea8b6dc26df5477a6ac3d7bbc4de551e9cfab4ac83ec7a1e81",
-      "fetchedAt": "2026-03-22T10:13:32.163Z"
+      "hash": "4c385d7bd8a77be0120dcdf37d513f52859799471d1aeaa31da8ea8ab2b06304",
+      "fetchedAt": "2026-03-24T12:10:07.107Z"
     },
     "https://www.intigriti.com/resources?filter=webinars": {
-      "hash": "e1fb4b389d8df1afbe888d84785c5afedf741294505e82d06ce6872dd3aa1b17",
-      "fetchedAt": "2026-03-22T10:13:34.192Z"
+      "hash": "922e29d840ab6be6d01aeb044db65bc80f1f076e15ce29033b7a3920722b91a2",
+      "fetchedAt": "2026-03-24T12:10:08.788Z"
     },
     "https://www.intigriti.com/resources?filter=shorts": {
-      "hash": "7949513390e30cd51d897bcc20b2633605c9ccc0e9c915c2a4f9152ee54d6917",
-      "fetchedAt": "2026-03-22T10:13:35.615Z"
+      "hash": "e0d7f1053af43004c696432aa9e27e097edd11a7892d9ea04663a444eb8a82ca",
+      "fetchedAt": "2026-03-24T12:10:10.110Z"
     },
     "https://www.intigriti.com/events": {
-      "hash": "fc2219ec567061bb65e8f72c773ef376150c59b6092ba68e23f5c54c108e770f",
-      "fetchedAt": "2026-03-22T10:13:37.928Z"
+      "hash": "34c6dee710295da6c7ad15393d45138196747c7a50cdaaf1ba822c99d887b301",
+      "fetchedAt": "2026-03-24T12:10:11.881Z"
     },
     "https://www.intigriti.com/pricing": {
-      "hash": "c8c94f02df1ce993b10b4e5a8e10abeb29d3eff60556fa2b1b0f6b55e33f173d",
-      "fetchedAt": "2026-03-22T10:13:39.504Z"
+      "hash": "697b4293a127a795a77244b4df5cd25200acfa65cd3841d46e5f76bcb800db63",
+      "fetchedAt": "2026-03-24T12:10:13.359Z"
     },
     "https://www.intigriti.com/about": {
-      "hash": "b1f0ffc559aebe4a8ba9252ab817d7f5f2c1164650ae48b32ecc5a9a705ff712",
-      "fetchedAt": "2026-03-22T10:13:41.568Z"
+      "hash": "947ffab0c20cc95f9db988c521c3e3a2f70128634d40b8e92dc7d582555cab87",
+      "fetchedAt": "2026-03-24T12:10:14.729Z"
     },
     "https://www.intigriti.com/leadership": {
-      "hash": "b410a4d2c6285b20aca5d52349f898fbd8d9d98f5a2673e38a582ec84610be5a",
-      "fetchedAt": "2026-03-22T10:13:43.290Z"
+      "hash": "346ca94d40803204c92c92df3e13ab13b413222ec85924a98d4c9661906e49aa",
+      "fetchedAt": "2026-03-24T12:10:16.446Z"
     },
     "https://www.intigriti.com/careers": {
-      "hash": "c86021ff5eeba7a0ebf3263524fbe7c759e74624b5905eca530476296c9e609e",
-      "fetchedAt": "2026-03-22T10:13:44.729Z"
+      "hash": "857a109f3f142f69b762f64b0f195f141e08c6d6032bdfea4e966ac324cfda28",
+      "fetchedAt": "2026-03-24T12:10:18.324Z"
     },
     "https://www.intigriti.com/contact": {
-      "hash": "f97fd3de8ad903169696201a13ae374d316e20d9fb99c7dcf52149df4a6c77e8",
-      "fetchedAt": "2026-03-22T10:13:46.806Z"
+      "hash": "3097cdf49c252612bb1a51d80df697f02fb49661674285a64a52ad031cba4fe5",
+      "fetchedAt": "2026-03-24T12:10:20.319Z"
     },
     "https://www.intigriti.com/researchers": {
-      "hash": "f552c32dd7b67fb0cf18240041f1c82c304344f513d71c9b2d8bf24272aa7954",
-      "fetchedAt": "2026-03-22T10:13:48.603Z"
+      "hash": "18de0c525d790db683beede28fbb859b9b794d27238fdfe0fc4703873dc08cf6",
+      "fetchedAt": "2026-03-24T12:10:21.825Z"
     },
     "https://www.intigriti.com/researchers/blog": {
-      "hash": "5364925dae3536f1d51b055b8a022337e73a83002227891bdd25eef57c58a939",
-      "fetchedAt": "2026-03-22T10:13:53.587Z"
+      "hash": "832b09e00616ff166da21d799332cf919de995399f070b5347aa216df94e5714",
+      "fetchedAt": "2026-03-24T12:10:25.916Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-programs": {
-      "hash": "64aa6460d35a165527ef66f27e30b72f10debb25f814e3e84c64a252328984ff",
-      "fetchedAt": "2026-03-22T10:13:55.810Z"
+      "hash": "44596f32578fd308dafedbb48e8fae83d2a065e7f9d6985ceab70dfe123870ab",
+      "fetchedAt": "2026-03-24T12:10:27.846Z"
     },
     "https://www.intigriti.com/researchers/hackademy": {
-      "hash": "3fbd78870a244313e69d7a0067adb10a3457d82e8b8a0b382db1d9aea9db613d",
-      "fetchedAt": "2026-03-22T10:13:57.889Z"
+      "hash": "d37cbceb4b554d2b31a72811f1b33deb1622b49738a6f5c8c22d2bcaee178501",
+      "fetchedAt": "2026-03-24T12:10:30.219Z"
     },
     "https://www.intigriti.com/researchers/bug-bounty-talks": {
-      "hash": "a583f84c42a69845dc3bfac65396b347931a748617bc383bffe8631cdc8ceea7",
-      "fetchedAt": "2026-03-22T10:14:00.983Z"
+      "hash": "5b0ae8223fc9fa92e2912b597269c78ec327454efa54f349a66b11842eb7d2f0",
+      "fetchedAt": "2026-03-24T12:10:32.997Z"
     },
     "https://www.intigriti.com/researchers/blog/hacking-tools/exploiting-broken-access-control-vulnerabilities": {
-      "hash": "7636e503fb02b85160acde5ded618130414b97e56002460e021fd4eedc363581",
-      "fetchedAt": "2026-03-22T10:14:02.577Z"
+      "hash": "3d21b428f97bfe42cb4273745930cd3eb7a01338e635140abdc9c931279fdc83",
+      "fetchedAt": "2026-03-24T06:10:54.067Z"
     },
     "https://www.intigriti.com/blog/news/intigriti-collaborates-with-portswigger-to-support-ethical-hacking-excellence": {
-      "hash": "840a776eafc0d8bb1a83e543fec1472cb6bfc342d9ca39dea3c0e098798e85ca",
-      "fetchedAt": "2026-03-22T10:14:04.682Z"
+      "hash": "b8a021495fd872ff3030ec9a41a248a1277b86be5706f6bd05af095eb18b1023",
+      "fetchedAt": "2026-03-24T12:10:36.690Z"
     },
     "https://www.intigriti.com/researchers/blog/hacker-spotlight/from-curiosity-to-critical-bugs-interview-with-marc-oliver-munz-c1phy": {
-      "hash": "395a7eef665c3537d478ed25bbe586089832e4c0de7c3ead13dbb78d85710ad9",
-      "fetchedAt": "2026-03-22T10:14:06.255Z"
+      "hash": "84608b992879c54f87325f517453accb7d1223958eccc9a09c63745bafcfd824",
+      "fetchedAt": "2026-03-24T12:10:38.775Z"
     },
     "https://www.intigriti.com/demo": {
-      "hash": "01740ddcf56419ffcbcbb7698975e2ddc4da4a79a1a69e00f9a63aa458a3d51e",
-      "fetchedAt": "2026-03-22T10:14:08.183Z"
+      "hash": "c469b5da7b1c92642d997bd749629270524fb946d11b0e02517011a81ed4f326",
+      "fetchedAt": "2026-03-24T12:10:40.658Z"
     },
     "https://www.intigriti.com/about/manifesto": {
-      "hash": "5c721baa5586e8f4669911ea3ac5ada2ec843795770244eeb59264208b44e0d2",
-      "fetchedAt": "2026-03-22T10:14:09.914Z"
+      "hash": "7e30c7076281bd7596b6826b106f13299acac8003e887140b668d85e038be2fb",
+      "fetchedAt": "2026-03-24T12:10:42.100Z"
     },
     "https://www.intigriti.com/csr": {
-      "hash": "daa0bc07c6b0fdc52c93695f36967dab00093964967ee4b658352d7147b53953",
-      "fetchedAt": "2026-03-22T10:14:11.547Z"
+      "hash": "78f14cd79149babcb50310b3aa02c6eb1d666746fb6e610c9d2c177ac12eed08",
+      "fetchedAt": "2026-03-24T12:10:43.771Z"
     },
     "https://www.intigriti.com/resources": {
-      "hash": "031af411b4dbf6d61a3c35ff20193c8ec54a948c95ed3eb8d472f5173f9e099b",
-      "fetchedAt": "2026-03-22T10:14:13.257Z"
+      "hash": "7186e395b1f26272a0ababd625a9dd4dba9614b07ce501d7c02bdf70a43e844b",
+      "fetchedAt": "2026-03-24T12:10:45.160Z"
     },
     "https://www.intigriti.com/companies": {
-      "hash": "8478d42fcaa3ad59d1d79ef0cdadbfb6e0e9ceddab6bbadb1ae5351b6ad814cb",
-      "fetchedAt": "2026-03-22T10:14:15.309Z"
+      "hash": "a8acf426777c3f276db49d75b4d3f36d3dde14d3d4c1db85c8d741fab7ddd267",
+      "fetchedAt": "2026-03-24T12:10:47.244Z"
     },
     "https://www.intigriti.com/partner": {
-      "hash": "45285c36e263bdc7709fd8e698114a72e0f45894f792604e491cb5bf3f948694",
-      "fetchedAt": "2026-03-22T10:14:16.898Z"
+      "hash": "1bb9a3245be1162536d590420da475835996244b50d9e907fc38061c7cb1066f",
+      "fetchedAt": "2026-03-24T12:10:48.869Z"
     },
     "https://bugbounty.standoff365.com/en-US/": {
-      "hash": "9cd0398044e4c1e8c4649392fd58cf5433755c4f89b1352240b74db79b923be8",
-      "fetchedAt": "2026-03-22T10:14:59.060Z"
+      "hash": "64e3ff2027b80075364b9ed27cb1c3fe990868ddb1c4f22f16c67e6bb5bf0d8b",
+      "fetchedAt": "2026-03-23T10:41:43.674Z"
+    },
+    "https://www.intigriti.com/researchers/blog/hacking-tools/0326-ctf-challenge-exploiting-dom-clobbering-csp-xss": {
+      "hash": "4c7bd734b076954ef853bbc726fd9ec3cf66cf7b01b74819b8681d96073e111a",
+      "fetchedAt": "2026-03-24T12:10:34.963Z"
     }
   },
   "version": 1
