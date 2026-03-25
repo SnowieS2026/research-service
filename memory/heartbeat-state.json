@@ -1,27 +1,33 @@
 {
-  "lastHeartbeatAt": "2026-03-25T14:34:00Z",
-  "heartbeatCycle": 12,
+  "lastHeartbeatAt": "2026-03-25T16:28:00Z",
+  "heartbeatCycle": 13,
   "pipeline": {
     "lastSnapshotAt": "2026-03-25T12:07:56Z",
     "lastGoodAt": "2026-03-25T12:07:56Z",
     "consecutiveEmpty": 0,
     "cronJobId": "67d75617-a49c-4527-a15a-04ce5ec23f60",
-    "notes": "ACTIVE. Manual mode. Sessions captured. Snapshots 3h22m old. All committed (5e28819c)."
+    "notes": "Pipeline in manual mode. Snapshots 4h20m old. Bugcrowd session valid. All committed (6146c0ea)."
   },
   "discovery": {
     "lastRunAt": "2026-03-23T10:31:00Z",
     "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4",
-    "notes": "DISABLED. Needs re-enabling for fresh program discovery."
+    "notes": "DISABLED. Re-enable for fresh program discovery."
   },
   "sessions": {
-    "bugcrowd": "logs/browser-sessions/bugcrowd-state.json - SnowieS",
-    "intigriti": "logs/browser-sessions/intigriti-state.json - humbles"
+    "bugcrowd": "logs/browser-sessions/bugcrowd-state.json - SnowieS - VALID",
+    "intigriti": "logs/browser-sessions/intigriti-state.json - BROKEN (API returns 403/404, session may have expired)"
+  },
+  "programs": {
+    "bugcrowd": ["cribl-vdp-ess (10 domains)", "ciscomeraki (5 domains)"],
+    "intigriti_accepted": ["Capital.com (earned EUR1000 HIGH)"],
+    "intigriti_requires_acceptance": ["Dropbox", "EURid", "Intigriti own program"]
   },
   "notes": [
-    "25 Mar 12:34 - Cycle 11. Full program scan: Just Eat Takeaway, Shopify, KuCoin, YNAB, Bitso, Luno, Fireblocks. All WAF-blocked. Committed (b9285bde).",
-    "25 Mar 14:13 - Bugcrowd + Intigriti sessions captured. Bugcrowd: SnowieS. Intigriti: humbles (Capital.com accepted, earned EUR1000 HIGH).",
-    "25 Mar 14:21 - api-capital.com accessible (200 SPA). manage.cribl-staging.cloud accessible (Next.js+CloudFront).",
-    "25 Mar 15:00 - Intigriti: 196 public programs (154 with bounties). Scope requires acceptance. Bugcrowd: Cribl VDP + Cisco Meraki. Committed (5e28819c).",
-    "25 Mar 15:29 - Cycle 12. Pipeline in manual mode. Git clean. No new reports. Sessions ready."
+    "25 Mar 12:34 - Cycle 11. All WAF-blocked. Committed (b9285bde).",
+    "25 Mar 14:13 - Sessions captured. Intigriti: humbles. Bugcrowd: SnowieS.",
+    "25 Mar 15:00 - 196 Intigriti programs. Scope needs acceptance. Committed (5e28819c).",
+    "25 Mar 15:53 - Cycle 12. Git clean. All clear.",
+    "25 Mar 16:18 - Bugcrowd scope scraped: cribl-vdp-ess (10d), ciscomeraki (5d). Scanned clean. Committed (6146c0ea).",
+    "25 Mar 16:28 - Cycle 13. Pipeline snapshots 4h20m old. Bugcrowd session valid. Intigriti BROKEN."
   ]
 }
