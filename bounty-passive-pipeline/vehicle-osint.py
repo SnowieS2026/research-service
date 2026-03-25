@@ -829,14 +829,30 @@ def collect_isitnicked(plate: str, pw) -> dict:
         inp.press("Enter")
         page.wait_for_timeout(4000)
         body = page.text_content("body") or ""
-        # Parse stolen check result
-        if re.search(r'stolen|marked stolen|reported stolen|stolen vehicle', body, re.I):
+        # Parse stolen check result — use specific patterns to avoid false positives
+        # from form labels that say "possible stolen vehicle" as a disclaimer
+        body = page.text_content("body") or ""
+        # Parse stolen check result — require EXPLICIT confirmation to avoid
+        # false positives from form disclaimers that say "possible stolen vehicle"
+        stolen_match = re.search(
+            r'(stolen\s*[:\-]?\s*(yes|true|confirmed|1)|'
+            r'(yes|true|confirmed|1)\s*[:\-]?\s*stolen|'
+            r'this\s+vehicle\s+is\s+(marked\s+)?stolen|'
+            r'vehicle\s+has\s+been\s+stolen)',
+            body, re.I
+        )
+        clear_match = re.search(
+            r'(not\s+stolen|no\s+stolen|clear|'
+            r'not\s+found|clear\s+of\s+stolen)',
+            body, re.I
+        )
+        if stolen_match and not clear_match:
             result["stolen"] = True
             result["findings"].append({
                 "source": "isitnicked.com", "field": "stolen_check",
-                "value": "Possible stolen vehicle — review carefully", "confidence": 70
+                "value": "Flagged as stolen — confirm with HPI/askmid", "confidence": 70
             })
-        elif re.search(r'not found|not stolen|clear|no stolen', body, re.I):
+        elif clear_match:
             result["findings"].append({
                 "source": "isitnicked.com", "field": "stolen_check",
                 "value": "Not flagged as stolen", "confidence": 60

@@ -5,7 +5,7 @@ a = Analysis(
     ['vehicle-osint.py'],
     pathex=[],
     binaries=[],
-    datas=[('C:\\Users\\bryan\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\playwright', 'playwright')],
+    datas=[],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
