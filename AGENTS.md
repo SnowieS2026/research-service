@@ -14,6 +14,9 @@ Before doing anything else:
 2. Read `USER.md` — this is who you're helping
 3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
 4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+5. Query the vector store (`agent_memory` collection) for any context relevant to this session's topics — use the question as the query. Example: *"Infinitara Superhuman bug bounty pipeline findings Capital.com"* → check if there are relevant hits worth incorporating.
+
+**Vector store is authoritative for semantic search.** Files are the source of truth for facts, decisions, and hard state. The vector store supplements with historical pattern matching and cross-session context.
 
 Don't ask permission. Just do it.
 
@@ -26,7 +29,17 @@ You wake up fresh each session. These files are your continuity:
 
 Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
 
-### 🧠 MEMORY.md - Your Long-Term Memory
+### 🧠 Vector Store — Semantic Memory (authoritative for search)
+
+The vector store (Chroma + Ollama nomic-embed-text) is a **semantic index over all your memory files**. It's NOT a replacement for files — files are the source of truth. The vector store is for fast pattern matching across sessions.
+
+- **Location:** `bounty-passive-pipeline/logs/vectorstore/` (Chroma, port 8000)
+- **Collections:** `agent_memory` (memory files, persona, research) + `pipeline_findings` (scans, snapshots, reports)
+- **Startup:** Query `agent_memory` at session start with the session's likely topics
+- **Resilience:** If vector store is unavailable, fall back to reading files directly
+- **Sync:** `sync-memory.ts` (agent memory) and `ingest-pipeline.ts` (pipeline outputs) keep the store fresh
+
+### 🗄️ MEMORY.md - Your Long-Term Memory
 
 - **ONLY load in main session** (direct chats with your human)
 - **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
@@ -44,6 +57,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
+- After updating memory files, sync to the vector store via `sync-memory.ts` or `ingest-pipeline.ts` so it's searchable next session.
 
 ## Red Lines
 
