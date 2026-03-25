@@ -1,0 +1,75 @@
+{
+  "slug": "kucoin",
+  "targets": [
+    "https://kucoin.com/",
+    "https://apps.apple.com/us/app/kucoin-buy-bitcoin-crypto/id1378956601?mt=8",
+    "https://play.google.com/store/apps/details?id=com.kubi.kucoin"
+  ],
+  "findings": [
+    {
+      "id": "96ef32db9a2d88a99dae652663408a7c813cc307498fc6e84e71cff19afe9be1",
+      "url": "kucoin.com",
+      "type": "nuclei",
+      "severity": "LOW",
+      "cvss": 3.5,
+      "tool": "nuclei",
+      "description": "Microsoft Azure Domain Tenant ID was detected.",
+      "evidence": "Template: \\http\\exposures\\configs\\azure-domain-tenant.yaml",
+      "createdAt": "2026-03-25T12:11:52.071Z",
+      "references": [],
+      "template": "\\http\\exposures\\configs\\azure-domain-tenant.yaml",
+      "matchedAt": "2026-03-25T12:11:52.071Z"
+    },
+    {
+      "id": "5b8abda7f5c55a4d6907d98c7378a5acc4fbcd63b00bfbed37a24bfd5f6a82d9",
+      "url": "https://apps.apple.com/us/app/kucoin-buy-bitcoin-crypto/id1378956601?mt=8",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "mt",
+      "description": "SSRF via parameter 'mt' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 404) from internal resource",
+      "createdAt": "2026-03-25T12:13:17.590Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "1607525ade806b5e5636c8d1f71fa03db99e2825e5adc0b81be3603ad85b5acf",
+      "url": "https://apps.apple.com/WebObjects/MZStore.woa/wa/viewFeature?id=1472048385",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "id",
+      "description": "SSRF via parameter 'id' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 404) from internal resource",
+      "createdAt": "2026-03-25T12:13:19.815Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "c5a359c647f615b801d4b7cc479d089fde91aaecbad50402693f1bac336360c8",
+      "url": "https://finance-app.itunes.apple.com/subscriptions/manage?context=deeplink",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "context",
+      "description": "SSRF via parameter 'context' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+      "createdAt": "2026-03-25T12:13:21.909Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    }
+  ],
+  "errors": [
+    "Auth: TypeError: Cannot read properties of undefined (reading 'find')"
+  ]
+}

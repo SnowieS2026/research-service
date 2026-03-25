@@ -1,0 +1,8 @@
+{
+  "targets": [
+    "https://www.ynab.com",
+    "https://api.youneedabudget.com"
+  ],
+  "findings": [],
+  "errors": []
+}

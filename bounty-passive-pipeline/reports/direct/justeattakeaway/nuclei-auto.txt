@@ -1,0 +1,2 @@
+[tech-detect:cloudflare] [http] [info] https://aus.api.just-eat.io/
+[waf-detect:cloudflare] [http] [info] https://aus.api.just-eat.io/

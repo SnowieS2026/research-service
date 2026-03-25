@@ -1,0 +1,62 @@
+{
+  "slug": "ynab",
+  "targets": [
+    "https://api.ynab.com",
+    "https://staging-api.bany.dev",
+    "https://support.ynab.com",
+    "https://www.ynab.com"
+  ],
+  "findings": [
+    {
+      "id": "aa37f577605e1e6fc4eebcf753100f3e85fd0fc2ebbd3725eced0b841eb0873d",
+      "url": "https://support.ynab.com/en_us/search?q=",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "q",
+      "description": "SSRF via parameter 'q' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 429) from internal resource",
+      "createdAt": "2026-03-25T12:29:59.341Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "aa37f577605e1e6fc4eebcf753100f3e85fd0fc2ebbd3725eced0b841eb0873d",
+      "url": "https://support.ynab.com/en_us/search?q=",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "q",
+      "description": "SSRF via parameter 'q' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 429) from internal resource",
+      "createdAt": "2026-03-25T12:30:01.363Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "ea825ac6e250cd47e8c8590d4102279d3817b7a1eb41583ad3a3d74094a5b1a3",
+      "url": "https://npms.io/search?q=ponyfill.",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "q",
+      "description": "SSRF via parameter 'q' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 200) from internal resource",
+      "createdAt": "2026-03-25T12:30:03.510Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    }
+  ],
+  "errors": [
+    "Auth: TypeError: Cannot read properties of undefined (reading 'find')"
+  ]
+}

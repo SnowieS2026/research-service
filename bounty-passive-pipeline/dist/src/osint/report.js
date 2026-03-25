@@ -106,7 +106,13 @@ export function generateOsintReport(result) {
         const motFailRisk = rawVal?.['motFailRisk'] ?? findFinding(result, 'mot_fail_risk') ?? 'unknown';
         const recommendation = rawVal?.['recommendation'] ?? findFinding(result, 'recommendation');
         // ── Parse MOT history from raw text ───────────────────────────────────────
-        const { motRows, mileageTimeline, testCentres } = parseMotHistory(rawText);
+        // (rawCarCheck and rawText already declared above in vehicle block)
+        const collectorTimeline = rawCarCheck?.['mileage_timeline'];
+        const { motRows, mileageTimeline: parsedTimeline, testCentres } = parseMotHistory(rawText);
+        // Prefer the collector-extracted timeline (from collectCarCheck's dedicated mileage parsing)
+        const mileageTimeline = collectorTimeline && collectorTimeline.length > 0
+            ? collectorTimeline.map(m => ({ year: 0, mileage: m })) // year=0 when from collector (no dates)
+            : parsedTimeline;
         // ── Parse advisories ──────────────────────────────────────────────────────
         const advisories = (rawAdvisories ?? []).map((a) => ({
             item: String(a.item ?? ''),
@@ -258,10 +264,12 @@ export function generateOsintReport(result) {
         if (mileageTimeline.length > 0) {
             lines.push('**Recorded Mileage Timeline:**');
             lines.push('');
-            lines.push('| Year | Mileage |');
+            lines.push('| # | Mileage |');
             lines.push('| --- | --- |');
-            mileageTimeline.forEach(entry => {
-                lines.push(`| ${entry.year} | ${entry.mileage.toLocaleString()} mi |`);
+            mileageTimeline.forEach((entry, i) => {
+                const mi = typeof entry === 'number' ? entry : entry.mileage;
+                const label = typeof entry === 'number' ? `#${i + 1}` : (entry.year > 0 ? String(entry.year) : `#${i + 1}`);
+                lines.push(`| ${label} | ${mi.toLocaleString()} mi |`);
             });
             lines.push('');
             const mileageAnalysis = analyseMileageTrend(mileageTimeline);
@@ -478,8 +486,9 @@ export function generateOsintReport(result) {
         const lines = rawText.split('\n');
         // MOT date pattern: dates like 01/02/2023 or 1/2/23
         const dateRe = /\b(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})\b/g;
-        // Mileage pattern: 5-6 digits followed by space and "mi" or "miles"
-        const mileageRe = /\b(\d{5,6})\s*(?:mi|miles|mileage)\b/i;
+        // Mileage pattern: 5-6 digits in common MOT data formats:
+        //   "123456 miles"  "123,456 mi"  "odometer 123456 miles"
+        const mileageRe = /\b(?:odometer\s*)?(\d{5,6})\s*(?:mi\.?|miles\b|mileage)/i;
         // Test centre pattern: location strings that follow a date+result
         const centreRe = /([A-Z][A-Za-z\s]+(?:Garage|MOT|Centre|Center|Test|Motor|Engineering|Ltd|Unit|Estate)[A-Za-z\s,0-9]*)/;
         // Try to find MOT result blocks — look for date + PASS/FAIL pattern
@@ -524,13 +533,15 @@ export function generateOsintReport(result) {
     }
     // ── Helper: detect mileage anomalies (rollbacks) ─────────────────────────────
     function detectMileageAnomaly(timeline) {
-        if (timeline.length < 2)
+        const entries = timeline.map(t => typeof t === 'number' ? { year: 0, mileage: t } : t);
+        if (entries.length < 2)
             return null;
-        for (let i = 1; i < timeline.length; i++) {
-            if (timeline[i].mileage < timeline[i - 1].mileage) {
-                const drop = timeline[i - 1].mileage - timeline[i].mileage;
+        // Work on the sorted (newest-first) array
+        for (let i = 1; i < entries.length; i++) {
+            if (entries[i].mileage < entries[i - 1].mileage) {
+                const drop = entries[i - 1].mileage - entries[i].mileage;
                 if (drop > 10000) {
-                    return `possible rollback: ${drop.toLocaleString()} mi drop between ${timeline[i - 1].year} and ${timeline[i].year}`;
+                    return `possible rollback: ${drop.toLocaleString()} mi drop between readings`;
                 }
             }
         }
@@ -550,6 +561,8 @@ export function generateOsintReport(result) {
                 years.push(yr);
             }
         }
+        if (years.length < 2)
+            return null;
         years.sort((a, b) => a - b);
         const gaps = [];
         for (let i = 1; i < years.length; i++) {
@@ -559,12 +572,106 @@ export function generateOsintReport(result) {
         }
         return gaps.length > 0 ? gaps.join('; ') : null;
     }
-    // ── Helper: analyse mileage trend ──────────────────────────────────────────────
+    // ── Helper: calculate a risk score for comparison table ───────────────────────
+    function calcRiskScore(opts) {
+        let score = 50; // base (0=best, 100=worst)
+        const { motPassed, motFailed, advisories, motExpiryDate, mileageTimeline } = opts;
+        // MOT pass rate: heavily penalise low pass rates
+        const total = motPassed + motFailed;
+        if (total > 0) {
+            const passRate = motPassed / total;
+            score -= Math.round(passRate * 30); // up to -30 for 100% pass
+        }
+        // Critical/high advisories
+        const critHigh = advisories.filter(a => a.severity === 'critical' || a.severity === 'high').length;
+        score += critHigh * 15; // +15 per critical/high
+        // Medium advisories
+        const medium = advisories.filter(a => a.severity === 'medium').length;
+        score += medium * 3; // +3 per medium
+        // MOT expiry proximity (within 2 months = dangerous)
+        if (motExpiryDate) {
+            const daysToExpiry = Math.floor((motExpiryDate.getTime() - Date.now()) / 86400000);
+            if (daysToExpiry < 0)
+                score += 20; // expired
+            else if (daysToExpiry < 60)
+                score += Math.round((60 - daysToExpiry) / 4); // up to +15 within 2 months
+        }
+        // Cloning detection — normalise timeline and check for drops
+        const normTimeline = mileageTimeline.map(t => typeof t === 'number' ? t : t.mileage);
+        for (let i = 1; i < normTimeline.length; i++) {
+            if (normTimeline[i] < normTimeline[i - 1]) {
+                score += 20;
+                break;
+            }
+        }
+        return Math.max(0, Math.min(100, score));
+    }
+    // ── Helper: build a comparison table from multiple vehicle results ──────────────
+    // Compares all vehicles scanned on the same day
+    function buildComparisonTable(allResults) {
+        const rows = [];
+        for (const r of allResults) {
+            if (r.query.type !== 'vehicle')
+                continue;
+            const rc = r.rawData['CarCheck'];
+            const rawText = rc?.['raw'] ?? '';
+            const passed = parseInt(String(rc?.['mot_passed'] ?? findFinding(r, 'mot_passed') ?? '0'));
+            const failed = parseInt(String(rc?.['mot_failed'] ?? findFinding(r, 'mot_failed') ?? '0'));
+            const expiryStr = rc?.['mot_expiry'] ?? findFinding(r, 'mot_expiry');
+            const expiryDate = expiryStr ? parseMotDate(expiryStr) : null;
+            const timeline = rc?.['mileage_timeline'] ?? [];
+            const mileage = timeline[0] ?? null;
+            const adLines = [];
+            for (const match of rawText.matchAll(/(?:^|\s)(Advice|Advisory)\s+([^\n]{10,200})/gim)) {
+                const item = match[2]?.trim();
+                if (item && item.length > 5)
+                    adLines.push(item);
+            }
+            const score = calcRiskScore({ motPassed: passed, motFailed: failed, advisories: adLines.map(a => ({ severity: 'medium' })), motExpiryDate: expiryDate, mileageTimeline: timeline });
+            const risk = score >= 65 ? '🔴 HIGH' : score >= 40 ? '🟡 MED' : '🟢 LOW';
+            rows.push({
+                plate: r.query.target,
+                score,
+                risk,
+                passRate: passed + failed > 0 ? Math.round((passed / (passed + failed)) * 100) : 0,
+                advisories: adLines.length,
+                expiry: expiryDate ? formatDate(expiryDate) : 'N/A',
+                mileage,
+            });
+        }
+        // Sort by risk score descending
+        rows.sort((a, b) => b.score - a.score);
+        const table = [];
+        table.push("### Tonight's Scans \u2014 Risk Comparison");
+        table.push('');
+        table.push('| Plate | Risk | Score | Pass Rate | Advisories | MOT Expiry | Mileage |');
+        table.push('| --- | --- | --- | --- | --- | --- | --- |');
+        for (const row of rows) {
+            const mi = row.mileage ? `${row.mileage.toLocaleString()} mi` : '—';
+            table.push(`| **${row.plate}** | ${row.risk} | ${row.score} | ${row.passRate}% | ${row.advisories} | ${row.expiry} | ${mi} |`);
+        }
+        table.push('');
+        return table.join('\n');
+    }
+    const allResults = [];
+    allResults.push(result);
+    const comparison = buildComparisonTable(allResults);
+    lines.push(comparison);
+    lines.push('');
+    // ── Helper: analyse mileage trend ─────────────────────────────────────────────
     function analyseMileageTrend(timeline) {
-        if (timeline.length < 2)
+        // Normalise to { year, mileage }[]
+        const entries = timeline.map(t => typeof t === 'number' ? { year: 0, mileage: t } : t);
+        if (entries.length < 2)
             return 'Insufficient data for trend analysis.';
-        const first = timeline[0];
-        const last = timeline[timeline.length - 1];
+        // If no year data, show just the range
+        const mileages = entries.map(e => e.mileage).sort((a, b) => a - b);
+        const spread = mileages[mileages.length - 1] - mileages[0];
+        if (entries.every(e => e.year === 0)) {
+            return `No year data available. Mileage readings (newest first): ${mileages.map(m => m.toLocaleString() + ' mi').join(' → ')} — spread of ${spread.toLocaleString()} mi across ${entries.length} MOT(s). Average reading: ${Math.round(mileages.reduce((a, b) => a + b, 0) / mileages.length).toLocaleString()} mi.`;
+        }
+        const first = entries[entries.length - 1]; // oldest (ascending year)
+        const last = entries[0]; // newest
         const yearsDiff = last.year - first.year || 1;
         const milesPerYear = Math.round((last.mileage - first.mileage) / yearsDiff);
         const avgAnnual = 10000;

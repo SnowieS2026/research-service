@@ -1,0 +1,59 @@
+{
+  "targets": [
+    "https://developers.shopify.com",
+    "https://partners.shopify.com"
+  ],
+  "findings": [
+    {
+      "id": "14da74c4146f1f156e98df656e073d43e5eb12876554d85ab40d301c3447bd7a",
+      "url": "https://partners.shopify.com/signup?locale=en\\",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "locale",
+      "description": "SSRF via parameter 'locale' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 429) from internal resource",
+      "createdAt": "2026-03-25T12:44:36.142Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "3c3a9f29b11743ad89c39641ba685d06f4048914d26eb39840c76b2aec833126",
+      "url": "https://www.youtube.com/watch?v=IRuQRRc8Npo\\u0026list=PLvQF73bM4-5Wr_LdFZkrXqD9hpGhl8pjo\\u0026index=16\\\\\\",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "v",
+      "description": "SSRF via parameter 'v' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 429) from internal resource",
+      "createdAt": "2026-03-25T12:44:38.721Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    },
+    {
+      "id": "3ac37b5b491a1438f1f99b52e289538aff76045cffc308eaa3cc1fef6f922378",
+      "url": "https://www.youtube.com/watch?v=IRuQRRc8Npo\\u0026list=PLvQF73bM4-5Wr_LdFZkrXqD9hpGhl8pjo\\u0026index=16\\",
+      "type": "ssrf",
+      "severity": "HIGH",
+      "cvss": 8.1,
+      "tool": "ssrf-scanner",
+      "param": "v",
+      "description": "SSRF via parameter 'v' – payload targeted internal resource",
+      "evidence": "Payload: http://localhost/ | Response received (status 429) from internal resource",
+      "createdAt": "2026-03-25T12:44:41.227Z",
+      "references": [
+        "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+        "https://portswigger.net/web-security/ssrf"
+      ]
+    }
+  ],
+  "errors": [
+    "Auth: TypeError: Cannot read properties of undefined (reading 'find')"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "targets": [
+    "https://gitlab.com",
+    "https://about.gitlab.com",
+    "https://docs.gitlab.com"
+  ],
+  "findings": [
+    {
+      "id": "764250f02a283d1c80077375ce4fd2c523e1105a15332e82deaafd863193bbab",
+      "url": "gitlab.com",
+      "type": "nuclei",
+      "severity": "LOW",
+      "cvss": 3.5,
+      "tool": "nuclei",
+      "description": "Microsoft Azure Domain Tenant ID was detected.",
+      "evidence": "Template: \\http\\exposures\\configs\\azure-domain-tenant.yaml",
+      "createdAt": "2026-03-25T12:47:34.487Z",
+      "references": [],
+      "template": "\\http\\exposures\\configs\\azure-domain-tenant.yaml",
+      "matchedAt": "2026-03-25T12:47:34.487Z"
+    }
+  ],
+  "errors": []
+}

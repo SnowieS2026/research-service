@@ -1,0 +1,2 @@
+[waf-detect:cloudflare] [http] [info] https://rest.api.eu-central-1.production.jet-external.com
+[tech-detect:cloudflare] [http] [info] https://rest.api.eu-central-1.production.jet-external.com

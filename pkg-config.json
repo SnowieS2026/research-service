@@ -1,0 +1,10 @@
+{
+  "name": "vehicle-osint",
+  "version": "1.0.0",
+  "pkg": {
+    "scripts": ["vehicle-osint.js"],
+    "targets": ["node18-win-x64"],
+    "public": ["@playwright/test", "playwright"],
+    "compress": "GZip"
+  }
+}

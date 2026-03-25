@@ -33,6 +33,12 @@ function parseArgs() {
     if (platformIdx !== -1 && args[platformIdx + 1]) {
         return { mode: 'single-platform', platform: args[platformIdx + 1], scan };
     }
+    const agentIdx = args.indexOf('--agent');
+    if (agentIdx !== -1 && args[agentIdx + 1]) {
+        return { mode: 'agent', agentName: args[agentIdx + 1] };
+    }
+    const targetsIdx = args.indexOf('--targets');
+    const targetUrls = targetsIdx !== -1 ? args.slice(targetsIdx + 1).filter((a) => !a.startsWith('--')) : undefined;
     const osintIdx = args.indexOf('--osint');
     if (osintIdx !== -1 && args[osintIdx + 1]) {
         return { mode: 'osint', osintType: args[osintIdx + 1], osintTarget: args[osintIdx + 2] };
@@ -421,9 +427,33 @@ switch (cli.mode) {
             LOG.error(`Cannot determine platform for URL: ${url}`);
             process.exit(1);
         }
-        cfg.PLATFORM_ADAPTERS = [platform];
-        cfg.TARGET_PROGRAMS = [url];
-        await runPipeline(cfg, cli);
+        // OKTA has wildcard scope — expand to real subdomains directly
+        const oktaTargets = cli.scan
+            ? [
+                'https://okta.com',
+                'https://www.okta.com',
+                'https://login.okta.com',
+                'https://accounts.okta.com',
+                'https://KMq.okta.com',
+                'https://developer.okta.com',
+                'https://clients.okta.com',
+                'https://goto.okta.com',
+                'https://preview.okta.com',
+                'https://dev.okta.com',
+                'https://okta-cx.com',
+                'https://www.okta-cx.com',
+                'https://KMq.okta-cx.com',
+            ]
+            : [];
+        if (oktaTargets.length > 0) {
+            LOG.log(`OKTA wildcard scope: scanning ${oktaTargets.length} expanded targets`);
+            await runActiveScan(cfg, oktaTargets);
+        }
+        else {
+            cfg.PLATFORM_ADAPTERS = [platform];
+            cfg.TARGET_PROGRAMS = [url];
+            await runPipeline(cfg, cli);
+        }
         break;
     }
     case 'single-platform': {
@@ -458,6 +488,84 @@ switch (cli.mode) {
         }
         const result = await runOsint({ type, target, flags: [] });
         await deliverOsintResult(result);
+        break;
+    }
+    case 'agent': {
+        // Run a single agent or all agents via AgentRunner
+        const { CoordinatorAgent } = await import('./agents/CoordinatorAgent.js');
+        const { DiscoveryAgent } = await import('./agents/DiscoveryAgent.js');
+        const { BrowserAgent } = await import('./agents/BrowserAgent.js');
+        const { ScannerAgent } = await import('./agents/ScannerAgent.js');
+        const { ReporterAgent } = await import('./agents/ReporterAgent.js');
+        const { RepairAgent } = await import('./agents/RepairAgent.js');
+        const { BountyDB } = await import('./storage/BountyDB.js');
+        const PIPELINE_ROOT = process.cwd();
+        let db;
+        try {
+            db = new BountyDB(path.join(PIPELINE_ROOT, 'logs', 'bounty.db'));
+        }
+        catch { /* no DB */ }
+        async function shutdownAgents(agents) {
+            await Promise.allSettled(agents.map((a) => a.stop()));
+            db?.close();
+        }
+        async function createAllAgents() {
+            const coordinator = new CoordinatorAgent({ watchIntervalMs: 1_800_000, db, pipelineRoot: PIPELINE_ROOT });
+            const discovery = new DiscoveryAgent(PIPELINE_ROOT);
+            const browser = new BrowserAgent(PIPELINE_ROOT);
+            const scanner = new ScannerAgent(PIPELINE_ROOT);
+            const reporter = new ReporterAgent(PIPELINE_ROOT);
+            const repair = new RepairAgent(PIPELINE_ROOT);
+            await coordinator.setup();
+            await discovery.setup();
+            await browser.setup();
+            await scanner.setup();
+            await reporter.setup();
+            await repair.setup();
+            coordinator.start();
+            discovery.start();
+            browser.start();
+            scanner.start();
+            reporter.start();
+            repair.start();
+            return [coordinator, discovery, browser, scanner, reporter, repair];
+        }
+        if (cli.agentName) {
+            let dbInstance;
+            try {
+                dbInstance = new BountyDB(path.join(PIPELINE_ROOT, 'logs', 'bounty.db'));
+            }
+            catch { /* no DB */ }
+            const agents = {
+                coordinator: new CoordinatorAgent({ pipelineRoot: PIPELINE_ROOT, db: dbInstance }),
+                discovery: new DiscoveryAgent(PIPELINE_ROOT),
+                browser: new BrowserAgent(PIPELINE_ROOT),
+                scanner: new ScannerAgent(PIPELINE_ROOT),
+                reporter: new ReporterAgent(PIPELINE_ROOT),
+                repair: new RepairAgent(PIPELINE_ROOT)
+            };
+            const agent = agents[cli.agentName];
+            if (!agent) {
+                LOG.error(`Unknown agent: ${cli.agentName}`);
+                process.exit(1);
+            }
+            await agent.setup();
+            agent.start();
+            LOG.log(`Agent '${cli.agentName}' started`);
+            await new Promise((resolve) => {
+                process.on('SIGTERM', async () => { await agent.stop(); resolve(); });
+                process.on('SIGINT', async () => { await agent.stop(); resolve(); });
+            });
+        }
+        else {
+            // Run all agents
+            const allAgents = await createAllAgents();
+            LOG.log('All agents started in unified mode');
+            await new Promise((resolve) => {
+                process.on('SIGTERM', async () => { await shutdownAgents(allAgents); resolve(); });
+                process.on('SIGINT', async () => { await shutdownAgents(allAgents); resolve(); });
+            });
+        }
         break;
     }
 }

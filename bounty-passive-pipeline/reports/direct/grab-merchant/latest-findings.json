@@ -1,0 +1,36 @@
+{
+  "targets": [
+    "https://merchant.grab.com"
+  ],
+  "findings": [
+    {
+      "id": "33d9f27a9994cd1e2ee8f0581bb8584cfec19126be153db97043a3c990fef424",
+      "url": "merchant.grab.com",
+      "type": "nuclei",
+      "severity": "LOW",
+      "cvss": 3.5,
+      "tool": "nuclei",
+      "description": "Checks whether cookies in the HTTP response contain the HttpOnly attribute. If the HttpOnly flag is set, it means that the cookie is HTTP-only\n",
+      "evidence": "Template: \\http\\misconfiguration\\cookies-without-httponly.yaml",
+      "createdAt": "2026-03-25T13:00:49.374Z",
+      "references": [],
+      "template": "\\http\\misconfiguration\\cookies-without-httponly.yaml",
+      "matchedAt": "2026-03-25T13:00:49.374Z"
+    },
+    {
+      "id": "e401e8667ee267ce416bf4b1939ea27097c73376339407e77c016564471e2889",
+      "url": "merchant.grab.com",
+      "type": "nuclei",
+      "severity": "LOW",
+      "cvss": 3.5,
+      "tool": "nuclei",
+      "description": "Checks whether cookies in the HTTP response contain the Secure attribute. If the Secure flag is set, it means that the cookie can only be transmitted over HTTPS\n",
+      "evidence": "Template: \\http\\misconfiguration\\cookies-without-secure.yaml",
+      "createdAt": "2026-03-25T13:00:49.374Z",
+      "references": [],
+      "template": "\\http\\misconfiguration\\cookies-without-secure.yaml",
+      "matchedAt": "2026-03-25T13:00:49.374Z"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,6 @@
+[waf-detect:cloudflare] [http] [info] https://www.just-eat.co.uk/
+[oidc-detect] [http] [info] https://www.just-eat.co.uk/.well-known/openid-configuration
+[fingerprinthub-web-fingerprints:landmark-dus] [http] [info] https://www.just-eat.co.uk/
+[intercom] [http] [info] https://www.just-eat.co.uk/
+[tech-detect:next.js] [http] [info] https://www.just-eat.co.uk/
+[tech-detect:cloudflare] [http] [info] https://www.just-eat.co.uk/

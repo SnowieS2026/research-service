@@ -1,0 +1,1 @@
+[waf-detect:safedog] [http] [info] https://takeawaypay.azurefd.net/en/takeawaypay/

@@ -1,0 +1,9 @@
+{
+  "targets": [
+    "https://api.justeat-int.com",
+    "https://aus.api.just-eat.io",
+    "https://uk.api.just-eat.io"
+  ],
+  "findings": [],
+  "errors": []
+}

@@ -1,30 +1,40 @@
 {
-  "lastHeartbeatAt": "2026-03-24T20:06:00Z",
+  "lastHeartbeatAt": "2026-03-25T11:34:00Z",
+  "heartbeatCycle": 10,
   "pipeline": {
-    "lastSnapshotAt": "2026-03-24T12:10:00Z",
-    "lastGoodAt": "2026-03-24T06:11:00Z",
+    "lastSnapshotAt": "2026-03-25T02:05:28Z",
+    "lastGoodAt": "2026-03-25T02:05:28Z",
     "consecutiveEmpty": 0,
     "cronJobId": "67d75617-a49c-4527-a15a-04ce5ec23f60",
-    "notes": "DISABLED. Manual scans in progress."
+    "notes": "DISABLED. Manual scans active. Pipeline snapshots fresh."
   },
   "discovery": {
     "lastRunAt": "2026-03-23T10:31:00Z",
     "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4",
     "notes": "DISABLED."
   },
-  "heartbeatCycle": 4,
-  "viennaScan": {
-    "status": "complete",
-    "findings": 3,
-    "reportPath": "reports/2026-03-24/vienna-scan-report.md",
-    "note": "3 info findings (SSRF, 2x CORS)."
-  },
   "vehicleSources": {
     "status": "updated",
-    "commit": "ba3d156e",
-    "note": "6 sources now active. KY05YTJ returned 22 findings, 0 errors."
+    "commit": "8f4efb0c",
+    "note": "2 solid sources: GovUK DVLA + car-checking.com. All 30+ other sources tested dead or blocked."
+  },
+  "vehicleScansToday": {
+    "count": 7,
+    "plates": ["KY05YTJ", "SG07XBE", "SP08VEY", "SP56GTZ", "SE07JAU", "AJ05RCF", "SW08OPD"],
+    "best": "AJ05RCF (Mondeo LX - 95% pass rate, LOW)",
+    "worst": "SW08OPD (Fusion - expired MOT, structural corrosion, HIGH)"
   },
   "notes": [
-    "24 Mar 20:06 - All clean. Pipeline disabled. Vehicle sources updated with 6 sources. Git clean."
+    "25 Mar 01:22 - Full pipeline rewrite into 6-agent async system committed (7080dbde)",
+    "25 Mar 01:54 - OKTA scan run. HIGH SSRF via App Store redirect_uri confirmed. Azure tenant ID found. Manual OAuth redirect_uri test shows accounts.okta.com accepts cloud-metadata URLs (needs full auth flow to confirm). Report: reports/osint/2026-03-25/okta-bug-bounty-report.md",
+    "25 Mar 02:00 - Python okta-probe.py finding live hosts: prod/preview/status/console/portal/ws/pki/sec.okta.com + drapp*.okta.com subdomains (was still running when killed)",
+    "25 Mar 02:30 - okta-scan.ts and okta-probe.py written. BugcrowdParser.ts fixed with WILDCARD_EXPANDS for okta.com. All committed.",
+    "25 Mar 03:09 - okta-bug-bounty-report.md written. All OKTA scan tools committed (7a337ce4). Pipeline snapshots fresh (<1h old). New source files staged: okta-probe.py, okta-quick-probe.py, okta-scan.ts, okta-bug-bounty-report.md",
+    "25 Mar 04:09 - Cycle 4. Pipeline snapshots 2h old, still healthy. Many uncommitted dist/log/pkg artifacts — build outputs and runtime logs. No new reports or pipeline issues detected.",
+    "25 Mar 05:09 - Cycle 5. Pipeline healthy. Only vehicle-osint build artifacts uncommitted (exe, py, spec). No new HIGH/CRITICAL reports.",
+    "25 Mar 06:09 - Cycle 6. New reports check: okta-bug-bounty-report.md (already known, 02:39). 82 total report files for today. Pipeline snapshots 4h old (manual mode, expected). All clear.",
+    "25 Mar 06:42 - Cycle 7. 84 reports now (2 new standoff365 unknown reports). Pipeline healthy. No HIGH/CRITICAL. All clear.",
+    "25 Mar 07:12 - Cycle 8. Still 84 reports. No new findings. Pipeline in manual mode, 5h snapshot age expected. All clear.",
+    "25 Mar 08:35 - Cycle 9. 5 report files for today (okta-bug-bounty-report + 1774404 scan results). Pipeline healthy. No new HIGH/CRITICAL. All clear."
   ]
 }

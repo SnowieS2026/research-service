@@ -1,0 +1,37 @@
+{
+  "targets": [
+    "https://developer.grab.com",
+    "https://grab.com"
+  ],
+  "findings": [
+    {
+      "id": "dff3965ed322eeb2dc09149bce0fbaad97dcda9145f2a5f49c8942c6337938a5",
+      "url": "grab.com",
+      "type": "nuclei",
+      "severity": "LOW",
+      "cvss": 3.5,
+      "tool": "nuclei",
+      "description": "Microsoft Azure Domain Tenant ID was detected.",
+      "evidence": "Template: \\http\\exposures\\configs\\azure-domain-tenant.yaml",
+      "createdAt": "2026-03-25T12:54:12.019Z",
+      "references": [],
+      "template": "\\http\\exposures\\configs\\azure-domain-tenant.yaml",
+      "matchedAt": "2026-03-25T12:54:12.019Z"
+    },
+    {
+      "id": "85e3ffa82d9b133c11be50853d5cc918b9b18c3b77f4e753c29238912aac0630",
+      "url": "developer.grab.com",
+      "type": "nuclei",
+      "severity": "CRITICAL",
+      "cvss": 10,
+      "tool": "nuclei",
+      "description": "Detects exposed JSON configuration files containing sensitive information including API keys, access tokens, AWS credentials, database configurations, base URLs, file paths, and application settings. These files often contain production configurations and credentials that should not be publicly accessible.\n",
+      "evidence": "Template: \\http\\exposures\\configs\\config-json-exposure-fuzz.yaml",
+      "createdAt": "2026-03-25T12:54:12.019Z",
+      "references": [],
+      "template": "\\http\\exposures\\configs\\config-json-exposure-fuzz.yaml",
+      "matchedAt": "2026-03-25T12:54:12.019Z"
+    }
+  ],
+  "errors": []
+}
