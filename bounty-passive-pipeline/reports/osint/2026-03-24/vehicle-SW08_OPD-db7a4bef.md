@@ -1,16 +1,16 @@
-# OSINT Report – vehicle: KY05YTJ
+# OSINT Report – vehicle: SW08 OPD
 
-**Generated:** 2026-03-24T21:41:56.249Z  
-**Duration:** 25s  
+**Generated:** 2026-03-24T23:28:33.401Z  
+**Duration:** 23s  
 **Flags:** (none)  
 
 ## Summary
 
 | Collector | Findings | Errors |
 | --- | --- | --- |
-| VehicleCollector | 25 | 0 |
+| VehicleCollector | 22 | 0 |
 
-**Total unique findings:** 25  
+**Total unique findings:** 22  
 **Total errors:** 1  
 
 ### Confidence Distribution
@@ -18,42 +18,39 @@
 | Level | Count |
 | --- | --- |
 | 🟢 High (≥80) | 16 |
-| 🟡 Medium (50-79) | 9 |
+| 🟡 Medium (50-79) | 6 |
 | ⚪ Low (<50) | 0 |
 
 ## Key Findings
 
 ### GovUK-DVLA
 
-- **🟢 [95%]** `make`: VAUXHALL
-- **🟢 [95%]** `colour`: BLACK
+- **🟢 [95%]** `make`: FORD
+- **🟢 [95%]** `colour`: BLUE
 
 ### car-checking.com
 
-- **🟢 [95%]** `mot_expiry`: 21/04/2026
-- **🟢 [95%]** `make`: VAUXHALL
-- **🟢 [95%]** `year`: 2005
-- **🟢 [90%]** `mot_pass_rate`: 75%
-- **🟢 [90%]** `mot_passed`: 18
+- **🟢 [95%]** `mot_expiry`: 02/02/2025
+- **🟢 [95%]** `make`: FORD
+- **🟢 [95%]** `year`: 2008
+- **🟢 [90%]** `mot_pass_rate`: 68%
+- **🟢 [90%]** `mot_passed`: 13
 - **🟢 [90%]** `mot_failed`: 6
-- **🟢 [90%]** `model`: Model CORSA SXI CDTI Colour BLACK Year of manufacture
+- **🟢 [90%]** `model`: Model FUSION STYLE Colour BLUE Year of manufacture
 
 ### VehicleValuation
 
-- **🟢 [90%]** `make`: VAUXHALL
+- **🟢 [90%]** `make`: FORD
 - **🟢 [90%]** `model`: 
 - **🟢 [90%]** `year`: 0
-- **🟢 [90%]** `advisory_total_min`: 600
-- **🟢 [90%]** `advisory_total_max`: 2325
+- **🟢 [90%]** `advisory_total_min`: 440
+- **🟢 [90%]** `advisory_total_max`: 1830
 - **🟢 [85%]** `cost__Brake_pipe_corroded__high__soon`: £100-£250
 - **🟢 [85%]** `cost__Sub-frame_/_chassis_corroded__high__when_due`: £200-£1000
 - **🟡 [70%]** `mot_fail_risk`: medium
-- **🟡 [70%]** `cost__Tyre(s)_worn_close_to_legal_limit__medium__soon`: £90-£155
 - **🟡 [70%]** `cost__Tyre(s)_slightly_damaged_/_perishing__low__soon`: £40-£80
-- **🟡 [70%]** `cost__Brake_hose_corroded_/_perished__medium__when_due`: £60-£140
-- **🟡 [70%]** `cost__Brake_cable_damaged__medium__when_due`: £60-£140
-- **🟡 [70%]** `cost__Generalised_corrosion_/_rust__medium__when_due`: £50-£500
-- **🟡 [70%]** `cost__Headlamp_lens_defective__low__advisory`: £0-£60
+- **🟡 [70%]** `cost__Suspension_arm_/_bush_corroded__medium__when_due`: £100-£300
+- **🟡 [70%]** `cost__General_wear_—_monitoring_advised__low__advisory`: £0-£200
 
 ### Parkers
 
@@ -66,18 +63,18 @@
 
 ## 🚗 Vehicle OSINT Report
 
-**Target:** KY05YTJ  
-**Generated:** 2026-03-24T21:41:56.249Z  
+**Target:** SW08 OPD  
+**Generated:** 2026-03-24T23:28:33.401Z  
 **Flags:** (none)  
 
 ### 1. Vehicle Header Card
 
 ```
-  Registration: KY05YTJ
-  Make: VAUXHALL
-  Model: Model CORSA SXI CDTI Colour BLACK Year of manufacture
-  Year: 2005
-  Colour: BLACK
+  Registration: SW08 OPD
+  Make: FORD
+  Model: Model FUSION STYLE Colour BLUE Year of manufacture
+  Year: 2008
+  Colour: BLUE
   Body Type: N/A
   Fuel Type: Unknown
   Engine Size: N/A
@@ -89,14 +86,14 @@
 ```
   ✔ Registered with DVLA (data unavailable)
   ✔ Tax status: data unavailable
-  ✔ MOT status: Valid (expires 21/04/2026)
+  ✔ MOT status: Expired (expires 02/02/2025)
   ✔ Last V5 issued date: not found in record
 ```
 
 ### 3. MOT History Intelligence
 
-**Current MOT Status:** ✔ Valid
-**MOT Expiry Date:** 21/04/2026
+**Current MOT Status:** 🔴 Expired
+**MOT Expiry Date:** 02/02/2025
 
 **Failure Patterns:**  No advisories recorded on last MOT.
 
@@ -151,7 +148,7 @@ No geographic data available from MOT records.
 
 ### 13. Analyst Summary
 
-VAUXHALL Model CORSA SXI CDTI Colour BLACK Year of manufacture (2005) in BLACK has an valid MOT expiring 21/04/2026 with 18 pass(es) and 6 fail(s) on record. No advisories were raised on the most recent MOT, suggesting the vehicle is in reasonable mechanical condition. Overall risk profile is rated **LOW**.
+FORD Model FUSION STYLE Colour BLUE Year of manufacture (2008) in BLUE has an expired MOT expiring 02/02/2025 with 13 pass(es) and 6 fail(s) on record. No advisories were raised on the most recent MOT, suggesting the vehicle is in reasonable mechanical condition. Overall risk profile is rated **LOW**.
 
 ### 14. Overall OSINT Risk Rating
 
@@ -167,13 +164,13 @@ VAUXHALL Model CORSA SXI CDTI Colour BLACK Year of manufacture (2005) in BLACK h
 {
   "VehicleCollector": {
     "DVLA": {
-      "Registration number": "KY05 YTJ",
-      "Make": "VAUXHALL",
-      "Colour": "BLACK"
+      "Registration number": "SW08 OPD",
+      "Make": "FORD",
+      "Colour": "BLUE"
     },
     "CarCheck": {
-      "raw_text": "\n\n<iframe src=\"\"https://www.googletagmanager.com/ns.html?id=GTM-MCR9JCH\"\"\n    height=\"\"0\"\" width=\"\"0\"\" style=\"\"display:none;visibility:hidden\"\"></iframe>\n\n          HOME  VERIFY YOUR VEHICLE  CONTACT US Login  Your Report is Ready Now! Click on the button below to Download it!  Download  Report date: 24-03-2026 VAUXHALL  CORSA SXI CDTI  YOUR CAR REPORT IS READY!  Download Your Report  Download  Damage Check  Mileage History  Car Features  Finance Check  Stolen Check  Owners History General Information  Make VAUXHALL Model CORSA SXI CDTI Colour BLACK Year of manufacture 2005 Top speed mph 0 to 60 MPH 13.5seconds Gearbox MANUAL 5 GEARS Engine & fuel consumption Power 70 BHP Torque 1750 rpm Engine capacity 1248 cc Cylinders 4 Fuel type DIESEL Consumption city 49.6 mpg Consumption extra urban 74.3 mpg Consumption combined 62.8 mpg CO2 emission  g/km CO2 label D   MOT history MOT expiry date 21/04/2026 MOT pass rate \n                                                                                            75 %\n                                                                                     MOT passed 18 Failed MOT tests 6 Total advice items 57 Total items failed 10 \n                                            MOT #1\n                                         MOT test number:  Result: \n                                                                                                        Pass\n                                                 \n                                            MOT #2\n                                         MOT test number:  Result: \n                                                                                                        Fail\n                                                 Failure Anti-roll bar linkage ball joint excessively worn  both front (5.3.4 (a) (i)) Failure Nearside Front Coil spring fractured or broken (5.3.1 (b) (i)) \n                                            MOT #3\n                                         MOT test number:  Result: \n                                                                                                        Pass\n                                                 Advice Nearside Rear Tyre slightly damaged/cracking or perishing  185/55-15 (5.2.3 (d) (ii)) Advice Offside Rear Tyre worn close to legal limit/worn on edge  2.7mm scrubbing inner edge (5.2.3 (e)) \n                                            MOT #4\n                                         MOT test number:  Result: \n                                                                                                        Pass\n                                                 \n                                            MOT #5\n                                         MOT test number:  Result: \n                                                                                                        Pass\n                                                 Advice Nearside Rear Tyre slightly damaged/cracking or perishing (5.2.3 (d) (ii)) Advice Offside Rear Tyre slightly damaged/cracking or perishing (5.2.3 (d) (ii)) Advice Brake pipe corroded, covered in grease or other material  Both front to rear (1.1.11 (c)) Advice Nearside Rear Brake hose has slight corrosion to ferrule (1.1.12 (f) (i)) Advice Offside Rear Brake hose has slight corrosion to ferrule (1.1.12 (f) (i)) Advice Nearside Brake cable damaged but not to excess (1.1.15 (a)) Advice Offside Brake cable damaged but not to excess (1.1.15 (a)) Advice Front Sub-frame corroded but not seriously weakened (5.3.3 (b) (i)) Advice Rear Sub-frame corroded but not seriously weakened (5.3.3 (b) (i)) Advice Nearside Headlamp lens slightly defective (4.1.1 (b) (i)) Advice Offside Headlamp lens slightly defective (4.1.1 (b) (i)) Advice Various areas of corrosion to underside of vehicle and suspension components \n                                            MOT #6\n                                         MOT test number:  Result: \n                                                                                                        Pass\n                                                 Advice Nearside Front Tyre worn close to legal limit/worn on edge  185/55-15 (5.2.3 (e)) Advice Nearside Rear Tyre slightly damaged/cracking or perishing (5.2.3 (d) (ii)) Advice Offside Rear Tyre slightly damaged/cracking or perishing (5.2.3 (d) (ii)) Advice Nearside Brake cable damaged but not to excess (1.1.15 (a)) Advice Offside Brake cable damaged but not to excess (1.1.15 (a)) Advice Brake pipe corroded, covered in grease or other material  Both front to rear (1.1.11 (c)) Advice Nearside Rear Brake hose has slight corrosion to ferrule (1.1.12 (f) (i)) Advice Offside Rear Brake hose has slight corrosion to ferrule (1.1.12 (f) (i)) Advice Front Headlamp lens slightly defective  Both (4.1.1 (b) (i)) Advice Various areas of surface corrosion to underside of vehicle and suspension components \n                                            MOT #7\n                      ",
-      "mot_expiry": "21/04/2026"
+      "raw_text": "\n\n<iframe src=\"\"https://www.googletagmanager.com/ns.html?id=GTM-MCR9JCH\"\"\n    height=\"\"0\"\" width=\"\"0\"\" style=\"\"display:none;visibility:hidden\"\"></iframe>\n\n          HOME  VERIFY YOUR VEHICLE  CONTACT US Login  Your Report is Ready Now! Click on the button below to Download it!  Download  Report date: 24-03-2026 FORD  FUSION STYLE  YOUR CAR REPORT IS READY!  Download Your Report  Download  Damage Check  Mileage History  Car Features  Finance Check  Stolen Check  Owners History General Information  Make FORD Model FUSION STYLE Colour BLUE Year of manufacture 2008 Top speed 101mph 0 to 60 MPH 14.5seconds Gearbox MANUAL 5 GEARS Engine & fuel consumption Power 79.1 BHP Torque 3500 rpm Engine capacity 1388 cc Cylinders 4 Fuel type PETROL Consumption city 33.2 mpg Consumption extra urban 53.3 mpg Consumption combined 43.5 mpg CO2 emission 154 g/km CO2 label G   MOT history MOT expiry date 02/02/2025 MOT pass rate \n                                                                                            68 %\n                                                                                     MOT passed 13 Failed MOT tests 6 Total advice items 74 Total items failed 34 \n                                            MOT #1\n                                         MOT test number:  Result: \n                                                                                                        Pass\n                                                 Advice Nearside Fuel Pipe/s corroded  front to rear () Advice Nearside Rear Inner Tyre slightly damaged/cracking or perishing  wall/also cracks in tread pattern (5.2.3 (d) (ii)) Advice Offside Rear Tyre slightly damaged/cracking or perishing  cracks in tread pattern (5.2.3 (d) (ii)) Advice Front Sub-frame corroded but not seriously weakened (5.3.3 (b) (i)) Advice Front Suspension arm corroded but not seriously weakened  both sdes arms (5.3.3 (b) (i)) Advice Front Power steering pipe/hose slightly corroded (2.1.5 (g) (i)) Advice Nearside Rear Brake pipe corroded, covered in grease or other material  front to rear (1.1.11 (c)) \n                                            MOT #2\n                                         MOT test number:  Result: \n                                                                                                        Fail\n                                                 Advice Nearside Fuel Pipe/s corroded  front to rear () Advice Nearside Rear Inner Tyre slightly damaged/cracking or perishing  wall/also cracks in tread pattern (5.2.3 (d) (ii)) Advice Offside Rear Tyre slightly damaged/cracking or perishing  cracks in tread pattern (5.2.3 (d) (ii)) Advice Front Sub-frame corroded but not seriously weakened (5.3.3 (b) (i)) Advice Front Suspension arm corroded but not seriously weakened  both sdes arms (5.3.3 (b) (i)) Advice Front Power steering pipe/hose slightly corroded (2.1.5 (g) (i)) Advice Nearside Rear Brake pipe corroded, covered in grease or other material  front to rear (1.1.11 (c)) Failure Offside Front Outer Drive shaft joint constant velocity boot split or insecure, no longer prevents the ingress of dirt  clip (6.1.7 (g) (ii)) Failure Nearside Front Coil spring fractured or broken  broken in 2 places (5.3.1 (b) (i)) Failure Offside Rear Outer Suspension component mounting prescribed area excessively corroded significantly reducing structural strength  outer sill (5.3.6 (a) (i)) \n                                            MOT #3\n                                         MOT test number:  Result: \n                                                                                                        Pass\n                                                 Advice Gearbox mounting defective () Advice Nearside Rear Tyre slightly damaged/cracking or perishing (5.2.3 (d) (ii)) Advice Nearside Rear Suspension component pin or bush slightly worn  Axle bush (5.3.4 (a) (i)) Advice Offside Rear Suspension component pin or bush slightly worn  Axle bush (5.3.4 (a) (i)) Advice Offside Front  Driveshaft bearing has slight play \n                                            MOT #4\n                                         MOT test number:  Result: \n                                                                                                        Fail\n                                                 Advice Gearbox mounting defective () Advice Nearside Rear Tyre slightly damaged/cracking or perishing (5.2.3 (d) (ii)) Advice Hydraulic brake cylinder corroded but not seriously weakened  Both rear (1.1.16 (d) (i)) Advice Nearside Rear Suspension component pin or bush slightly worn  Axle bush (5.3.4 (a) (i)) Advice Offside Rear Suspension component pin or bush slightly worn  Axle bush (5.3.4 (a) (i)) Advice Offside Front  Driveshaft bearing has slight play Failure Nearside Rear Brake pipe excessively corroded (1.1.11 (c)) Failure Offside Rear Brake pipe excessively corroded (1.1.11 (c)) Failure Nearside Front Brake hose ferrule excessively corroded (1.1.12 (f) (i",
+      "mot_expiry": "02/02/2025"
     },
     "Motors": {
       "raw_text": "\n  \n\n\n  \n    \n      \n        \n      \n    \n\n    Sorry, page not found\n\n    But don't let that stop you from finding your next vehicle. Start fresh here...\n\n    \n      \n        Homepage\n      \n      \n        Used cars\n      \n      \n        Used vans\n      \n    \n\n    Or discover vehicles in a whole new way\n\n    Get the new Cazoo app - Powered by MOTORSDownload appScan QR codeto download\n\n    Error type: 404\n\n  \n\n\n\n\n\n  \n    \n  <iframe src=\"https://ss.motors.co.uk/ns.html?id=GTM-T98L657B\" height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe>\n  \n\n\n  \n  \n\n  \n\n  \n  \n  \n\n  !!m && (function () {\n    if (m && m.CazooAppCard) {\n      m.renderComponent(m.CazooAppCard, {\n        qrCodeSrc: '/motors-cdn/ux/images/cazoo/cazoo-card-404-qr-code.png',\n        linkSection: 'cazoo 404',\n        utmCampaign: '404_page',\n        url: 'https://cazoo.onelink.me/5HE8/1ffi8bc7'\n      }, 'cazoo-app-card');\n    }\n  })();\n\n  \n\n\n\n\nwindow.addEventListener(\"beforeunload\",function(){window.dataLayer.push({event:\"beforeunload\"})});"
@@ -188,30 +185,20 @@ VAUXHALL Model CORSA SXI CDTI Colour BLACK Year of manufacture (2005) in BLACK h
     },
     "MIB": {},
     "valuation": {
-      "make": "VAUXHALL",
+      "make": "FORD",
       "model": "",
       "year": 0,
       "currentValueMin": 700,
       "currentValueMax": 840,
       "valueWithAdvisoriesMin": 300,
-      "valueWithAdvisoriesMax": 420,
+      "valueWithAdvisoriesMax": 532,
       "expectedMonthsRemaining": 3,
       "motFailRisk": "medium",
-      "totalAdvisoryCostMin": 600,
-      "totalAdvisoryCostMax": 2325,
-      "recommendation": "Repair costs (up to £2,325) exceed half the car's value. Negotiate hard or avoid."
+      "totalAdvisoryCostMin": 440,
+      "totalAdvisoryCostMax": 1830,
+      "recommendation": "Repair costs (up to £1,830) exceed half the car's value. Negotiate hard or avoid."
     },
     "advisory_costs": [
-      {
-        "item": "Tyre(s) worn close to legal limit",
-        "severity": "medium",
-        "urgency": "soon",
-        "estimatedCostMin": 90,
-        "estimatedCostMax": 155,
-        "labourHours": 0.5,
-        "notes": "£80-140 per tyre + £10-15 fitting. MOT pass but retest due soon. Replace proactively.",
-        "partsIncluded": true
-      },
       {
         "item": "Tyre(s) slightly damaged / perishing",
         "severity": "low",
@@ -223,6 +210,16 @@ VAUXHALL Model CORSA SXI CDTI Colour BLACK Year of manufacture (2005) in BLACK h
         "partsIncluded": true
       },
       {
+        "item": "Suspension arm / bush corroded",
+        "severity": "medium",
+        "urgency": "when_due",
+        "estimatedCostMin": 100,
+        "estimatedCostMax": 300,
+        "labourHours": 1.5,
+        "notes": "£50-150 per arm + £80-150 labour. Dangerous if恶化.",
+        "partsIncluded": false
+      },
+      {
         "item": "Brake pipe corroded",
         "severity": "high",
         "urgency": "soon",
@@ -230,26 +227,6 @@ VAUXHALL Model CORSA SXI CDTI Colour BLACK Year of manufacture (2005) in BLACK h
         "estimatedCostMax": 250,
         "labourHours": 1.5,
         "notes": "£60-150 for pipe + £80-120 labour. Can spread fast. Replace before MOT retest.",
-        "partsIncluded": false
-      },
-      {
-        "item": "Brake hose corroded / perished",
-        "severity": "medium",
-        "urgency": "when_due",
-        "estimatedCostMin": 60,
-        "estimatedCostMax": 140,
-        "labourHours": 1,
-        "notes": "£30-60 per hose + £50-80 labour. Replace in pairs.",
-        "partsIncluded": false
-      },
-      {
-        "item": "Brake cable damaged",
-        "severity": "medium",
-        "urgency": "when_due",
-        "estimatedCostMin": 60,
-        "estimatedCostMax": 140,
-        "labourHours": 1,
-        "notes": "£30-60 per cable + £50-80 labour. Affects handbrake operation.",
         "partsIncluded": false
       },
       {
@@ -263,23 +240,13 @@ VAUXHALL Model CORSA SXI CDTI Colour BLACK Year of manufacture (2005) in BLACK h
         "partsIncluded": false
       },
       {
-        "item": "Generalised corrosion / rust",
-        "severity": "medium",
-        "urgency": "when_due",
-        "estimatedCostMin": 50,
-        "estimatedCostMax": 500,
-        "labourHours": 2,
-        "notes": "£50-300 for treatment + £50-200 for underseal. Monitor for spread.",
-        "partsIncluded": true
-      },
-      {
-        "item": "Headlamp lens defective",
+        "item": "General wear — monitoring advised",
         "severity": "low",
         "urgency": "advisory",
         "estimatedCostMin": 0,
-        "estimatedCostMax": 60,
-        "labourHours": 0.25,
-        "notes": "£0-30 for bulb/connector. £30-60 for lens unit. MOT fail if affecting light output.",
+        "estimatedCostMax": 200,
+        "labourHours": 0,
+        "notes": "Not a failure. Monitor at next service. Cost depends on what it turns out to be.",
         "partsIncluded": false
       }
     ]
@@ -290,13 +257,13 @@ VAUXHALL Model CORSA SXI CDTI Colour BLACK Year of manufacture (2005) in BLACK h
 ## Recommendations
 
 High-confidence findings to investigate further:
-- make → VAUXHALL (GovUK-DVLA)
-- colour → BLACK (GovUK-DVLA)
-- mot_expiry → 21/04/2026 (car-checking.com)
-- make → VAUXHALL (car-checking.com)
-- year → 2005 (car-checking.com)
-- mot_pass_rate → 75% (car-checking.com)
-- mot_passed → 18 (car-checking.com)
+- make → FORD (GovUK-DVLA)
+- colour → BLUE (GovUK-DVLA)
+- mot_expiry → 02/02/2025 (car-checking.com)
+- make → FORD (car-checking.com)
+- year → 2008 (car-checking.com)
+- mot_pass_rate → 68% (car-checking.com)
+- mot_passed → 13 (car-checking.com)
 - mot_failed → 6 (car-checking.com)
-- model → Model CORSA SXI CDTI Colour BLACK Year of manufacture (car-checking.com)
-- make → VAUXHALL (VehicleValuation)
+- model → Model FUSION STYLE Colour BLUE Year of manufacture (car-checking.com)
+- make → FORD (VehicleValuation)
