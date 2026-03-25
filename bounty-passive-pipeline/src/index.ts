@@ -22,7 +22,8 @@ import fs from 'fs';
 const LOG = new Logger('Pipeline');
 
 interface CliArgs {
-  mode: 'watch' | 'once' | 'single-program' | 'single-platform' | 'discover-only' | 'list-platforms' | 'osint';
+  mode: 'watch' | 'once' | 'single-program' | 'single-platform' | 'discover-only' | 'list-platforms' | 'osint' | 'agent';
+  agentName?: string;
   programUrl?: string;
   platform?: string;
   scan?: boolean;
@@ -55,6 +56,11 @@ function parseArgs(): CliArgs {
   const platformIdx = args.indexOf('--platform');
   if (platformIdx !== -1 && args[platformIdx + 1]) {
     return { mode: 'single-platform', platform: args[platformIdx + 1], scan };
+  }
+
+  const agentIdx = args.indexOf('--agent');
+  if (agentIdx !== -1 && args[agentIdx + 1]) {
+    return { mode: 'agent', agentName: args[agentIdx + 1] };
   }
 
   const osintIdx = args.indexOf('--osint');
@@ -545,6 +551,82 @@ switch (cli.mode) {
     }
     const result = await runOsint({ type, target, flags: [] });
     await deliverOsintResult(result);
+    break;
+  }
+
+  case 'agent': {
+    // Run a single agent or all agents via AgentRunner
+    const { CoordinatorAgent } = await import('./agents/CoordinatorAgent.js');
+    const { DiscoveryAgent } = await import('./agents/DiscoveryAgent.js');
+    const { BrowserAgent } = await import('./agents/BrowserAgent.js');
+    const { ScannerAgent } = await import('./agents/ScannerAgent.js');
+    const { ReporterAgent } = await import('./agents/ReporterAgent.js');
+    const { RepairAgent } = await import('./agents/RepairAgent.js');
+    const { BountyDB } = await import('./storage/BountyDB.js');
+
+    const PIPELINE_ROOT = process.cwd();
+    let db: BountyDB | undefined;
+    try { db = new BountyDB(path.join(PIPELINE_ROOT, 'logs', 'bounty.db')); } catch { /* no DB */ }
+
+    async function shutdownAgents(agents: Awaited<ReturnType<typeof createAllAgents>>): Promise<void> {
+      await Promise.allSettled(agents.map((a) => a.stop()));
+      db?.close();
+    }
+
+    async function createAllAgents() {
+      const coordinator = new CoordinatorAgent({ watchIntervalMs: 1_800_000, db, pipelineRoot: PIPELINE_ROOT });
+      const discovery = new DiscoveryAgent(PIPELINE_ROOT);
+      const browser = new BrowserAgent(PIPELINE_ROOT);
+      const scanner = new ScannerAgent(PIPELINE_ROOT);
+      const reporter = new ReporterAgent(PIPELINE_ROOT);
+      const repair = new RepairAgent(PIPELINE_ROOT);
+      await coordinator.setup();
+      await discovery.setup();
+      await browser.setup();
+      await scanner.setup();
+      await reporter.setup();
+      await repair.setup();
+      coordinator.start();
+      discovery.start();
+      browser.start();
+      scanner.start();
+      reporter.start();
+      repair.start();
+      return [coordinator, discovery, browser, scanner, reporter, repair];
+    }
+
+    if (cli.agentName) {
+      let dbInstance: BountyDB | undefined;
+      try { dbInstance = new BountyDB(path.join(PIPELINE_ROOT, 'logs', 'bounty.db')); } catch { /* no DB */ }
+      const agents: Record<string, { start: () => void; stop: () => Promise<void>; setup: () => Promise<void> }> = {
+        coordinator: new CoordinatorAgent({ pipelineRoot: PIPELINE_ROOT, db: dbInstance }),
+        discovery: new DiscoveryAgent(PIPELINE_ROOT),
+        browser: new BrowserAgent(PIPELINE_ROOT),
+        scanner: new ScannerAgent(PIPELINE_ROOT),
+        reporter: new ReporterAgent(PIPELINE_ROOT),
+        repair: new RepairAgent(PIPELINE_ROOT)
+      };
+      const agent = agents[cli.agentName];
+      if (!agent) {
+        LOG.error(`Unknown agent: ${cli.agentName}`);
+        process.exit(1);
+      }
+      await (agent as any).setup();
+      (agent as any).start();
+      LOG.log(`Agent '${cli.agentName}' started`);
+      await new Promise<void>((resolve) => {
+        process.on('SIGTERM', async () => { await (agent as any).stop(); resolve(); });
+        process.on('SIGINT', async () => { await (agent as any).stop(); resolve(); });
+      });
+    } else {
+      // Run all agents
+      const allAgents = await createAllAgents();
+      LOG.log('All agents started in unified mode');
+      await new Promise<void>((resolve) => {
+        process.on('SIGTERM', async () => { await shutdownAgents(allAgents); resolve(); });
+        process.on('SIGINT', async () => { await shutdownAgents(allAgents); resolve(); });
+      });
+    }
     break;
   }
 }

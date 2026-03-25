@@ -9,7 +9,9 @@
     "test": "npm run build && playwright test",
     "pipeline": "npm run build && node dist/src/index.js",
     "discover": "npm run build && node dist/src/index.js --discover-only",
-    "osint": "npm run build && cross-env SEARXNG_URL=http://localhost:8080 node dist/src/osint/index.js"
+    "osint": "npm run build && cross-env SEARXNG_URL=http://localhost:8080 node dist/src/osint/index.js",
+    "agents": "npm run build && node dist/src/agents/run.js",
+    "agent": "npm run build && node dist/src/index.js --agent"
   },
   "author": "",
   "license": "MIT",
