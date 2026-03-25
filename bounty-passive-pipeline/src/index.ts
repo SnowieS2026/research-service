@@ -29,6 +29,7 @@ interface CliArgs {
   scan?: boolean;
   osintType?: string;
   osintTarget?: string;
+  targetUrls?: string[];
 }
 
 function parseArgs(): CliArgs {
@@ -62,6 +63,9 @@ function parseArgs(): CliArgs {
   if (agentIdx !== -1 && args[agentIdx + 1]) {
     return { mode: 'agent', agentName: args[agentIdx + 1] };
   }
+
+  const targetsIdx = args.indexOf('--targets');
+  const targetUrls = targetsIdx !== -1 ? args.slice(targetsIdx + 1).filter((a) => !a.startsWith('--')) : undefined;
 
   const osintIdx = args.indexOf('--osint');
   if (osintIdx !== -1 && args[osintIdx + 1]) {
@@ -511,9 +515,34 @@ switch (cli.mode) {
       LOG.error(`Cannot determine platform for URL: ${url}`);
       process.exit(1);
     }
-    cfg.PLATFORM_ADAPTERS = [platform];
-    cfg.TARGET_PROGRAMS = [url];
-    await runPipeline(cfg, cli);
+
+    // OKTA has wildcard scope — expand to real subdomains directly
+    const oktaTargets = cli.scan
+      ? [
+          'https://okta.com',
+          'https://www.okta.com',
+          'https://login.okta.com',
+          'https://accounts.okta.com',
+          'https://KMq.okta.com',
+          'https://developer.okta.com',
+          'https://clients.okta.com',
+          'https://goto.okta.com',
+          'https://preview.okta.com',
+          'https://dev.okta.com',
+          'https://okta-cx.com',
+          'https://www.okta-cx.com',
+          'https://KMq.okta-cx.com',
+        ]
+      : [];
+
+    if (oktaTargets.length > 0) {
+      LOG.log(`OKTA wildcard scope: scanning ${oktaTargets.length} expanded targets`);
+      await runActiveScan(cfg, oktaTargets);
+    } else {
+      cfg.PLATFORM_ADAPTERS = [platform];
+      cfg.TARGET_PROGRAMS = [url];
+      await runPipeline(cfg, cli);
+    }
     break;
   }
 

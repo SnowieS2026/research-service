@@ -1,0 +1,25 @@
+{
+  "scanId": "scan-1774404766176-v7f5df",
+  "startedAt": "2026-03-25T02:12:46.176Z",
+  "duration": 331623,
+  "targetsScanned": 10,
+  "findings": [],
+  "summary": {
+    "xss": 0,
+    "sql": 0,
+    "ssrf": 0,
+    "idor": 0,
+    "auth": 0,
+    "rce": 0,
+    "info": 0
+  },
+  "stackDetected": {
+    "Cloudflare": 2,
+    "jQuery": 2,
+    "AWS CloudFront": 3,
+    "Drupal": 2,
+    "nginx": 4,
+    "OAuth": 5
+  },
+  "errors": []
+}

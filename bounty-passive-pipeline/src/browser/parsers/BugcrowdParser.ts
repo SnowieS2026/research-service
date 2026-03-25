@@ -14,6 +14,26 @@ const LOG = new Logger('BugcrowdParser');
  * Used as fallback when no explicit scoped URLs are found on the engagement page.
  * Format: engagement-slug → domain(s) in scope.
  */
+/** Common subdomains for wildcard scopes – expanded at scan time */
+const WILDCARD_EXPANDS: Record<string, string[]> = {
+  'okta.com': [
+    'https://okta.com',
+    'https://www.okta.com',
+    'https://developer.okta.com',
+    'https://login.okta.com',
+    'https://accounts.okta.com',
+    'https://KMq.okta.com',
+    'https://clients.okta.com',
+    'https://goto.okta.com',
+    'https://preview.okta.com',
+    'https://dev.okta.com',
+  ],
+  'okta-cx.com': [
+    'https://www.okta-cx.com',
+    'https://KMq.okta-cx.com',
+  ],
+};
+
 const KNOWN_SCOPE_DOMAINS: Record<string, string[]> = {
   'okta':               ['*.okta.com', '*.okta-cx.com'],
   'zendesk':            ['*.zendesk.com', '*.zdusercontent.com'],
@@ -239,12 +259,48 @@ export class BugcrowdParser extends BaseParser {
     // Dedupe scope
     scopeAssets = cleanScopeUrls(scopeAssets || [], url);
 
-    // Fallback: KNOWN_SCOPE_DOMAINS for wildcard programs
+    // Fallback: KNOWN_SCOPE_DOMAINS for wildcard programs, expanded with WILDCARD_EXPANDS
     const slug = extractSlug(url);
     if ((!scopeAssets || scopeAssets.length === 0) && KNOWN_SCOPE_DOMAINS[slug]) {
-      scopeAssets = KNOWN_SCOPE_DOMAINS[slug];
-      LOG.log(`[BugcrowdParser] No explicit scope; using KNOWN_SCOPE_DOMAINS for "${slug}"`);
+      const domains = KNOWN_SCOPE_DOMAINS[slug];
+      const expanded: string[] = [];
+      for (const domain of domains) {
+        const base = domain.replace(/^\*\./, '');
+        const expands = WILDCARD_EXPANDS[base];
+        if (expands) {
+          expanded.push(...expands);
+        } else {
+          // No WILDCARD_EXPANDS entry – use the wildcard itself as a hint
+          expanded.push(`https://${base}`);
+        }
+      }
+      scopeAssets = expanded;
+      LOG.log(`[BugcrowdParser] No explicit scope; using KNOWN_SCOPE_DOMAINS for "${slug}": ${scopeAssets.join(', ')}`);
     }
+
+    // Expand wildcards to real HTTPS URLs using subdomain enumeration
+    const finalScope: string[] = [];
+    const wildcardDomains: string[] = [];
+    for (const asset of scopeAssets || []) {
+      if (asset.startsWith('*.')) {
+        wildcardDomains.push(asset.replace(/^\*\./, ''));
+      } else {
+        finalScope.push(asset.startsWith('http') ? asset : `https://${asset}`);
+      }
+    }
+
+    // Expand each wildcard domain to real targets
+    for (const domain of wildcardDomains) {
+      const expands = WILDCARD_EXPANDS[domain];
+      if (expands) {
+        finalScope.push(...expands);
+      } else {
+        // Fallback: try direct HTTPS + common www
+        finalScope.push(`https://${domain}`, `https://www.${domain}`);
+      }
+    }
+
+    scopeAssets = [...new Set(finalScope)];
 
     // Reward range
     let rewardRange = 'unknown';
