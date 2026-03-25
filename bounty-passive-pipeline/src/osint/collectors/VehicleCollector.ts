@@ -93,31 +93,64 @@ export class VehicleCollector {
         const _carCheckRawTmp = carCheck.status === 'fulfilled' ? carCheck.value.rawData : undefined;
         const carCheckRaw: Record<string, unknown> = _carCheckRawTmp ?? ({} as Record<string, unknown>);
         const rawText = carCheckRaw['raw_text'] as string || '';
+
+        // ── VIN extraction ────────────────────────────────────────────────────
+        // car-checking.com sometimes includes the VIN in the raw text
+        const vinMatch = rawText.match(/[A-HJ-NPR-Z0-9]{17}/i);
+        if (vinMatch) {
+          const vin = vinMatch[0].toUpperCase();
+          rawData['vin'] = vin;
+          findings.push({ source: 'car-checking.com', field: 'vin', value: vin, confidence: 80 });
+        }
+
+        // ── Mileage extraction from MOT history blocks ───────────────────────
+        // Format: "MOT #1 ... MOT test number: Result: Pass odometer 123456 miles"
+        // or: "Odometer 123,456 miles"  or: "123456 mi"
+        const mileageMap: Record<string, number> = {};
+        // Match each MOT block and extract the first mileage found in it
+        const motBlockRe = /MOT #\d+[\s\S]*?(?=MOT #\d+|$)/gi;
+        for (const block of rawText.matchAll(motBlockRe)) {
+          const m = block[0].match(/(\d{5,6})\s*(?:mi\.?|miles\b|mileage)/i);
+          if (m) {
+            const num = parseInt(m[1], 10);
+            // Get the MOT number from the block
+            const numM = block[0].match(/MOT #(\d+)/i);
+            if (numM) mileageMap[numM[1]] = num;
+          }
+        }
+        const mileageTimeline = Object.entries(mileageMap)
+          .sort(([a], [b]) => parseInt(b) - parseInt(a))  // newest MOT first
+          .map(([, miles]) => miles);
+
+        // Current mileage = most recent MOT reading
+        const currentMileage = mileageTimeline[0] ?? null;
+        if (currentMileage) {
+          findings.push({ source: 'car-checking.com', field: 'current_mileage', value: `${currentMileage.toLocaleString()} mi`, confidence: 85 });
+          rawData['current_mileage'] = currentMileage;
+        }
+        if (mileageTimeline.length > 0) {
+          rawData['mileage_timeline'] = mileageTimeline;
+        }
+
         const valuationMake = (rawData['DVLA'] as Record<string, string>)?.['Make']
           || carCheckRaw['make'] as string || '';
         const modelRaw = carCheckRaw['model'] as string || '';
-        // Strip spec noise: "CORSA SXI CDTI Colour BLACK Year of manufacture 2005 Top speed..."
-        const modelClean = modelRaw
-          .replace(/\bColour\b.*$/i, '')
-          .replace(/\bYear of manufacture\s+\d{4}\b/gi, '')
-          .replace(/\bTop speed\b.*$/gi, '')
-          .replace(/\b0 to \d+\s*(?:mph|seconds?)\b/gi, '')
-          .replace(/\bGearbox\b.*$/gi, '')
-          .replace(/\bEngine\s*&\s*fuel consumption\b.*$/gi, '')
-          .replace(/\bPower\b.*$/gi, '')
-          .replace(/\bTorque\b.*$/gi, '')
-          .replace(/\bEngine capacity\b.*$/gi, '')
-          .replace(/\bCylinders\b.*$/gi, '')
-          .replace(/\bFuel type\b.*$/gi, '')
-          .replace(/\bConsumption\b.*$/gi, '')
-          .replace(/\bCO2\b.*$/gi, '')
-          .replace(/\d+\.?\d*\s*(?:mph|seconds?|cc|bhp|rpm|mpg|km|l|kg)\b/gi, '')
-          .replace(/\s+/g, ' ')
-          .trim()
-          .substring(0, 60);
+        // Strip spec noise from end: "MONDEO LX Colour BLUE Year of manufacture 2005 Top speed..."
+        // Work forward: keep only alphanumeric, spaces, and basic chars up to first noise keyword
+        const noisePrefixes = ['Colour', 'Year of manufacture', 'Top speed', '0 to ', 'Gearbox',
+          'Engine & fuel consumption', 'Power', 'Torque', 'Engine capacity', 'Cylinders',
+          'Fuel type', 'Consumption', 'CO2'];
+        let modelClean = modelRaw;
+        for (const prefix of noisePrefixes) {
+          const idx = modelClean.indexOf(prefix);
+          if (idx > 2) modelClean = modelClean.substring(0, idx).trim();
+        }
+        // Also strip any trailing numbers or spec remnants
+        modelClean = modelClean.replace(/\s+\d+\s*$/, '').replace(/\s+/g, ' ').trim().substring(0, 60);
         const valuationModel = modelClean || '';
         const valuationYear = parseInt(carCheckRaw['year'] as string || '0', 10) || 0;
-        const mileage = null; // not available from DVLA/car-check free tier
+        // Use extracted mileage, or null if not available
+        const mileage: number | null = (rawData['current_mileage'] as number | null) ?? null;
 
         // Extract ALL advisory items from the full raw text — don't split by MOT block.
         // The advisory items appear in the text as "Advice ..." or "Advisory ...".
@@ -257,6 +290,20 @@ export class VehicleCollector {
 
       if (makeKey)  findings.push({ source: 'GovUK-DVLA', field: 'make',   value: String(rawData[makeKey]),  confidence: 95 });
       if (colourKey) findings.push({ source: 'GovUK-DVLA', field: 'colour', value: String(rawData[colourKey]), confidence: 95 });
+
+      // Extract tax status and MOT status from DVLA result
+      const taxStatus = Object.keys(rawData).find(k => /tax\s*status/i.test(k));
+      if (taxStatus) {
+        findings.push({ source: 'GovUK-DVLA', field: 'tax_status', value: String(rawData[taxStatus]), confidence: 95 });
+      }
+      const motStatusKey = Object.keys(rawData).find(k => /MOT\s*status/i.test(k));
+      if (motStatusKey) {
+        findings.push({ source: 'GovUK-DVLA', field: 'mot_status', value: String(rawData[motStatusKey]), confidence: 95 });
+      }
+      const firstRegKey = Object.keys(rawData).find(k => /first\s*registered/i.test(k));
+      if (firstRegKey) {
+        findings.push({ source: 'GovUK-DVLA', field: 'first_reg_date', value: String(rawData[firstRegKey]), confidence: 90 });
+      }
 
       if (Object.keys(rawData).length === 0) {
         errors.push('DVLA returned empty result');
