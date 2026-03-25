@@ -1,17 +1,17 @@
 {
-  "lastHeartbeatAt": "2026-03-25T11:34:00Z",
-  "heartbeatCycle": 10,
+  "lastHeartbeatAt": "2026-03-25T12:34:00Z",
+  "heartbeatCycle": 11,
   "pipeline": {
-    "lastSnapshotAt": "2026-03-25T02:05:28Z",
-    "lastGoodAt": "2026-03-25T02:05:28Z",
+    "lastSnapshotAt": "2026-03-25T12:07:56Z",
+    "lastGoodAt": "2026-03-25T12:07:56Z",
     "consecutiveEmpty": 0,
     "cronJobId": "67d75617-a49c-4527-a15a-04ce5ec23f60",
-    "notes": "DISABLED. Manual scans active. Pipeline snapshots fresh."
+    "notes": "ACTIVE. Manual scans complete. WAF blocking all bounty targets. All committed (b9285bde)."
   },
   "discovery": {
     "lastRunAt": "2026-03-23T10:31:00Z",
     "cronJobId": "3ebd4e98-e4f6-4ff8-92be-5426ac903bb4",
-    "notes": "DISABLED."
+    "notes": "DISABLED. Needs re-enabling for fresh program discovery."
   },
   "vehicleSources": {
     "status": "updated",
@@ -35,6 +35,7 @@
     "25 Mar 06:09 - Cycle 6. New reports check: okta-bug-bounty-report.md (already known, 02:39). 82 total report files for today. Pipeline snapshots 4h old (manual mode, expected). All clear.",
     "25 Mar 06:42 - Cycle 7. 84 reports now (2 new standoff365 unknown reports). Pipeline healthy. No HIGH/CRITICAL. All clear.",
     "25 Mar 07:12 - Cycle 8. Still 84 reports. No new findings. Pipeline in manual mode, 5h snapshot age expected. All clear.",
-    "25 Mar 08:35 - Cycle 9. 5 report files for today (okta-bug-bounty-report + 1774404 scan results). Pipeline healthy. No new HIGH/CRITICAL. All clear."
+    "25 Mar 08:35 - Cycle 9. 5 report files for today (okta-bug-bounty-report + 1774404 scan results). Pipeline healthy. No new HIGH/CRITICAL. All clear.",
+    "25 Mar 12:34 - Cycle 11. Full program scan session: Just Eat Takeaway, Shopify, KuCoin, YNAB, Bitso, Luno, Fireblocks. All WAF-blocked (Cloudflare). direct-scan.ts and api-direct-scan.ts created. Everything committed (b9285bde). 85 reports total. All clear."
   ]
 }
