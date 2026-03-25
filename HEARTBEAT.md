@@ -11,33 +11,27 @@ Read `memory/heartbeat-state.json` to know what was last checked.
 
 ## Heartbeat Loop (rotate through these)
 
-### 1. Pipeline Health (every heartbeat)
+### 1. Git Status (every 3rd heartbeat)
+`git status --porcelain` in workspace.
+- Uncommitted changes → check if intentional (WIP) or should commit
+- Commit good work with a brief message
+
+### 2. Memory Maintenance (every 7th heartbeat)
+Read today's `memory/YYYY-MM-DD.md`, update MEMORY.md with any new learnings.
+
+### 3. Pipeline Health (if bounty hunting re-enabled)
 Quick smoke test — check last snapshot timestamp:
 ```
 logs/snapshots/ — most recent file should be <8h old
 ```
 If oldest snapshot >8h and pipeline cron hasn't run recently → message user.
 
-### 2. New Scan Reports (every 2nd heartbeat)
-Check `reports/YYYY-MM-DD/` for new reports since last check.
-- Track last checked date in heartbeat-state.json
-- If new HIGH/CRITICAL findings → notify user briefly
-- If new report but only INFO/LOW → log only, no message
-
-### 3. Git Status (every 3rd heartbeat)
-`git status --porcelain` in bounty-passive-pipeline.
-- Uncommitted changes → check if intentional (WIP) or should commit
-- Commit good work with a brief message
-
-### 4. Memory Maintenance (every 7th heartbeat)
-Read today's `memory/YYYY-MM-DD.md`, update MEMORY.md with any new learnings.
-
-## Cron Jobs (background, isolated sessions — not in main)
-| Job | Schedule | Purpose |
-|-----|----------|---------|
-| Bounty passive pipeline | Every 6h | Full scan, notifies on changes |
-| Discovery run | Daily 08:00 UTC | Find new programs |
-| Nuclei template update | Weekly Sun 03:00 | Update nuclei templates |
+## Cron Jobs
+| Job | Schedule | Purpose | Status |
+|-----|----------|---------|--------|
+| Bounty passive pipeline | Every 6h | Full scan, notifies on changes | **DISABLED** |
+| Daily discovery | Daily 08:00 UTC | Find new programs with accessible targets | **DISABLED** |
+| Weekly nuclei templates | Sundays 03:00 UTC | Update nuclei templates | Active (but delivery broken) |
 
 ## DO in main session heartbeat
 - Quick file checks (read logs, check timestamps)
@@ -50,5 +44,4 @@ Read today's `memory/YYYY-MM-DD.md`, update MEMORY.md with any new learnings.
 - No subagent spawning (use isolated sessions for background work)
 
 ## If something needs attention
-Respond with a short, actionable message. Example:
-> "Pipeline hasn't run in 12h — last snapshot was from yesterday. Something may be stuck."
+Respond with a short, actionable message.
