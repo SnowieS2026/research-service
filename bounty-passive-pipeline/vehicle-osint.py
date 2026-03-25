@@ -1992,10 +1992,64 @@ def run_vehicle_osint(plate: str, output_path: str | None = None) -> dict:
     govuk_data = {"findings": [], "errors": [], "raw_data": {}}
     motest_data = {"findings": [], "errors": [], "raw_data": {}}
     nhtsa_data = {"findings": [], "errors": [], "raw_data": {}}
+    # ─────────────────────────────────────────────────────────────────────────
+    # PARALLEL COLLECTION — all sources fire simultaneously, results merged
+    # ─────────────────────────────────────────────────────────────────
+    import threading
+
+    errors = []
+    data_sources_log = []
+
+    # Pre-initialise so find_field() never NameErrors regardless of plate_type
+    dvla_data = {"findings": [], "errors": [], "raw_data": {}}
+    carcheck_data = {"findings": [], "errors": [], "raw_data": {}}
+    govuk_data = {"findings": [], "errors": [], "raw_data": {}}
+    motest_data = {"findings": [], "errors": [], "raw_data": {}}
+    isitnicked_data = {"findings": [], "errors": [], "raw_data": {}}
+    carwow_data = {"findings": [], "errors": [], "raw_data": {}}
+    ccd_data = {"findings": [], "errors": [], "raw_data": {}}
+    mot_data = {"findings": [], "errors": [], "raw_data": {}}
     comparables = []
-    insurance_data = {"findings": [], "errors": [], "group_min": None, "group_max": None}
-    known_issues_data = {"findings": [], "errors": [], "issues": []}
-    image_intel = {"findings": [], "errors": [], "images_found": False, "sources_checked": []}
+
+    def run_parallel_collectors(plate: str):
+        """Fire all UK collectors in parallel. Each gets its own playwright instance."""
+        import threading
+
+        # All collector functions that need playwright
+        pw_collectors = {
+            "dvla":       collect_dvla,
+            "carcheck":   collect_car_check,
+            "govuk_mot":  collect_gov_uk_mot,
+            "motest":     collect_motest,
+            "isitnicked": collect_isitnicked,
+            "carwow":     collect_carwow,
+            "ccd":        collect_checkcardetails,
+        }
+
+        results = {}
+        lock = threading.Lock()
+
+        def run_one(name, func, plate):
+            """Run a single collector in its own playwright context."""
+            try:
+                with sync_playwright() as p:
+                    result = func(plate, p)
+                with lock:
+                    results[name] = result
+            except Exception as exc:
+                with lock:
+                    results[name] = {"findings": [], "errors": [f"{name}: {exc}"], "raw_data": {}}
+
+        threads = []
+        for name, func in pw_collectors.items():
+            t = threading.Thread(target=run_one, args=(name, func, plate), daemon=True)
+            threads.append(t)
+            t.start()
+
+        for t in threads:
+            t.join(timeout=60)
+
+        return results
 
     with sync_playwright() as pw:
         if plate_type == "VIN":
@@ -2005,63 +2059,53 @@ def run_vehicle_osint(plate: str, output_path: str | None = None) -> dict:
             data_sources_log.append({"name": "NHTSA vPIC", "success": bool(nhtsa_data["findings"]), "note": nhtsa_data.get("source", "")})
 
         elif plate_type == "UK":
-            # ── DVLA ──
-            _print("  [*] Querying DVLA (gov.uk)...")
-            dvla_data = collect_dvla(plate_clean, pw)
-            dvla_ok = bool(dvla_data["findings"])
-            if dvla_data["errors"]: errors.extend([f"DVLA: {e}" for e in dvla_data["errors"]])
-            data_sources_log.append({"name": "gov.uk DVLA", "success": dvla_ok, "note": dvla_data.get("source", "")})
+            _print("  [*] Firing all collectors in parallel...")
+            all_results = run_parallel_collectors(plate_clean)
 
-            # ── MOT Sources (cascade) ──
-            _print("  [*] Querying car-checking.com (MOT + specs)...")
-            carcheck_data = collect_car_check(plate_clean, pw)
-            carcheck_ok = bool(carcheck_data["findings"])
+            dvla_data       = all_results.get("dvla",       {"findings": [], "errors": [], "raw_data": {}})
+            carcheck_data   = all_results.get("carcheck",   {"findings": [], "errors": [], "raw_data": {}})
+            govuk_data      = all_results.get("govuk_mot",  {"findings": [], "errors": [], "raw_data": {}})
+            motest_data     = all_results.get("motest",     {"findings": [], "errors": [], "raw_data": {}})
+            isitnicked_data = all_results.get("isitnicked", {"findings": [], "errors": [], "raw_data": {}})
+            carwow_data     = all_results.get("carwow",    {"findings": [], "errors": [], "raw_data": {}})
+            ccd_data        = all_results.get("ccd",       {"findings": [], "errors": [], "raw_data": {}})
 
-            if not carcheck_ok:
-                _print("  [!] car-checking.com failed — trying gov.uk MOT...")
-                govuk_data = collect_gov_uk_mot(plate_clean, pw)
-                govuk_ok = bool(govuk_data["findings"])
-                if govuk_data["errors"]: errors.extend([f"Gov.uk MOT: {e}" for e in govuk_data["errors"]])
-                data_sources_log.append({"name": "gov.uk MOT", "success": govuk_ok, "note": govuk_data.get("source", "")})
+            # Log every source regardless of success/failure
+            source_log_map = [
+                ("gov.uk DVLA",            dvla_data,       True),
+                ("car-checking.com",       carcheck_data,   True),
+                ("gov.uk MOT",             govuk_data,      True),
+                ("motest.com",             motest_data,     True),
+                ("isitnicked.com",        isitnicked_data,  False),
+                ("carwow.co.uk",           carwow_data,     False),
+                ("checkcardetails.co.uk",  ccd_data,        False),
+            ]
+            for src_name, src_data, show_note in source_log_map:
+                ok = bool(src_data.get("findings"))
+                note = src_data.get("source", "") if show_note else ""
+                data_sources_log.append({"name": src_name, "success": ok, "note": note})
+                if src_data.get("errors"):
+                    for e in src_data["errors"]:
+                        errors.append(f"{src_name}: {e}")
 
-                if not govuk_ok:
-                    _print("  [!] gov.uk MOT failed — trying motest.com...")
-                    motest_data = collect_motest(plate_clean, pw)
-                    motest_ok = bool(motest_data["findings"])
-                    if motest_data["errors"]: errors.extend([f"motest: {e}" for e in motest_data["errors"]])
-                    data_sources_log.append({"name": "motest.com", "success": motest_ok, "note": motest_data.get("source", "")})
-                else:
-                    data_sources_log.append({"name": "car-checking.com", "success": False, "note": "used fallback"})
-            else:
-                data_sources_log.append({"name": "car-checking.com", "success": True, "note": carcheck_data.get("source", "")})
+            # ── MOT data: merge all MOT sources, prefer best quality ──
+            # Quality ranking: carcheck > govuk > motest
+            def mot_quality(d):
+                if not d.get("findings"): return -1
+                raw = d.get("raw_data", {})
+                # car-check has rich data including model/year/engine
+                if raw.get("model") or raw.get("make"): return 3
+                # gov.uk MOT has expiry + mileage + result
+                if raw.get("mot_expiry") or raw.get("current_mileage"): return 2
+                # motest is basic
+                return 1
 
-            # Use the best MOT data available
-            mot_data = carcheck_data if carcheck_ok else (govuk_data if govuk_data.get("findings") else motest_data)
-
-            # ── Additional sources (best-effort, CloudFlare may block) ──
-            _print("  [*] Querying isitnicked.com (stolen vehicle check)...")
-            isitnicked_data = collect_isitnicked(plate_clean, pw)
-            isitnicked_ok = bool(isitnicked_data.get("findings"))
-            if isitnicked_data["errors"]:
-                errors.extend([f"isitnicked: {e}" for e in isitnicked_data["errors"]])
-            data_sources_log.append({"name": "isitnicked.com", "success": isitnicked_ok,
-                                     "note": isitnicked_data.get("source", "")})
-
-            _print("  [*] Querying carwow.co.uk...")
-            carwow_data = collect_carwow(plate_clean, pw)
-            carwow_ok = bool(carwow_data.get("findings"))
-            if carwow_data["errors"]:
-                errors.extend([f"carwow: {e}" for e in carwow_data["errors"]])
-            data_sources_log.append({"name": "carwow.co.uk", "success": carwow_ok,
-                                     "note": carwow_data.get("source", "")})
-
-            _print("  [*] Querying checkcardetails.co.uk...")
-            ccd_data = collect_checkcardetails(plate_clean, pw)
-            ccd_ok = bool(ccd_data.get("findings"))
-            if ccd_data["errors"]:
-                errors.extend([f"checkcardetails: {e}" for e in ccd_data["errors"]])
-            data_sources_log.append({"name": "checkcardetails.co.uk", "success": ccd_ok,
-                                     "note": ccd_data.get("source", "")})
+            mot_candidates = sorted(
+                [("carcheck", carcheck_data), ("govuk", govuk_data), ("motest", motest_data)],
+                key=lambda x: mot_quality(x[1]),
+                reverse=True
+            )
+            mot_data = mot_candidates[0][1]  # best available
 
         else:
             errors.append(f"Unrecognised plate format: {plate_clean}. Supported: UK reg, VIN (17 chars).")
