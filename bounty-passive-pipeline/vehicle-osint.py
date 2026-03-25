@@ -810,7 +810,151 @@ def collect_nhtsa_vin(vin: str) -> dict:
 # All use Playwright since these are JavaScript-rendered sites
 # ─────────────────────────────────────────────────────────────────────────────
 
-def collect_autotrader_comparables(make: str, model: str, year: int, fuel_type: str, pw) -> dict:
+def collect_isitnicked(plate: str, pw) -> dict:
+    """Best-effort stolen vehicle check — isitnicked.com (Playwright, CloudFlare-protected).
+    Falls back gracefully if CloudFlare blocks the request."""
+    result = {"findings": [], "errors": [], "stolen": False, "source": "isitnicked.com"}
+    browser = None
+    try:
+        browser = pw.chromium.launch(headless=True, executable_path=CHROME_PATH)
+        page = browser.new_page()
+        page.goto("https://isitnicked.com/", wait_until="load", timeout=20000)
+        page.wait_for_timeout(2000)
+        # Fill the reg input
+        inp = page.locator('input[type=text][placeholder*="REG"], input[name=Vrm]').first
+        if inp.count() == 0:
+            result["errors"].append("isitnicked.com: reg input not found")
+            return result
+        inp.fill(plate)
+        inp.press("Enter")
+        page.wait_for_timeout(4000)
+        body = page.text_content("body") or ""
+        # Parse stolen check result
+        if re.search(r'stolen|marked stolen|reported stolen|stolen vehicle', body, re.I):
+            result["stolen"] = True
+            result["findings"].append({
+                "source": "isitnicked.com", "field": "stolen_check",
+                "value": "Possible stolen vehicle — review carefully", "confidence": 70
+            })
+        elif re.search(r'not found|not stolen|clear|no stolen', body, re.I):
+            result["findings"].append({
+                "source": "isitnicked.com", "field": "stolen_check",
+                "value": "Not flagged as stolen", "confidence": 60
+            })
+        if not result["findings"]:
+            result["errors"].append("isitnicked.com: no result parsed from page")
+    except Exception as e:
+        result["errors"].append(f"isitnicked.com: {e}")
+    finally:
+        if browser: browser.close()
+    delay(0.5)
+    return result
+
+
+def collect_checkcardetails(plate: str, pw) -> dict:
+    """Best-effort free car check — checkcardetails.co.uk (Playwright, CloudFlare-protected).
+    Falls back gracefully if blocked."""
+    result = {"findings": [], "errors": [], "raw_data": {}, "source": "checkcardetails.co.uk"}
+    browser = None
+    try:
+        browser = pw.chromium.launch(headless=True, executable_path=CHROME_PATH)
+        ctx = browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            extra_http_headers={"Accept-Language": "en-GB,en;q=0.9"}
+        )
+        page = ctx.new_page()
+        page.goto("https://www.checkcardetails.co.uk/", wait_until="load", timeout=20000)
+        page.wait_for_timeout(3000)
+        # Fill reg input
+        inp = page.locator('input[type=text][name=reg_num], input[name=reg_num]').first
+        if inp.count() == 0:
+            result["errors"].append("checkcardetails.co.uk: reg input not found")
+            return result
+        inp.fill(plate)
+        page.locator('button[type=submit]').first.click()
+        page.wait_for_timeout(6000)
+        body = page.text_content("body") or ""
+        result["raw_data"]["body_text"] = body[:2000]
+        # Extract what we can — MOT, tax, colour, mileage
+        expiry_m = re.search(r'MOT[:\s]*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})', body, re.I)
+        if expiry_m:
+            result["findings"].append({
+                "source": "checkcardetails.co.uk", "field": "mot_expiry",
+                "value": expiry_m.group(1), "confidence": 80
+            })
+        colour_m = re.search(r'Colour[:\s]*([A-Za-z]+)', body, re.I)
+        if colour_m:
+            result["findings"].append({
+                "source": "checkcardetails.co.uk", "field": "colour",
+                "value": colour_m.group(1), "confidence": 75
+            })
+        # Check for stolen/written-off indicators
+        if re.search(r'stolen|write.?off|category', body, re.I):
+            result["findings"].append({
+                "source": "checkcardetails.co.uk", "field": "risk_indicator",
+                "value": "Possible risk flag detected", "confidence": 50
+            })
+        if not result["findings"]:
+            result["errors"].append("checkcardetails.co.uk: no data extracted (likely CloudFlare blocked)")
+    except Exception as e:
+        result["errors"].append(f"checkcardetails.co.uk: {e}")
+    finally:
+        if browser: browser.close()
+    delay(0.5)
+    return result
+
+
+def collect_carwow(plate: str, pw) -> dict:
+    """Best-effort car check — carwow.co.uk (Playwright SPA).
+    Falls back gracefully if blocked."""
+    result = {"findings": [], "errors": [], "raw_data": {}, "source": "carwow.co.uk"}
+    browser = None
+    try:
+        browser = pw.chromium.launch(headless=True, executable_path=CHROME_PATH)
+        ctx = browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            extra_http_headers={"Accept-Language": "en-GB,en;q=0.9"}
+        )
+        page = ctx.new_page()
+        page.goto("https://www.carwow.co.uk/car-check", wait_until="load", timeout=20000)
+        page.wait_for_timeout(3000)
+        # Find reg input
+        inp = page.locator('input[type=text][placeholder*="REG"], input[name=vrm]').first
+        if inp.count() == 0:
+            result["errors"].append("carwow.co.uk: reg input not found")
+            return result
+        inp.fill(plate)
+        inp.press("Enter")
+        page.wait_for_timeout(6000)
+        body = page.text_content("body") or ""
+        result["raw_data"]["body_text"] = body[:2000]
+        # Try to extract basic info from carwow's result page
+        # carwow shows make/model, MOT expiry, etc.
+        expiry_m = re.search(r'MOT[:\s]*(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})', body, re.I)
+        if expiry_m:
+            result["findings"].append({
+                "source": "carwow.co.uk", "field": "mot_expiry",
+                "value": expiry_m.group(1), "confidence": 80
+            })
+        make_m = re.search(r'Make[:\s]*([A-Za-z0-9\s]+?)(?:\n|</)', body[:1000], re.I)
+        if make_m:
+            result["findings"].append({
+                "source": "carwow.co.uk", "field": "make",
+                "value": make_m.group(1).strip(), "confidence": 75
+            })
+        if re.search(r'not found|invalid|error', body, re.I):
+            result["errors"].append("carwow.co.uk: plate not found in their database")
+        if not result["findings"]:
+            result["errors"].append("carwow.co.uk: no data extracted (SPA blocked)")
+    except Exception as e:
+        result["errors"].append(f"carwow.co.uk: {e}")
+    finally:
+        if browser: browser.close()
+    delay(0.5)
+    return result
+
+
+
     """Source 1: AutoTrader — search for comparable vehicles."""
     result = {"findings": [], "errors": [], "comparable_listings": [], "source": "AutoTrader"}
     browser = None
@@ -1283,6 +1427,9 @@ def calculate_confidence(data_sources: dict) -> dict:
     comparables = data_sources.get("comparables", [])
     insurance = data_sources.get("insurance", {})
     known_issues = data_sources.get("known_issues", {})
+    isitnicked = data_sources.get("isitnicked", {})
+    carwow = data_sources.get("carwow", {})
+    ccd = data_sources.get("checkcardetails", {})
 
     scores["dvla"] = 95 if dvla.get("findings") else 0
     scores["mot"] = 90 if carcheck.get("findings") or govuk.get("findings") else 0
@@ -1291,10 +1438,13 @@ def calculate_confidence(data_sources: dict) -> dict:
     scores["insurance"] = 70 if insurance.get("findings") else 30
     scores["geographic"] = 50
     scores["mechanical"] = 70 if known_issues.get("findings") else 40
+    # New best-effort sources boost risk/stolen check confidence when available
+    stolen_ok = bool(isitnicked.get("findings"))
+    stolen_val = 30 if stolen_ok else 0
+    scores["stolen_check"] = stolen_val
 
-    total_weight = sum(scores.values())
-    count_nonzero = sum(1 for v in scores.values() if v > 0)
-    scores["overall"] = round(total_weight / len(scores)) if len(scores) > 0 else 0
+    all_scores = [v for v in scores.values() if v > 0]
+    scores["overall"] = round(sum(all_scores) / len(scores)) if scores else 0
 
     return scores
 
@@ -1731,8 +1881,23 @@ def generate_markdown_report(plate: str, data: dict) -> str:
     tax_valid = bool(tax_status.lower() not in ("", "unknown", "untaxed", "sorn"))
     lines.append(f"✔ **MOT:** {'Compliant' if mot_valid else '⚠️ Not found / Expired'}\n")
     lines.append(f"{'✔' if tax_valid else '⚠️'} **Tax:** {tax_status or 'Status unknown'}\n")
-    lines.append("✔ **Stolen markers:** ⚠️ Cannot check from open sources — recommend askmid.com\n")
-    lines.append("✔ **Write-off category:** ⚠️ Cannot determine from open sources — recommend HPI check\n")
+    # Stolen check — use isitnicked if available
+    isitnicked = data.get("isitnicked_data", {})
+    stolen_ok = isitnicked.get("stolen", False)
+    stolen_val = isitnicked.get("findings", [{}])[0].get("value", "") if isitnicked.get("findings") else ""
+    if stolen_ok:
+        lines.append(f"🔴 **Stolen markers:** Possible stolen vehicle — {stolen_val}\n")
+    elif stolen_val:
+        lines.append(f"✔ **Stolen markers:** {stolen_val} (isitnicked.com)\n")
+    else:
+        lines.append("⚠️ **Stolen markers:** Could not verify — recommend askmid.com manual check\n")
+    # Write-off from checkcardetails
+    ccd = data.get("checkcardetails_data", {})
+    ccd_risk = next((f["value"] for f in ccd.get("findings", []) if f["field"] == "risk_indicator"), None)
+    if ccd_risk:
+        lines.append(f"⚠️ **Write-off / Risk:** {ccd_risk}\n")
+    else:
+        lines.append("✔ **Write-off category:** ⚠️ Cannot confirm from open sources — recommend HPI check\n")
     lines.append("\n")
 
     # ══════════════════════════════════════════════════════════════════════════
@@ -1873,6 +2038,31 @@ def run_vehicle_osint(plate: str, output_path: str | None = None) -> dict:
             # Use the best MOT data available
             mot_data = carcheck_data if carcheck_ok else (govuk_data if govuk_data.get("findings") else motest_data)
 
+            # ── Additional sources (best-effort, CloudFlare may block) ──
+            _print("  [*] Querying isitnicked.com (stolen vehicle check)...")
+            isitnicked_data = collect_isitnicked(plate_clean, pw)
+            isitnicked_ok = bool(isitnicked_data.get("findings"))
+            if isitnicked_data["errors"]:
+                errors.extend([f"isitnicked: {e}" for e in isitnicked_data["errors"]])
+            data_sources_log.append({"name": "isitnicked.com", "success": isitnicked_ok,
+                                     "note": isitnicked_data.get("source", "")})
+
+            _print("  [*] Querying carwow.co.uk...")
+            carwow_data = collect_carwow(plate_clean, pw)
+            carwow_ok = bool(carwow_data.get("findings"))
+            if carwow_data["errors"]:
+                errors.extend([f"carwow: {e}" for e in carwow_data["errors"]])
+            data_sources_log.append({"name": "carwow.co.uk", "success": carwow_ok,
+                                     "note": carwow_data.get("source", "")})
+
+            _print("  [*] Querying checkcardetails.co.uk...")
+            ccd_data = collect_checkcardetails(plate_clean, pw)
+            ccd_ok = bool(ccd_data.get("findings"))
+            if ccd_data["errors"]:
+                errors.extend([f"checkcardetails: {e}" for e in ccd_data["errors"]])
+            data_sources_log.append({"name": "checkcardetails.co.uk", "success": ccd_ok,
+                                     "note": ccd_data.get("source", "")})
+
         else:
             errors.append(f"Unrecognised plate format: {plate_clean}. Supported: UK reg, VIN (17 chars).")
 
@@ -1953,6 +2143,9 @@ def run_vehicle_osint(plate: str, output_path: str | None = None) -> dict:
         "comparables": comparables,
         "insurance": insurance_data,
         "known_issues": known_issues_data,
+        "isitnicked": isitnicked_data if plate_type == "UK" else {},
+        "carwow": carwow_data if plate_type == "UK" else {},
+        "checkcardetails": ccd_data if plate_type == "UK" else {},
     })
 
     # ── Build data bundle for report ──
@@ -1990,6 +2183,9 @@ def run_vehicle_osint(plate: str, output_path: str | None = None) -> dict:
         "errors": errors,
         "data_sources_log": data_sources_log,
         "colour_change": False,
+        "isitnicked_data": isitnicked_data if plate_type == "UK" else {},
+        "carwow_data": carwow_data if plate_type == "UK" else {},
+        "checkcardetails_data": ccd_data if plate_type == "UK" else {},
     }
 
     # ── Generate report ──
