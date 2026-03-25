@@ -19,6 +19,7 @@ import { BrowserAgent } from './BrowserAgent.js';
 import { ScannerAgent } from './ScannerAgent.js';
 import { ReporterAgent } from './ReporterAgent.js';
 import { RepairAgent } from './RepairAgent.js';
+import { AdaptationAgent } from './AdaptationAgent.js';
 import { Logger } from '../Logger.js';
 import { BountyDB } from '../storage/BountyDB.js';
 import path from 'path';
@@ -53,6 +54,7 @@ async function runAll(): Promise<void> {
   const scanner = new ScannerAgent(PIPELINE_ROOT);
   const reporter = new ReporterAgent(PIPELINE_ROOT);
   const repair = new RepairAgent(PIPELINE_ROOT);
+  const adaptation = new AdaptationAgent(PIPELINE_ROOT);
 
   // Setup all agents
   await Promise.all([
@@ -61,7 +63,8 @@ async function runAll(): Promise<void> {
     browser.setup().catch((err) => LOG.error(`Browser setup failed: ${err}`)),
     scanner.setup().catch((err) => LOG.error(`Scanner setup failed: ${err}`)),
     reporter.setup().catch((err) => LOG.error(`Reporter setup failed: ${err}`)),
-    repair.setup().catch((err) => LOG.error(`Repair setup failed: ${err}`))
+    repair.setup().catch((err) => LOG.error(`Repair setup failed: ${err}`)),
+    adaptation.setup().catch((err) => LOG.error(`Adaptation setup failed: ${err}`))
   ]);
 
   // Start all agents (they begin polling their queues)
@@ -71,6 +74,7 @@ async function runAll(): Promise<void> {
   scanner.start();
   reporter.start();
   repair.start();
+  adaptation.start();
 
   LOG.log('All agents started — pipeline running');
 
@@ -84,7 +88,8 @@ async function runAll(): Promise<void> {
         browser.stop(),
         scanner.stop(),
         reporter.stop(),
-        repair.stop()
+        repair.stop(),
+        adaptation.stop()
       ]);
       db?.close();
       LOG.log('AgentRunner shutdown complete');
@@ -144,6 +149,14 @@ async function runSingle(agentName: string): Promise<void> {
     }
     case 'repair': {
       const agent = new RepairAgent(PIPELINE_ROOT);
+      await agent.setup();
+      agent.start();
+      await new Promise((r) => { process.on('SIGINT', r); process.on('SIGTERM', r); });
+      await agent.stop();
+      break;
+    }
+    case 'adaptation': {
+      const agent = new AdaptationAgent(PIPELINE_ROOT);
       await agent.setup();
       agent.start();
       await new Promise((r) => { process.on('SIGINT', r); process.on('SIGTERM', r); });

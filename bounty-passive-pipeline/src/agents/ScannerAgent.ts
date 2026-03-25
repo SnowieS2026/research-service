@@ -101,10 +101,17 @@ export class ScannerAgent extends BaseAgent {
           targets: string[];
           pipelineRoot: string;
           tickCount: number;
+          adaptationStrategies?: Record<string, {
+            recommendedTools: Record<string, boolean>;
+            confidence: string;
+            reason: string;
+            basedOnRuns: number;
+          } | null>;
         };
 
         LOG.log(`SCAN:START received (tick #${payload.tickCount}) for ${payload.targets.length} targets`);
-        await this.runFullScan(payload.targets);
+        const strategies = payload.adaptationStrategies ?? {};
+        await this.runFullScan(payload.targets, strategies);
         return true;
       }
 
@@ -155,7 +162,15 @@ export class ScannerAgent extends BaseAgent {
 
   // ── Full scan (coordinator-triggered) ────────────────────────────────────────
 
-  private async runFullScan(targets: string[]): Promise<void> {
+  private async runFullScan(
+    targets: string[],
+    strategies: Record<string, {
+      recommendedTools: Record<string, boolean>;
+      confidence: string;
+      reason: string;
+      basedOnRuns: number;
+    } | null> = {}
+  ): Promise<void> {
     if (this.scanning) {
       LOG.warn('Scan already in progress – ignoring SCAN:START');
       return;
@@ -166,6 +181,8 @@ export class ScannerAgent extends BaseAgent {
     const startedAt = new Date().toISOString();
     const errors: string[] = [];
     const reportPaths: string[] = [];
+    const allFindings: Awaited<ReturnType<typeof runParallelScan>>['findings'] = [];
+    const toolsRun = new Set<string>();
 
     LOG.log(`Starting full scan ${scanId} on ${targets.length} targets`);
 
@@ -177,39 +194,116 @@ export class ScannerAgent extends BaseAgent {
         // Still try to run – they'll fail gracefully
       }
 
-      // Run parallel scan
-      const result = await runParallelScan(targets, {
-        dryRun: false,
-        tools: {
-          dalfox: true,
-          sqlmap: true,
-          nuclei: true,
-          ssrf: true,
-          auth: true,
-          api: true,
-          subfinder: true,
-          gau: true,
-          httpx: true,
-          gitleaks: true
-        },
-        nucleiTemplates: '',
-        rateLimitMs: 2_000,
-        timeoutPerTarget: 300_000,
-        maxTargetsPerRun: 20,
-        outputDir: path.join(this.PIPELINE_ROOT, 'reports'),
-        sqlmapLevel: 2,
-        sqlmapRisk: 1
-      }, this.db);
+      // Group targets by program using scopeAssets map from coordinator context
+      // Each target may belong to a different program – scan each with its own strategy
+      // For simplicity: if we have strategies, scan in batches by strategy group
+      // Fall back to a single scan with merged tool config
 
-      // Collect report paths
-      if (result.findings.length > 0) {
-        const today = new Date().toISOString().split('T')[0];
-        const dir = path.join(this.PIPELINE_ROOT, 'reports', today);
-        const hash = result.scanId.slice(0, 12);
-        reportPaths.push(
-          path.join(dir, `scan-${hash}.md`),
-          path.join(dir, `scan-${hash}.json`)
-        );
+      const hasStrategies = Object.values(strategies).some((s) => s !== null);
+
+      if (hasStrategies) {
+        // Scan each program's targets with its own recommended tool set
+        // Group targets by their program's strategy
+        const strategyGroups = new Map<string, string[]>();
+        for (const target of targets) {
+          // Find which program's strategy applies – use first matching
+          let matchedStrategy: string | null = null;
+          for (const [programUrl, strat] of Object.entries(strategies)) {
+            if (strat !== null) {
+              matchedStrategy = programUrl;
+              break;
+            }
+          }
+          const key = matchedStrategy ?? '__default__';
+          if (!strategyGroups.has(key)) strategyGroups.set(key, []);
+          strategyGroups.get(key)!.push(target);
+        }
+
+        for (const [programUrl, groupTargets] of strategyGroups) {
+          const strat = strategies[programUrl] ?? strategies['__default__'];
+          const toolConfig = this.buildToolConfigFromStrategy(strat);
+
+          LOG.log(
+            `Scanning ${groupTargets.length} targets with strategy for ${programUrl}: ` +
+            `confidence=${strat?.confidence ?? 'none'} — tools: ` +
+            `${Object.entries(toolConfig).filter(([,e])=>e).map(([t])=>t).join(', ')}`
+          );
+
+          try {
+            const result = await runParallelScan(groupTargets, {
+              dryRun: false,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              tools: toolConfig as any,
+              nucleiTemplates: '',
+              rateLimitMs: 2_000,
+              timeoutPerTarget: 300_000,
+              maxTargetsPerRun: 20,
+              outputDir: path.join(this.PIPELINE_ROOT, 'reports'),
+              sqlmapLevel: 2,
+              sqlmapRisk: 1
+            }, this.db);
+
+            allFindings.push(...result.findings);
+            for (const [tool, enabled] of Object.entries(toolConfig)) {
+              if (enabled) toolsRun.add(tool);
+            }
+            errors.push(...result.errors);
+
+            if (result.findings.length > 0) {
+              const today = new Date().toISOString().split('T')[0];
+              const dir = path.join(this.PIPELINE_ROOT, 'reports', today);
+              const hash = result.scanId.slice(0, 12);
+              reportPaths.push(
+                path.join(dir, `scan-${hash}.md`),
+                path.join(dir, `scan-${hash}.json`)
+              );
+            }
+          } catch (scanErr) {
+            const errMsg = String(scanErr);
+            LOG.error(`Scan group failed for ${programUrl}: ${errMsg}`);
+            errors.push(`[${programUrl}] ${errMsg}`);
+          }
+        }
+      } else {
+        // No strategies yet – use default tool config (all tools)
+        const result = await runParallelScan(targets, {
+          dryRun: false,
+          tools: {
+            dalfox: true,
+            sqlmap: true,
+            nuclei: true,
+            ssrf: true,
+            auth: true,
+            api: true,
+            subfinder: true,
+            gau: true,
+            httpx: true,
+            gitleaks: true
+          },
+          nucleiTemplates: '',
+          rateLimitMs: 2_000,
+          timeoutPerTarget: 300_000,
+          maxTargetsPerRun: 20,
+          outputDir: path.join(this.PIPELINE_ROOT, 'reports'),
+          sqlmapLevel: 2,
+          sqlmapRisk: 1
+        }, this.db);
+
+        allFindings.push(...result.findings);
+        for (const [tool, enabled] of Object.entries(result.summary)) {
+          if (enabled) toolsRun.add(tool);
+        }
+        errors.push(...result.errors);
+
+        if (result.findings.length > 0) {
+          const today = new Date().toISOString().split('T')[0];
+          const dir = path.join(this.PIPELINE_ROOT, 'reports', today);
+          const hash = result.scanId.slice(0, 12);
+          reportPaths.push(
+            path.join(dir, `scan-${hash}.md`),
+            path.join(dir, `scan-${hash}.json`)
+          );
+        }
       }
 
       // Record completed targets
@@ -221,15 +315,24 @@ export class ScannerAgent extends BaseAgent {
 
       this.persistState();
 
-      LOG.log(`SCAN:DONE ${scanId}: ${result.findings.length} findings`);
+      LOG.log(`SCAN:DONE ${scanId}: ${allFindings.length} findings`);
 
       this.send('coordinator', 'SCAN:DONE', {
         scanId,
         startedAt,
-        findingsCount: result.findings.length,
+        findingsCount: allFindings.length,
         reportPaths,
-        errors: result.errors,
-        summary: result.summary
+        errors,
+        toolsRun: [...toolsRun],
+        findings: allFindings.map((f: any) => ({
+          tool: f.tool,
+          type: f.type,
+          severity: f.severity,
+          url: f.url,
+          description: f.description,
+          evidence: f.evidence,
+          cvss: f.cvss
+        }))
       });
 
     } catch (err) {
@@ -244,6 +347,59 @@ export class ScannerAgent extends BaseAgent {
     } finally {
       this.scanning = false;
     }
+  }
+
+  /**
+   * Build a ScannerConfig.tools object from an adaptation strategy.
+   * Maps ToolStrategy.recommendedTools (true/false per tool name) into
+   * the { dalfox: true, sqlmap: false, ... } shape that runParallelScan expects.
+   */
+  private buildToolConfigFromStrategy(
+    strat: {
+      recommendedTools: Record<string, boolean>;
+      confidence: string;
+      reason: string;
+      basedOnRuns: number;
+    } | null | undefined
+  ): Record<string, boolean> {
+    // All tools default to false unless explicitly recommended
+    const tools: Record<string, boolean> = {
+      dalfox: false,
+      sqlmap: false,
+      nuclei: false,
+      ssrf: false,
+      auth: false,
+      api: false,
+      subfinder: false,
+      gau: false,
+      httpx: false,
+      gitleaks: false
+    };
+
+    if (!strat) {
+      // No data – enable sensible defaults for unknown programs
+      tools.dalfox = true;
+      tools.sqlmap = true;
+      tools.nuclei = true;
+      tools.ssrf = true;
+      tools.auth = true;
+      tools.api = true;
+      return tools;
+    }
+
+    for (const [tool, recommended] of Object.entries(strat.recommendedTools)) {
+      if (tool in tools) {
+        tools[tool] = recommended;
+      }
+    }
+
+    // nuclei is always worth running – override to true if strategy disabled it
+    // (unless explicitly turned off due to consistent failures)
+    if (!tools.nuclei && strat.confidence !== 'high') {
+      tools.nuclei = true;
+    }
+
+    return tools;
   }
 
   // ── Incremental scan (triggered by individual targets) ───────────────────────

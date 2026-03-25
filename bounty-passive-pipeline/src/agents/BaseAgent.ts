@@ -159,7 +159,7 @@ export abstract class BaseAgent {
    * Override for async initialization (e.g., opening browser, DB connections).
    * Called once before the poll loop starts.
    */
-  protected async setup?(): Promise<void>;
+  public async setup?(): Promise<void>;
 
   /**
    * Override for graceful shutdown logic.

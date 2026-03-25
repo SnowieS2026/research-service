@@ -11,7 +11,8 @@ export type AgentName =
   | 'browser'
   | 'scanner'
   | 'reporter'
-  | 'repair';
+  | 'repair'
+  | 'adaptation';
 
 export type MessagePriority = 'low' | 'normal' | 'high' | 'critical';
 
@@ -41,6 +42,12 @@ export type MessageType =
   | 'REPAIR:START'
   | 'REPAIR:DONE'
   | 'REPAIR:FAIL'
+  // Adaptation
+  | 'ADAPTATION:REVIEW'
+  | 'ADAPTATION:STRATEGY'
+  | 'ADAPTATION:QUERY'
+  | 'ADAPTATION:DUMP'
+  | 'ADAPTATION:ACK'
   // Lifecycle
   | 'PING'
   | 'ACK';

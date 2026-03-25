@@ -241,14 +241,94 @@ export class CoordinatorAgent extends BaseAgent {
 
     const uniqueAssets = [...new Set(allAssets)].slice(0, 20); // cap at 20
 
+    // ── Get per-program tool strategy from AdaptationAgent ──────────────────
+    const strategyResults = await this.queryAdaptationForPrograms();
+
+    // Log what the adaptation agent recommended
+    for (const [programUrl, strategy] of Object.entries(strategyResults)) {
+      if (strategy) {
+        const enabled = Object.entries(strategy.recommendedTools)
+          .filter(([, e]) => e)
+          .map(([t]) => t)
+          .join(', ');
+        const disabled = Object.entries(strategy.recommendedTools)
+          .filter(([, e]) => !e)
+          .map(([t]) => t)
+          .join(', ');
+        this.log.log(
+          `ADAPTATION: ${programUrl} — confidence=${strategy.confidence} — ` +
+          `ON: ${enabled || 'none'} — OFF: ${disabled || 'none'}`
+        );
+      } else {
+        this.log.log(`ADAPTATION: ${programUrl} — no data, using defaults`);
+      }
+    }
+
     const msg = createMessage('coordinator', 'scanner', 'SCAN:START', {
       targets: uniqueAssets,
       pipelineRoot: this.PIPELINE_ROOT,
-      tickCount: this.tickCount
+      tickCount: this.tickCount,
+      adaptationStrategies: strategyResults
     }, { priority: 'high' });
 
     this.queue.enqueue(msg);
     this.log.log(`SCAN:START sent for ${uniqueAssets.length} targets`);
+  }
+
+  /**
+   * Query AdaptationAgent for tool strategy for each program we've discovered.
+   * Returns a map of programUrl → ToolStrategy (or null if no data).
+   */
+  private async queryAdaptationForPrograms(): Promise<Record<string, import('./AdaptationAgent.js').ToolStrategy | null>> {
+    const results: Record<string, import('./AdaptationAgent.js').ToolStrategy | null> = {};
+
+    for (const programUrl of this.phaseCtx.programs) {
+      const platform = detectPlatform(programUrl) ?? 'unknown';
+
+      // Send ADAPTATION:REVIEW and wait for response
+      const reviewMsg = createMessage('coordinator', 'adaptation', 'ADAPTATION:REVIEW', {
+        programUrl,
+        platform
+      }, { priority: 'normal' });
+
+      this.queue.enqueue(reviewMsg);
+
+      // Poll for response (adaptation agent writes to coordinator queue)
+      const strategy = await this.waitForStrategyResponse(reviewMsg.id, 5_000);
+      results[programUrl] = strategy;
+    }
+
+    return results;
+  }
+
+  private waitForStrategyResponse(requestId: string, timeoutMs: number): Promise<import('./AdaptationAgent.js').ToolStrategy | null> {
+    return new Promise((resolve) => {
+      const deadline = Date.now() + timeoutMs;
+      const check = () => {
+        // Look for ADAPTATION:STRATEGY in coordinator queue that replies to our request
+        const queuePath = path.join(this.PIPELINE_ROOT, 'logs', 'agent-queue', 'coordinator.queue.jsonl');
+        try {
+          if (fs.existsSync(queuePath)) {
+            const lines = fs.readFileSync(queuePath, 'utf8').split('\n').filter(Boolean);
+            for (const line of lines) {
+              try {
+                const msg = JSON.parse(line);
+                if (msg.type === 'ADAPTATION:STRATEGY' && msg.replyTo === requestId) {
+                  return resolve(msg.payload as import('./AdaptationAgent.js').ToolStrategy);
+                }
+              } catch { /* skip */ }
+            }
+          }
+        } catch { /* ignore */ }
+
+        if (Date.now() < deadline) {
+          setTimeout(check, 500);
+        } else {
+          resolve(null);
+        }
+      };
+      check();
+    });
   }
 
   // ── Phase: REPORTER ───────────────────────────────────────────────────────────
@@ -348,12 +428,26 @@ export class CoordinatorAgent extends BaseAgent {
       case 'SCAN:DONE': {
         const payload = msg.payload as {
           scanId: string;
+          programUrl: string;
+          platform: string;
           findingsCount: number;
           reportPaths: string[];
           errors: string[];
+          toolsRun: string[];
+          findings: { tool: string; type: string; severity: string; url: string }[];
         };
         this.phaseCtx.scanReportPaths.push(...payload.reportPaths);
         this.log.log(`SCAN:DONE – ${payload.findingsCount} findings, reports: ${payload.reportPaths.join(', ')}`);
+
+        // Forward to adaptation agent for learning
+        this.send('adaptation', 'SCAN:DONE', {
+          scanId: payload.scanId,
+          programUrl: payload.programUrl ?? this.phaseCtx.programs[0] ?? 'unknown',
+          platform: payload.platform ?? detectPlatform(this.phaseCtx.programs[0] ?? '') ?? 'unknown',
+          toolsRun: payload.toolsRun ?? [],
+          findings: payload.findings ?? [],
+          errors: payload.errors ?? []
+        });
 
         // Notify reporter of scan results
         this.send('reporter', 'REPORT:GENERATE', {
@@ -412,6 +506,24 @@ export class CoordinatorAgent extends BaseAgent {
         // After max repair attempts, log and move on
         this.phaseCtx.repairAttempts.set(payload.issueKey, payload.attempts);
         await this.transitionTo('IDLE');
+        return true;
+      }
+
+      case 'ADAPTATION:STRATEGY': {
+        // Async response from adaptation agent (handled via waitForStrategyResponse)
+        // but also needed when sent directly without replyTo
+        const payload = msg.payload as {
+          programUrl: string;
+          platform: string;
+          recommendedTools: Record<string, boolean>;
+          confidence: string;
+          reason: string;
+          basedOnRuns: number;
+        };
+        this.log.log(
+          `ADAPTATION:STRATEGY received for ${payload.programUrl}: ` +
+          `confidence=${payload.confidence}, basedOnRuns=${payload.basedOnRuns}`
+        );
         return true;
       }
 
