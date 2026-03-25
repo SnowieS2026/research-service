@@ -1,0 +1,23 @@
+{
+  "belfius": {
+    "error": "status 403"
+  },
+  "newpharma": {
+    "error": "status 403"
+  },
+  "fortnox": {
+    "error": "status 403"
+  },
+  "intertoys": {
+    "error": "status 403"
+  },
+  "kahoot": {
+    "error": "status 403"
+  },
+  "ideals": {
+    "error": "status 403"
+  },
+  "solarwindssaas": {
+    "error": "status 403"
+  }
+}

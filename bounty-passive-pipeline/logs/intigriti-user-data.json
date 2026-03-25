@@ -1,0 +1,194 @@
+{
+  "submissions": [
+    {
+      "originator": {
+        "type": 1,
+        "programId": "48853273-690a-4555-8ac5-821a1c464312"
+      },
+      "id": "CAPITALCOM-S1FC7KMP",
+      "programId": "48853273-690a-4555-8ac5-821a1c464312",
+      "companyHandle": "capitalcom",
+      "programHandle": "capitalcom",
+      "companyName": "Capital.com",
+      "programName": "Capital.com",
+      "programLogoId": "public_bucket_3b56025e-d5d4-478b-a6b8-dea0e6e1c33b-ffce2d43-da81-4c48-bb64-f51fc1c21aa9",
+      "programTwoFactorRequired": false,
+      "collaborators": [
+        {
+          "role": 1,
+          "weight": 1,
+          "researcher": {
+            "role": "RESEARCHER",
+            "identityChecked": false,
+            "userId": "142f9c1b-22e4-47b1-a04b-49e1ede54ee5",
+            "avatarId": null,
+            "userName": "humbles"
+          }
+        }
+      ],
+      "title": "Inconsistent Rate Limiting on Capital.com Payment Backend",
+      "state": {
+        "status": 4,
+        "closeReason": 5,
+        "duplicateSubmission": null
+      },
+      "severityVector": null,
+      "severity": 4,
+      "bounty": {
+        "value": 1000,
+        "currency": "EUR"
+      },
+      "hasBonus": false,
+      "awaitingFeedback": false,
+      "awaitedFeedbackDate": null,
+      "lastEvent": {
+        "discriminator": 2,
+        "from": {
+          "status": 1,
+          "closeReason": null,
+          "duplicateSubmission": null
+        },
+        "to": {
+          "status": 4,
+          "closeReason": 5,
+          "duplicateSubmission": null
+        },
+        "createdAt": 1774441380
+      },
+      "lastViewed": 1773434042,
+      "hasUnreadMessages": true,
+      "hasUnreadMentions": false,
+      "retestStatuses": [],
+      "destroyedAt": null,
+      "lastUpdatedAt": 1774441380,
+      "createdAt": 1773434042
+    },
+    {
+      "originator": {
+        "type": 1,
+        "programId": "0f95dabb-d299-4574-befc-bb96a3bafb42"
+      },
+      "id": "VISMA-86CUILLJ",
+      "programId": "0f95dabb-d299-4574-befc-bb96a3bafb42",
+      "companyHandle": "visma",
+      "programHandle": "visma",
+      "companyName": "Visma",
+      "programName": "Visma",
+      "programLogoId": "public_bucket_10289273-1bb9-46ee-8aec-af3151a3edcf-c30dca7c-ade8-4a6e-b1f0-3790f0dbe73b",
+      "programTwoFactorRequired": false,
+      "collaborators": [
+        {
+          "role": 1,
+          "weight": 1,
+          "researcher": {
+            "role": "RESEARCHER",
+            "identityChecked": false,
+            "userId": "142f9c1b-22e4-47b1-a04b-49e1ede54ee5",
+            "avatarId": null,
+            "userName": "humbles"
+          }
+        }
+      ],
+      "title": "Exposed .git Configuration",
+      "state": {
+        "status": 4,
+        "closeReason": 7,
+        "duplicateSubmission": null
+      },
+      "severityVector": null,
+      "severity": 3,
+      "bounty": {
+        "value": 250,
+        "currency": "EUR"
+      },
+      "hasBonus": false,
+      "awaitingFeedback": false,
+      "awaitedFeedbackDate": null,
+      "lastEvent": {
+        "discriminator": 2,
+        "from": {
+          "status": 2,
+          "closeReason": null,
+          "duplicateSubmission": null
+        },
+        "to": {
+          "status": 4,
+          "closeReason": 7,
+          "duplicateSubmission": null
+        },
+        "createdAt": 1774280303
+      },
+      "lastViewed": 1773489922,
+      "hasUnreadMessages": false,
+      "hasUnreadMentions": false,
+      "retestStatuses": [],
+      "destroyedAt": null,
+      "lastUpdatedAt": 1774280303,
+      "createdAt": 1773489922
+    },
+    {
+      "originator": {
+        "type": 1,
+        "programId": "0f95dabb-d299-4574-befc-bb96a3bafb42"
+      },
+      "id": "VISMA-ISAZUQIM",
+      "programId": "0f95dabb-d299-4574-befc-bb96a3bafb42",
+      "companyHandle": "visma",
+      "programHandle": "visma",
+      "companyName": "Visma",
+      "programName": "Visma",
+      "programLogoId": "public_bucket_10289273-1bb9-46ee-8aec-af3151a3edcf-c30dca7c-ade8-4a6e-b1f0-3790f0dbe73b",
+      "programTwoFactorRequired": false,
+      "collaborators": [
+        {
+          "role": 1,
+          "weight": 1,
+          "researcher": {
+            "role": "RESEARCHER",
+            "identityChecked": false,
+            "userId": "142f9c1b-22e4-47b1-a04b-49e1ede54ee5",
+            "avatarId": null,
+            "userName": "humbles"
+          }
+        }
+      ],
+      "title": "HIGH - IDOR / Authentication Bypass on myservices.stage.vismaonline.com",
+      "state": {
+        "status": 4,
+        "closeReason": 7,
+        "duplicateSubmission": null
+      },
+      "severityVector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+      "severity": 4,
+      "bounty": {
+        "value": 1000,
+        "currency": "EUR"
+      },
+      "hasBonus": false,
+      "awaitingFeedback": false,
+      "awaitedFeedbackDate": null,
+      "lastEvent": {
+        "discriminator": 2,
+        "from": {
+          "status": 2,
+          "closeReason": null,
+          "duplicateSubmission": null
+        },
+        "to": {
+          "status": 4,
+          "closeReason": 7,
+          "duplicateSubmission": null
+        },
+        "createdAt": 1774280381
+      },
+      "lastViewed": 1773489716,
+      "hasUnreadMessages": false,
+      "hasUnreadMentions": false,
+      "retestStatuses": [],
+      "destroyedAt": null,
+      "lastUpdatedAt": 1774280381,
+      "createdAt": 1773489716
+    }
+  ],
+  "applications": []
+}

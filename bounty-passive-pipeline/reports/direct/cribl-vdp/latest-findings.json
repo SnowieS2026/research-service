@@ -1,0 +1,25 @@
+{
+  "targets": [
+    "https://api.cribl.cloud",
+    "https://docs.cribl.io",
+    "https://cribl.io",
+    "https://login.cribl.cloud"
+  ],
+  "findings": [
+    {
+      "id": "e92a3107b8e17d19fe8b1f7de8c0d584c235fe1537d7e2a7a8558184cbe0bb3a",
+      "url": "cribl.io",
+      "type": "nuclei",
+      "severity": "LOW",
+      "cvss": 3.5,
+      "tool": "nuclei",
+      "description": "Microsoft Azure Domain Tenant ID was detected.",
+      "evidence": "Template: \\http\\exposures\\configs\\azure-domain-tenant.yaml",
+      "createdAt": "2026-03-25T14:29:22.153Z",
+      "references": [],
+      "template": "\\http\\exposures\\configs\\azure-domain-tenant.yaml",
+      "matchedAt": "2026-03-25T14:29:22.153Z"
+    }
+  ],
+  "errors": []
+}

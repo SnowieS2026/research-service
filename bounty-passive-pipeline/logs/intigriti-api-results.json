@@ -1,0 +1,17 @@
+{
+  "coveopublicbugbounty": {
+    "error": "all endpoints returned 404 or empty"
+  },
+  "toastvdp": {
+    "error": "all endpoints returned 404 or empty"
+  },
+  "liferaydxp": {
+    "error": "all endpoints returned 404 or empty"
+  },
+  "excoscalebugbounty": {
+    "error": "all endpoints returned 404 or empty"
+  },
+  "nutaku-bbp": {
+    "error": "all endpoints returned 404 or empty"
+  }
+}

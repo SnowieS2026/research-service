@@ -1,0 +1,32 @@
+{
+  "coveopublicbugbounty": {
+    "name": "Coveo",
+    "bounty": "100-5500",
+    "domains": [],
+    "paths": []
+  },
+  "toastvdp": {
+    "name": "Toast",
+    "bounty": "0-0",
+    "domains": [],
+    "paths": []
+  },
+  "liferaydxp": {
+    "name": "Liferay DXP",
+    "bounty": "100-2000",
+    "domains": [],
+    "paths": []
+  },
+  "trustedfirmware": {
+    "name": "Trusted Firmware",
+    "bounty": "1000-20000",
+    "domains": [],
+    "paths": []
+  },
+  "excoscalebugbounty": {
+    "name": "Exoscale",
+    "bounty": "50-5000",
+    "domains": [],
+    "paths": []
+  }
+}
