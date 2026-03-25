@@ -1,0 +1,65 @@
+identifier,asset_type,instruction,eligible_for_bounty,eligible_for_submission,availability_requirement,confidentiality_requirement,integrity_requirement,max_severity,system_tags,created_at,updated_at
+*.grammarly.io,WILDCARD,"",true,true,low,low,low,critical,,2017-09-15 17:16:53 UTC,2024-09-05 13:21:24 UTC
+Grammarly Browser Extensions,OTHER,"The extension is available in the extension/add-on store of the respective browser: 
+* [Chrome](https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen?hl=en) 
+* [Firefox](https://addons.mozilla.org/en-US/firefox/addon/grammarly-1/)
+* [Edge](https://microsoftedge.microsoft.com/addons/detail/grammarly-ai-writing-and/cnlefmmeadmemmdciolhbnfeacpdfbkd)
+* [Safari](https://apps.apple.com/us/app/grammarly-for-safari/id1462114288)
+
+**Browser Extension vulnerabilities will not be distinguished. For example, if a vulnerability exists in the Chrome and Safari extensions, we will consider it the same vulnerability and will only award one bounty.**",true,true,not_defined,not_defined,not_defined,critical,,2017-11-15 15:36:08 UTC,2025-11-20 12:11:41 UTC
+*.grammarlyaws.com,WILDCARD,"",true,true,low,low,low,critical,,2018-03-05 18:21:53 UTC,2025-11-21 11:26:12 UTC
+com.grammarly.keyboard,APPLE_STORE_APP_ID,[Grammarly for iOS](https://www.grammarly.com/mobile/ios),true,true,high,high,high,critical,,2018-03-22 19:09:59 UTC,2025-11-20 12:20:11 UTC
+com.grammarly.android.keyboard,GOOGLE_PLAY_APP_ID,"[Grammarly for Android](https://www.grammarly.com/mobile/android).
+
+Vulnerabilities with PoC may qualify for additional bounty via [Google Play Security Rewards Program](https://hackerone.com/googleplay). See [Vulnerability Criteria](https://hackerone.com/googleplay) for details.",true,true,high,high,high,critical,,2018-03-22 19:11:40 UTC,2025-11-20 12:22:21 UTC
+Third party external services,OTHER,"- `send.grammarly.com`
+- `calendar.grammarly.com`
+- `support.grammarly.com`
+- `status.grammarly.com`
+- `brand.grammarly.com`
+- `partners.grammarly.com`
+- `events.grammarly.com`
+- `go.grammarly.com`
+
+Any submissions on these domains and their subdomains are out of scope for bounty.",false,false,,,,critical,,2019-10-09 01:36:01 UTC,2025-11-20 12:16:50 UTC
+Grammarly Desktop for Windows,DOWNLOADABLE_EXECUTABLES,https://download-windows.grammarly.com/GrammarlyInstaller.exe,true,true,,high,,critical,C#,2021-02-11 15:56:58 UTC,2021-11-23 16:05:47 UTC
+Grammarly Desktop for macOS,DOWNLOADABLE_EXECUTABLES,https://download-mac.grammarly.com/Grammarly.dmg,true,true,,high,,critical,Swift,2021-05-17 15:37:54 UTC,2021-11-23 15:38:20 UTC
+*.grammarly.com,WILDCARD,"",true,true,,,,critical,,2021-06-17 12:58:29 UTC,2024-08-29 08:30:14 UTC
+Capture the Flag,OTHER,"The first hacker who reports the `$FLAG` saved in the document (`document_id: 1198436185`) of the user `h1_ctf@grammarly.com` (`user_id: 1411519194`) will be awarded a **$100K bounty**.
+",true,true,,not_defined,,critical,,2021-07-20 10:27:27 UTC,2024-10-21 10:01:56 UTC
+app.grammarly.com,URL,"app.grammarly.com is Grammarly’s web application, enabling users to create, edit, and manage documents while accessing the full suite of Grammarly features through the online editor.",true,true,,,,critical,,2024-11-25 17:19:01 UTC,2024-11-25 17:19:01 UTC
+Superhuman Go,OTHER,"Superhuman Go is a proactive AI assistant that integrates with 100+ apps to coordinate agents and provide context-aware help across your workflow. It works in every tab where you work.
+[Superhuman Go - AI Assistant](https://superhuman.com/products/go-ai-assistant)
+",true,true,,,,critical,,2025-10-15 11:20:28 UTC,2025-11-20 12:15:58 UTC
+superhuman.com,URL,,true,true,,,,critical,,2025-11-12 12:27:42 UTC,2025-11-20 11:53:32 UTC
+*.superhuman.com,WILDCARD,"Only domains that originate through superhuman.com are accepted here. If we determine the domain is generated through superhuman mail or its infra, we will mark this as out of scope.",true,true,low,low,low,critical,,2025-11-20 11:53:02 UTC,2025-11-25 13:25:21 UTC
+gateway.superhuman.com,URL,,true,true,,,,critical,,2025-11-20 11:53:10 UTC,2025-11-25 13:23:44 UTC
+id.superhuman.com,URL,,true,true,,,,critical,,2025-11-20 11:53:20 UTC,2025-11-25 13:23:44 UTC
+settings.superhuman.com,URL,,true,true,,,,critical,,2025-11-20 11:53:26 UTC,2025-11-20 11:53:26 UTC
+status.coda.io,URL,,false,false,,,,critical,,2025-11-20 12:28:43 UTC,2025-11-21 11:12:15 UTC
+Coda Chrome Extension,OTHER,,true,true,low,low,medium,high,,2025-11-20 12:29:31 UTC,2025-11-20 12:29:31 UTC
+codacontent.io,URL,,true,true,not_defined,not_defined,not_defined,critical,,2025-11-20 12:29:31 UTC,2025-11-21 11:24:06 UTC
+codahosted.io,URL,,true,true,low,low,low,critical,,2025-11-20 12:29:31 UTC,2025-11-21 11:21:02 UTC
+io.coda,APPLE_STORE_APP_ID,,true,true,,,,critical,,2025-11-20 12:29:31 UTC,2025-11-20 12:29:31 UTC
+io.coda.codaapp,GOOGLE_PLAY_APP_ID,,true,true,,,,critical,,2025-11-20 12:29:31 UTC,2025-11-20 12:29:31 UTC
+Superhuman Mail,OTHER,"Any assets related to Superhuman Mail are out of scope and go through VDP via `security@superhuman.com`
+  * mail.superhuman.com
+  * accounts.superhuman.com
+  * r.superhuman.com
+  * media.superhuman.com 
+  * assets.mail.superhuman.com
+  * emojis.superhuman.com 
+  * help.superhuman.com
+  * blog.superhuman.com
+  * media.superhuman.com
+  * accounts.superhuman.com
+  * preferences.superhuman.com
+  * email.superhuman.com
+  * join.superhuman.com
+  * https://superhuman.com/pricing
+  * https://superhuman.com/products/mail/*
+
+And any other assets not mentioned here but originating from the Superhuman Mail product/website.",false,false,,,,none,,2025-11-20 17:11:39 UTC,2025-11-27 12:49:22 UTC
+coda.grammarly.com,URL,,true,true,,,,critical,,2025-11-21 10:38:22 UTC,2025-11-21 10:38:22 UTC
+coda.io,URL,,true,true,,,,critical,,2025-11-21 11:09:02 UTC,2025-11-21 11:09:02 UTC
+*.coda.io,WILDCARD,,true,true,low,low,low,critical,,2025-11-21 11:09:29 UTC,2025-11-21 11:09:46 UTC

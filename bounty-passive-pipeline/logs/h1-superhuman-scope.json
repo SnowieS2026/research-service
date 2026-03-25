@@ -1,0 +1,2612 @@
+{
+  "url": "https://hackerone.com/superhuman/safe_harbor?type=team",
+  "title": {},
+  "graphql": [
+    {
+      "data": {
+        "maintenance_banner": null,
+        "session": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL09iamVjdHM6OlNlc3Npb24vc3RhdGlj",
+          "__typename": "Session"
+        },
+        "me": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXIvNDM3OTkxNw==",
+          "unreadNotificationCount": 2,
+          "__typename": "User"
+        }
+      }
+    },
+    {
+      "data": {
+        "organizations_admin": {
+          "total_count": 0,
+          "__typename": "OrganizationConnection"
+        },
+        "features": {
+          "edges": [
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODIw",
+                "key": "inbox-mediation-summary",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvNzgx",
+                "key": "es-notifications",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA5MQ==",
+                "key": "priority-agentic-mode",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTc4",
+                "key": "hai-return-on-mitigation",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA4NA==",
+                "key": "spend-by-asset-category",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAyMA==",
+                "key": "hai-for-hackers",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODU4",
+                "key": "pentest-csa-customer-self-setup",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTAw",
+                "key": "auto-accept-product-entitlements",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTk2",
+                "key": "analytics-use-materialized-views",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTkx",
+                "key": "stripe-payment-intents",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA2Mw==",
+                "key": "intake-agent-asset-ownership-enabled",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAyNQ==",
+                "key": "hai-rom-tool",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTc1",
+                "key": "hai-report-insights",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA1OQ==",
+                "key": "dedupe-action-recommendations",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0NQ==",
+                "key": "enable-2fa-with-security-keys",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA1Mg==",
+                "key": "idv-risk-label-notifications",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0Mg==",
+                "key": "bounty-informed-pentest-mailing",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA5Ng==",
+                "key": "report-assistant-on-anthropic-api",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTY4",
+                "key": "pentest-clickthrough-agreements",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODMw",
+                "key": "program-request-integrations",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAzNg==",
+                "key": "report-assistant-agent-eligible-programs",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0OA==",
+                "key": "verification-updated-support-app",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTkz",
+                "key": "pentest-scoping-back-to-draft",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTEzMg==",
+                "key": "weakness-classification-agent-v2",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA3Mw==",
+                "key": "hacker-invitations-api",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0Nw==",
+                "key": "verification-save-risk-labels",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvNjM0",
+                "key": "scope-management",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTExMA==",
+                "key": "convert-payout-access-bans",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA2Ng==",
+                "key": "clear-idv-expired-user-removal",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODk3",
+                "key": "clear-voucher",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAwNQ==",
+                "key": "hai-sonnet-4",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTg5",
+                "key": "embedded-form-version-2",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA5OA==",
+                "key": "agent-auto-routing",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0Mw==",
+                "key": "slack-migration",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTk0",
+                "key": "write-ups-markdown-engine-kramdown",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTg3",
+                "key": "asset-placeholder-documentation",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0MA==",
+                "key": "triage-intake-dupe-recommendations",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAyNw==",
+                "key": "bounty-informed-pentest",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTg1",
+                "key": "external-automations",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAwMQ==",
+                "key": "hai-prompt-caching",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvNzk2",
+                "key": "hai",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "opted_in": false,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            }
+          ],
+          "__typename": "FeatureConnection"
+        },
+        "me": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXIvNDM3OTkxNw==",
+          "_id": "4379917",
+          "bio": null,
+          "name": "HumbleS",
+          "email": "bryansclaw@outlook.com",
+          "signal": null,
+          "website": null,
+          "username": "humbles",
+          "location": null,
+          "cleared": false,
+          "verified": false,
+          "teams": {
+            "exists": false,
+            "__typename": "TeamConnection"
+          },
+          "user_type": "hacker",
+          "created_at": "2026-03-08T02:35:02.785Z",
+          "h1_pentester": false,
+          "totp_enabled": true,
+          "webauthn_enabled": false,
+          "hackerone_triager": false,
+          "hackerone_employee": false,
+          "product_user_type": "hacker",
+          "view_profile": "HACKER",
+          "has_active_ban": false,
+          "has_restricted_access": false,
+          "product_analytics": {
+            "id": "Z2lkOi8vaGFja2Vyb25lL1Byb2R1Y3RBbmFseXRpY3M6OlVzZXJUcmFja2VyLzM0Mjc5NTY=",
+            "amplitude_id": "0d23285e-77a1-430d-a049-57ae3ab9552e",
+            "__typename": "UserProductAnalytics"
+          },
+          "user_display_options": {
+            "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXJEaXNwbGF5T3B0aW9ucy8yMjgwODQw",
+            "__typename": "UserDisplayOptions",
+            "theme_preference": "light"
+          },
+          "profile_picture_small": "/assets/avatars/default-14ffa99f59cd01423c64904352cc130ffcb6a802eadfd11777a54485749e60f2.png",
+          "profile_picture_medium": "/assets/avatars/default-14ffa99f59cd01423c64904352cc130ffcb6a802eadfd11777a54485749e60f2.png",
+          "profile_picture_xtralarge": "/assets/avatars/default-14ffa99f59cd01423c64904352cc130ffcb6a802eadfd11777a54485749e60f2.png",
+          "edit_unclaimed_profiles": false,
+          "i_can_view_gateway_v2_settings": false,
+          "i_can_see_hai": true,
+          "i_can_use_hai": true,
+          "i_can_toggle_my_features": false,
+          "features": [
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODIw",
+              "key": "inbox-mediation-summary",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvNzgx",
+              "key": "es-notifications",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA5MQ==",
+              "key": "priority-agentic-mode",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTc4",
+              "key": "hai-return-on-mitigation",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA4NA==",
+              "key": "spend-by-asset-category",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAyMA==",
+              "key": "hai-for-hackers",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODU4",
+              "key": "pentest-csa-customer-self-setup",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTAw",
+              "key": "auto-accept-product-entitlements",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTk2",
+              "key": "analytics-use-materialized-views",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTkx",
+              "key": "stripe-payment-intents",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA2Mw==",
+              "key": "intake-agent-asset-ownership-enabled",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAyNQ==",
+              "key": "hai-rom-tool",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTc1",
+              "key": "hai-report-insights",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA1OQ==",
+              "key": "dedupe-action-recommendations",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0NQ==",
+              "key": "enable-2fa-with-security-keys",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA1Mg==",
+              "key": "idv-risk-label-notifications",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0Mg==",
+              "key": "bounty-informed-pentest-mailing",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA5Ng==",
+              "key": "report-assistant-on-anthropic-api",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTY4",
+              "key": "pentest-clickthrough-agreements",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODMw",
+              "key": "program-request-integrations",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAzNg==",
+              "key": "report-assistant-agent-eligible-programs",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0OA==",
+              "key": "verification-updated-support-app",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTkz",
+              "key": "pentest-scoping-back-to-draft",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTEzMg==",
+              "key": "weakness-classification-agent-v2",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA3Mw==",
+              "key": "hacker-invitations-api",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0Nw==",
+              "key": "verification-save-risk-labels",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvNjM0",
+              "key": "scope-management",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTExMA==",
+              "key": "convert-payout-access-bans",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA2Ng==",
+              "key": "clear-idv-expired-user-removal",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODk3",
+              "key": "clear-voucher",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAwNQ==",
+              "key": "hai-sonnet-4",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTg5",
+              "key": "embedded-form-version-2",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA5OA==",
+              "key": "agent-auto-routing",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0Mw==",
+              "key": "slack-migration",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTk0",
+              "key": "write-ups-markdown-engine-kramdown",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTg3",
+              "key": "asset-placeholder-documentation",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0MA==",
+              "key": "triage-intake-dupe-recommendations",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAyNw==",
+              "key": "bounty-informed-pentest",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTg1",
+              "key": "external-automations",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAwMQ==",
+              "key": "hai-prompt-caching",
+              "enabled": true,
+              "__typename": "Feature"
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvNzk2",
+              "key": "hai",
+              "enabled": true,
+              "__typename": "Feature"
+            }
+          ],
+          "pentester_profile": null,
+          "active_ban": null,
+          "allow_pentester_application": false,
+          "organizations": {
+            "nodes": [],
+            "__typename": "OrganizationConnection"
+          },
+          "organizationByHandle": {
+            "nodes": [],
+            "__typename": "OrganizationConnection"
+          },
+          "firstNonSalesDemoOrganization": {
+            "nodes": [],
+            "__typename": "OrganizationConnection"
+          },
+          "firstOrganization": {
+            "nodes": [],
+            "__typename": "OrganizationConnection"
+          },
+          "__typename": "User",
+          "tutorials": {
+            "edges": [],
+            "__typename": "TutorialConnection"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "me": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXIvNDM3OTkxNw==",
+          "__typename": "User",
+          "unread_notification_count": 2,
+          "notifications": [
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL09iamVjdHM6OlZpcnR1YWxOb3RpZmljYXRpb24vc3RhdGljJTJGdmlydHVhbC1ub3RpZmljYXRpb24lMkY1NTg0MTE3Njk=",
+              "_id": 558411769,
+              "__typename": "VirtualNotification",
+              "unread": true,
+              "type": "Notifications::BugClosed",
+              "timestamp": 1773643154,
+              "created_at": "2026-03-16T06:39:14.779Z",
+              "avatar": "https://profile-photos.hackerone-user-content.com/variants/23p3otm27f7hjxfsde7xx0ol3jhf/235acf2ba808c3a51a94888fb977392c26f8fb0ccf77a81a4546c5e4065c06f1",
+              "actor_name": "Superhuman (formerly Grammarly)",
+              "message": null,
+              "team_name": "Superhuman (formerly Grammarly)",
+              "url": "/bugs?subject=user&organization_inbox_handle=superhuman_inbox&report_id=3602472#activity-40064650",
+              "activity_id": 40068892,
+              "report_id": 3602472,
+              "report_title": "Superhuman Go Chrome Extension: Arbitrary Code Execution via Content Script Injection",
+              "is_internal": false,
+              "old_team_name": null,
+              "team_submission_state": null,
+              "readable_closing_substate": "Informative",
+              "amount": null,
+              "bonus_amount": null,
+              "is_user_first_to_agree": null,
+              "target_username": null,
+              "group_name": null,
+              "custom_message": null,
+              "expiration_date": null,
+              "is_pentest": null,
+              "pentest_name": null,
+              "pentest_check_name": null,
+              "affected_names": null,
+              "pentest_start": null,
+              "pentest_timezone": null,
+              "award_amount": null,
+              "award_amount_lead": null,
+              "pentest_end": null,
+              "start_time": null,
+              "end_time": null,
+              "new_vpn_state": null,
+              "old_award_amount": null,
+              "old_award_amount_lead": null,
+              "bookmarked": null,
+              "organization_inbox_id": null,
+              "organization_inbox_name": null
+            },
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL09iamVjdHM6OlZpcnR1YWxOb3RpZmljYXRpb24vc3RhdGljJTJGdmlydHVhbC1ub3RpZmljYXRpb24lMkY1NTgzNDIxNTI=",
+              "_id": 558342152,
+              "__typename": "VirtualNotification",
+              "unread": true,
+              "type": "Notifications::CommentPosted",
+              "timestamp": 1773636627,
+              "created_at": "2026-03-16T04:50:27.041Z",
+              "avatar": "https://profile-photos.hackerone-user-content.com/variants/zeq8nrjzq3fm0wwh50zliwdw8vn2/235acf2ba808c3a51a94888fb977392c26f8fb0ccf77a81a4546c5e4065c06f1",
+              "actor_name": "h1_analyst_dante",
+              "message": null,
+              "team_name": "Superhuman (formerly Grammarly)",
+              "url": "/bugs?subject=user&organization_inbox_handle=superhuman_inbox&report_id=3602472#activity-40064650",
+              "activity_id": 40064650,
+              "report_id": 3602472,
+              "report_title": "Superhuman Go Chrome Extension: Arbitrary Code Execution via Content Script Injection",
+              "is_internal": false,
+              "old_team_name": null,
+              "team_submission_state": null,
+              "readable_closing_substate": null,
+              "amount": null,
+              "bonus_amount": null,
+              "is_user_first_to_agree": null,
+              "target_username": null,
+              "group_name": null,
+              "custom_message": null,
+              "expiration_date": null,
+              "is_pentest": null,
+              "pentest_name": null,
+              "pentest_check_name": null,
+              "affected_names": null,
+              "pentest_start": null,
+              "pentest_timezone": null,
+              "award_amount": null,
+              "award_amount_lead": null,
+              "pentest_end": null,
+              "start_time": null,
+              "end_time": null,
+              "new_vpn_state": null,
+              "old_award_amount": null,
+              "old_award_amount_lead": null,
+              "bookmarked": null,
+              "organization_inbox_id": null,
+              "organization_inbox_name": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "data": {
+        "hai_plays": {
+          "nodes": [
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+              "name": "Hai for Hackers",
+              "color": null,
+              "system": true,
+              "__typename": "HaiPlay"
+            }
+          ],
+          "__typename": "HaiPlayConnection"
+        },
+        "me": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXIvNDM3OTkxNw==",
+          "llm_conversations": {
+            "nodes": [
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTcx",
+                "_id": "6033571",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTU0",
+                "_id": "6033554",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTQ4",
+                "_id": "6033548",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTQ2",
+                "_id": "6033546",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTQ1",
+                "_id": "6033545",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTQy",
+                "_id": "6033542",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTM4",
+                "_id": "6033538",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTM0",
+                "_id": "6033534",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTY0OTcz",
+                "_id": "5964973",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTYxMjI2",
+                "_id": "5961226",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3602472"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4NDgx",
+                "_id": "5958481",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603238"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4NDcz",
+                "_id": "5958473",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603238"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4Mzk4",
+                "_id": "5958398",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603238"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4MzUw",
+                "_id": "5958350",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4MzQ3",
+                "_id": "5958347",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603228"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4MzIy",
+                "_id": "5958322",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603228"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4MzE1",
+                "_id": "5958315",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603228"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4Mjk2",
+                "_id": "5958296",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4Mjk1",
+                "_id": "5958295",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603220"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4Mjgz",
+                "_id": "5958283",
+                "title": "submit draft report 3603220 superhuman program",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603220"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [
+                    {
+                      "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbk1lc3NhZ2UvMTEwOTY4OTE=",
+                      "author": "USER",
+                      "state": "completed",
+                      "content_blocks": [
+                        {
+                          "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbkNvbnRlbnRCbG9jay80Nzk1NjUz",
+                          "type": "text",
+                          "text": "How do I submit a draft report? I want to submit report #3603220 to the Superhuman program.",
+                          "__typename": "LlmConversationContentBlock"
+                        }
+                      ],
+                      "__typename": "LlmConversationMessage"
+                    },
+                    {
+                      "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbk1lc3NhZ2UvMTEwOTY4OTI=",
+                      "author": "ASSISTANT",
+                      "state": "completed",
+                      "content_blocks": [
+                        {
+                          "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbkNvbnRlbnRCbG9jay80Nzk1NjU0",
+                          "type": "text",
+                          "text": "I'm unable to assist with submitting this report at the moment. Based on the report context, it appears that the organization associated with report #3603220 doesn't currently have Hai enabled, which means I can't access the necessary information to help with submission processes.\n\nHowever, I can tell you that to submit a draft report on HackerOne, you would typically:\n\n1. **Go to your draft report** - Navigate to report #3603220\n2. **Review the details** - Ensure all information is complete and accurate\n3. **Select the program** - Choose the Superhuman program as the recipient\n4. **Submit** - Click the submit button\n\nIf you'd like more specific guidance on the submission process or details about how draft reports work on HackerOne, I can search the documentation for you. Alternatively, if you have access to the report and can walk me through what you're seeing in the interface, I'd be happy to help troubleshoot any issues you're encountering.\n\nWhat specific part of the submission process are you having trouble with?",
+                          "__typename": "LlmConversationContentBlock"
+                        }
+                      ],
+                      "__typename": "LlmConversationMessage"
+                    }
+                  ],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4Mjc3",
+                "_id": "5958277",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603220"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4Mjc0",
+                "_id": "5958274",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603220"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4MjQx",
+                "_id": "5958241",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603208"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4MjM3",
+                "_id": "5958237",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603208"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              },
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi81OTU4MjMz",
+                "_id": "5958233",
+                "title": "New conversation",
+                "is_generating": false,
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "context_object": {
+                  "report_ids": [
+                    "3603208"
+                  ],
+                  "team_handles": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                },
+                "__typename": "LlmConversation"
+              }
+            ],
+            "__typename": "LlmConversationConnection"
+          },
+          "__typename": "User"
+        }
+      }
+    },
+    {
+      "data": {
+        "newConversation": {
+          "was_successful": true,
+          "errors": {
+            "nodes": [],
+            "__typename": "ErrorConnection"
+          },
+          "llm_conversation": {
+            "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTgz",
+            "_id": "6033583",
+            "title": "New conversation",
+            "is_generating": false,
+            "hai_play": {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+              "name": "Hai for Hackers",
+              "color": null,
+              "__typename": "HaiPlay"
+            },
+            "context_object": {
+              "report_ids": [],
+              "team_handles": [],
+              "organization_id": null,
+              "organization_name": null,
+              "__typename": "LlmConversationContext"
+            },
+            "llm_conversation_messages": {
+              "nodes": [],
+              "__typename": "LlmConversationMessageConnection"
+            },
+            "__typename": "LlmConversation"
+          },
+          "__typename": "NewConversationPayload"
+        }
+      }
+    },
+    {
+      "data": {
+        "me": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXIvNDM3OTkxNw==",
+          "llm_conversations": {
+            "nodes": [],
+            "__typename": "LlmConversationConnection"
+          },
+          "__typename": "User"
+        }
+      }
+    },
+    {
+      "data": {
+        "resource": {
+          "url": "https://hackerone.com/superhuman",
+          "__typename": "Team",
+          "id": "Z2lkOi8vaGFja2Vyb25lL0VuZ2FnZW1lbnRzOjpCdWdCb3VudHlQcm9ncmFtLzIyNzQ2",
+          "type": "Engagements::BugBountyProgram",
+          "handle": "superhuman",
+          "i_can_view_policy_page": true,
+          "name": "Superhuman (formerly Grammarly)",
+          "about": "Superhuman (formerly Grammarly) unites Grammarly, Superhuman Mail, Coda, and Go with AI to unlock superhuman potential in everyone.",
+          "website": "https://superhuman.com/",
+          "only_cleared_hackers": false,
+          "only_id_verified_hackers": false,
+          "is_team_member": false,
+          "launched_at": "2018-12-11T14:55:32.974Z",
+          "offers_bounties": true,
+          "state": "public_mode",
+          "offers_thanks": true,
+          "triage_active": true,
+          "critical_submissions_enabled": false,
+          "controlled_launch_setting": null,
+          "allows_private_disclosure": false,
+          "allows_bounty_splitting": true,
+          "publicly_visible_retesting": true,
+          "policy_setting": {
+            "id": "Z2lkOi8vaGFja2Vyb25lL1BvbGljeVNldHRpbmcvMjI3NDY=",
+            "i_can_subscribe_to_policy_changes": true,
+            "__typename": "PolicySetting",
+            "has_policy": true
+          },
+          "submission_state": "open",
+          "i_can_view_program_info": true,
+          "i_can_view_hacktivity": true,
+          "i_can_view_pentests": false,
+          "resolved_report_count": 408,
+          "profile_picture": "https://profile-photos.hackerone-user-content.com/variants/23p3otm27f7hjxfsde7xx0ol3jhf/0663d355257e21c15e0d8ff931a7394e06e22f8f8feccbc10b4fc9b8252c987c",
+          "cover_color": "#421d24",
+          "cover_photo_url": "/assets/cover_photos/default/missing-b7d475e9cd349b3d71ec7dac10c8aff6b5f23866f9259594c7386de237725c41.png",
+          "has_cover_photo": false,
+          "has_cover_video": false,
+          "twitter_handle": "",
+          "declarative_policy": {
+            "id": "Z2lkOi8vaGFja2Vyb25lL0RlY2xhcmF0aXZlUG9saWN5LzIwMDcy",
+            "protected_by_gold_standard_safe_harbor": true,
+            "protected_by_ai_safe_harbor": null,
+            "__typename": "DeclarativePolicy"
+          },
+          "posts": {
+            "total_count": 21,
+            "__typename": "TeamPostConnection"
+          },
+          "external_program": null,
+          "asset_scope_tab_enabled": true,
+          "assets_in_scope": {
+            "total_count": 24,
+            "__typename": "SearchResultConnection"
+          },
+          "asset_discovery_setting": null,
+          "currency": "usd",
+          "average_bounty_lower_amount": 500,
+          "average_bounty_upper_amount": 500,
+          "abuse": null,
+          "allows_disclosure_assistance": true,
+          "external_url": null,
+          "i_reached_abuse_limit": false,
+          "i_can_view_private": false,
+          "i_can_see_report_submit_button": true,
+          "i_can_edit_program_profile": false,
+          "i_can_manage_program": false,
+          "settings_link": "/superhuman/edit",
+          "campaigns": {
+            "nodes": [],
+            "__typename": "CampaignConnection"
+          },
+          "allowed_to_use_saml_in_sandbox": null,
+          "has_avatar": true,
+          "has_payment_method": null,
+          "launch_link": "/superhuman/launch",
+          "review_requested_at": null,
+          "review_rejected_at": null,
+          "team_member_groups": [],
+          "i_can_view_invite_hackers": false,
+          "i_am_a_whitelisted_reporter": false,
+          "bookmarked": false,
+          "organization": null
+        },
+        "me": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXIvNDM3OTkxNw==",
+          "has_active_ban": false,
+          "__typename": "User",
+          "active_ban": null
+        }
+      }
+    },
+    {
+      "data": {
+        "team": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL0VuZ2FnZW1lbnRzOjpCdWdCb3VudHlQcm9ncmFtLzIyNzQ2",
+          "name": "Superhuman (formerly Grammarly)",
+          "profile_picture": "https://profile-photos.hackerone-user-content.com/variants/23p3otm27f7hjxfsde7xx0ol3jhf/235acf2ba808c3a51a94888fb977392c26f8fb0ccf77a81a4546c5e4065c06f1",
+          "__typename": "Team"
+        }
+      }
+    },
+    {
+      "data": {
+        "team": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL0VuZ2FnZW1lbnRzOjpCdWdCb3VudHlQcm9ncmFtLzIyNzQ2",
+          "name": "Superhuman (formerly Grammarly)",
+          "handle": "superhuman",
+          "type": "Engagements::BugBountyProgram",
+          "state": "public_mode",
+          "entry_vdp": false,
+          "i_am_a_whitelisted_reporter": false,
+          "i_can_view_policy_page": true,
+          "i_can_manage_program": false,
+          "i_can_manage_gateway_v2": false,
+          "i_can_view_hacktivity": true,
+          "i_can_view_pentests": false,
+          "i_can_edit_program_profile": false,
+          "i_can_view_audit_log": false,
+          "i_can_manage_credentials": false,
+          "i_can_view_product_editions": false,
+          "i_can_manage_billing": false,
+          "i_can_edit_policy_and_scope": false,
+          "i_can_self_onboard": false,
+          "i_can_manage_miles": false,
+          "i_can_view_reward_settings": false,
+          "i_can_manage_common_responses": false,
+          "i_can_create_triggers": null,
+          "i_can_manage_integrations": false,
+          "i_can_manage_webhooks": false,
+          "i_can_manage_hackbot": false,
+          "i_can_view_reports": false,
+          "i_can_manage_scopes": false,
+          "i_can_manage_team_inbox_views": false,
+          "i_can_manage_cve_requests": false,
+          "i_can_manage_private_disclosure": false,
+          "i_can_manage_legacy_feature_toggles": false,
+          "i_can_manage_proof_of_compliance": false,
+          "i_can_view_invite_hackers": false,
+          "i_can_view_advanced_vetting_page": false,
+          "i_can_manage_submission_requirements": false,
+          "i_can_manage_embedded_submission_domains": false,
+          "i_can_edit_gateway_settings": false,
+          "i_can_manage_messaging": false,
+          "i_can_manage_email_forwarding": false,
+          "is_team_member": false,
+          "offers_thanks": true,
+          "asset_scope_tab_enabled": true,
+          "allows_bounty_splitting": true,
+          "offers_bounties": true,
+          "external_program": null,
+          "declarative_policy": {
+            "id": "Z2lkOi8vaGFja2Vyb25lL0RlY2xhcmF0aXZlUG9saWN5LzIwMDcy",
+            "protected_by_gold_standard_safe_harbor": true,
+            "protected_by_ai_safe_harbor": null,
+            "__typename": "DeclarativePolicy"
+          },
+          "challenge_setting": null,
+          "pentest": null,
+          "workboard": null,
+          "organization": null,
+          "__typename": "Team"
+        }
+      }
+    },
+    {
+      "data": {
+        "me": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXIvNDM3OTkxNw==",
+          "__typename": "User"
+        },
+        "surveys": {
+          "edges": [
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleS85",
+                "question": "How satisfied are you with our program overall?",
+                "question_settings": {
+                  "type": "single-select"
+                },
+                "structured_responses": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS8zMg==",
+                        "databaseId": "32",
+                        "reason": "Very dissatisfied",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS8zMw==",
+                        "databaseId": "33",
+                        "reason": "Dissatisfied",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS8zNA==",
+                        "databaseId": "34",
+                        "reason": "Neutral",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS8zNQ==",
+                        "databaseId": "35",
+                        "reason": "Satisfied",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS8zNg==",
+                        "databaseId": "36",
+                        "reason": "Very satisfied",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    }
+                  ],
+                  "__typename": "SurveyStructuredResponseConnection"
+                },
+                "__typename": "Survey"
+              },
+              "__typename": "SurveyEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleS8xMA==",
+                "question": "If you could improve 3 things about the Bounty Program, what would they be?",
+                "question_settings": {
+                  "type": "multi-select",
+                  "max_options": 3
+                },
+                "structured_responses": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS8zNw==",
+                        "databaseId": "37",
+                        "reason": "Time to triage",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS8zOA==",
+                        "databaseId": "38",
+                        "reason": "Time to bounty",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS8zOQ==",
+                        "databaseId": "39",
+                        "reason": "Time to fix",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS80MA==",
+                        "databaseId": "40",
+                        "reason": "More competitive bounties",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS80MQ==",
+                        "databaseId": "41",
+                        "reason": "Better documentation/guidance on platform and priorities for testing",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS80Mg==",
+                        "databaseId": "42",
+                        "reason": "Improved understanding of priorities and associated bounty",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS80NQ==",
+                        "databaseId": "45",
+                        "reason": "Accuracy of severity decisions",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS80Ng==",
+                        "databaseId": "46",
+                        "reason": "Better communication / transparency / discussion on reports",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    }
+                  ],
+                  "__typename": "SurveyStructuredResponseConnection"
+                },
+                "__typename": "Survey"
+              },
+              "__typename": "SurveyEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleS8xMQ==",
+                "question": "Would you recommend our bug bounty program to other hackers?",
+                "question_settings": {
+                  "type": "single-select"
+                },
+                "structured_responses": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS80Mw==",
+                        "databaseId": "43",
+                        "reason": "Yes",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Z2lkOi8vaGFja2Vyb25lL1N1cnZleVN0cnVjdHVyZWRSZXNwb25zZS80NA==",
+                        "databaseId": "44",
+                        "reason": "No",
+                        "__typename": "SurveyStructuredResponse"
+                      },
+                      "__typename": "SurveyStructuredResponseEdge"
+                    }
+                  ],
+                  "__typename": "SurveyStructuredResponseConnection"
+                },
+                "__typename": "Survey"
+              },
+              "__typename": "SurveyEdge"
+            }
+          ],
+          "__typename": "SurveyConnection"
+        }
+      }
+    },
+    {
+      "data": {
+        "features": {
+          "edges": [
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODIw",
+                "key": "inbox-mediation-summary",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvNzgx",
+                "key": "es-notifications",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA5MQ==",
+                "key": "priority-agentic-mode",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTc4",
+                "key": "hai-return-on-mitigation",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA4NA==",
+                "key": "spend-by-asset-category",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAyMA==",
+                "key": "hai-for-hackers",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODU4",
+                "key": "pentest-csa-customer-self-setup",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTAw",
+                "key": "auto-accept-product-entitlements",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTk2",
+                "key": "analytics-use-materialized-views",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTkx",
+                "key": "stripe-payment-intents",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA2Mw==",
+                "key": "intake-agent-asset-ownership-enabled",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAyNQ==",
+                "key": "hai-rom-tool",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTc1",
+                "key": "hai-report-insights",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA1OQ==",
+                "key": "dedupe-action-recommendations",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0NQ==",
+                "key": "enable-2fa-with-security-keys",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA1Mg==",
+                "key": "idv-risk-label-notifications",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0Mg==",
+                "key": "bounty-informed-pentest-mailing",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA5Ng==",
+                "key": "report-assistant-on-anthropic-api",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTY4",
+                "key": "pentest-clickthrough-agreements",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODMw",
+                "key": "program-request-integrations",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAzNg==",
+                "key": "report-assistant-agent-eligible-programs",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0OA==",
+                "key": "verification-updated-support-app",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTkz",
+                "key": "pentest-scoping-back-to-draft",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTEzMg==",
+                "key": "weakness-classification-agent-v2",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA3Mw==",
+                "key": "hacker-invitations-api",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0Nw==",
+                "key": "verification-save-risk-labels",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvNjM0",
+                "key": "scope-management",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTExMA==",
+                "key": "convert-payout-access-bans",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA2Ng==",
+                "key": "clear-idv-expired-user-removal",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvODk3",
+                "key": "clear-voucher",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAwNQ==",
+                "key": "hai-sonnet-4",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTg5",
+                "key": "embedded-form-version-2",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA5OA==",
+                "key": "agent-auto-routing",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0Mw==",
+                "key": "slack-migration",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTk0",
+                "key": "write-ups-markdown-engine-kramdown",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTg3",
+                "key": "asset-placeholder-documentation",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTA0MA==",
+                "key": "triage-intake-dupe-recommendations",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAyNw==",
+                "key": "bounty-informed-pentest",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvOTg1",
+                "key": "external-automations",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvMTAwMQ==",
+                "key": "hai-prompt-caching",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            },
+            {
+              "node": {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0ZlYXR1cmUvNzk2",
+                "key": "hai",
+                "enabled": true,
+                "disabled": false,
+                "global": true,
+                "__typename": "Feature"
+              },
+              "__typename": "FeatureEdge"
+            }
+          ],
+          "__typename": "FeatureConnection"
+        },
+        "teams": {
+          "nodes": [
+            {
+              "id": "Z2lkOi8vaGFja2Vyb25lL0VuZ2FnZW1lbnRzOjpCdWdCb3VudHlQcm9ncmFtLzIyNzQ2",
+              "features": null,
+              "__typename": "Team"
+            }
+          ],
+          "__typename": "TeamConnection"
+        }
+      }
+    },
+    {
+      "data": {
+        "me": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXIvNDM3OTkxNw==",
+          "llm_conversations": {
+            "nodes": [
+              {
+                "id": "Z2lkOi8vaGFja2Vyb25lL0xsbUNvbnZlcnNhdGlvbi82MDMzNTgz",
+                "is_generating": false,
+                "llm_contextual_suggestions": {
+                  "nodes": [],
+                  "__typename": "LlmContextualSuggestionConnection"
+                },
+                "context_object": {
+                  "report_ids": [],
+                  "organization_id": null,
+                  "organization_name": null,
+                  "__typename": "LlmConversationContext",
+                  "team_handles": []
+                },
+                "__typename": "LlmConversation",
+                "_id": "6033583",
+                "title": "New conversation",
+                "subtitle": null,
+                "next_prompts": [
+                  {
+                    "prompt": "What is the best way to report a vulnerability?",
+                    "title": "What is the best way to report a vulnerability?",
+                    "partial": false,
+                    "__typename": "LlmPromptSuggestion"
+                  },
+                  {
+                    "prompt": "How can I improve my chances of getting a bounty?",
+                    "title": "How can I improve my chances of getting a bounty?",
+                    "partial": false,
+                    "__typename": "LlmPromptSuggestion"
+                  },
+                  {
+                    "prompt": "What are the most common vulnerabilities I should look for?",
+                    "title": "What are the most common vulnerabilities I should look for?",
+                    "partial": false,
+                    "__typename": "LlmPromptSuggestion"
+                  },
+                  {
+                    "prompt": "How can I find out if an asset is in-scope for my reports?",
+                    "title": "How can I find out if an asset is in-scope for my reports?",
+                    "partial": false,
+                    "__typename": "LlmPromptSuggestion"
+                  },
+                  {
+                    "prompt": "What are the best practices for writing a good vulnerability report?",
+                    "title": "What are the best practices for writing a good vulnerability report?",
+                    "partial": false,
+                    "__typename": "LlmPromptSuggestion"
+                  },
+                  {
+                    "prompt": "How can I improve my skills as a hacker?",
+                    "title": "How can I improve my skills as a hacker?",
+                    "partial": false,
+                    "__typename": "LlmPromptSuggestion"
+                  },
+                  {
+                    "prompt": "I need help writing a follow-up message for a report I submitted, can you assist?",
+                    "title": "I need help writing a follow-up message for a report I submitted, can you assist?",
+                    "partial": false,
+                    "__typename": "LlmPromptSuggestion"
+                  }
+                ],
+                "hai_play": {
+                  "id": "Z2lkOi8vaGFja2Vyb25lL0hhaVBsYXkvNDg2",
+                  "name": "Hai for Hackers",
+                  "description": "Your hacker security agent.",
+                  "placeholder": "Ask a question...",
+                  "color": null,
+                  "__typename": "HaiPlay"
+                },
+                "llm_conversation_messages": {
+                  "nodes": [],
+                  "__typename": "LlmConversationMessageConnection"
+                }
+              }
+            ],
+            "__typename": "LlmConversationConnection"
+          },
+          "__typename": "User"
+        }
+      }
+    },
+    {
+      "data": {
+        "me": {
+          "id": "Z2lkOi8vaGFja2Vyb25lL1VzZXIvNDM3OTkxNw==",
+          "program_health_acknowledgements": {
+            "edges": [],
+            "__typename": "ProgramHealthAcknowledgementConnection"
+          },
+          "__typename": "User"
+        }
+      }
+    }
+  ],
+  "domUrls": [
+    "https://x.com/hacker0x01"
+  ]
+}

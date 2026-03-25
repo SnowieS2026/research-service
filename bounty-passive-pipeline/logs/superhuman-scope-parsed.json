@@ -1,0 +1,164 @@
+[
+  {
+    "identifier": "*.grammarly.io",
+    "type": "WILDCARD",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "Grammarly Browser Extensions",
+    "type": "OTHER",
+    "instruction": "The extension is available in the extension/add-on store of the respective browser: \n* [Chrome](https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen?hl=en) \n* [Firefox](https://addons.mozilla.org/en-US/firefox/addon/grammarly-1/)\n* [Edge](https://microsoftedge.microsoft.com/addons/detail/grammarly-ai-writing-and/cnlefmmeadmemmdciolhbnfeacpdfbkd)\n* [Safari](https://apps.apple.com/us/app/grammarly-for-safari/id1462114288)\n\n**Browser Extension vulnerabilities will not be distinguished. For example, if a vulnerability exists in the Chrome and Safari extensions, we will consider it the same vulnerability and will only award one bounty.**",
+    "eligible": "true"
+  },
+  {
+    "identifier": "*.grammarlyaws.com",
+    "type": "WILDCARD",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "com.grammarly.keyboard",
+    "type": "APPLE_STORE_APP_ID",
+    "instruction": "[Grammarly for iOS](https://www.grammarly.com/mobile/ios)",
+    "eligible": "true"
+  },
+  {
+    "identifier": "com.grammarly.android.keyboard",
+    "type": "GOOGLE_PLAY_APP_ID",
+    "instruction": "[Grammarly for Android](https://www.grammarly.com/mobile/android).\n\nVulnerabilities with PoC may qualify for additional bounty via [Google Play Security Rewards Program](https://hackerone.com/googleplay). See [Vulnerability Criteria](https://hackerone.com/googleplay) for details.",
+    "eligible": "true"
+  },
+  {
+    "identifier": "Third party external services",
+    "type": "OTHER",
+    "instruction": "- `send.grammarly.com`\n- `calendar.grammarly.com`\n- `support.grammarly.com`\n- `status.grammarly.com`\n- `brand.grammarly.com`\n- `partners.grammarly.com`\n- `events.grammarly.com`\n- `go.grammarly.com`\n\nAny submissions on these domains and their subdomains are out of scope for bounty.",
+    "eligible": "false"
+  },
+  {
+    "identifier": "Grammarly Desktop for Windows",
+    "type": "DOWNLOADABLE_EXECUTABLES",
+    "instruction": "https://download-windows.grammarly.com/GrammarlyInstaller.exe",
+    "eligible": "true"
+  },
+  {
+    "identifier": "Grammarly Desktop for macOS",
+    "type": "DOWNLOADABLE_EXECUTABLES",
+    "instruction": "https://download-mac.grammarly.com/Grammarly.dmg",
+    "eligible": "true"
+  },
+  {
+    "identifier": "*.grammarly.com",
+    "type": "WILDCARD",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "Capture the Flag",
+    "type": "OTHER",
+    "instruction": "The first hacker who reports the `$FLAG` saved in the document (`document_id: 1198436185`) of the user `h1_ctf@grammarly.com` (`user_id: 1411519194`) will be awarded a **$100K bounty**.\n",
+    "eligible": "true"
+  },
+  {
+    "identifier": "app.grammarly.com",
+    "type": "URL",
+    "instruction": "app.grammarly.com is Grammarly’s web application, enabling users to create, edit, and manage documents while accessing the full suite of Grammarly features through the online editor.",
+    "eligible": "true"
+  },
+  {
+    "identifier": "Superhuman Go",
+    "type": "OTHER",
+    "instruction": "Superhuman Go is a proactive AI assistant that integrates with 100+ apps to coordinate agents and provide context-aware help across your workflow. It works in every tab where you work.\n[Superhuman Go - AI Assistant](https://superhuman.com/products/go-ai-assistant)\n",
+    "eligible": "true"
+  },
+  {
+    "identifier": "superhuman.com",
+    "type": "URL",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "*.superhuman.com",
+    "type": "WILDCARD",
+    "instruction": "Only domains that originate through superhuman.com are accepted here. If we determine the domain is generated through superhuman mail or its infra, we will mark this as out of scope.",
+    "eligible": "true"
+  },
+  {
+    "identifier": "gateway.superhuman.com",
+    "type": "URL",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "id.superhuman.com",
+    "type": "URL",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "settings.superhuman.com",
+    "type": "URL",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "status.coda.io",
+    "type": "URL",
+    "instruction": "",
+    "eligible": "false"
+  },
+  {
+    "identifier": "Coda Chrome Extension",
+    "type": "OTHER",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "codacontent.io",
+    "type": "URL",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "codahosted.io",
+    "type": "URL",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "io.coda",
+    "type": "APPLE_STORE_APP_ID",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "io.coda.codaapp",
+    "type": "GOOGLE_PLAY_APP_ID",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "Superhuman Mail",
+    "type": "OTHER",
+    "instruction": "Any assets related to Superhuman Mail are out of scope and go through VDP via `security@superhuman.com`\n  * mail.superhuman.com\n  * accounts.superhuman.com\n  * r.superhuman.com\n  * media.superhuman.com \n  * assets.mail.superhuman.com\n  * emojis.superhuman.com \n  * help.superhuman.com\n  * blog.superhuman.com\n  * media.superhuman.com\n  * accounts.superhuman.com\n  * preferences.superhuman.com\n  * email.superhuman.com\n  * join.superhuman.com\n  * https://superhuman.com/pricing\n  * https://superhuman.com/products/mail/*\n\nAnd any other assets not mentioned here but originating from the Superhuman Mail product/website.",
+    "eligible": "false"
+  },
+  {
+    "identifier": "coda.grammarly.com",
+    "type": "URL",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "coda.io",
+    "type": "URL",
+    "instruction": "",
+    "eligible": "true"
+  },
+  {
+    "identifier": "*.coda.io",
+    "type": "WILDCARD",
+    "instruction": "",
+    "eligible": "true"
+  }
+]
