@@ -1,12 +1,12 @@
 {
-  "lastHeartbeatAt": "2026-03-25T16:28:00Z",
-  "heartbeatCycle": 13,
+  "lastHeartbeatAt": "2026-03-25T16:55:00Z",
+  "heartbeatCycle": 14,
   "pipeline": {
     "lastSnapshotAt": "2026-03-25T12:07:56Z",
     "lastGoodAt": "2026-03-25T12:07:56Z",
     "consecutiveEmpty": 0,
     "cronJobId": "67d75617-a49c-4527-a15a-04ce5ec23f60",
-    "notes": "Pipeline in manual mode. Snapshots 4h20m old. Bugcrowd session valid. All committed (6146c0ea)."
+    "notes": "ACTIVE. Manual mode. Bugcrowd + HackerOne sessions valid. All committed (8b3ed72a)."
   },
   "discovery": {
     "lastRunAt": "2026-03-23T10:31:00Z",
@@ -15,12 +15,14 @@
   },
   "sessions": {
     "bugcrowd": "logs/browser-sessions/bugcrowd-state.json - SnowieS - VALID",
-    "intigriti": "logs/browser-sessions/intigriti-state.json - BROKEN (API returns 403/404, session may have expired)"
+    "intigriti": "logs/browser-sessions/intigriti-state.json - BROKEN (re-login needed)",
+    "hackerone": "logs/browser-sessions/hackerone-state.json - humbles - VALID"
   },
   "programs": {
     "bugcrowd": ["cribl-vdp-ess (10 domains)", "ciscomeraki (5 domains)"],
     "intigriti_accepted": ["Capital.com (earned EUR1000 HIGH)"],
-    "intigriti_requires_acceptance": ["Dropbox", "EURid", "Intigriti own program"]
+    "intigriti_requires_acceptance": ["Dropbox", "EURid", "Intigriti own program"],
+    "hackerone": ["Superhuman (formerly Grammarly) - 27 assets - 10 accessible targets - earned $500+ on Chrome extension"]
   },
   "notes": [
     "25 Mar 12:34 - Cycle 11. All WAF-blocked. Committed (b9285bde).",
@@ -28,6 +30,8 @@
     "25 Mar 15:00 - 196 Intigriti programs. Scope needs acceptance. Committed (5e28819c).",
     "25 Mar 15:53 - Cycle 12. Git clean. All clear.",
     "25 Mar 16:18 - Bugcrowd scope scraped: cribl-vdp-ess (10d), ciscomeraki (5d). Scanned clean. Committed (6146c0ea).",
-    "25 Mar 16:28 - Cycle 13. Pipeline snapshots 4h20m old. Bugcrowd session valid. Intigriti BROKEN."
+    "25 Mar 16:28 - Cycle 13. Pipeline snapshots 4h20m old. Bugcrowd session valid. Intigriti BROKEN.",
+    "25 Mar 16:38 - HackerOne session captured. Superhuman (formerly Grammarly): 27 assets, 10 accessible targets, all Nuclei scans clean. Committed (8b3ed72a).",
+    "25 Mar 16:55 - All sessions: Bugcrowd (SnowieS), Intigriti (BROKEN), HackerOne (humbles). Programs: Superhuman (H1), Cribl VDP, Cisco Meraki, Capital.com (Intigriti)."
   ]
 }
