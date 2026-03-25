@@ -45,6 +45,30 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
   - Config env: `SEARXNG_URL=http://localhost:8080`
   - The pipeline falls back to public instances (searx.party, searx.mw.io, searx.work, searxng.site) if local is unavailable
 
+### Vector Store (Chroma + Ollama)
+
+- **Chroma server**: `http://localhost:8000` (Docker)
+  - Start: `docker-compose up -d` from workspace root (uses docker-compose.yml)
+  - Or: `docker run -d --name chroma -p 8000:8000 -v ./bounty-passive-pipeline/logs/vectorstore:/data chromadb/chroma:latest`
+  - Persisted to: `bounty-passive-pipeline/logs/vectorstore/`
+- **Ollama model**: `nomic-embed-text` (137M params, ~274MB)
+  - Pull: `ollama pull nomic-embed-text`
+- **Vector store scripts**:
+  - `bounty-passive-pipeline/src/vector-store.ts` — core library (add/query/peek/count)
+  - `bounty-passive-pipeline/sync-memory.ts` — sync agent memory → vector DB
+  - `bounty-passive-pipeline/ingest-pipeline.ts` — sync pipeline outputs → vector DB
+- **Two collections**:
+  - `pipeline_findings` — snapshots, reports, scan results, discovery logs
+  - `agent_memory` — daily memory logs, USER.md, MEMORY.md, HEARTBEAT.md, research docs
+- **Usage**:
+  ```
+  npx tsx sync-memory.ts              # sync agent memory (one-time bulk load)
+  npx tsx ingest-pipeline.ts          # ingest all pipeline outputs
+  npx tsx ingest-pipeline.ts scanner  # ingest scan results only
+  ```
+- **Auto-chunking**: docs >4000 chars split into overlapping chunks for embedding
+- **Embedding**: Ollama REST API → nomic-embed-text → 768-dim vectors
+
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.

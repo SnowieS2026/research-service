@@ -43,6 +43,7 @@ _Learn about the person you're helping. Update this as you go._
 - **Terminal stall issue**: Terminal hangs between messages until they send another message. Root cause: main session blocks on long exec calls; OpenClaw sessions aren't truly concurrent. Fix: keep main session free for replies, use isolated cron sessions for background work.
 - **Preferences**: Keep replies short and actionable. Message only when something needs attention.
 - **Edit failures**: The edit tool sometimes fails with `~` path expansion. Use full absolute paths and write tool instead.
+- **Vector store**: Chroma (Docker, port 8000) + Ollama nomic-embed-text. Collections: `pipeline_findings`, `agent_memory`. Scripts: `sync-memory.ts` + `ingest-pipeline.ts`.
 
 ---
 

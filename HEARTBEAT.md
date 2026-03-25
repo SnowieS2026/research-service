@@ -17,7 +17,9 @@ Read `memory/heartbeat-state.json` to know what was last checked.
 - Commit good work with a brief message
 
 ### 2. Memory Maintenance (every 7th heartbeat)
-Read today's `memory/YYYY-MM-DD.md`, update MEMORY.md with any new learnings.
+- Read today's `memory/YYYY-MM-DD.md`, update MEMORY.md with any new learnings.
+- Check if new memory/research files exist that aren't yet in the vector store.
+- If vector store is accessible, query it for relevant context instead of reading all files.
 
 ### 3. Pipeline Health (if bounty hunting re-enabled)
 Quick smoke test — check last snapshot timestamp:
@@ -32,6 +34,12 @@ If oldest snapshot >8h and pipeline cron hasn't run recently → message user.
 | Bounty passive pipeline | Every 6h | Full scan, notifies on changes | **DISABLED** |
 | Daily discovery | Daily 08:00 UTC | Find new programs with accessible targets | **DISABLED** |
 | Weekly nuclei templates | Sundays 03:00 UTC | Update nuclei templates | Active (but delivery broken) |
+
+## Vector Store
+- **Chroma**: `http://localhost:8000` (Docker) — run `docker-compose up -d` if down
+- **Collections**: `pipeline_findings` + `agent_memory`
+- **Sync scripts**: `sync-memory.ts` (agent), `ingest-pipeline.ts` (pipeline)
+- See TOOLS.md for full details.
 
 ## DO in main session heartbeat
 - Quick file checks (read logs, check timestamps)
