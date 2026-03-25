@@ -1,0 +1,6 @@
+[waf-detect:cloudfront] [http] [info] https://manage.cribl-staging.cloud/
+[waf-detect:apachegeneric] [http] [info] https://manage.cribl-staging.cloud/
+[aws-detect:aws-cloudfront] [http] [info] https://manage.cribl-staging.cloud/
+[tech-detect:next.js] [http] [info] https://manage.cribl-staging.cloud/
+[fullstory-rum-detect] [http] [info] https://manage.cribl-staging.cloud/
+[aws-cloudfront-service] [http] [info] https://manage.cribl-staging.cloud/

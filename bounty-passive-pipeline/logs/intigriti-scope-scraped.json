@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Coveo",
+    "slug": "coveopublicbugbounty",
+    "bounty": "100-5500",
+    "domains": [],
+    "paths": []
+  },
+  {
+    "name": "Toast",
+    "slug": "toastvdp",
+    "bounty": "VDP",
+    "domains": [],
+    "paths": []
+  },
+  {
+    "name": "Liferay DXP",
+    "slug": "liferaydxp",
+    "bounty": "100-2000",
+    "domains": [],
+    "paths": []
+  },
+  {
+    "name": "Trusted Firmware",
+    "slug": "trustedfirmware",
+    "bounty": "1000-20000",
+    "domains": [],
+    "paths": []
+  },
+  {
+    "name": "Exoscale",
+    "slug": "excoscalebugbounty",
+    "bounty": "50-5000",
+    "domains": [],
+    "paths": []
+  },
+  {
+    "name": "Belfius",
+    "slug": "belfius",
+    "bounty": "500-5000",
+    "domains": [],
+    "paths": []
+  },
+  {
+    "name": "New Pharma",
+    "slug": "newpharma",
+    "bounty": "VDP",
+    "domains": [],
+    "paths": []
+  },
+  {
+    "name": "Ideal",
+    "slug": "ideal DVDP",
+    "bounty": "VDP",
+    "domains": [],
+    "paths": []
+  }
+]
