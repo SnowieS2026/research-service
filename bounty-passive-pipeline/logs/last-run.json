@@ -1,4 +1,64 @@
 {
   "lastRunAt": "2026-03-25T12:07:56.988Z",
+  "lastProgramsSeen": [],
+  "lastSnapshots": {
+    "https://bugcrowd.com/user/sign_in": {
+      "hash": "89c832144327588ac876f2097a8b78801a044460d1b97532d168770504aaf859",
+      "fetchedAt": "2026-03-25T18:05:17.043Z"
+    },
+    "https://bugcrowd.com/engagements": {
+      "hash": "0677642fbc34467ac2a06a1b07d0f11f49f1e42a7e9435d74e4cf1907e6ac695",
+      "fetchedAt": "2026-03-25T18:05:33.778Z"
+    },
+    "https://bugcrowd.com/engagements/featured": {
+      "hash": "094b2d5fbc07dc99b3bd5eb125ca19e6d892acab4f22666f4f63ca32c9e861e6",
+      "fetchedAt": "2026-03-25T18:05:43.784Z"
+    },
+    "https://bugcrowd.com/engagements/openai-safety": {
+      "hash": "e4b8f46b65d6f8168c6a3dd1fee332c43e195b36c207c5836a2a934718b1b4ed",
+      "fetchedAt": "2026-03-25T18:05:46.907Z"
+    },
+    "https://bugcrowd.com/engagements/etoro-mbb-og": {
+      "hash": "83223ad9acedb49f4799cb6ced483b801ce5cb40fed73adfce8cd2826f8e8c51",
+      "fetchedAt": "2026-03-25T18:05:49.402Z"
+    },
+    "https://bugcrowd.com/engagements/rapyd": {
+      "hash": "7d46a4bce3dcafc7c8945dcac586f8fe76bccd4237f1b270e4ea7f3e4192eab2",
+      "fetchedAt": "2026-03-25T18:05:52.251Z"
+    },
+    "https://bugcrowd.com/engagements/optus-mbb-og": {
+      "hash": "15713f267551f1a0c8ea0a4c4b9075d194b0816073504e029d5980627df0f596",
+      "fetchedAt": "2026-03-25T18:05:56.942Z"
+    },
+    "https://bugcrowd.com/engagements/moovit-mbb-og": {
+      "hash": "e37d346960eeff3de8fadf2d988940d5cdf771f570cfd1253e4d1df00256d7f0",
+      "fetchedAt": "2026-03-25T18:05:59.592Z"
+    },
+    "https://bugcrowd.com/engagements/fireblocks-mbb-og": {
+      "hash": "86f8691426078e11d7802f3ddfeaf21ecd74754446ce7f8289eb4eda595e7f8e",
+      "fetchedAt": "2026-03-25T18:06:02.213Z"
+    },
+    "https://bugcrowd.com/engagements/luno-og": {
+      "hash": "dfc7c7502589fc6a1e2c53c98e3f71ffe7906427144f1793dee458936e05f265",
+      "fetchedAt": "2026-03-25T18:06:05.327Z"
+    },
+    "https://bugcrowd.com/engagements/webdotcom": {
+      "hash": "5b29f6a2479bee58245029035b16828d731ca0fd390072a63fef064f8ea3aee7",
+      "fetchedAt": "2026-03-25T18:06:08.080Z"
+    },
+    "https://bugcrowd.com/engagements/hostgator-latam-bb": {
+      "hash": "b7bd8516ec33c553d8bfeb0066b5ee183f9418c1988faf76c72aa50a0d369dce",
+      "fetchedAt": "2026-03-25T18:06:10.978Z"
+    },
+    "https://bugcrowd.com/engagements/blockchain-dot-com": {
+      "hash": "2dd9569dbcf020d1b663aeb0e7ba9cbf081eef5ebe6ccbfe22452327ecf55954",
+      "fetchedAt": "2026-03-25T18:06:17.086Z"
+    },
+    "https://bugcrowd.com/engagements/magiclabs-mbb-og": {
+      "hash": "54fa968bf191ba22e93637320c90d497c4f3a9440c79049bcf4b13f70bba77cd",
+      "fetchedAt": "2026-03-25T18:06:23.169Z"
+    }
+  },
+  "version": 1,
   "durationMs": 177577
 }
