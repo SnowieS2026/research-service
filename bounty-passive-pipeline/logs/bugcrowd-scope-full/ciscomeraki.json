@@ -1,0 +1,15 @@
+{
+  "title": "Cisco Meraki",
+  "domains": [
+    "documentation.meraki.com",
+    "create.meraki.io",
+    "www.cisco.com",
+    "meraki.cisco.com"
+  ],
+  "paths": [
+    "/Access_Manager.",
+    "/api-docs/",
+    "/security",
+    "/form/demo,"
+  ]
+}

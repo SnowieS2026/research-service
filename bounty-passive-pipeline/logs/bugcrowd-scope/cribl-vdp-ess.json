@@ -1,0 +1,28 @@
+{
+  "title": "Vulnerability Disclosure: Cribl Vulnerability Disclosure Engagement - Bugcrowd",
+  "urls": [
+    "https://docs.cribl.io/",
+    "https://docs.cribl.io/api/",
+    "https://cribl.io/university/",
+    "https://cribl.cloud/",
+    "https://unique-cribl-domain.cribl.cloud/",
+    "https://uniquedomain.cribl.cloud/",
+    "https://manage.cribl.cloud/",
+    "https://api.cribl.cloud/",
+    "https://cribl.io/download/",
+    "https://login.cribl-staging.cloud",
+    "https://login.cribl.cloud/",
+    "https://cribl.io/"
+  ],
+  "domains": [
+    "docs.cribl.io",
+    "cribl.io",
+    "cribl.cloud",
+    "unique-cribl-domain.cribl.cloud",
+    "uniquedomain.cribl.cloud",
+    "manage.cribl.cloud",
+    "api.cribl.cloud",
+    "login.cribl-staging.cloud",
+    "login.cribl.cloud"
+  ]
+}

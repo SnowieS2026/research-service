@@ -1,0 +1,19 @@
+{
+  "title": "Cribl Vulnerability Disclosure Engagement",
+  "domains": [
+    "docs.cribl.io",
+    "cribl.io",
+    "cribl.cloud",
+    "unique-cribl-domain.cribl.cloud",
+    "uniquedomain.cribl.cloud",
+    "manage.cribl.cloud",
+    "api.cribl.cloud",
+    "login.cribl-staging.cloud",
+    "login.cribl.cloud"
+  ],
+  "paths": [
+    "/api/",
+    "/university/",
+    "/download/"
+  ]
+}

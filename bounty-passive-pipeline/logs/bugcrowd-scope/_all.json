@@ -1,0 +1,50 @@
+{
+  "invites": {
+    "error": "page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://bugcrowd.com/engagements/invites\", waiting until \"networkidle\"\u001b[22m\n"
+  },
+  "cribl-vdp-ess": {
+    "title": "Vulnerability Disclosure: Cribl Vulnerability Disclosure Engagement - Bugcrowd",
+    "urls": [
+      "https://docs.cribl.io/",
+      "https://docs.cribl.io/api/",
+      "https://cribl.io/university/",
+      "https://cribl.cloud/",
+      "https://unique-cribl-domain.cribl.cloud/",
+      "https://uniquedomain.cribl.cloud/",
+      "https://manage.cribl.cloud/",
+      "https://api.cribl.cloud/",
+      "https://cribl.io/download/",
+      "https://login.cribl-staging.cloud",
+      "https://login.cribl.cloud/",
+      "https://cribl.io/"
+    ],
+    "domains": [
+      "docs.cribl.io",
+      "cribl.io",
+      "cribl.cloud",
+      "unique-cribl-domain.cribl.cloud",
+      "uniquedomain.cribl.cloud",
+      "manage.cribl.cloud",
+      "api.cribl.cloud",
+      "login.cribl-staging.cloud",
+      "login.cribl.cloud"
+    ]
+  },
+  "ciscomeraki": {
+    "title": "Bug Bounty: Cisco Meraki - Bugcrowd",
+    "urls": [
+      "https://documentation.meraki.com.",
+      "https://documentation.meraki.com/Access_Manager.",
+      "https://create.meraki.io/api-docs/.",
+      "https://www.cisco.com/security",
+      "https://meraki.cisco.com/form/demo,"
+    ],
+    "domains": [
+      "documentation.meraki.com.",
+      "documentation.meraki.com",
+      "create.meraki.io",
+      "www.cisco.com",
+      "meraki.cisco.com"
+    ]
+  }
+}

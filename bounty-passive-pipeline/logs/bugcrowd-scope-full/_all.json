@@ -1,0 +1,182 @@
+{
+  "invites": {
+    "title": "Pending - Invites",
+    "domains": [],
+    "paths": []
+  },
+  "rapyd": {
+    "title": "Rapyd",
+    "domains": [
+      "dashboard.rapyd.net",
+      "jointhemoment.net"
+    ],
+    "paths": []
+  },
+  "optus-mbb-og": {
+    "title": "Optus Managed Bug Bounty",
+    "domains": [
+      "webmail.optusnet.com.au",
+      "www.outsourcing.optus.net.au",
+      "www.outsourcing2.optus.net.au",
+      "www.optus.com.au",
+      "optus.my.site.com",
+      "gateway.optus.com.au",
+      "ddosportal.optus.com.au",
+      "ogws.optusnet.com.au",
+      "oes.optusnet.com.au",
+      "samsung-pp.optussport.tv",
+      "chromecast-pp.optussport.tv",
+      "api-cdn.optussport.info",
+      "static.sport-pp.optus.com.au",
+      "stats-pp.akamai.optussport.tv",
+      "stats.optussport.info",
+      "cms-uat.optussport.tv",
+      "cms-qa.optussport.tv",
+      "static.cms-uat.optussport.tv",
+      "static.cms-qa.optussport.tv",
+      "sport.optus.com.au",
+      "samsung.optussport.tv",
+      "api-cdn.optussport.tv",
+      "static.sport.optus.com.au",
+      "stats.sport.optus.com.au",
+      "stats.akamai.optussport.tv",
+      "cms.optussport.tv",
+      "static.cms.optussport.tv"
+    ],
+    "paths": [
+      "/eFRAMS3/",
+      "/osp-ecare",
+      "/MyHub/s/",
+      "/api/ai-search/search/v1",
+      "/portal/*",
+      "/api/*"
+    ]
+  },
+  "moovit-mbb-og": {
+    "title": "Moovit Managed Bug Bounty Program",
+    "domains": [
+      "support.moovitapp.com"
+    ],
+    "paths": [
+      "/hc/en-us/articles/11389054527122-WayFinder-Augmented-Reality-helper-to-find-your-stop-iPhone-only"
+    ]
+  },
+  "fireblocks-mbb-og": {
+    "title": "Fireblocks Web Managed Bug Bounty Engagement",
+    "domains": [
+      "developers.fireblocks.com",
+      "sb-console-api.fireblocks.io",
+      "sb-mobile-api.fireblocks.io",
+      "sandbox-api.fireblocks.io"
+    ],
+    "paths": [
+      "/docs/sandbox-quickstart",
+      "/docs/postman-guide"
+    ]
+  },
+  "luno-og": {
+    "title": "Luno Bug Bounty Program",
+    "domains": [
+      "mobileapi.staging.luno.com",
+      "staging.luno.com",
+      "staging.luno.com.ng",
+      "api.staging.luno.com",
+      "app.staging.luno.com",
+      "www.staging.luno.com"
+    ],
+    "paths": [
+      "/en/signup",
+      "/wallet/security/send_toggle"
+    ]
+  },
+  "blockchain-dot-com": {
+    "title": "Blockchain.com Managed Bug Bounty Engagement",
+    "domains": [
+      "www.blockchain.com"
+    ],
+    "paths": []
+  },
+  "chime": {
+    "title": "Chime Managed Bug Bounty Engagement",
+    "domains": [
+      "%2A.chime.com",
+      "www.chime.com",
+      "app.chime.com",
+      "app.bitrise.io",
+      "member-qa.chime.com",
+      "app-qa.chime.com",
+      "app.saltlabs.com",
+      "app.staging.saltlabs.com",
+      "chime.financial",
+      "chimescholars.org",
+      "github.com"
+    ],
+    "paths": [
+      "/app/5bec038cb1e318cd/installable-artifacts/9ad837caadc77d33/public-install-page/ef39a3be131d116b6da3f9d05c70d757",
+      "/app/5bec038cb1e318cd/installable-artifacts/d2424d9760af75d5/public-install-page/4883ab94cee43b34c597ad1df833911f",
+      "/enroll",
+      "/users/sign_in",
+      "/enroll/",
+      "/session/new",
+      "/1debit/"
+    ]
+  },
+  "webdotcom": {
+    "title": "Web.com Bug Bounty",
+    "domains": [
+      "www.networksolutions.com",
+      "www.bluehost.com",
+      "www.hostgator.com",
+      "app.gator.com"
+    ],
+    "paths": []
+  },
+  "hostgator-latam-bb": {
+    "title": "HostGator LATAM Bug Bounty",
+    "domains": [
+      "www.hostgator.com.br",
+      "financeiro.hostgator.com.br",
+      "carrinho.hostgator.com.br"
+    ],
+    "paths": []
+  },
+  "magiclabs-mbb-og": {
+    "title": "Magic Labs Managed Bug Bounty Engagement",
+    "domains": [],
+    "paths": []
+  },
+  "ciscomeraki": {
+    "title": "Cisco Meraki",
+    "domains": [
+      "documentation.meraki.com",
+      "create.meraki.io",
+      "www.cisco.com",
+      "meraki.cisco.com"
+    ],
+    "paths": [
+      "/Access_Manager.",
+      "/api-docs/",
+      "/security",
+      "/form/demo,"
+    ]
+  },
+  "cribl-vdp-ess": {
+    "title": "Cribl Vulnerability Disclosure Engagement",
+    "domains": [
+      "docs.cribl.io",
+      "cribl.io",
+      "cribl.cloud",
+      "unique-cribl-domain.cribl.cloud",
+      "uniquedomain.cribl.cloud",
+      "manage.cribl.cloud",
+      "api.cribl.cloud",
+      "login.cribl-staging.cloud",
+      "login.cribl.cloud"
+    ],
+    "paths": [
+      "/api/",
+      "/university/",
+      "/download/"
+    ]
+  }
+}

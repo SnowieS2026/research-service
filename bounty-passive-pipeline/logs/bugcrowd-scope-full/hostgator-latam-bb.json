@@ -1,0 +1,9 @@
+{
+  "title": "HostGator LATAM Bug Bounty",
+  "domains": [
+    "www.hostgator.com.br",
+    "financeiro.hostgator.com.br",
+    "carrinho.hostgator.com.br"
+  ],
+  "paths": []
+}

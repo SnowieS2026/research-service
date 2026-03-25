@@ -1,0 +1,75 @@
+{
+  "cookies": [
+    {
+      "name": "csrf-token",
+      "value": "TtMV019BPPEgGtvxQzK/3Y7f5/3UGSNN357rcI96M6oYYSqK9L/kLtHI68t018aX",
+      "domain": ".identity.bugcrowd.com",
+      "path": "/",
+      "expires": 1774534901.728708,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "theme",
+      "value": "light",
+      "domain": "identity.bugcrowd.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_bugcrowd_session",
+      "value": "eyJraWQiOiJjb29raWUtc2lnbmluZy1rZXktMSIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJodHRwczovL2lkZW50aXR5LmJ1Z2Nyb3dkLmNvbSIsIm5iZiI6MTc3NDQ0ODYxMiwic2Vzc2lvbklkIjoiYTFmNjU0ODQtMzkzOS00YzQwLWJiYTItMTVhMjBmNmQ5OTkxIiwiaWF0IjoxNzc0NDQ4NjEyfQ.yGBIs0S2R-1QrCGs5s4vnYP24-Imc9wajf_5RicFBnCcSQNKPSAQzXO1Jg-rAqC84nqB-uiTz5lHi0iet9OLKEFaFEZUTK6ozYbZh8hczZ5J8HSeP0L2GAKsOzi0f-JP4BJW94erPM2ZCUY0Ds2DhEugAHfEnB8sD3LCCien_DS6JHR6G4RJ8GKnhf5QN82uccQJPwmdvtVeveSaDOTKdLPrmezN2ucRMw-PfwIrLDGtkRPkhbln4ZSMDXb2JPjBW6b04QmAoIYm6YxWe6lnL_CRGKY7Xs4b4o81Nkrb3UdetQyt5KNJhNvRVaHNVOi6czLecIRpL4WKpHrdYoahIMMoYkzaNSbBSLW5XP_1YuUQKO4qRVfZmTKp8mMOMZ8TV6yoAiiy7lPbuUUA9FzqsmwfspfGfGpKQ6bIlHgK_kWEIHjLyq4UsQoMoBVUPhqtgSqsaDGWg8CdDOBDUqT51_COHALkbeN2untjxlYvFuW8nTJCzmA7EhSGje-7FLdPNlO0X4R43YIvheiPILCesGQsOudgvh4HXXXUs_sLzLL5Y_157SPgLtjYVpEbbcBzt2rxX-O88QQn2mn_Op2owLluu2VgKdQVcOrNaSRzYEBBJ4Ol4pno72c4dvgr2_-5WJjMqepyseJs42-eF4ICDJBiXAE2qocwhev-I0ODzM4",
+      "domain": "identity.bugcrowd.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "csrf-token",
+      "value": "d32AKdlEy5lHi/UxjzaQhpccZwAr01GxDKCask8KHSwa2YkY5pN5OBFMAQZxq9Nl",
+      "domain": ".bugcrowd.com",
+      "path": "/",
+      "expires": 1774535029.488576,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "_bugcrowd_session",
+      "value": "eyJraWQiOiJjb29raWUtc2lnbmluZy1rZXktMSIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJodHRwczovL2lkZW50aXR5LmJ1Z2Nyb3dkLmNvbSIsIm5iZiI6MTc3NDQ0ODYzMSwic2Vzc2lvbklkIjoiYTFmNjU0ODQtMzkzOS00YzQwLWJiYTItMTVhMjBmNmQ5OTkxIiwiaWF0IjoxNzc0NDQ4NjMxfQ.b85Y93Uq9MHIpdRdlaL8oWuXRUpC0P0D7X74JvhRqK5BIh2dWR657dfv2_1ClRBIX-2khO6rY8wjdvf5hCQb6QGxc-ZR4N_bc_4-0bkKFCHIeoFzUSBZp5TbzRw7mpZn2YnaZWWZkuVHO5SedYkep_oKKK94G0zSTsmJy9CfSoOqrVAxUiz3ePhDx9yr2BE2nyGyYQ3TeYWnMj9VeMQVl2RA-FQ5hyHbXrk8B8PA0j2aE6SWrlkTMaJxlHiv4JqOQynXnsFDzH-5FaF-XYs7qdIi6yEZdvUV5wuCzOK9qTz6qUCGLKOg2TO9nD2TRrVe5sWZJX1bkOEf3_HIeUxLiOnnIBdzpdZ83ydts9xJHTCgUC88akqC2T4wHs6hCMfnZM_RwXTd_-idqy0sndi9UUccnZlOgpnbc9JoHhNih38YqMXjFscE1saE0Us6OB74kot-Q8EuYTy0lN9Etn1LY62mmSf0yPuIarjjaUzXHlIKV4pSOQDlxXQILwxbUXcxfL4K9ULN2etLdpcQYMQZUNZR8VcuTUahXYlr02NOvbR4DdAR-nhQVJkQafjFgrLr3mihA7htf8zT7Hri7gHUbZK8PVXWCdljJXi1rhdvrwQkTJPVT4sjvCIKxdMAghBfDZFIQE9w8R-WterdlkzoO3vY7tK59uSf3QkQ6smv6_s",
+      "domain": "bugcrowd.com",
+      "path": "/",
+      "expires": 1777040628.558659,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__okta_rollout_cookie",
+      "value": "%7B%22stage%22%3A%22NOTIFY%22%2C%22cutover_at%22%3A%222026-03-29T22%3A00%3A00.000Z%22%7D",
+      "domain": ".bugcrowd.com",
+      "path": "/",
+      "expires": 1809008633.437078,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_crowdcontrol_session_key",
+      "value": "UWRaTmJSNTZCMXg1VktyWEszNzE2ZnByZjR4MXpvT3BqUFVRZWZzMFBQUHRSTDE1MW1EdUZndGVuQ1VUZ1hXRkFDdEdrQTVFWjVuZmtQZjZ4VGpGZUhNNnQrbm1hdWJ1cWk2K1VHalNtcm41czFtOHJEc1dicXhlSnlydlNJMWlTU0RWc2J2QjZhYXU2ZFozM1hIay90Z0I5MVhMNFY5ZUNCSkpvdkJjSzF0ZE44MjgxYnAyeFVIVUdXbm52UEtIMjlaUTdYNGJIcEdkVzVCc2ovZWIrN1o4MDVBa1JzYmRmeUlYYzdnNXV0d0dTVjhTRzVLZHc5azZlSytiU29HdS0tblQva0pQSk5lSk41QmUyYm8vMXg1Zz09--39d42e9a6126f461f08432c86001c95b4148aaab",
+      "domain": "bugcrowd.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}

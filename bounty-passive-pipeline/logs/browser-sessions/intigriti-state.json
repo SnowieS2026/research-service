@@ -1,0 +1,157 @@
+{
+  "cookies": [
+    {
+      "name": "_GRECAPTCHA",
+      "value": "09AKhCRwgRRvWXGWkaHWz5EE4Scd3qv1bR2gn0SOtTRlZ4Ni2ZGdzlQlBHfycyDULiH3QjHahl4qioL2y78Q3kOCQ",
+      "domain": "www.google.com",
+      "path": "/recaptcha",
+      "expires": 1790002390.668793,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "intercom-id-pf15mvw4",
+      "value": "ac6b8bc9-6e46-4520-862b-caac03d56bc2",
+      "domain": ".intigriti.com",
+      "path": "/",
+      "expires": 1797780392,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "intercom-device-id-pf15mvw4",
+      "value": "4b9d2b0c-2220-429c-9404-e2b2424899b0",
+      "domain": ".intigriti.com",
+      "path": "/",
+      "expires": 1797780420,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "cookieyes-consent",
+      "value": "consentid:WWRDeXF6NEcxbjFjd2duWVhTb1Nnb1B1SGRmSm05bzI,consent:no,action:yes,necessary:yes,functional:no,analytics:no,performance:no,advertisement:no,other:no",
+      "domain": ".intigriti.com",
+      "path": "/",
+      "expires": 1805986361,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "__Host-Intigriti.Antiforgery",
+      "value": "CfDJ8AZPZOAwX0hBqW60cJVNcoBwzQblE9ZqKRJDzuUzS8Ce3e4J-n08yS6fag4prLCSdZq5OupmcMZTQU2QuySNueK626d1VoCaXT0hyKR75pyFWREhODDp2YlUPwRrQnsgtWcJKmmcr8pFU8krxh6byYs",
+      "domain": "login.intigriti.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "__Host-Intigriti.Session",
+      "value": "3784531D4BC2DE56FAB735EC958B76AD",
+      "domain": "login.intigriti.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__Host-Intigriti.SSO",
+      "value": "CfDJ8AZPZOAwX0hBqW60cJVNcoAMRYevPeko1w00X-OjQljN4Uxurlf2FL0535St9gddYhvK6Y5rpGAVv5Ny9vTdbVU5KjiT8KF5wsqN_io9mi3xxGiTIBQqebBEnIP7GtuO_PePpGcdoJGCLSbNaVtPJEwAZKfQCM2Y71H-DPqLtLMMNBtWsaWSSy90UxlK-zgKzxj8ISyMCZVTBW6aJ5cqjXdD85xkC8CZY9cDz5sAwO1f3JBSjeSDKEek1Extc_wILgnCuB-cSz4us5S5YY2sq6JGPeaHq-i7-l6Z4EERvZNNBcEBs4GDqiXFZdRK6uvuQRBYgNmnCjgLlsRZlm0q-vexA6-IcfFlxZR-aRXng9it4WqwC56Q2S9cxPH40CT44VwDOaGgwLEF7BtQqrdCckDL_eZs5AlAWncf1qIPqMQVFRZ4mkPFXN0MCACtjf2cLb9rczTJchO9nZ5p2-q6bAQpEe7P_3Utlw4ikPpDYm3caJI49HvUOkWaiPvJBsUqg1B2ciHVYNOzdTqPvsFq_s3IiPndDCbCQQM6AKTQeU0nKWAVa-qTGUJF8v5ohUM9dXoilJbWmPPxz4WuwF-RWUotp8Deq-ixPCnFGzZe3csESGKNWpQDmibtMFJBqPx9u4GzlzpHbLmHWgxb7Ou3V3FiS6msoqiK8dSGhYpYw_n13gESe_hCxCZtaUvODgvfkPVKChNUCLLLefDhaUlYZ9zzf-V_bSC6ccEnJyIJSCU5vqR8pzw7MncjwXsPto1tFku0BvcxNmE1V7ITOuUf0Z0WE_84d-Ibgs5cZMTD9yiilaeRPU6dRsxU8zcKGBYQeGQbJlMgwA8IQB3JRm7t_3ANcpLo4a0AHcgSvbkFYq4EwUWA1-e38kqHOrwPi1xgN5qDn1VwaWSf2iZNq5Izd5dommFKzQD8CtYSeTC3OYqqzE4ydUGYWYWqERJM0LP5JQ",
+      "domain": "login.intigriti.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__Host-Intigriti.Web.Researcher",
+      "value": "CfDJ8Iiik2v6NLlAqs2B1jFrdm2U3eLC32_UkEHddi6_FT5lA3SGFTxUQkmBuKRfUpHr8AYG5W7BCFNZ8iem_tLy36GfP61tAiQSF2s0RSiyW03RDihVIKh2IuyMK9npXIMaDgIwHENJ7E9V1B8pS7nL1nkqbdooymBtRanm5nI6JfjFcD90ueF4wL4SA-HlyhKezZUVRLEjAY2deX5QGrJuU4dCO4cuiJw76XDY5Fh4zyCXrKpmuj6t07paLjafxwwnAW53L6MzYgiOpR-71AgnzjI4LMx3D4yo4tSWtVBMOTsuk7DSum88Oz-w7tyZH3PK1PrZjL4BAikVSsMnTkh8pVtutAUrEDgOLatQ-FYmxZ-LiZocyGl4M4x45dDBb1PSUEnRJ4xbkjSyXbCKTxcJV8QddaxciaK06pU6un3wCvz3X1_UP2tOq39AE3p5aOtS38NsUadYF0Ibb26rppkcs0zZFgAsD2cg3xFFGZEMoI-qMwzHFnPcjUSxT8jhr7W5k5SCWtYzzivUlT3nhITcsRtj7derdvE38hVumpTG8ODenBYqGAF0iORfrRl2J9o7dEolnuyE71c_DnyzIN5aGHthNmtaEkPPD54EtGpiBJ2nG1sL0yWTRTIM1NNrOPADila5VUCfgasVoZEoJ7ZW0mgARxpZBA-HTG7EI5sSbV4U0VtYYMkyqcmUDOdvoAqNp6uz9aONCj4gMyq1IvP5H1AxiAhIoalZOlTwa9mrPy6HhYVu3IJP9v9F2jtnOsJ5RU76al2tNDMb0JPcpbiEnM-IZGaxTO1yX-DK2ns7nkNF3RzblzTqu_IiaSpLxl4Dujzz40GWcdGvtduPew3X3_wgjGvL5P-hDQFAujaq87dzLJW9e7i6R78RYJyOf0WrXsD81-qIbv_xugjakmSJIn9fP3qzmKdiz5oY0tziGAsDWKt35pXKw8-It4sWdO1Tw11J8Vir_mBg9pg_2YXnCkfg8w1fUbrit6_IUTN1FRntveZLD9V9IbwHBxvOonVULCDM_0ahurDxUlGLfh9bZfbunxNk_B1ARtsjH-CnKqOMPPt_IeW4x_Wq344p8RJ30MLflHiEBEMIMC0G6yLb1gY7I7i9nnIFiAH6kaCHzzKqPjZydzj5dt2_MXDNWSWzbSIFdTNfVsbhHhUy5UUSflN1b7Ig5RYdZ5VgJvDI0HRM90OHkKWEkSrVIOtNbBG6r8Zc-uJVKEEFopTxe5P5jhsfZkDH_Sq6P8zgkGMYP-b9HQM4Rz2-z5GIvlFH5sSWuiQI7qv_e2b5SEYIKp2JiDxmweUXDzPUiVwo7E6ZFcE2YNNeIuPuiKwF6slfwRB975yEZ1l4ujTxv3rIKdptdvkLS5fc8oVyC4CR4l3s69tOACAQMMa3lchBPZmDyu_Lp6vHME8FpCQUK9UauOYSC8jLqqXy7EWgwdr_LTY7L_JFFgj9Q5XrcnffAtkYG_EKw3bcnoRU0LTKsXHh4_lHvs3UolgFwfP0xKVY1J6alYbxyCXzDRG77SHnNaucArjLgrMCizRWV_YOvMjJwjrc3VRWZ5GZ-u384Ok27p_1YE3LI6fwSMghF90CgjZJiF5UHvsdJt3oGTTsmMAt-_ugY12-G4dHxW6J-E8Xgic1cvhcNHGR-DwIO7VNC6wGw7VyIARSxFJXNNP7Yh4wkms8xXs2s00F6TVuYfO8rysZP1mq2ynmHnlRzxEwDIY718ZBXSKfAfeL1N0jAQ9xgk1vPqlsCQ4adB58ZDIYWZtuQYLqL9O2z5LCrqa4BRvCyM9hjVjje9PjIhEV4vCccs4G6UEZTClmvSEcPSRuk9--EjUJoZjvfcqVY428S8-8O3QQMDPAiHJ_-V3OPOgXeEiO5HidKFDltONSYN_rM_HBEpr4qPzEKoGhuHuCnrX3j9d3DkaeDqFfNgBPc8_q-mQ-UIBT9qmJoc_dpT5ssaoyCzgrnXGIOu0XtF23dQUNaADCfBMSZbPzlvudBV8wyv8fzqXnEYzA8Egp9W8CLILD66LYfqtlBuZuJIm8Ju12hYy4ZZb4LnyPhDE9RhbdJgYssKSetLyR2E-7e83G_cFGaD6C9OyYDi-9KTSFsM3ZTRzp5-3cHNw9zobxsi5SSOzwjH_k6HU8s3fqJqnMZfpwQkPay672RO73VTTduh_UvgKa0wNwcrw3msHYCxOvhHcMEv1k5nsL9ma_RvyqpZB3MrCEtU1OGyNWrYzUkhRpJ5fm3f6gInlLd_m4s60oRrUIrliPF3IeiXHZC_wz3Nh21_AOx29fy13shAMialrHij4VqAwYfaiBBZRiFd699jPiC3p3rZ4h40eeWSh4J6dVpNLRmGZqI0_PUd4wUgatzGmOO0qHST5KfQK-sKUEqQQ-toFYHMc1PRHlZa82RXj_hvyBXN6gfvqVDHlCtLkDpt9CThrXRBoBZVNMcSO8OvWsHZPtI3B0jh4mp5UGbT4mN__hsJJQ3BWuJ3TGgXwG7n3jkn5HTpI5Rmk_kjyDHuVRtUQdMqMe5EnAMxlE42I3_uCWC6MuLsSCMEAgKH3nj7cx9C-j8Iiy5De57tgKhGU_76JkaXYt63i6vA_GSM8lR4lPjJursvzFyIiKFs4XD3ZgD768XyGmTpqk2XrkTCgz-zr66eZ-K1zEdIoeDaOwGZHhwT6sWh89e2u6HJsSCFCDBhwPdVxw7S-ezn6_8sPJrJ3ioKHZC1pMAo7EHXR2jS5dAz37MSHe05uLX871-8BTAUD9s_6_JIGZV7JloptWWtTdmrU4xz1qd48cUTyyoJTyrlsvaMqsUTebqYb0AIAKAsa504Hxy1LVD2lI7v9RO8xvFwNjTmaMertviAZcEgrBwwLpAI8Y_TEOfQPLnZsb3Yor7WkgLsA-ACNBY4qws8EhKni4b97X2qSJA7biLPW3JGsKr3mn3UxmYDWz55p-r0I53434o8ERq4xN9VUBYUI57HWsvj-IJqyI52xe5lsXBLEbGlR7YH80kUBc1m4T0uvUDjKnwjE7ME-MjW8ZaZ5CuXxmhIvwPJg0ITZPJj8rgfoIa3DAmRaIXsRFoMFxv1qqIO91_ojuqulSV4CbOyH20TzLIH-siNmnVkiawAMMBSDs5EgWWr5a_ubO67H9aPjfihqYlnwcmflreW0XS4XeK253AYZNyVdf7XsPcLT-",
+      "domain": "app.intigriti.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "__Host-Intigriti.CsrfToken.Researcher",
+      "value": "TuwKtwDexKc%26R_wUiySNA6BlDovObUf8wOivmn9jRhQbYvU51nW7YKI",
+      "domain": "app.intigriti.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "intercom-session-pf15mvw4",
+      "value": "UDRDaVVLWW9mVTZMakVrek44MC9hTXU4V3k0NFJKRlJuZVZmVUdPdkQwOEYxVUNSd0pTMWtQMGxIMHJMUUI5dE5aTDFZNE45ay9iejBVMUNNbzFOMTd5cGNTYzBEWTRGVE5YcWpkMEZYUHVNa3pSU2pCUXlWeWgvcnNlYUJTbnV0dDk3aFFCOUV2UWpuN01lZWJVWVQvaW56cnJaU2M4TDRDaVIyRW1pVm9BL21BWHJGcElEelArSzA0d3k0QXptY044RWZwUE5ZZDlPZkJsWWgvNzRkUT09LS1xNUFVdW1tZHZLbkVnYzdtVnJtUXNBPT0=--79a08c4f19a524f08883872a3d04bbe4531470a5",
+      "domain": ".intigriti.com",
+      "path": "/",
+      "expires": 1774479221,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://app.intigriti.com",
+      "localStorage": [
+        {
+          "name": "cwr_c",
+          "value": "{\"accessKeyId\":\"ASIATP4DWFSUI236FC3O\",\"secretAccessKey\":\"6mjEk7KWxQNRxuXoayXenHk2/wp4IIkdyHdC4MA3\",\"sessionToken\":\"IQoJb3JpZ2luX2VjEOf//////////wEaCWV1LXdlc3QtMSJHMEUCIB3NMXzk8678WCi6pP0Hoi+HnIQVYnFociCBouEEGc6jAiEAzJngXfW4LHEVS6QjM315gIPUhsZFG9w1sydH6XXG3sUquwUIsP//////////ARACGgwyNDAyNTc0Nzc4MDAiDBBZN2Vo34AJoKez2CqPBUd7AmPdhtbi/GBCgFosjEM36qlQNA30gJ/ANAlJS9L3m+UjyDHYEQYDF2QGsVsWIlRwp6KTLMgDhFj7rRJqrp9LeTvYUIGZbsF7seVE6Sk3IhaJUoXre8j8kcVdp1R7odRXxj+cIgPhBuF+dh1PTVjtQFjLLGeKJ7SVrRqylMduJiOGpINC/Cl/hFzWiZU8LvlBuMhizgjXRR6tS4u0R+07xkzaADm6BTf6NE4+rTuUzdKrAmXlSrW8SSMBzoBYk5cGwQazW1ds0yhSbuluSEQ3XAO6b7QjtI6Kd9uQb1hTSYDnpuFqyRypYP3FGDreAQhdR0LsrlQ43+nV3zbK7JeSea7jQwrH+KSWab7GTKQaSWiiOIIjZHAD+7S5InGr8/30HVdnN+IpC07jjBt5w7cJ25qW27Y6Ik5UA/GSSwTYraqYbkZhBueXybU7XDAn2wgfXIq0FZGaO/MQse5YTK6eoaK8mMNt2zfLnfQC6+rVqGLmQyQ5ex09SBZdImsNAMCRKh3+lASAyDyx3rdZYMQadF6YGNIyOGPfmGaeUFActISpFHJEEKXwhpRgpY4s15FWurTFJy0CnQ9o4WKQwEEnCD2q8S7FYjo6/sUAsO6qngAkodceYnya575PgK/QfmBpOUeB3pRA1+GuDg3PmBx9DYBBwczG4uNC0MlpnVKZ5yI8mwAEKzMBTFBfC0jMeA75Bm4LBeavaw6d2PJrOKrU8HwsE1hcIQE6/TmmJrUJ3mtSW8rBMXu39by91BuslDVupPQcFYLmtevxuz/AnJvF5QHF3Rr87nQ3FSwtR3h6/7wre0FXfR9w8kuL7A3xovLln13wiLydbhzWopUk9zP1xJKEuJU1bCIY4r/BbdwwoumPzgY62gIlEE13jJC+dcd+M21Byv1Taoj33vQ3SEuNGl6yy/KwnuNDiqIf7fRf+ncr7sYw+K3nSsOY2D+mjdwB0RmVMdNPFyPjHALy6We2OWrKqlThduFmSXgN0Y3EHJHZp/ep80PIxvSMcKFvFq+gOJXclGb3e6aEBzcaUyG63qXt0BsbNf1CFv5P0HnfG+VcmsYgPt0OoX2RCN+CIVsEll2E1W79pkkBj8BOUdrhTApGbCSx2fdmFqelAJ5LlytWH3HfYritjs5e7I0t9PH4MRq3ZF8oYPhtt3gHzJ/61ijlgFgEcCviumBMLAmMjimn+c3cvdtQOs0hQx2wn1P/C/OTNlhhKXWbge7LUoUcrgR7S2q1W1gCNnSo0rmuIrDoouoML/qXoGwYCSj0lQUQUXhQ+mjNku/Y4unLx9ToU4q3DI28tC05+3s3JLLBXlZwFoGx3MrxEdOKWCpoS0d/\",\"expiration\":\"2026-03-25T15:43:46.000Z\"}"
+        },
+        {
+          "name": "cwr_i",
+          "value": "{\"IdentityId\":\"eu-west-1:37f0762c-a86a-c175-c1b0-18b27a1239c3\"}"
+        },
+        {
+          "name": "intercom.intercom-state",
+          "value": "{\"app\":{\"openConfig\":{\"unifiedStyling\":true,\"openTo\":\"home\",\"spaces\":[{\"type\":\"home\",\"label\":\"Home\",\"navigationLabel\":\"Home\",\"badge\":null},{\"type\":\"messages\",\"label\":\"Messages\",\"navigationLabel\":\"Messages\",\"badge\":null},{\"type\":\"tickets\",\"label\":\"Tickets\",\"navigationLabel\":\"Tickets\",\"badge\":null},{\"type\":\"help\",\"label\":\"Help\",\"navigationLabel\":\"Help\",\"badge\":null},{\"type\":\"tasks\",\"label\":\"Tasks\",\"navigationLabel\":\"Tasks\",\"badge\":null},{\"type\":\"news\",\"label\":\"News\",\"navigationLabel\":\"News\",\"badge\":{\"badgeType\":\"passive\"}}],\"userHasReceivedChecklists\":false,\"userHasLiveNewsfeed\":true,\"userHasTickets\":false},\"selfServeSuggestionsMatch\":false,\"name\":\"Intigriti\",\"features\":{\"anonymousInboundMessages\":true,\"googleAnalytics\":false,\"hubspotInstalled\":false,\"inboundMessages\":true,\"marketoEnrichmentInstalled\":false,\"googleAnalytics4Integration\":true},\"helpCenterSiteUrl\":\"http://kb.intigriti.com\",\"inboundConversationsDisabled\":false,\"isDeveloperWorkspace\":false,\"customGoogleAnalyticsTrackerId\":null},\"launcher\":{\"isLauncherEnabled\":true},\"launcherDiscoveryMode\":{\"hasDiscoveredLauncher\":true},\"launcherSettings\":{\"alignment\":\"right\",\"color\":\"#4C59A8\",\"colorDark\":\"#808ddc\",\"hasRequiredFeatures\":true,\"horizontalPadding\":20,\"instantBootEnabled\":true,\"launcherLogoUrl\":null,\"launcherLogoDarkUrl\":null,\"secondaryColor\":\"#4c59a8\",\"secondaryColorDark\":\"#4c59a8\",\"showLauncher\":true,\"themeMode\":\"light\",\"updatedAt\":1774411529,\"verticalPadding\":20,\"isLoading\":false},\"user\":{\"role\":\"user\",\"locale\":\"en\",\"hasConversations\":true},\"message\":{},\"conversations\":{\"byId\":{}},\"openOnBoot\":{\"type\":null,\"metadata\":{},\"lastOpenAtTimestamp\":1774450421474},\"operator\":{\"lastComposerEvent\":0},\"router\":{\"isInitialized\":true,\"navigationQueue\":[],\"action\":\"POP\",\"location\":{\"pathname\":\"/home\",\"search\":\"\",\"hash\":\"\",\"state\":null,\"key\":\"default\"}}}"
+        }
+      ]
+    },
+    {
+      "origin": "https://login.intigriti.com",
+      "localStorage": [
+        {
+          "name": "cwr_c",
+          "value": "{\"accessKeyId\":\"ASIATP4DWFSUCW3DJ77K\",\"secretAccessKey\":\"D11CitflIWIe/ubNW5tbBw5IEjf+R7/Y/6C/PX+c\",\"sessionToken\":\"IQoJb3JpZ2luX2VjEOf//////////wEaCWV1LXdlc3QtMSJGMEQCIDPgDBKxaL/iMs2R9SJ3jd+fFSF57u9cJ+ORCTade7KoAiBAdl0T2KXnMc33V2XjUkUurqyg/gPyvA4vcfzETHd9+yq4BQiw//////////8BEAIaDDI0MDI1NzQ3NzgwMCIMUjE0AANgh+hEWW5LKowFFzT5uBV2yRazRtZXP/9uR3OTEcQN2Gf6xgxxvsynLiFxl9yJoGDzVRU16690sTltGAkb14VChwhQtREq7K+fHAsfP48BzeG0Ywxf091u5cphFlkOeHsnp+zWGhtmoy5Y4bPbzkNeCAxx3Y4PZNCqLOMTAe7fgINdDTB22Tv52vlf8FZZ+LLh5LNgNCU1Uce/MKMaCyTjYeyxAKpt6EWwRd63XCY1XYK2PnsY7G8xxyRaaHqN8kXgdU4ICSCd6+/YJP4AcQl9JGGRQAn7ogC9NyJAdJoWK2CcuKBgAtUGMFP44GjfTCmVEZZmKq+pZMOc7/cE+dU0OhmfZp+XnNTTK3bfa7pvDQnLoGwxFJMoLpJu9yGM5mmrEpgJlvjGnrWps6YNsHWoza5PcKaU4ff0GVZXCmNJCZw2NT1c4layd8b9+0//a0PBJySLWUiMlSOeHdX/b69Mb3R3b3q6mmFhGG2QSPjqPq1Y7kytLoBgwFTQlkIHnzelxanGguWG/+nyRTIyqE2+Hqn4sU67acKQXQe/7n1P5B57CXUoRNyDbw/cPvEsjPyw0t2LOH+JXjpi+DZc1oQCgGg/lSLgg0O5zZ1yu4OaeXmzmZIZ98qShHNqpd3Sl2k8VDRxJzIN8k/Ew++QVNEpsGciL/NA/OpojmGHXgyh0meqn1uGP3W9SOWlyktIl6vvEudkJiAnFswK83Y8glIrnW2GxbO2DS08zQBUyrxCaRIrtxYDGnWW0L1Yfn58V5z5XqZ3/P8gSZUSURuncGvG6svII8Y+9q4Tnl3Ud9RW8V2VJbB0sbdF6F5L4XUzZigrSv//tKODsRqCJQVzgEXabY0kXAHBvuxUa38tKs7vOVVl2xDVRzC87Y/OBjreAicFmblmB+YkY6xNc3RG1QPC9C8HLaK6OV14B0mLba0Rs90Kpf5qcvevY6FgEfN+xgVHFPmiyVudEioScBXdXFrZ+j1hhli+1w1dkWX4MoCgpqc83tRhTjznlr7aRiU39mKZfSI6FuCpBliRiS7MlBJ+s3Gb8vbWn7vS9+NmFwrDaxDcIRPTZixG900Qy4AOmgYfsnhktxLkdrjRKJFGv1AUpdgfRppe7ANWe4NSUaMzjGf2F8CWx+PeO1qWOKDJVAAeCAG66DA+AXshCbjxK0CRi1q3kktSbBaZceL4sDeZMWbr16umic5F3c9MQ2XrHM/41LpgWmMbPZs6A28ypOKMCXaGecm0YdGwmia5vNLWJnP5M5SRVJ2Hm9tN3mYtFewrfVv1VvkM5XQ7gcRcSh6odGdVHbtSlv8GOdvXQEdniPV8XDAVBBgMIAYeQvX/echzkah3J11lCB2VNdaa\",\"expiration\":\"2026-03-25T15:52:44.000Z\"}"
+        },
+        {
+          "name": "intercom.intercom-state-pf15mvw4",
+          "value": "{\"app\":{\"openConfig\":{\"unifiedStyling\":true,\"openTo\":\"home\",\"spaces\":[{\"type\":\"home\",\"label\":\"Home\",\"navigationLabel\":\"Home\",\"badge\":null},{\"type\":\"messages\",\"label\":\"Messages\",\"navigationLabel\":\"Messages\",\"badge\":null},{\"type\":\"tickets\",\"label\":\"Tickets\",\"navigationLabel\":\"Tickets\",\"badge\":null},{\"type\":\"help\",\"label\":\"Help\",\"navigationLabel\":\"Help\",\"badge\":null},{\"type\":\"tasks\",\"label\":\"Tasks\",\"navigationLabel\":\"Tasks\",\"badge\":null},{\"type\":\"news\",\"label\":\"News\",\"navigationLabel\":\"News\",\"badge\":{\"badgeType\":\"passive\"}}],\"userHasReceivedChecklists\":false,\"userHasLiveNewsfeed\":true,\"userHasTickets\":false},\"selfServeSuggestionsMatch\":false,\"name\":\"Intigriti\",\"features\":{\"anonymousInboundMessages\":true,\"googleAnalytics\":false,\"hubspotInstalled\":false,\"inboundMessages\":true,\"marketoEnrichmentInstalled\":false,\"googleAnalytics4Integration\":true},\"helpCenterSiteUrl\":\"http://kb.intigriti.com\",\"inboundConversationsDisabled\":false,\"isDeveloperWorkspace\":false,\"customGoogleAnalyticsTrackerId\":null},\"launcher\":{\"isLauncherEnabled\":true},\"launcherDiscoveryMode\":{\"hasDiscoveredLauncher\":true},\"launcherSettings\":{\"alignment\":\"right\",\"color\":\"#808ddc\",\"colorDark\":\"#808ddc\",\"hasRequiredFeatures\":true,\"horizontalPadding\":20,\"instantBootEnabled\":true,\"launcherLogoUrl\":null,\"launcherLogoDarkUrl\":null,\"secondaryColor\":\"#4c59a8\",\"secondaryColorDark\":\"#4c59a8\",\"showLauncher\":true,\"themeMode\":\"system\",\"updatedAt\":1774411529,\"verticalPadding\":20,\"isLoading\":false,\"colorLight\":\"#4C59A8\",\"secondaryColorLight\":\"#4c59a8\",\"launcherLogoLightUrl\":null},\"user\":{\"role\":\"visitor\",\"locale\":\"en\",\"hasConversations\":false},\"message\":{},\"conversations\":{\"byId\":{}},\"openOnBoot\":{\"type\":null,\"metadata\":{},\"lastOpenAtTimestamp\":1774450417137},\"operator\":{\"lastComposerEvent\":0},\"router\":{\"isInitialized\":true,\"navigationQueue\":[],\"action\":\"POP\",\"location\":{\"pathname\":\"/home\",\"search\":\"\",\"hash\":\"\",\"state\":null,\"key\":\"default\"}}}"
+        },
+        {
+          "name": "_grecaptcha",
+          "value": "09AKhCRwjQRjD4I4Il2IJliNqxBHEc13fns2wlvWxtQDrkOsRP6DvOrM2dLmnXRiE4j0tNUppGwA_RSVxw445kssMYp7uqG1Z6n0kRs361MYryhgJ0kkWQiyeKV63JdCg8"
+        },
+        {
+          "name": "cwr_i",
+          "value": "{\"IdentityId\":\"eu-west-1:37f0762c-a80e-ce61-d597-77c2bc8c5078\"}"
+        }
+      ]
+    },
+    {
+      "origin": "https://www.google.com",
+      "localStorage": [
+        {
+          "name": "rc::a",
+          "value": "MXltbmYydTE3OGQxejg="
+        },
+        {
+          "name": "rc::f",
+          "value": "0aALBzkdPneTwF7rwfhoaepPkDz_J7cQnKU9m8sMXhmqHbiQEZ6Imob8RCQpf8mObIq4x0x0Y"
+        }
+      ]
+    }
+  ]
+}

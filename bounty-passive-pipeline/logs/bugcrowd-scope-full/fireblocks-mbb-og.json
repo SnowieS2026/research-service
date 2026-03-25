@@ -1,0 +1,13 @@
+{
+  "title": "Fireblocks Web Managed Bug Bounty Engagement",
+  "domains": [
+    "developers.fireblocks.com",
+    "sb-console-api.fireblocks.io",
+    "sb-mobile-api.fireblocks.io",
+    "sandbox-api.fireblocks.io"
+  ],
+  "paths": [
+    "/docs/sandbox-quickstart",
+    "/docs/postman-guide"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "invites": {
+    "title": "Pending - Invites",
+    "domains": [],
+    "paths": []
+  },
+  "cribl-vdp-ess": {
+    "title": "Cribl Vulnerability Disclosure Engagement",
+    "domains": [
+      "docs.cribl.io",
+      "cribl.io",
+      "cribl.cloud",
+      "unique-cribl-domain.cribl.cloud",
+      "uniquedomain.cribl.cloud",
+      "manage.cribl.cloud",
+      "api.cribl.cloud",
+      "login.cribl-staging.cloud",
+      "login.cribl.cloud"
+    ],
+    "paths": [
+      "/api/",
+      "/university/",
+      "/download/"
+    ]
+  },
+  "ciscomeraki": {
+    "title": "Cisco Meraki",
+    "domains": [
+      "documentation.meraki.com",
+      "create.meraki.io",
+      "www.cisco.com",
+      "meraki.cisco.com"
+    ],
+    "paths": [
+      "/Access_Manager.",
+      "/api-docs/",
+      "/security",
+      "/form/demo,"
+    ]
+  }
+}

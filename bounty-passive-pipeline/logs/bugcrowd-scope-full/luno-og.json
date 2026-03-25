@@ -1,0 +1,15 @@
+{
+  "title": "Luno Bug Bounty Program",
+  "domains": [
+    "mobileapi.staging.luno.com",
+    "staging.luno.com",
+    "staging.luno.com.ng",
+    "api.staging.luno.com",
+    "app.staging.luno.com",
+    "www.staging.luno.com"
+  ],
+  "paths": [
+    "/en/signup",
+    "/wallet/security/send_toggle"
+  ]
+}

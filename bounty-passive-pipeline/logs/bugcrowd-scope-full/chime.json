@@ -1,0 +1,25 @@
+{
+  "title": "Chime Managed Bug Bounty Engagement",
+  "domains": [
+    "%2A.chime.com",
+    "www.chime.com",
+    "app.chime.com",
+    "app.bitrise.io",
+    "member-qa.chime.com",
+    "app-qa.chime.com",
+    "app.saltlabs.com",
+    "app.staging.saltlabs.com",
+    "chime.financial",
+    "chimescholars.org",
+    "github.com"
+  ],
+  "paths": [
+    "/app/5bec038cb1e318cd/installable-artifacts/9ad837caadc77d33/public-install-page/ef39a3be131d116b6da3f9d05c70d757",
+    "/app/5bec038cb1e318cd/installable-artifacts/d2424d9760af75d5/public-install-page/4883ab94cee43b34c597ad1df833911f",
+    "/enroll",
+    "/users/sign_in",
+    "/enroll/",
+    "/session/new",
+    "/1debit/"
+  ]
+}

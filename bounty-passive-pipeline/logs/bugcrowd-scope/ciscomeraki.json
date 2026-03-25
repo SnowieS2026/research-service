@@ -1,0 +1,17 @@
+{
+  "title": "Bug Bounty: Cisco Meraki - Bugcrowd",
+  "urls": [
+    "https://documentation.meraki.com.",
+    "https://documentation.meraki.com/Access_Manager.",
+    "https://create.meraki.io/api-docs/.",
+    "https://www.cisco.com/security",
+    "https://meraki.cisco.com/form/demo,"
+  ],
+  "domains": [
+    "documentation.meraki.com.",
+    "documentation.meraki.com",
+    "create.meraki.io",
+    "www.cisco.com",
+    "meraki.cisco.com"
+  ]
+}

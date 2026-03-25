@@ -1,0 +1,10 @@
+{
+  "title": "Web.com Bug Bounty",
+  "domains": [
+    "www.networksolutions.com",
+    "www.bluehost.com",
+    "www.hostgator.com",
+    "app.gator.com"
+  ],
+  "paths": []
+}
