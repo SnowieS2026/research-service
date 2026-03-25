@@ -1,0 +1,1 @@
+[cors-misconfig:arbitrary-origin] [http] [info] https://api.cribl.cloud [cors_origin="https://uvqpc.cribl.cloud"]

@@ -1,0 +1,22 @@
+{
+  "url": "https://app.intigriti.com/researcher/assets/config/env.json",
+  "body": {
+    "aws_rum_application_id": "41a65383-7513-49a5-a98e-209a793fa042",
+    "aws_rum_identity_pool_id": "eu-west-1:b03fe9d0-1e88-4217-9d81-b219a147280f",
+    "communication_api": "https://app.intigriti.com/api/communication",
+    "configuration_api": "https://app.intigriti.com/api/configuration",
+    "cookie_yes_code": "35214e3c3a097488ec101e57",
+    "core_api": "https://app.intigriti.com/api/core",
+    "core_websocket": "https://app.intigriti.com/ws/core/researcher",
+    "file_api": "https://app.intigriti.com/api/file",
+    "identity": "https://login.intigriti.com",
+    "intercom_app_id": "pf15mvw4",
+    "invoice_api": "https://app.intigriti.com/api/invoice",
+    "leaderboard_api": "https://app.intigriti.com/api/leaderboard",
+    "posthog_key": "phc_NwjlHIOplhWMc998MFw6JXfCVOlCanu1wLUHtRvkCys",
+    "posthog_url": "https://posthog.intigriti.com",
+    "researcher_external_api": "https://app.intigriti.com/api/external/researcher",
+    "researcher_profile_api": "https://app.intigriti.com/api/researcher-profile",
+    "user_api": "https://app.intigriti.com/api/user"
+  }
+}

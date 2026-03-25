@@ -1,0 +1,21 @@
+{
+  "cribl-vdp-ess": [
+    "docs.cribl.io",
+    "cribl.io",
+    "cribl.cloud",
+    "unique-cribl-domain.cribl.cloud",
+    "uniquedomain.cribl.cloud",
+    "manage.cribl.cloud",
+    "api.cribl.cloud",
+    "hub.docker.com",
+    "login.cribl-staging.cloud",
+    "login.cribl.cloud"
+  ],
+  "ciscomeraki": [
+    "documentation.meraki.com.",
+    "documentation.meraki.com",
+    "create.meraki.io",
+    "www.cisco.com",
+    "meraki.cisco.com"
+  ]
+}

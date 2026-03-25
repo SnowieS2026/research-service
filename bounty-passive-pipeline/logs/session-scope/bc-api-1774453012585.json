@@ -1,0 +1,29 @@
+{
+  "url": "https://bugcrowd.com/researcher_dashboard/engagements",
+  "body": {
+    "recent_activity": [
+      {
+        "name": "Cisco Meraki",
+        "program_viewable": true,
+        "url": "/engagements/ciscomeraki",
+        "logo_url": "https://logos.bugcrowdusercontent.com/logos/28f4/22c0/c172b7f6/83c52a802161900a5899365746e1dd14_logo.png",
+        "colour": "#67B346",
+        "type": "submission",
+        "draft": false,
+        "activity_date": "2026-03-13T19:36:38.201Z",
+        "count": 2
+      }
+    ],
+    "ending_soon": [
+      {
+        "name": "Cribl Vulnerability Disclosure Engagement",
+        "program_viewable": true,
+        "url": "/engagements/cribl-vdp-ess",
+        "logo_url": "https://logos.bugcrowdusercontent.com/logos/8f8f/9241/8b387e05/e136b54d91611500e6a0e06685a6cca1_Cribl-Mark-1C-Teal.png",
+        "colour": "#fff",
+        "type": "ending_soon",
+        "activity_date": "2026-03-30T00:00:00.000Z"
+      }
+    ]
+  }
+}
