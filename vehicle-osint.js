@@ -948,6 +948,20 @@ function generateMarkdownReport(data) {
   lines.push(`| **Data Sources** | car-checking.com, Gov.uk DVLA, Gov.uk MOT |`);
   lines.push('');
 
+  // ── Report Section Key ───────────────────────────────────────────────────
+  lines.push('| Section | Heading |');
+  lines.push('| ------- | ---------------------------- |');
+  lines.push('| 1 | 🚗 Vehicle Overview |');
+  lines.push('| 2 | 🔍 Current Status |');
+  lines.push('| 3 | ⚠️ MOT History |');
+  lines.push('| 4 | 🛣️ Mileage Analysis |');
+  lines.push('| 5 | 🔧 The Advisories |');
+  lines.push('| 6 | 💰 Market Valuation |');
+  lines.push('| 7 | 🎯 Risk Assessment |');
+  lines.push('| 8 | 📝 Registration Timeline |');
+  lines.push('| 9 | 📡 Data Sources & Confidence |');
+  lines.push('');
+
   // ── 1. Vehicle Header Card ───────────────────────────────────────────────
   lines.push('## 🚗 Vehicle Overview');
   lines.push('');
