@@ -1,30 +1,23 @@
 {
-  "lastHeartbeatAt": "2026-03-26T00:24:00Z",
-  "heartbeatCycle": 2,
+  "lastHeartbeatAt": "2026-03-26T01:03:00Z",
+  "heartbeatCycle": 1,
+  "automations": {
+    "all_crons_removed": true,
+    "note": "Infinitara reset directive 2026-03-26 01:03 UTC - all bounty/heartbeat crons deleted. No automated scanning, no proactive monitoring. Tools run on explicit request only."
+  },
   "vectorMemory": {
     "status": "WORKING",
     "components": {
       "vector-store.ts": "Chroma v2 REST API client — no SDK, no warnings",
-      "auto-ingest.ts": "Incremental sync, cursor-based, skips unchanged files",
+      "auto-ingest.ts": "Incremental sync, cursor-based",
       "session-startup.ts": "Primes session context from 5 topic queries on startup"
     },
     "collections": {
-      "agent_memory": "working — 29 docs indexed",
-      "pipeline_findings": "empty — needs ingest-pipeline.ts run"
-    },
-    "chromaVersion": "3.x via Docker, API v2 at /api/v2/tenants/default_tenant/databases/default_database/collections/{uuid}",
-    "ollama": "localhost:11434, model: nomic-embed-text"
-  },
-  "bounty": {
-    "status": "PAUSED",
-    "pausedAt": "2026-03-25T18:36:00Z",
-    "pipelineCron": "DISABLED",
-    "discoveryCron": "DISABLED"
+      "agent_memory": "working",
+      "pipeline_findings": "empty — not yet populated"
+    }
   },
   "notes": [
-    "26 Mar 00:17 - Vector memory upgrade complete. Commit 817ebbf6.",
-    "26 Mar 00:17 - vehicle-osint.js comprehensively rewritten. Commit fb26af50.",
-    "26 Mar 00:01 - Critical bug found: old pipeline missed 26 of 27 advisories for AJ05RCF.",
-    "26 Mar 00:24 - Cycle 2. Bounty still paused. Many uncommitted build artifacts (dist/, build/, logs/). Snapshot 6h old but expected while paused. All quiet."
+    "26 Mar 01:03 - ALL cron jobs removed per Infinitara reset directive. No automated scanning/monitoring."
   ]
 }
