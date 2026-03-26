@@ -147,6 +147,44 @@ async function main() {
     }
   }
 
+  // ── Research service (agent_memory) ─────────────────────────────────────
+  const rsDir = path.join(WORKSPACE, 'research-service');
+  if (fs.existsSync(rsDir)) {
+    const rsFiles = ['response-templates.md'].filter(f => fs.existsSync(path.join(rsDir, f)));
+    console.log(`\n  [research-service] checking ${rsFiles.length} docs...`);
+    for (const file of rsFiles) {
+      const fp = path.join(rsDir, file);
+      const mtime = fs.statSync(fp).mtimeMs;
+      const id = `research-service:${file}`;
+      if (cursor.files[id] === mtime) {
+        totalSkipped++;
+      } else {
+        const ok = await ingestFile(id, fp, 12000, 'research_service', { file });
+        if (ok) { cursor.files[id] = mtime; totalIngested++; }
+        await new Promise(r => setTimeout(r, 250));
+      }
+    }
+  }
+
+  // ── Skills (agent_memory) ───────────────────────────────────────────────
+  const skillsDir = path.join(WORKSPACE, 'skills');
+  if (fs.existsSync(skillsDir)) {
+    const skillFiles = fs.readdirSync(skillsDir).filter(f => f.endsWith('.md'));
+    console.log(`\n  [skills] checking ${skillFiles.length} skills...`);
+    for (const file of skillFiles) {
+      const fp = path.join(skillsDir, file);
+      const mtime = fs.statSync(fp).mtimeMs;
+      const id = `skill:${file}`;
+      if (cursor.files[id] === mtime) {
+        totalSkipped++;
+      } else {
+        const ok = await ingestFile(id, fp, 12000, 'skill', { file });
+        if (ok) { cursor.files[id] = mtime; totalIngested++; }
+        await new Promise(r => setTimeout(r, 250));
+      }
+    }
+  }
+
   // ── Save cursor ─────────────────────────────────────────────────────────
   cursor.lastRun = now;
   writeCursor(cursor);
