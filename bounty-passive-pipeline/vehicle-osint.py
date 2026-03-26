@@ -32,6 +32,7 @@ ORIGINAL_MSRP = {
     ("VW", "Golf"): (15000, 22000),
     ("VW", "Polo"): (10000, 16000),
     ("BMW", "3 Series"): (22000, 35000),
+    ("BMW", "M2"): (55000, 70000),
     ("Audi", "A3"): (20000, 30000),
     ("Toyota", "Yaris"): (11000, 17000),
     ("Toyota", "Corolla"): (13000, 20000),
@@ -237,14 +238,17 @@ def collect_car_check(plate, pw):
                 result["findings"].append({"source": "car-checking.com", "field": field, "value": val, "confidence": 95})
             return val or ""
 
-        extract(r'Make\s+([A-Z0-9 ]+)', "make")
+        extract(r'Make\s+([A-Za-z ]+?)(?=\s+Model|\s+Colour|\s+Year|$)', "make")
         m = re.search(r'Model\s+([^\n]+?)\s+Colour', body)
         result["raw_data"]["model"] = m.group(1).strip() if m else ""
-        extract(r'Colour\s+([A-Za-z ]+)', "colour")
+        # Fix: non-greedy capture stops at "Year of manufacture" (was capturing entire rest of page)
+        extract(r'Colour\s+([A-Za-z]+?)(?=\s+Year|\s*$)', "colour")
         extract(r'Year of manufacture\s+(\d{4})', "year")
-        extract(r'Gearbox\s+([A-Za-z0-9/ ]+)', "gearbox")
+        # Fix: non-greedy capture stops at "Engine" (was capturing engine/power text)
+        extract(r'Gearbox\s+([A-Za-z0-9/ ]+?)(?=\s+Engine|\s*$)', "gearbox")
         extract(r'Engine capacity\s+(\d+)\s*cc', "engine_capacity")
-        extract(r'Fuel type\s+([A-Za-z/ ]+)', "fuel_type")
+        # Fix: non-greedy capture stops at "Consumption" (was capturing MPG values)
+        extract(r'Fuel type\s+([A-Za-z/]+?)(?=\s+Consumption|\s*$)', "fuel_type")
         extract(r'Power\s+([\d.]+)\s*BHP', "power_bhp")
         extract(r'CO2 emission\s+(\d+)\s*g', "co2_gkm")
         extract(r'Consumption combined\s+([\d.]+)\s*mpg', "combined_mpg")
@@ -409,6 +413,7 @@ def estimate_value(make, model, year, mileage, condition):
         ("vw", "tiguan"): (2000, 5000),
         ("bmw", "3 series"): (2000, 6000),
         ("bmw", "5 series"): (3000, 8000),
+        ("bmw", "m2"): (45000, 60000),
         ("audi", "a3"): (1500, 4500),
         ("audi", "a4"): (1800, 5000),
         ("mercedes", "c class"): (2000, 6000),
@@ -456,7 +461,8 @@ def generate_valuation(make, model, year, mileage, fuel_type, advisories, mot_fa
     has_critical = any(a.get("severity") in ("critical", "high") for a in advisories)
     has_high = any(a.get("severity") == "high" for a in advisories)
     condition = "poor" if has_critical else "fair" if has_high else "good"
-    value = estimate_value(make, model, year, mileage, condition)
+    model_clean = re.sub(r'\b(auto|manual|gearbox|engine|\d+\s*gear|\d+ gears?)\b', '', model.lower().strip()).strip()
+    value = estimate_value(make, model_clean, year, mileage, condition)
     age = datetime.now().year - (year or 2005)
     diesel = bool(re.search(r"diesel|dci|tdi|cdti", fuel_type or "", re.I))
     months = 3 if has_critical else (6 if has_high else (12 if len(advisories) >= 5 else (18 if diesel and age > 15 else 24)))
@@ -468,9 +474,9 @@ def generate_valuation(make, model, year, mileage, fuel_type, advisories, mot_fa
     val_adv_min = max(200, value["min"] - repair_penalty_max)
     val_adv_max = max(300, value["max"] - repair_penalty_min)
 
-    make_l = make.lower() if make else ""
-    model_l = model.lower() if model else ""
-    msrp_key = next(((m, mo) for (m, mo) in ORIGINAL_MSRP if re.search(m, make_l) and re.search(mo, model_l)), None)
+    make_l = make.lower().strip()
+    model_l = re.sub(r'\b(auto|manual|gearbox|engine|\d+\s*gear|\d+ gears?)\b', '', model.lower().strip()).strip()
+    msrp_key = next(((m, mo) for (m, mo) in ORIGINAL_MSRP if re.search(m.lower(), make_l) and re.search(mo.lower(), model_l)), None)
     msrp_min, msrp_max = ORIGINAL_MSRP.get(msrp_key, (10000, 20000)) if msrp_key else (10000, 20000)
     depr_pct = max(0, min(99, round((1 - value["max"] / msrp_max) * 100, 1))) if msrp_max > 0 else 0
 
@@ -493,6 +499,10 @@ def risk_label(r):
     return {"high": "HIGH", "medium": "MODERATE", "low": "LOW", "unknown": "UNKNOWN"}.get(r.lower() if isinstance(r, str) else "", "UNKNOWN")
 
 def generate_report(plate, data):
+    """
+    Vehicle OSINT Report — 14-section template (authoritative format)
+    Aligns with: src/osint/report.ts
+    """
     cc = data["carcheck"]
     dvla = data["dvla"]
     cr = data.get("cross_ref", {})
@@ -509,9 +519,9 @@ def generate_report(plate, data):
     engine_cc = data.get("engine_cc") or 0
     gearbox = data.get("gearbox") or ""
     body_type = data.get("body_type") or ""
-    current_mileage = data.get("current_mileage") or 0
     mot_expiry = data.get("mot_expiry") or ""
     mot_pass_rate = data.get("mot_pass_rate") or ""
+    current_mileage = data.get("current_mileage") or 0
     mot_passed = data.get("mot_passed") or 0
     mot_failed = data.get("mot_failed") or 0
     mot_history_count = data.get("mot_history_count") or 0
@@ -539,133 +549,295 @@ def generate_report(plate, data):
     conf_pct = min(95, 40 + sources_ok * 12)
 
     lines = []
-    sep = "─" * 50
 
-    lines.append(f"# 🅾️ OSINT Report — {plate}\n")
-    lines.append(f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M')}  **Type:** UK Registration\n\n")
+    # ─────────────────────────────────────────────────────────────────────────
+    # VEHICLE OSINT REPORT — 14-section template (authoritative format)
+    # Aligns with: src/osint/report.ts
+    # ─────────────────────────────────────────────────────────────────────────
 
-    # ── Vehicle Header ──
-    lines.append(f"## 🚗 Vehicle Header\n\n")
-    lines.append(f"| Field | Value |\n|---|---|\n")
-    lines.append(f"| Registration | **{plate}** |\n")
-    lines.append(f"| Make | {make or '⚠️ Unknown'} |\n")
-    lines.append(f"| Model | {model or '⚠️ Unknown'} |\n")
-    lines.append(f"| Year | {year or '⚠️ Unknown'} |\n")
-    lines.append(f"| Colour | {colour or '⚠️ Unknown'} |\n")
-    lines.append(f"| Body Type | {body_type or '⚠️ Unknown'} |\n")
-    lines.append(f"| Fuel Type | {fuel_type or '⚠️ Unknown'} |\n")
-    lines.append(f"| Engine | {f'{engine_cc} cc' if engine_cc else '⚠️ Unknown'} |\n")
-    lines.append(f"| Gearbox | {gearbox or '⚠️ Unknown'} |\n")
-    if current_mileage:
-        lines.append(f"| Mileage | {current_mileage:,} mi |\n")
-    lines.append(f"| VIN | {data.get('vin') or 'Not found'} |\n")
-    lines.append(f"| Tax Status | {tax_status or 'Unknown'} |\n")
-    lines.append(f"| MOT Expiry | {mot_expiry or '⚠️ Unknown'} |\n")
-    lines.append(f"| First Registered | {data.get('first_reg') or 'Unknown'} |\n")
-    lines.append("\n")
+    lines.append(f"# 🚗 Vehicle OSINT Report — **{plate}**\n")
+    lines.append(f"\n| | |\n|---|---|\n")
+    lines.append(f"| **Report Date** | {datetime.now().strftime('%Y-%m-%d')} |\n")
+    lines.append(f"| **Registration** | {plate} |\n")
+    lines.append(f"| **Plate Type** | UK Registration |\n")
+    lines.append(f"| **Data Sources** | car-checking.com, Gov.uk DVLA |\n")
+    lines.append(f"\n")
 
-    # ── MOT Status ──
-    lines.append(f"{sep}\n## 📋 MOT Status\n\n")
-    lines.append(f"**MOT Expiry:** {mot_expiry or '⚠️ Unknown'}  |  ")
-    lines.append(f"**Pass Rate:** {mot_pass_rate + '%' if mot_pass_rate else '⚠️ Unknown'}  |  ")
-    lines.append(f"**Passed:** {mot_passed} / Failed: {mot_failed}  |  ")
-    lines.append(f"**Tests on record:** {mot_history_count}\n\n")
-    lines.append(f"**Risk:** {risk}\n\n")
+    # ── Section 1: Vehicle Header Card ───────────────────────────────────────
+    lines.append(f"## 1. Vehicle Header Card\n\n")
+    lines.append(f"```\n")
+    lines.append(f"  Registration:     {plate}\n")
+    lines.append(f"  Make:             {make or '⚠️ Unknown'}\n")
+    lines.append(f"  Model:            {model or '⚠️ Unknown'}\n")
+    lines.append(f"  Year:             {year or '⚠️ Unknown'}\n")
+    lines.append(f"  Colour:           {colour or '⚠️ Unknown'}\n")
+    lines.append(f"  Body Type:        {body_type or 'N/A'}\n")
+    lines.append(f"  Fuel Type:        {fuel_type or '⚠️ Unknown'}\n")
+    lines.append(f"  Engine Size:      {f'{engine_cc:,} cc' if engine_cc else 'N/A'}\n")
+    lines.append(f"  Power:            {data.get('power_bhp', 'N/A')} BHP\n")
+    lines.append(f"  Transmission:     {gearbox or '⚠️ Unknown'}\n")
+    lines.append(f"  CO2 Emissions:    {data.get('co2_gkm', 'N/A')} g/km\n")
+    lines.append(f"  Combined MPG:     {data.get('combined_mpg', 'N/A')} mpg\n")
+    lines.append(f"  VIN:              {data.get('vin') or 'Not on record'}\n")
+    lines.append(f"  Previous VRM:     None\n")
+    lines.append(f"```\n")
+    lines.append(f"\n")
 
-    # ── MOT History Table ──
-    lines.append(f"{sep}\n## 📅 MOT History\n\n")
+    # ── Section 2: Vehicle Status ─────────────────────────────────────────────
+    lines.append(f"## 2. Vehicle Status\n\n")
+    lines.append(f"```\n")
+    lines.append(f"  Tax Status:        {tax_status or 'Unknown'}\n")
+
+    mot_status = 'No MOT data'
+    if mot_expiry:
+        try:
+            exp_parts = re.match(r'(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})', str(mot_expiry))
+            if exp_parts:
+                yr = int(exp_parts.group(3))
+                if yr < 100: yr += 2000
+                exp_dt = datetime(yr, int(exp_parts.group(2)), int(exp_parts.group(1)))
+                mot_status = 'Valid' if exp_dt > datetime.now() else 'Expired'
+        except: pass
+    elif mot_passed > 0 or mot_failed > 0:
+        mot_status = 'Unknown'
+
+    pr_str = f"{mot_pass_rate}%" if mot_pass_rate else "N/A"
+    ins = data.get("insurance_group", {})
+    ins_grp = f"{ins.get('group_min', '?')}–{ins.get('group_max', '?')}" if ins.get('group_min') else 'N/A'
+
+    lines.append(f"  MOT Status:        {mot_status}\n")
+    lines.append(f"  MOT Expiry:        {mot_expiry or 'N/A'}\n")
+    lines.append(f"  MOT Pass Rate:     {pr_str}\n")
+    lines.append(f"  MOT Passed:        {mot_passed}  |  MOT Failed: {mot_failed}\n")
+    lines.append(f"  MOT Tests Total:   {mot_history_count}\n")
+    lines.append(f"  First Reg:         {data.get('first_reg') or 'Unknown'}\n")
+    lines.append(f"  Insurance Group:  {ins_grp}\n")
+    lines.append(f"  Keepers / Owners:  {data.get('owner_count', 'Unknown')}\n")
+    lines.append(f"```\n")
+    lines.append(f"\n")
+
+    # ── Section 3: MOT History Intelligence ──────────────────────────────────
+    lines.append(f"## 3. MOT History Intelligence\n\n")
+    lines.append(f"**MOT Pass Rate:** {pr_str}  **|**  **Passed:** {mot_passed}  **|**  **Failed:** {mot_failed}  **|**  **Tests on record:** {mot_history_count}\n\n")
     if mot_history:
-        lines.append(f"| # | Date | Mileage | Result | Advisories | Test Centre |\n")
-        lines.append(f"|---|------|---------|--------|-------------|-------------|\n")
-        for entry in mot_history:
-            adv_text = ", ".join(entry.get("advisories", [])[:2])
-            if len(", ".join(entry.get("advisories", []))) > 60:
-                adv_text = adv_text[:60] + "..."
+        lines.append(f"| # | Date | Odometer | Result | Test Centre | Advisories |\n")
+        lines.append(f"|---|------|----------|--------|-------------|-------------|\n")
+        for entry in mot_history[:20]:
+            adv_list = entry.get("advisories", [])
+            adv_text = ", ".join(adv_list[:2]) if adv_list else 'None'
+            if len(", ".join(adv_list)) > 60: adv_text = adv_text[:60] + "..."
             res_emoji = "✔ Pass" if entry.get("result") == "Pass" else "✗ Fail"
-            lines.append(f"| {entry.get('test_number','')} | {entry.get('date','')} | {entry.get('mileage','') or '?'} | {res_emoji} | {adv_text or 'None'} | {entry.get('test_centre','') or '?'} |\n")
+            lines.append(f"| {entry.get('test_number','?')} | {entry.get('date','?')} | {entry.get('mileage','?')} mi | {res_emoji} | {entry.get('test_centre','?') or '?'} | {adv_text} |\n")
+        lines.append(f"\n")
     else:
-        lines.append("⚠️ Full MOT history not available from open sources.\n")
-    lines.append("\n")
+        lines.append("⚠️ Full MOT history not available from open sources.\n\n")
 
-    # ── Advisories ──
-    lines.append(f"{sep}\n## 🔧 Advisory Items\n\n")
-    if advisories:
-        for a in advisories:
-            sev_emoji = {"critical": "🔴", "high": "🟠", "medium": "🟡", "low": "🟢"}.get(a.get("severity",""), "⚪")
-            lines.append(f"- {sev_emoji} **{a.get('issue','Unknown issue')}** — est. £{a.get('cost_min',0):,}–£{a.get('cost_max',0):,}\n")
-    else:
-        lines.append("✔ No advisories recorded.\n")
-    lines.append("\n")
+    # ── Section 4: Risk Indicators ───────────────────────────────────────────
+    crit_count = sum(1 for a in advisories if a.get("severity") == "critical")
+    high_count = sum(1 for a in advisories if a.get("severity") == "high")
+    med_count = sum(1 for a in advisories if a.get("severity") == "medium")
+    low_count = sum(1 for a in advisories if a.get("severity") == "low")
+    lines.append(f"## 4. Risk Indicators\n\n")
+    cond_label = "🔴 Neglect indicators" if crit_count > 0 or high_count >= 2 else ("🟡 Average condition" if high_count > 0 or med_count >= 3 else "🟢 Well maintained")
+    lines.append(f"**Overall Condition:** {cond_label}\n\n")
+    lines.append(f"| Severity | Count |\n")
+    lines.append(f"| --- | --- |\n")
+    if crit_count > 0: lines.append(f"| 🔴 Critical | {crit_count} |\n")
+    if high_count > 0: lines.append(f"| 🟠 High | {high_count} |\n")
+    if med_count > 0: lines.append(f"| 🟡 Medium | {med_count} |\n")
+    if low_count > 0: lines.append(f"| 🟢 Low | {low_count} |\n")
+    if not advisories: lines.append(f"| 🟢 None | 0 |\n")
+    lines.append(f"\n")
 
-    # ── Mileage Timeline ──
-    lines.append(f"{sep}\n## 📊 Mileage Intelligence\n\n")
-    if mileage_timeline:
+    # ── Section 5: Mileage Intelligence Analysis ─────────────────────────────
+    lines.append(f"## 5. Mileage Intelligence Analysis\n\n")
+    if mileage_timeline and len(mileage_timeline) > 0:
         current = mileage_timeline[0]
         oldest = mileage_timeline[-1] if len(mileage_timeline) > 1 else current
+        lines.append(f"| Metric | Value |\n")
+        lines.append(f"|---|---|\n")
+        lines.append(f"| Current odometer (latest MOT) | **{current:,} mi** |\n")
+        lines.append(f"| First recorded MOT mileage | {oldest:,} mi |\n")
+        lines.append(f"| Total miles covered (MOT period) | {current - oldest:,} mi |\n")
         if len(mileage_timeline) >= 2:
-            years_between = max(1, year and (datetime.now().year - year) or 5)
-            annual_miles = (current - oldest) / years_between if years_between > 0 else 0
-            lines.append(f"- Current odometer: **{current:,} mi**\n")
-            lines.append(f"- Annual average: **{annual_miles:,.0f} mi/yr**\n")
-            lines.append(f"- Consistency: {'🟢 Consistent' if annual_miles < 15000 else '🟡 Normal' if annual_miles < 25000 else '🔴 High mileage'}\n")
-        else:
-            lines.append(f"- Current mileage: **{current:,} mi**\n")
+            years_span = max(1, year and (datetime.now().year - year) or len(mileage_timeline))
+            annual_avg = (current - oldest) / max(1, years_span)
+            miles_per_yr = "🟢 Low — careful owner" if annual_avg < 6000 else ("🟡 Average" if annual_avg < 12000 else "🔴 High mileage")
+            lines.append(f"| Average per MOT year | **{annual_avg:,.0f} mi/yr** ({miles_per_yr}) |\n")
+        lines.append(f"\n**Mileage trend (newest → oldest MOT):**\n\n")
+        lines.append(f"| # | Mileage |\n")
+        lines.append(f"| --- | --- |\n")
+        for i, m in enumerate(mileage_timeline[:15]):
+            lines.append(f"| #{i+1} | {m:,} mi |\n")
+        lines.append(f"\n")
     else:
-        lines.append("⚠️ Mileage timeline not available.\n")
-    lines.append("\n")
+        lines.append("⚠️ Mileage timeline not available.\n\n")
 
-    # ── Valuation ──
-    lines.append(f"{sep}\n## 💷 Valuation\n\n")
-    lines.append(f"**Estimated value:** £{val_min:,} – £{val_max:,}\n")
-    lines.append(f"**With advisories:** £{val_adv_min:,} – £{val_adv_max:,}\n")
-    lines.append(f"**Depreciation:** ~{depr}% from new (~£{msrp_min:,}–£{msrp_max:,})\n")
-    lines.append(f"**Expected months remaining:** {valuation.get('expected_months_remaining', '?')} months\n")
-    if valuation.get("total_advisory_cost_min"):
-        lines.append(f"**Advisory repair cost:** £{valuation['total_advisory_cost_min']:,}–£{valuation['total_advisory_cost_max']:,}\n")
-    lines.append(f"\n**Valuation confidence:** {'🟢 High' if len(mot_history) >= 5 else '🟡 Medium' if mot_history else '🔴 Low'} — based on {len(mot_history)} MOT records\n\n")
+    # ── Section 6: Market Intelligence ────────────────────────────────────────
+    lines.append(f"## 6. Market Intelligence\n\n")
+    if val_min and val_max:
+        lines.append(f"| Scenario | Price |\n")
+        lines.append(f"|---|---|\n")
+        lines.append(f"| **Retail value (poor condition)** | **£{val_min:,} – £{val_max:,}** |\n")
+        if val_adv_min and val_adv_max:
+            lines.append(f"| As-is (with advisories deducted) | £{val_adv_min:,} – £{val_adv_max:,} |\n")
+        if msrp_min and msrp_max:
+            lines.append(f"| Original MSRP (when new) | £{msrp_min:,} – £{msrp_max:,} |\n")
+        lines.append(f"| Depreciation | ~{depr}% from new |\n")
+        lines.append(f"\n")
+        val_conf = "🟢 High" if len(mot_history) >= 5 else "🟡 Medium" if mot_history else "🔴 Low"
+        lines.append(f"**Valuation Confidence:** {val_conf} — based on {len(mot_history)} MOT records\n\n")
+    else:
+        lines.append("Market valuation not available.\n\n")
 
-    # ── Risk ──
-    lines.append(f"{sep}\n## 🚨 Risk Assessment\n\n")
-    lines.append(f"**Overall risk:** {risk}\n\n")
+    # ── Section 7: Insurance Risk Indicators ─────────────────────────────────
+    lines.append(f"## 7. Insurance Risk Indicators\n\n")
+    ins_note = ins.get("note", "") if isinstance(ins, dict) else ""
+    ins_risk = "🔴 High" if crit_count > 0 or high_count >= 2 else ("🟡 Moderate" if high_count > 0 or med_count >= 2 else "🟢 Low")
+    lines.append(f"**Insurance Group:** {ins_grp}\n")
+    if ins_note: lines.append(f"**Profile:** {ins_note}\n")
+    lines.append(f"**Risk Rating:** {ins_risk}\n")
+    lines.append(f"\n")
+
+    # ── Section 8: Geographic Intelligence ────────────────────────────────────
+    centres = []
+    if mot_history:
+        for e in mot_history:
+            tc = e.get("test_centre", "")
+            if tc and tc != "?": centres.append(tc)
+    unique_centres = list(dict.fromkeys(centres))
+    lines.append(f"## 8. Geographic Intelligence\n\n")
+    if unique_centres:
+        lines.append(f"**Common test locations:**\n")
+        for loc in unique_centres[:5]:
+            lines.append(f"  - {loc}\n")
+        lines.append(f"\n")
+        if len(unique_centres) >= 3:
+            usage = "🏙️ Urban/commuter — multiple independent test centres across regions"
+        elif len(unique_centres) == 1 and len(mot_history) > 3:
+            usage = "🏡 Local/regional — single test centre, possibly one owner"
+        else:
+            usage = "🚗 Regional — used across a few locations"
+        lines.append(f"**Usage pattern:** {usage}\n\n")
+    else:
+        lines.append("No geographic data available from MOT records.\n\n")
+
+    # ── Section 9: Mechanical Intelligence Indicators ─────────────────────────
+    lines.append(f"## 9. Mechanical Intelligence Indicators\n\n")
     if advisories:
-        for a in advisories:
-            if a.get("severity") in ("critical", "high"):
-                lines.append(f"🔴 **{a.get('issue')}** — £{a.get('cost_min',0):,}–£{a.get('cost_max',0):,}\n\n")
-    if mot_failed > 2:
-        lines.append(f"⚠️ Multiple MOT failures ({mot_failed}) — potential systemic issues.\n\n")
-    if age > 15:
-        lines.append(f"⚠️ Vehicle is {age} years old — monitor for rust, corrosion, and wear items.\n\n")
-    if not advisories and mot_failed == 0:
-        lines.append("✔ No significant risk flags.\n\n")
+        lines.append(f"**Specific advisories found on this vehicle:**\n\n")
+        for a in advisories[:12]:
+            se = {"critical":"🔴","high":"🟠","medium":"🟡","low":"🟢"}.get(a.get("severity",""),"⚪")
+            lines.append(f"  {se} {a.get('issue','Unknown')} — est. £{a.get('cost_min',0):,}–£{a.get('cost_max',0):,}\n")
+        lines.append(f"\n")
+    rel_emoji = "🔴 Poor" if crit_count > 0 or high_count >= 3 else ("🟡 Average" if high_count > 0 or med_count >= 3 else "🟢 Good")
+    lines.append(f"**Model Reliability Rating:** {rel_emoji}\n\n")
 
-    # ── Insurance ──
-    lines.append(f"{sep}\n## 🛡 Insurance & Ownership\n\n")
-    ins = data.get("insurance_group", {})
-    ins_grp = ins.get("group_min")
-    if ins_grp:
-        lines.append(f"**Insurance Group:** {ins_grp}" + (f" – {ins.get('group_max')}" if ins.get("group_max") else "") + "\n")
-    lines.append(f"**Est. owners:** {data.get('owner_count', '?')}\n\n")
+    # ── Section 10: Ownership Intelligence (OSINT derived) ────────────────────
+    lines.append(f"## 10. Ownership Intelligence (OSINT derived)\n\n")
+    est_owners = data.get("owner_count", "?")
+    lines.append(f"**Estimated Owner Count:** {est_owners}\n\n")
+    owner_flags = []
+    if len(unique_centres) >= 3: owner_flags.append(f"Multiple test locations ({len(unique_centres)}) — may indicate multiple owners or mobile testing")
+    if len(unique_centres) == 1 and len(mot_history) > 3: owner_flags.append("Consistent single test centre — possibly one owner, garage-maintained")
+    if mileage_timeline and len(mileage_timeline) >= 2:
+        oldest_m, current_m = mileage_timeline[-1], mileage_timeline[0]
+        if oldest_m and current_m:
+            span = max(1, year and (datetime.now().year - year) or len(mileage_timeline))
+            miles_per_yr = (current_m - oldest_m) / span
+            if miles_per_yr > 15000: owner_flags.append(f"High-mileage usage pattern (~{miles_per_yr:,.0f} mi/yr) — possibly commercial or fleet")
+            elif miles_per_yr < 5000: owner_flags.append(f"Low-mileage usage pattern (~{miles_per_yr:,.0f} mi/yr) — possibly second car or low-use private")
+    if owner_flags:
+        for f in owner_flags: lines.append(f"  - {f}\n")
+    else:
+        lines.append("  - Insufficient MOT history to determine ownership patterns\n")
+    lines.append(f"\n")
 
-    # ── Data Sources ──
-    lines.append(f"{sep}\n## 📡 Data Sources\n\n")
+    # ── Section 11: Risk Flags ────────────────────────────────────────────────
+    lines.append(f"## 11. Risk Flags\n\n")
+    risk_flags = []
+    if mot_failed >= 3: risk_flags.append(f"⚠️ Repeated failures: {mot_failed} fails on record")
+    if age > 15: risk_flags.append(f"⚠️ Age: {age} years — structural rust, corrosion, and major component wear risk")
+    if not data.get("vin"): risk_flags.append("⚠️ VIN not on record — verify against physical plate")
+    if crit_count > 5: risk_flags.append(f"⚠️ High critical advisory count ({crit_count}) — serious safety concerns")
+    if mot_expiry:
+        try:
+            exp_parts = re.match(r'(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})', str(mot_expiry))
+            if exp_parts:
+                yr = int(exp_parts.group(3))
+                if yr < 100: yr += 2000
+                exp_dt = datetime(yr, int(exp_parts.group(2)), int(exp_parts.group(1)))
+                days_to_exp = (exp_dt - datetime.now()).days
+                if days_to_exp < 0: risk_flags.append(f"⚠️ MOT expired {abs(days_to_exp)} days ago")
+                elif days_to_exp < 30: risk_flags.append(f"⚠️ MOT expiring within {days_to_exp} days")
+        except: pass
+    if risk_flags:
+        for f in risk_flags: lines.append(f"  {f}\n")
+    else:
+        lines.append("  No significant risk flags identified.\n")
+    lines.append(f"\n")
+
+    # ── Section 12: OSINT Confidence Score ────────────────────────────────────
+    dvla_ok = 1 if (data.get("make") or data.get("colour") or tax_status) else 0
+    mot_ok = 1 if (mot_history or mot_passed > 0 or mot_failed > 0) else 0
+    market_ok = 1 if (val_min and val_max) else 0
+    dvla_conf = dvla_ok * 100
+    mot_conf = mot_ok * 100
+    market_conf = 80 if market_ok else 50
+    risk_conf = 65
+    overall_conf = round((dvla_conf + mot_conf + market_conf + risk_conf) / 4)
+    lines.append(f"## 12. OSINT Confidence Score\n\n")
+    lines.append(f"| Category | Confidence |\n")
+    lines.append(f"| --- | --- |\n")
+    lines.append(f"| DVLA data | {'🟢 100%' if dvla_conf else '🔴 0%'} |\n")
+    lines.append(f"| MOT data | {'🟢 100%' if mot_conf else '🔴 0%'} |\n")
+    lines.append(f"| Market data | {'🟢 ' + str(market_conf) + '%' if market_conf >= 80 else '🟡 ' + str(market_conf) + '%' if market_conf >= 50 else '🔴 ' + str(market_conf) + '%'} |\n")
+    lines.append(f"| Risk analysis | 🟡 65% |\n")
+    lines.append(f"\n")
+    ov_emoji = "🟢" if overall_conf >= 80 else "🟡" if overall_conf >= 50 else "🔴"
+    lines.append(f"**Overall OSINT confidence:** {ov_emoji} **{overall_conf}/100**\n\n")
+
+    # ── Section 13: Analyst Summary ───────────────────────────────────────────
+    lines.append(f"## 13. Analyst Summary\n\n")
+    vehicle_desc = f"{make} {model} ({year})" + (f" in {colour}" if colour else "")
+    mot_desc = f"an {'expired' if mot_status == 'Expired' else 'valid' if mot_status == 'Valid' else 'unknown'} MOT "
+    if mot_expiry: mot_desc += f"expiring {mot_expiry} "
+    mot_desc += f"with {mot_passed} pass(es) and {mot_failed} fail(s) on record. "
+    if not advisories:
+        summary = f"{vehicle_desc} has {mot_desc}No advisories were raised on the most recent MOT, suggesting the vehicle is in reasonable mechanical condition. "
+    else:
+        crit_high = crit_count + high_count
+        if crit_high > 0:
+            summary = f"{vehicle_desc} has {mot_desc}{crit_high} critical or high-severity issue(s) were identified — immediate attention is recommended before relying on this vehicle. "
+        else:
+            summary = f"{vehicle_desc} has {mot_desc}{len(advisories)} advisory/advisories were noted; these are manageable but should be budgeted for. "
+    if val_min and val_max:
+        summary += f"Current market value is estimated at £{val_min:,}–£{val_max:,}. "
+    summary += f"Overall risk profile is rated **{risk}**."
+    lines.append(f"{summary}\n\n")
+
+    # ── Section 14: Overall OSINT Risk Rating ─────────────────────────────────
+    lines.append(f"## 14. Overall OSINT Risk Rating\n\n")
+    lines.append(f"**{risk}**\n\n")
+
+    # ── Data Sources ───────────────────────────────────────────────────────────
+    lines.append(f"## 📡 Data Sources & Confidence\n\n")
+    lines.append(f"| Source | Status | Data Retrieved |\n")
+    lines.append(f"|---|---|---|\n")
     for s in data_sources:
-        status = "✔" if s.get("success") else "✗"
-        note = f" — {s.get('note')}" if s.get("note") else ""
-        lines.append(f"{status} {s.get('name','?')}{note}\n")
+        status = "✅ Available" if s.get("success") else "❌ Failed"
+        note = s.get("note", "")
+        lines.append(f"| {s.get('name','?')} | {status} | {note} |\n")
+    lines.append(f"\n")
 
-    # ── Confidence ──
-    lines.append(f"\n**Overall OSINT Confidence:** {'🟢 High' if conf_pct >= 70 else '🟡 Medium' if conf_pct >= 50 else '🔴 Low'} ({conf_pct}%)\n\n")
-
-    # ── Errors ──
+    # ── Errors ─────────────────────────────────────────────────────────────────
     if errors:
-        lines.append(f"\n⚠️ **Errors ({len(errors)}):**\n")
+        lines.append(f"**⚠️ Errors ({len(errors)}):**\n\n")
         for e in errors[:5]:
             lines.append(f"- {e}\n")
+        lines.append(f"\n")
 
     return "".join(lines)
-
-
-# ─── Main Orchestrator ──────────────────────────────────────────────────────
 
 def run_vehicle_osint(plate, output_path=None):
     plate_clean = re.sub(r'[\s\-]', '', plate.strip()).upper()
