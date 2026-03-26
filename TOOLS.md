@@ -46,29 +46,20 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
   - The pipeline falls back to public instances (searx.party, searx.mw.io, searx.work, searxng.site) if local is unavailable
 
 ### Vector Store (Chroma + Ollama)
-
-- **Chroma server**: `http://localhost:8000` (Docker)
-  - Start: `docker-compose up -d` from workspace root (uses docker-compose.yml)
+- **Chroma server**: `http://localhost:8000` (Docker, chromadb v3.x)
+  - Start: `docker-compose up -d` from workspace root
   - Or: `docker run -d --name chroma -p 8000:8000 -v ./bounty-passive-pipeline/logs/vectorstore:/data chromadb/chroma:latest`
-  - Persisted to: `bounty-passive-pipeline/logs/vectorstore/`
-- **Ollama model**: `nomic-embed-text` (137M params, ~274MB)
+  - API: REST v2 at `/api/v2/tenants/default_tenant/databases/default_database/collections/{uuid}/*`
+  - Collections: `agent_memory` + `pipeline_findings` (real UUIDs from Chroma, cached at startup)
+- **Ollama model**: `nomic-embed-text` (137M params, ~274MB, F16)
   - Pull: `ollama pull nomic-embed-text`
-- **Vector store scripts**:
-  - `bounty-passive-pipeline/src/vector-store.ts` — core library (add/query/peek/count)
-  - `bounty-passive-pipeline/sync-memory.ts` — sync agent memory → vector DB
-  - `bounty-passive-pipeline/ingest-pipeline.ts` — sync pipeline outputs → vector DB
-- **Two collections**:
-  - `pipeline_findings` — snapshots, reports, scan results, discovery logs
-  - `agent_memory` — daily memory logs, USER.md, MEMORY.md, HEARTBEAT.md, research docs
-- **Usage**:
-  ```
-  npx tsx sync-memory.ts              # sync agent memory (one-time bulk load)
-  npx tsx ingest-pipeline.ts          # ingest all pipeline outputs
-  npx tsx ingest-pipeline.ts scanner  # ingest scan results only
-  ```
-- **Auto-chunking**: docs >4000 chars split into overlapping chunks for embedding
-- **Embedding**: Ollama REST API → nomic-embed-text → 768-dim vectors
-
----
-
-Add whatever helps you do your job. This is your cheat sheet.
+- **Vector store library**: `bounty-passive-pipeline/src/vector-store.ts`
+  - Direct REST API client (no chromadb Node SDK — SDK uses deprecated v1 API)
+  - Ollama embed endpoint: `POST http://localhost:11434/api/embeddings`
+- **Scripts**:
+  - `bounty-passive-pipeline/session-startup.ts` — run at session start (wired into AGENTS.md step 5)
+  - `bounty-passive-pipeline/auto-ingest.ts` — incremental sync, skips unchanged files (cursor at `logs/vectorstore/.sync-cursor.json`)
+  - `bounty-passive-pipeline/sync-memory.ts` — full re-ingest all memory files
+  - `bounty-passive-pipeline/ingest-pipeline.ts` — ingest pipeline outputs (snapshots, scans, reports)
+- **Startup flow**: `session-startup.ts` → auto-ingest → vector store primed → session context enriched
+- **Heartbeat flow**: `auto-ingest.ts` runs every ~3 heartbeats to pick up changed files

@@ -14,7 +14,7 @@ Before doing anything else:
 2. Read `USER.md` — this is who you're helping
 3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
 4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
-5. Query the vector store (`agent_memory` collection) for any context relevant to this session's topics — use the question as the query. Example: *"Infinitara Superhuman bug bounty pipeline findings Capital.com"* → check if there are relevant hits worth incorporating.
+5. **If in MAIN SESSION**: Run `npx tsx session-startup.ts` in the pipeline dir to pull semantic context from the vector store — relevant hits are printed to stdout and become part of the session context. Topics queried: recent work, vehicle OSINT, bounty pipeline, user preferences, OpenClaw config.
 
 **Vector store is authoritative for semantic search.** Files are the source of truth for facts, decisions, and hard state. The vector store supplements with historical pattern matching and cross-session context.
 

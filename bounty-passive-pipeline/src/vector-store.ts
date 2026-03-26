@@ -7,27 +7,42 @@
  *
  * Uses: Chroma server (Docker) + Ollama nomic-embed-text for embeddings
  * Chunking: documents larger than MAX_CHUNK chars are split into overlapping pieces
+ * Transport: Chroma REST API v2 (direct HTTP, avoids Node SDK compat issues)
+ *
+ * Chroma v2 API base: /api/v2/tenants/{tenant}/databases/{database}/collections/{collection}
+ * Collection IDs are UUIDs. We derive stable UUIDs from collection names.
  */
 
-import { ChromaClient } from 'chromadb';
 import path from 'path';
 import fs from 'fs';
 
-const VECTORSTORE_DIR = path.join(process.cwd(), 'logs', 'vectorstore');
-const OLLAMA_URL = 'http://localhost:11434';
+const OLLAMA_URL   = 'http://localhost:11434';
+const CHROMA_HOST  = 'http://localhost:8000';
+const TENANT       = 'default_tenant';
+const DATABASE     = 'default_database';
 const EMBEDDING_MODEL = 'nomic-embed-text';
-const MAX_CHUNK = 4000; // chars per chunk — safe for nomic-embed-text context window
+const MAX_CHUNK    = 4000; // chars per chunk — safe for nomic-embed-text context window
 
-let _client: ChromaClient | null = null;
+// Cache of real collection UUIDs (fetched once per process)
+let _collectionUuidCache: Record<string, string> = {};
 
-async function getClient(): Promise<ChromaClient> {
-  if (!_client) {
-    fs.mkdirSync(VECTORSTORE_DIR, { recursive: true });
-    _client = new ChromaClient({ host: 'localhost', port: 8000 });
-  }
-  return _client;
+async function fetchCollectionUuid(name: string): Promise<string> {
+  if (_collectionUuidCache[name]) return _collectionUuidCache[name];
+  const collections = await apiRequest('GET',
+    `/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections`) as Array<{ name: string; id: string }>;
+  const found = collections.find(c => c.name === name);
+  if (!found) throw new Error(`Collection '${name}' not found in Chroma`);
+  _collectionUuidCache[name] = found.id;
+  return found.id;
 }
 
+const collectionPath = async (name: string) =>
+  `/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections/${await fetchCollectionUuid(name)}`;
+
+const collectionPathByName = (name: string) =>
+  `/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections/${name}`;
+
+// ── Ollama embedding ────────────────────────────────────────────────────────
 async function embedBatch(texts: string[]): Promise<number[][]> {
   const results: number[][] = [];
   for (const text of texts) {
@@ -40,8 +55,8 @@ async function embedBatch(texts: string[]): Promise<number[][]> {
           body: JSON.stringify({ model: EMBEDDING_MODEL, prompt: text }),
         });
         if (!response.ok) {
-          const errText = await response.text().catch(() => '');
-          throw new Error(`Ollama ${response.status}: ${errText}`.slice(0, 120));
+          const err = await response.text().catch(() => '');
+          throw new Error(`Ollama ${response.status}: ${err}`.slice(0, 120));
         }
         const data = await response.json() as { embedding: number[] };
         results.push(data.embedding);
@@ -59,12 +74,41 @@ async function embedBatch(texts: string[]): Promise<number[][]> {
 function chunkText(text: string, maxLen = MAX_CHUNK): string[] {
   if (text.length <= maxLen) return [text];
   const chunks: string[] = [];
-  for (let i = 0; i < text.length; i += maxLen) {
-    chunks.push(text.slice(i, i + maxLen));
-  }
+  for (let i = 0; i < text.length; i += maxLen) chunks.push(text.slice(i, i + maxLen));
   return chunks;
 }
 
+// ── Chroma REST API v2 ───────────────────────────────────────────────────────
+async function apiRequest(
+  method: string,
+  urlPath: string,
+  body?: unknown,
+): Promise<unknown> {
+  const opts: RequestInit = { method, headers: { 'Content-Type': 'application/json' } };
+  if (body !== undefined) opts.body = JSON.stringify(body);
+  const res = await fetch(`${CHROMA_HOST}${urlPath}`, opts);
+  if (res.status === 204) return undefined;
+  const text = await res.text();
+  if (!res.ok) throw new Error(`Chroma ${method} ${urlPath} → ${res.status} ${text.slice(0, 200)}`);
+  return text ? JSON.parse(text) : undefined;
+}
+
+// Ensure collection exists (fetch UUID, create if missing)
+async function ensureCollection(name: string): Promise<void> {
+  try {
+    await fetchCollectionUuid(name);
+    return; // already exists
+  } catch {
+    // 404 — create it (Chroma will assign a UUID)
+    await apiRequest('POST', `/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections`, {
+      name,
+    });
+    // Fetch and cache the assigned UUID
+    await fetchCollectionUuid(name);
+  }
+}
+
+// ── Public API ───────────────────────────────────────────────────────────────
 export interface FindingDoc {
   id: string;
   collection: 'pipeline_findings' | 'agent_memory';
@@ -72,38 +116,39 @@ export interface FindingDoc {
   metadata: Record<string, string | number | boolean>;
 }
 
-async function getCollection(name: string) {
-  const client = await getClient();
-  return client.getOrCreateCollection({ name });
-}
+export async function add(
+  collection: FindingDoc['collection'],
+  docs: Omit<FindingDoc, 'collection'>[]
+): Promise<void> {
+  await ensureCollection(collection);
+  const path = await collectionPath(collection);
 
-export async function add(collection: FindingDoc['collection'], docs: Omit<FindingDoc, 'collection'>[]) {
-  const col = await getCollection(collection);
-
-  const ids: string[] = [];
-  const contents: string[] = [];
-  const embeddings: number[][] = [];
-  const metad: Record<string, unknown>[] = [];
+  const allIds: string[] = [];
+  const allContents: string[] = [];
+  const allEmbeddings: number[][] = [];
+  const allMetadatas: Record<string, unknown>[] = [];
 
   for (const doc of docs) {
-    // Split large documents into chunks — each chunk gets its own ID
     const chunks = chunkText(doc.content);
     for (let c = 0; c < chunks.length; c++) {
-      const chunkId = chunks.length === 1 ? doc.id : `${doc.id}:chunk${c}`;
-      ids.push(chunkId);
-      contents.push(chunks[c]);
-      metad.push({ ...doc.metadata, chunk: c, totalChunks: chunks.length } as Record<string, unknown>);
+      allIds.push(chunks.length === 1 ? doc.id : `${doc.id}:chunk${c}`);
+      allContents.push(chunks[c]);
+      allMetadatas.push({ ...doc.metadata, chunk: c, totalChunks: chunks.length });
     }
   }
 
-  // Embed and add in batches of 20
-  for (let i = 0; i < contents.length; i += 20) {
-    const batch = contents.slice(i, i + 20);
-    const batchEmbs = await embedBatch(batch);
-    const batchIds = ids.slice(i, i + batch.length);
-    const batchMetad = metad.slice(i, i + batch.length);
-    await col.add({ ids: batchIds, documents: batch, embeddings: batchEmbs, metadatas: batchMetad });
+  // Embed in batches of 20
+  for (let i = 0; i < allContents.length; i += 20) {
+    const batch = allContents.slice(i, i + 20);
+    allEmbeddings.push(...(await embedBatch(batch)));
   }
+
+  await apiRequest('POST', `${path}/add`, {
+    ids: allIds,
+    documents: allContents,
+    embeddings: allEmbeddings,
+    metadatas: allMetadatas,
+  });
 }
 
 export async function query(
@@ -111,53 +156,74 @@ export async function query(
   queryText: string,
   n = 5
 ): Promise<Array<{ id: string; content: string; metadata: Record<string, unknown>; distance?: number }>> {
-  const col = await getCollection(collection);
-
   const [queryEmbedding] = await embedBatch([queryText]);
+  const path = await collectionPath(collection);
 
-  const results = await col.query({
-    queryEmbeddings: [queryEmbedding],
+  const data = await apiRequest('POST', `${path}/query`, {
+    query_embeddings: [queryEmbedding],
     n,
-    includeEmbeddings: false,
-    includeDistances: true,
-  });
+    include_distances: true,
+    include_metadatas: true,
+  }) as {
+    ids: string[][];
+    documents: string[][];
+    metadatas: Record<string, unknown>[][];
+    distances: number[][];
+  };
 
-  const hits = results.documents?.[0] ?? [];
-  const ids = results.ids?.[0] ?? [];
-  const metadatas = results.metadatas?.[0] ?? [];
-  const distances = results.distances?.[0] ?? [];
+  const ids       = data.ids?.[0] ?? [];
+  const contents  = data.documents?.[0] ?? [];
+  const metadatas = data.metadatas?.[0] ?? [];
+  const distances = data.distances?.[0] ?? [];
 
-  return hits.map((content, i) => ({
+  return contents.map((content, i) => ({
     id: ids[i] ?? '',
     content: content ?? '',
-    metadata: (metadatas[i] ?? {}) as Record<string, unknown>,
+    metadata: metadatas[i] ?? {},
     distance: distances[i],
   }));
 }
 
-export async function remove(collection: FindingDoc['collection'], ids: string[]) {
-  const col = await getCollection(collection);
-  await col.delete({ ids });
+export async function remove(collection: FindingDoc['collection'], ids: string[]): Promise<void> {
+  const path = await collectionPath(collection);
+  await apiRequest('POST', `${path}/delete`, { ids });
 }
 
 export async function count(collection: FindingDoc['collection']): Promise<number> {
-  const col = await getCollection(collection);
-  return await col.count();
+  try {
+    const path = await collectionPath(collection);
+    const data = await apiRequest('GET', path) as { count?: number };
+    return data.count ?? 0;
+  } catch {
+    return 0;
+  }
 }
 
-export async function peek(collection: FindingDoc['collection'], n = 5) {
-  const col = await getCollection(collection);
-  const results = await col.get({ limit: n, includeDistances: true, includeEmbeddings: false });
-  return results.documents?.map((doc, i) => ({
-    id: results.ids[i],
-    content: doc,
-    metadata: results.metadatas?.[i] ?? {},
-    distance: results.distances?.[i],
-  })) ?? [];
+export async function peek(
+  collection: FindingDoc['collection'],
+  n = 5
+): Promise<Array<{ id: string; content: string; metadata: Record<string, unknown>; distance?: number }>> {
+  const path = await collectionPath(collection);
+  const data = await apiRequest('POST', `${path}/get`, {
+    limit: n,
+    include_distances: true,
+    include_metadatas: true,
+  }) as {
+    ids: string[];
+    documents: string[];
+    metadatas: Record<string, unknown>[];
+    distances: number[];
+  };
+
+  return (data.documents ?? []).map((content, i) => ({
+    id: data.ids?.[i] ?? '',
+    content: content ?? '',
+    metadata: data.metadatas?.[i] ?? {},
+    distance: data.distances?.[i],
+  }));
 }
 
 // ── Convenience wrappers ─────────────────────────────────────────────────────
-
 export const pipeline = {
   add: (docs: Omit<FindingDoc, 'collection'>[]) => add('pipeline_findings', docs),
   query: (q: string, n?: number) => query('pipeline_findings', q, n),
