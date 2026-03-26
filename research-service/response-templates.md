@@ -1,4 +1,4 @@
-# Response Templates — Research Service
+# Bryan Research — response templates
 
 ---
 
