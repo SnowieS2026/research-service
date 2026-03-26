@@ -949,7 +949,7 @@ function generateMarkdownReport(data) {
   lines.push('');
 
   // ── 1. Vehicle Header Card ───────────────────────────────────────────────
-  lines.push('## 1. Vehicle Header Card');
+  lines.push('## 🚗 Vehicle Overview');
   lines.push('');
   lines.push('```');
   lines.push(`  Registration:     ${data.plate}`);
@@ -975,7 +975,7 @@ function generateMarkdownReport(data) {
   lines.push('');
 
   // ── 2. Vehicle Status ────────────────────────────────────────────────────
-  lines.push('## 2. Vehicle Status');
+  lines.push('## 🔍 Current Status');
   lines.push('');
   lines.push('```');
   lines.push(`  Tax Status:        ${data.taxStatus || 'Unknown'}`);
@@ -991,7 +991,7 @@ function generateMarkdownReport(data) {
   lines.push('');
 
   // ── 3. MOT History Intelligence ─────────────────────────────────────────
-  lines.push('## 3. MOT History Intelligence');
+  lines.push('## ⚠️ MOT History');
   lines.push('');
   lines.push(`**MOT Pass Rate:** ${data.motPassRate ? data.motPassRate + '%' : 'N/A'}  **|**  **Passed:** ${data.motPassed ?? 0}  **|**  **Failed:** ${data.motFailed ?? 0}  **|**  **Tests on record:** ${data.motHistoryCount ?? 0}`);
   lines.push('');
@@ -1013,7 +1013,7 @@ function generateMarkdownReport(data) {
   }
 
   // ── 4. Mileage Intelligence ──────────────────────────────────────────────
-  lines.push('## 4. Mileage Intelligence');
+  lines.push('## 🛣️ Mileage Analysis');
   lines.push('');
   if (data.mileageTimeline && data.mileageTimeline.length > 0) {
     const timeline = data.mileageTimeline; // newest first
@@ -1053,7 +1053,7 @@ function generateMarkdownReport(data) {
   }
 
   // ── 5. Advisory & Defect Items ──────────────────────────────────────────
-  lines.push('## 5. Advisory & Defect Items');
+  lines.push('## 🔧 The Advisories');
   lines.push('');
   if (data.advisories && data.advisories.length > 0) {
     const bySev = { critical: [], high: [], medium: [], low: [] };
@@ -1084,7 +1084,7 @@ function generateMarkdownReport(data) {
   }
 
   // ── 6. Market Valuation ──────────────────────────────────────────────────
-  lines.push('## 6. Market Valuation');
+  lines.push('## 💰 Market Valuation');
   lines.push('');
   if (data.valuation) {
     const v = data.valuation;
@@ -1119,7 +1119,7 @@ function generateMarkdownReport(data) {
   }
 
   // ── 7. Risk Assessment ───────────────────────────────────────────────────
-  lines.push('## 7. Risk Assessment');
+  lines.push('## 🎯 Risk Assessment');
   lines.push('');
   const critCount = (data.advisories || []).filter(a => a.severity === 'critical').length;
   const highCount  = (data.advisories || []).filter(a => a.severity === 'high').length;
@@ -1157,7 +1157,7 @@ function generateMarkdownReport(data) {
   if (data.previousVrm && data.previousVrm !== 'None') lines.push(`🔄 **Plate changed** — previously ${data.previousVrm}.\n`);
 
   // ── 8. Registration Timeline ─────────────────────────────────────────────
-  lines.push('## 8. Registration Timeline');
+  lines.push('## 📝 Registration Timeline');
   lines.push('');
   if (data.registrationHistory && data.registrationHistory.length > 0) {
     lines.push('| Date | Mileage |');
@@ -1175,7 +1175,7 @@ function generateMarkdownReport(data) {
   }
 
   // ── 9. Data Sources & Confidence ────────────────────────────────────────
-  lines.push('## 9. Data Sources & Confidence');
+  lines.push('## 📡 Data Sources & Confidence');
   lines.push('');
   lines.push('| Source | Status | Data Retrieved |');
   lines.push('|---|---|---|');
