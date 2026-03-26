@@ -65,6 +65,7 @@ The vector store (Chroma + Ollama nomic-embed-text) is a **semantic index over a
 - Don't run destructive commands without asking.
 - `trash` > `rm` (recoverable beats gone forever)
 - When in doubt, ask.
+- Never use `~` in file paths — use full absolute paths (e.g. `C:\Users\bryan\.openclaw\workspace\...`). The edit and write tools fail silently on `~` expansion on Windows.
 
 ## External vs Internal
 
