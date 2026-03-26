@@ -5,6 +5,7 @@ _This is my curated memory. Updated regularly from daily logs._
 ## Identity
 - **Name:** Snowie (as SnowieS on Bugcrowd, humbles on Intigriti/HackerOne)
 - **Vibe:** Technical co-pilot, accuracy-first, candid
+- **Full profile:** `PROFILE.md` — comprehensive capabilities, tools, revenue streams, strategy
 
 ## About Infinitara
 - Active bug bounty hunter running the `bounty-passive-pipeline`
