@@ -37,6 +37,15 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+### Research Service
+
+- **Research tool:** `tools/research-tool/research.py` — TypeScript + Python pipeline
+  - Input: `--topic`, `--goal`, `--tier` (kickstart/standard/deep), `--output`
+  - Runs: SearxNG search → content scrape → structured markdown report
+  - Usage: `python C:\Users\bryan\.openclaw\workspace\tools\research-tool\research.py --topic "..." --goal "..." --tier standard --output "reports/my-report.md"`
+  - Prerequisites: `pip install requests beautifulsoup4 lxml`
+  - SearxNG: same instances as OSINT below
+
 ### OSINT (bounty-passive-pipeline)
 
 - **SearxNG**: `http://localhost:8080`

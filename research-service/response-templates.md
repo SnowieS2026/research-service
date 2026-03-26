@@ -1,115 +1,129 @@
-# Bryan Research — response templates
+# Bryan Research — Response Templates
+
+_Human, warm, no filler. Fill in the placeholders and send._
 
 ---
 
-## Template 1: "I'm interested, tell me more"
-
-**Use when:** Someone replies to your post or DMs saying they want to know more.
+## T1 — Initial Interest
+**Use when:** Someone replies to a post or DMs wanting to know more.
 
 ---
 
 Hey [NAME],
 
-Good to hear from you. Here's how this works in practice:
+Good to hear from you. Here's how this works:
 
-**1. You fill a 2-minute brief** — the form covers your topic, goal, and deadline. Takes the guesswork out of scoping.
+**1.** Fill out a 2-minute brief → [GOOGLE_FORM_LINK]
+**2.** I review and confirm the scope — you'll know exactly what you're getting before paying anything
+**3.** Report delivered to your email within [24h / 48h / up to 1 week] depending on tier
 
-**2. I review and confirm the scope** — I'll tell you clearly what you'll get for your budget, any limitations, and the delivery time.
+No commitment until you've seen what I'll deliver.
 
-**3. Payment via Wise or PayPal** — no charge until you've seen the confirmed scope and agreed.
-
-**4. Report delivered to your email** — structured, sourced, no AI waffle.
-
-The most common first step is just to fill the brief — even a rough idea of what you need is enough to start.
-
-[GOOGLE_FORM_LINK]
-
-What's the topic you're looking into?
+What topic are you looking into?
 
 ---
 
-## Template 2: "Can you do X?" (Scope Check)
-
-**Use when:** Someone asks if you can research something specific or has a vague/ambitious brief.
+## T2 — Scope Check
+**Use when:** Vague or ambitious request that needs clarifying before confirming.
 
 ---
 
-Good question — let me scope that for you.
+Good question. To confirm I can deliver what you need, I just need a few answers:
 
-[WHAT THEY ASKED] — can you tell me:
-
-1. **What's the end goal?** (Deciding whether to launch a product? Writing a report? Evaluating a competitor?)
-2. **What geography?** (UK, US, global, specific country?)
-3. **Any specific sources you want covered?** (Forums, review sites, public reports, news, social?)
+1. **What's the end goal?** (Product launch? Writing a report? Evaluating a market?)
+2. **What geography?** (UK, US, global?)
+3. **Any specific sources you want covered?** (News, forums, reviews, reports?)
 4. **When do you need it?**
 
-With those answers I can confirm whether the scope fits a standard tier or if we need a custom approach. Either way I'll be upfront about what's feasible and what it costs.
+Once I have those I can tell you clearly what's feasible and what it will cost.
 
 ---
 
-## Template 3: "What's your availability?"
-
-**Use when:** Someone asks when you can start or how soon you can deliver.
-
----
-
-I'm typically able to start within a few hours of a brief being submitted, depending on queue.
-
-**Current turnarounds:**
-- Kickstart (24h): available
-- Standard (24-48h): available
-- Deep Dive (up to 1 week): available
-
-If you have a hard deadline, share it in the brief and I'll flag any conflict before we start.
-
-Fill the form here and I'll confirm immediately: [GOOGLE_FORM_LINK]
+## T3 — Availability
+**Use when:** "How soon can you start?" or "When can you deliver?"
 
 ---
 
-## Template 4: Proposal / Scope Confirmation
+I can typically start within a few hours of a brief coming in.
 
-**Use when:** You need to formalise a scope after receiving a brief. Send after reviewing their form submission.
+**Current availability:**
+- ⚡ Kickstart (24h) — available
+- 📊 Standard (24–48h) — available
+- 🎯 Deep Dive (up to 1 week) — available
+
+If you have a hard deadline, mention it in the brief and I'll flag any conflict before we start.
+
+→ [GOOGLE_FORM_LINK]
 
 ---
 
-Thanks for submitting — here's what I'm proposing:
+## T4 — Proposal / Scope Confirmation
+**Use when:** Formalising scope before starting. Send after reviewing their brief.
 
-**Topic:** [TOPIC AS STATED]
-**Goal:** [GOAL AS STATED]
+---
+
+Thanks for submitting. Here's what I'm proposing:
+
+**Topic:** [TOPIC]
+**Goal:** [GOAL]
 **Tier:** [KICKSTART / STANDARD / DEEP DIVE]
 **Price:** £[AMOUNT]
 **Delivery:** [TIMEFRAME]
 
-**What you'll receive:**
-- [2-4 specific deliverables, e.g. "Competitor overview of 4 players with pricing and weaknesses", "User sentiment synthesis from 200+ reviews across 3 platforms", etc.]
-- Delivered as a structured markdown document via email
+**You'll receive:**
+[DELIVERABLE 1]
+[DELIVERABLE 2]
+[DELIVERABLE 3]
+
+Delivered as a structured markdown document via email.
 
 **What I won't cover:**
-- [Any scope exclusions to manage expectations]
+[SCOPE EXCLUSION 1]
+[SCOPE EXCLUSION 2]
 
-**Payment:** Wise or PayPal. I'll send details on confirmation.
+**Payment:** Wise or PayPal — details sent on confirmation.
 
-To proceed, just reply "yes, go ahead" — no payment taken until you're happy with the output.
-
----
-
-## Template 5: Payment Follow-Up (if they go quiet)
-
-**Use when:** You sent a proposal and they haven't replied in 48h.
+To proceed, reply "yes, go ahead" and I'll get started. No charge until you're happy.
 
 ---
 
-Hi [NAME], just following up on the proposal I sent over. No rush if the timing isn't right — just wanted to make sure it didn't get buried.
+## T5 — Follow-Up (48h silence after proposal)
 
-If you're still interested, I'm happy to proceed whenever you're ready. If not, no problem — happy to help another time.
+**Use when:** They went quiet after you sent T4.
+
+---
+
+Hi [NAME], just checking in on the proposal I sent over. No rush if the timing isn't right — just didn't want it to get buried.
+
+If you're still interested, I'm ready to go whenever you are. If not, happy to help another time.
 
 Cheers
 
 ---
 
-## Usage Notes
+## Quick-Reference Placeholders
 
-- Replace [NAME], [GOOGLE_FORM_LINK], [TOPIC], [GOAL], etc. before sending
-- Keep tone warm but professional — you're a person, not a CRM
-- Don't send Template 5 more than once
-- Response time target: under 2 hours during waking hours
+| Placeholder | What to fill in |
+|-------------|-----------------|
+| `[NAME]` | Client's first name |
+| `[GOOGLE_FORM_LINK]` | Your Google Form URL |
+| `[TOPIC]` | What they're researching |
+| `[GOAL]` | Why they need it |
+| `[TIER]` | KICKSTART / STANDARD / DEEP DIVE |
+| `[AMOUNT]` | 35 / 95 / 195 |
+| `[TIMEFRAME]` | 24h / 48h / up to 1 week |
+| `[DELIVERABLE 1/2/3]` | Concrete outputs, e.g. "4-competitor overview with pricing and weaknesses" |
+| `[SCOPE EXCLUSION]` | What's NOT covered, e.g. "Private databases or individual contact details" |
+
+---
+
+## Tone Notes
+
+- Be a person, not a CRM — vary the opener based on how they reached out
+- Don't send T5 more than once — one follow-up only
+- Response target: under 2 hours during waking hours (09:00–22:00 GMT)
+- Sign off naturally — "Cheers", "All the best", or nothing at all
+
+---
+
+_Research service running at: https://snowies2026.github.io_
