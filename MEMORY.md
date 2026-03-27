@@ -114,6 +114,38 @@ Activated when Infinitara says "flipping", "Vinted", "eBay", "marketplace" or si
 
 **Condition grades (standard):** Like New | Very Good | Good | Acceptable
 
+## Prismal Newsletter (2026-03-27)
+
+**Name:** Prismal — coined brand, 8 chars, tagline: *"Refracting signal from noise"*
+
+**Platform:** BeeHiiv
+**Newsletter name:** Prismal
+**Topic:** Tech/Finance/Geopolitics
+
+### BeeHiiv Credentials (stored in vector store + credentials file)
+- **API Key:** `WfncsNDfviwghnWPHYpVP7x6wd1CMXOK4kSKWlKIPDEu97nUueWVQHsWuMyWxwKY`
+- **Publication ID v1:** `7e46fcb0-239b-4079-ada4-78bb13137de0`
+- **Publication ID v2:** `pub_7e46fcb0-239b-4079-ada4-78bb13137de0`
+- **Base URL:** `https://api.beehiiv.com/v2` (Bearer token auth)
+- **Credentials file:** `C:\Users\bryan\.openclaw\workspace\credentials\beehiiving-platforms.json`
+- **Vector store:** indexed as `cred:beehiiv.json` in `agent_memory` collection (vector store count: 79)
+
+### BeeHiiv API Capabilities
+- Create/publish posts (`POST /posts`)
+- Manage subscribers (`GET/POST /subscribers`)
+- Automations + welcome sequences (triggers: signup, email_submission, form_submission, etc.)
+- Custom fields (`GET/POST /custom_fields`)
+- Analytics (`GET /publications/{id}/stats`)
+- Bulk subscriptions
+- Sponsorship opportunities
+
+### Organic Discoverability
+- Auto-updating sitemap at `{pub}.beehiiv.com/sitemap.xml`
+- Customizable post URLs, meta titles, meta descriptions
+- OpenGraph + Twitter card customization per post
+- robots.txt included
+- Register sitemap in Google Search Console + Bing Webmaster Tools
+
 ---
 
-_Last major update: 2026-03-25_
+_Last major update: 2026-03-27_

@@ -148,6 +148,25 @@ async function main() {
     }
   }
 
+  // ── Credentials vault (agent_memory) ───────────────────────────────────
+  const credDir = path.join(WORKSPACE, 'credentials');
+  if (fs.existsSync(credDir)) {
+    const credFiles = fs.readdirSync(credDir).filter(f => f.endsWith('.json'));
+    console.log(`\n  [credentials] checking ${credFiles.length} credential files...`);
+    for (const file of credFiles) {
+      const fp = path.join(credDir, file);
+      const mtime = fs.statSync(fp).mtimeMs;
+      const id = `cred:${file}`;
+      if (cursor.files[id] === mtime) {
+        totalSkipped++;
+      } else {
+        const ok = await ingestFile(id, fp, 5000, 'credential', { file, sensitive: true });
+        if (ok) { cursor.files[id] = mtime; totalIngested++; }
+        await new Promise(r => setTimeout(r, 250));
+      }
+    }
+  }
+
   // ── Research service (agent_memory) ─────────────────────────────────────
   const rsDir = path.join(WORKSPACE, 'research-service');
   if (fs.existsSync(rsDir)) {
