@@ -59,6 +59,22 @@ _This is my curated memory. Updated regularly from daily logs._
 - **Vehicle OSINT:** `vehicle-osint.py` + `vehicle-osint.exe` — Python/PyInstaller, DVLA + car-checking.com + NHTSA
 - **EditThisCookie:** Used to export HackerOne cookies for session capture
 
+## Ollama Model Assignments (permanent, from 2026-03-26)
+**Cloud models only** (Ollama Connect, `:cloud` suffix). No local models registered — those run directly via `ollama list` when needed. Config: `C:\openclaw-local\openclaw.json`. Primary = minimax-m2.7:cloud.
+
+| Model | Role |
+|-------|------|
+| `minimax-m2.7:cloud` | Main/default — reasoning, general conversation |
+| `qwen3-coder-next:cloud` | Coding — code writing, debugging, refactoring |
+| `devstral-small-2:24b-cloud` | Light coding — quick fixes, script generation |
+| `glm-5:cloud` | Deep research — reports, deep analysis |
+| `kimi-k2.5:cloud` | Research — memory/search, research tasks |
+| `nemotron-3-nano:30b-cloud` | Fast tasks — fast concurrent operations |
+| `minimax-m2.5:cloud` | Secondary general |
+| `glm-4.6:cloud` | Secondary research |
+
+Override syntax: `model=<model-id>` e.g. `model=qwen3-coder-next:cloud`
+
 ## Known Issues
 - **Terminal stall:** Main session blocks on long exec calls. Use isolated sessions for background work.
 - **Edit tool:** Avoid `~` path expansion — use full absolute paths.
@@ -75,6 +91,8 @@ _This is my curated memory. Updated regularly from daily logs._
 - HackerOne blocks headless browsers (CAPTCHA loop) — cookies unreadable without Chrome's DPAPI key
 
 ## Preferences & Boundaries
+- Route to the correct model for each task (see AGENTS.md table) — always
+- Verify all subagent work before marking complete — never assume
 - Don't rebuild unless broken
 - Don't message unless something needs attention
 - Keep replies short and actionable

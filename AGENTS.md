@@ -67,6 +67,27 @@ The vector store (Chroma + Ollama nomic-embed-text) is a **semantic index over a
 - When in doubt, ask.
 - Never use `~` in file paths — use full absolute paths (e.g. `C:\Users\bryan\.openclaw\workspace\...`). The edit and write tools fail silently on `~` expansion on Windows.
 
+## 🤖 Model Routing — Use the Right Model for Every Task
+
+**Cloud models** (all `:cloud` suffix, Ollama Connect) are registered in `C:\openclaw-local\openclaw.json`. Default = `minimax-m2.7:cloud`.
+
+| Task | Model |
+|------|-------|
+| General conversation, reasoning, orchestration | `minimax-m2.7:cloud` (default) |
+| Code writing, debugging, refactoring | `qwen3-coder-next:cloud` |
+| Quick fixes, small scripts, light coding | `devstral-small-2:24b-cloud` |
+| Deep research, reports, analysis | `glm-5:cloud` |
+| Memory search, research tasks | `kimi-k2.5:cloud` |
+| Fast/concurrent operations, quick tasks | `nemotron-3-nano:30b-cloud` |
+| Secondary general | `minimax-m2.5:cloud` |
+| Secondary research | `glm-4.6:cloud` |
+
+**Rules:**
+1. **Always route to the correct model.** Check the table above before starting any task. If the task spans multiple domains, use the primary domain.
+2. **Verify subagent work before announcing complete.** Any work done by a spawned subagent must be checked and validated before marking done — do not assume it completed correctly.
+3. **Override syntax:** For spawned sessions: `model=<model-id>`. For inline override in this chat: `@model qwen3-coder-next:cloud` or just say "use coding model for this."
+4. **Local models** (no `:cloud` suffix) are not registered in the config — run them directly via `ollama run <model>` if needed.
+
 ## External vs Internal
 
 **Safe to do freely:**
