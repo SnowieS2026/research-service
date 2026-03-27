@@ -192,8 +192,10 @@ export async function remove(collection: FindingDoc['collection'], ids: string[]
 export async function count(collection: FindingDoc['collection']): Promise<number> {
   try {
     const path = await collectionPath(collection);
-    const data = await apiRequest('GET', path) as { count?: number };
-    return data.count ?? 0;
+    // Chroma v2: POST /collections/{id}/get with limit=0 returns {"ids": [...], ...} — count = ids.length
+    // Fallback: use peekAll to get actual count
+    const data = await apiRequest('POST', `${path}/get`, { limit: 10000 }) as { ids?: string[] };
+    return data.ids?.length ?? 0;
   } catch {
     return 0;
   }
