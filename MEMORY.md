@@ -91,14 +91,6 @@ Override syntax: `model=<model-id>` e.g. `model=qwen3-coder-next:cloud`
 - Intigriti requires per-program acceptance before scope is visible
 - HackerOne blocks headless browsers (CAPTCHA loop) — cookies unreadable without Chrome's DPAPI key
 
-## X/Twitter Integration (@InfinitaraReal)
-- **Handle:** @InfinitaraReal — User ID: `1044578660`
-- **Skill:** `tools/x-twitter-tool/SKILL.md` — posting script + auth docs
-- **Bearer token:** confirmed working via OAuth 1.0a consumer keys
-- **Posting:** requires Access Token + Secret (from dev.twitter.com → Keys and Tokens → Generate under Authentication Tokens)
-- **Script:** `tools/x-twitter-tool/post-tweet.ts` — fill in ACCESS_TOKEN + ACCESS_TOKEN_SECRET to activate
-- **Test:** `npx tsx tools/x-twitter-tool/test-auth.ts`
-
 ## Preferences & Boundaries
 - Route to the correct model for each task (see AGENTS.md table) — always
 - Verify all subagent work before marking complete — never assume

@@ -6,7 +6,7 @@ _Learn about the person you're helping. Update this as you go._
 - **What to call them:** Infinitara (or just "you")
 - **Pronouns:** _(unknown)_
 - **Timezone:** Europe/London (GMT)
-- **Notes:** Active bounty hunter; runs the bounty-passive-pipeline targeting Bugcrowd/HackerOne/Intigriti/Standoff365 programs. Has the terminal stall issue with OpenClaw. Prefers proactive, concise replies. Running an active OSINT + bounty scanning pipeline from a Windows machine. **Bounty hunting is currently PAUSED.** Flipping is ACTIVE (2026-03-27) — using qwen3.5:cloud for valuations. **X/Twitter posting is READY** — needs Access Token + Secret to activate.
+- **Notes:** Active bounty hunter; runs the bounty-passive-pipeline targeting Bugcrowd/HackerOne/Intigriti/Standoff365 programs. Has the terminal stall issue with OpenClaw. Prefers proactive, concise replies. Running an active OSINT + bounty scanning pipeline from a Windows machine. **Bounty hunting is currently PAUSED.** Flipping is ACTIVE (2026-03-27) — using qwen3.5:cloud for valuations.
 
 ## Bounty Pipeline Status
 

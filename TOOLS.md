@@ -37,27 +37,6 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
-### X (Twitter) Integration — @InfinitaraReal
-**Handle:** @InfinitaraReal (non-premium, 260 char limit)
-
-**App-Only Token (Bearer):** ✅ CONFIRMED WORKING — fetched via OAuth 1.0a consumer keys
-```
-AAAAAAAAAAAAAAAAFFFFRygEAAAAAa9aASazSspXNn0%2FtnyaQfSufrF0%3Dvn2KSpAhBVZ46YQhTr0rFNvY8XcSeeNK7UnmRjq7tHihmkWpoG
-```
-**Associated X Account:** @InfinitaraReal — User ID: `1044578660`
-
-**OAuth 1.0a:**
-- Consumer Key: `EyLjlwhrNOAmSEjX6fYjEJS1K`
-- Consumer Key Secret: `WCrFZs9PyHBWPUiXZ3xjxezNKiyNNlJfluBJhrj1pRNpFIYkZP`
-
-**OAuth 2.0 (PKCE):**
-- Client ID: `ckU4dkU5Y3NlXzc4VnUyVFl2RXU6MTpjaQ`
-- Client Secret: `waxKcSoRg2bP7gLVH65D-w7RdgcGFc--sMqFRAk1sBFDOvTP9R`
-
-**Note:** For posting, OAuth 1.0a is used (no callback URL needed for standalone posting). Store access token + secret alongside consumer keys in the credential set above when obtained.
-
----
-
 ### ⚠️ Edit Tool — Path Rule
 **Never use `~` in file paths with the edit/write tools on Windows.** The edit tool does NOT expand `~` to the user home directory — it passes it literally and fails with "File not found." Always use full absolute Windows paths (e.g. `C:\Users\bryan\...`).
 
