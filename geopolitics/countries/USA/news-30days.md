@@ -4,6 +4,28 @@
 
 ---
 
+## 🔴 Breaking / Major Stories (March 27, 2026)
+
+### Iran War Day 27: Trump Delays Energy Attacks
+- **Trump delayed attacks on Iranian energy sector by 10 days** - says Iran has "a chance to make a deal".
+- **US sent 15-point settlement proposal** to end the conflict.
+- **Iranian missiles continue targeting Gulf states** - Kuwait, UAE, Saudi Arabia, Jordan.
+- **War has displaced 4 million people** from Iran to Lebanon.
+- **Trump mocked UK aircraft carriers as "toys"** during call with PM Starmer - highlighting alliance tensions.
+
+### Hegseth Prays for "Overwhelming Violence" at Pentagon
+- **Defense Secretary Pete Hegseth led prayer service calling for "overwhelming violence of action against those who deserve no mercy"**.
+- **Chaplain corps reduced from 200 faith codes to 31** - removing officer rank insignia in favor of religious insignia.
+- **All monthly Pentagon prayer sessions presided over by evangelicals**.
+- **Americans United for Separation of Church and State filed lawsuits** to access records on prayer services.
+
+### US Conditioning Ukraine Support on Territorial Surrender
+- **Zelenskyy revealed US making security guarantees conditional on Ukraine ceding Donbas to Russia**.
+- **Talks in Florida failed to produce security guarantees**.
+- **Russian officials visited US for first time since Ukraine war began** - talks "part of necessary dialogue".
+
+---
+
 ## 🔴 Breaking / Major Stories
 
 ### Trump 2.0 — The Tariff Offensive (March 2026)

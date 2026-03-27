@@ -37,6 +37,9 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+### ⚠️ Edit Tool — Path Rule
+**Never use `~` in file paths with the edit/write tools on Windows.** The edit tool does NOT expand `~` to the user home directory — it passes it literally and fails with "File not found." Always use full absolute Windows paths (e.g. `C:\Users\bryan\...`).
+
 ### Research Service
 
 - **Research tool:** `tools/research-tool/research.py` — TypeScript + Python pipeline

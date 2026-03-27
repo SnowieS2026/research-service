@@ -4,6 +4,23 @@
 
 ---
 
+## 🔴 Breaking / Major Stories (March 27, 2026)
+
+### US-Iran War Day 27: Trump Delays Attacks on Energy Sector by 10 Days
+- **Trump announced a 10-day delay on attacks on Iranian energy infrastructure**, saying Iran has "a chance to make a deal".
+- **US sent a 15-point settlement proposal** to end the war.
+- **Iranian missiles and drones continue targeting Kuwait, UAE, Saudi Arabia, and Jordan** - Gulf states hosting US operations remain under attack.
+- **Tehran asserts legal right over Strait of Hormuz** - selectively allowing non-hostile vessels (including Malaysian) to pass.
+- **4 million people displaced from Iran to Lebanon** - one of the largest displacement crises in recent history.
+- **Iran's new Supreme Leader Mojtaba Khamenei described as "more hardline" than his father** - yet Tehran reportedly open to negotiations.
+
+### Iran's Strategic Hormuz Closure - Coalition Division Strategy
+- Iran is **allowing "non-hostile" vessels through Hormuz while blocking US-aligned countries** - a sophisticated approach to divide the international coalition.
+- Malaysia's PM Anwar confirmed Iranian permission for Malaysian vessels - demonstrating Iran's selective approach.
+- This undermines the narrative of Iranian irrationality and reveals strategic calculation.
+
+---
+
 ## 🔴 Breaking / Major Stories
 
 ### US-Israel Strikes on Iranian Nuclear Facilities — War Begins (February 28, 2026)

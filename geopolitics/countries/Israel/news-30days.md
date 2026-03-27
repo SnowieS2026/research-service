@@ -4,6 +4,22 @@
 
 ---
 
+## 🔴 Breaking / Major Stories (March 27, 2026)
+
+### Israel Expands Lebanon Invasion - Territorial Annexation Plans Revealed
+- **Israel continues expanding ground invasion of southern Lebanon** - Netanyahu announced creation of "larger buffer zone".
+- **Defense Minister Katz says operation follows "the model of Rafah"** - a reference to the Gaza city that was razed.
+- **Far-right Minister Smotrich called for permanent border changes** - "The new Israeli border must be the Litani".
+- **Over 1,094 Lebanese killed, 1.2 million displaced** - humanitarian catastrophe unfolding.
+- **Hezbollah leader Naim Qassem vows "no limits" fighting** - calls for national unity and continuation of resistance.
+
+### Canada and France Condemn Israeli Territorial Plans
+- **Canada "strongly condemned" Israel's plans to occupy southern Lebanon** - warning that Lebanon's sovereignty "must not be violated".
+- **France urged Israel to refrain from ground operations** - warning of "major humanitarian consequences".
+- **Spain's PM said Israel seeks to "inflict the same level of destruction on Lebanon as in Gaza"**.
+
+---
+
 ## 🔴 Breaking / Major Stories
 
 ### Israel Strikes Iranian Nuclear Facilities — Regional War Begins (February 28, 2026)

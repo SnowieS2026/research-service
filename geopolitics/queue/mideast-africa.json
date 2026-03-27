@@ -1,0 +1,149 @@
+{
+  "batch": "mideast-africa",
+  "date": "2026-03-27",
+  "countries": {
+    "Iran": {
+      "stories": [
+        {
+          "headline": "US-Iran War Day 27: Trump Delays Attacks on Iranian Energy Sector by 10 Days",
+          "source": "https://www.aljazeera.com/news/liveblog/2026/3/27/iran-war-live-trump-delays-attacks-on-iranian-energy-sector-by-10-days",
+          "source2": "https://www.theguardian.com/world/2026/mar/26/donald-trump-uk-aircraft-carriers-toys-nato-keir-starmer-iran",
+          "whatHappened": "The US-Israel war on Iran entered its 27th day. Trump announced he would delay attacks on Iran's energy sector by 10 days, saying Iran has 'a chance to make a deal'. Iranian missiles and drones continue targeting Kuwait, UAE, Saudi Arabia, and Jordan. Tehran has asserted its legal right over the Strait of Hormuz and is allowing non-hostile vessels (including Malaysian) to pass through.",
+          "officialNarrative": "Trump claims the US is 'winning' and that talks are underway. The US reportedly sent a 15-point settlement proposal to end the war. Iranian officials insist on their right to close Hormuz to hostile nations.",
+          "suppressedOrBuried": "The war has displaced 4 million people from Iran to Lebanon. Civilian casualties in Iran remain underreported. The humanitarian crisis in areas under bombardment is being minimized in Western coverage.",
+          "contradiction": "Trump claims 'progress' and 'talks underway' while simultaneously escalating military operations and demanding Iran's complete capitulation. Iran's new Supreme Leader Mojtaba Khamenei is described as 'more hardline' than his father, yet Tehran is reportedly open to negotiations.",
+          "hiddenAngle": "The selective closure of Hormuz to 'hostile' vessels reveals Iran's strategy to divide the international coalition by allowing passage to neutral/friendly nations like Malaysia while blocking US-aligned countries.",
+          "significance": "This is the largest Middle East war in decades, directly affecting global oil supply and involving multiple nations. The Hormuz closure threatens 20% of global petroleum shipments."
+        }
+      ]
+    },
+    "Israel": {
+      "stories": [
+        {
+          "headline": "Israel Expands Ground Invasion in Lebanon as Hezbollah Vows 'No Limits' Fighting",
+          "source": "https://www.aljazeera.com/news/2026/3/26/hezbollah-chief-urges-unity-no-talks-with-israel-amid-lebanon-attacks",
+          "source2": "https://www.aljazeera.com/news/2026/3/25/spains-pm-says-israel-to-inflict-on-lebanon-same-destruction-as-in-gaza",
+          "whatHappened": "Israel continues expanding its ground invasion of southern Lebanon, with Netanyahu announcing creation of a 'larger buffer zone'. Hezbollah leader Naim Qassem called for national unity and vowed to continue fighting 'without limits'. Over 1,094 Lebanese killed, 1.2 million displaced. Far-right Minister Smotrich has called for annexation of southern Lebanon.",
+          "officialNarrative": "Israel claims the invasion is necessary for security and to push anti-tank missile threats away from northern Israel. Defense Minister Katz says displaced Lebanese cannot return until northern Israel is safe.",
+          "suppressedOrBuried": "Human Rights Watch warns Israel's actions could constitute war crimes including forced displacement. The scale of destruction is being compared to Gaza. Spain's PM explicitly warned that Israel 'seeks to inflict the same level of damage and destruction on Lebanon as Gaza'.",
+          "contradiction": "Israel claims defensive purposes while simultaneously planning permanent territorial expansion and annexation. The 'temporary security zone' rhetoric contradicts Smotrich's explicit calls for border changes.",
+          "hiddenAngle": "The timing of the Lebanon invasion alongside the Iran war suggests coordinated multi-front operations planned well in advance. The removal of Lebanese civilians may be intended to enable permanent settlement.",
+          "significance": "This represents Israel's largest military operation since 2006, with potential for regional escalation and permanent territorial changes."
+        }
+      ]
+    },
+    "Saudi Arabia": {
+      "stories": [
+        {
+          "headline": "Saudi Arabia Targeted by Iranian Missiles as Kingdom Hosts US Operations Against Iran",
+          "source": "https://www.aljazeera.com/news/liveblog/2026/3/27/iran-war-live-trump-delays-attacks-on-iranian-energy-sector-by-10-days",
+          "source2": "https://asia.nikkei.com/spotlight/iran-tensions/vietnam-philippines-seek-oil-aid-from-japan-amid-mideast-war",
+          "whatHappened": "Iranian missiles and drones continue targeting Saudi Arabia as the kingdom hosts US military operations. The Saudi position as a key US ally in the region has made it a direct target in the broader conflict. Oil prices have spiked globally.",
+          "officialNarrative": "Saudi Arabia maintains it is defending itself and supporting regional stability. The kingdom is coordinating with Gulf states and US forces.",
+          "suppressedOrBuried": "Saudi Arabia's role in enabling US attacks on Iran has made it a target. Civilian impact of Iranian strikes on Saudi territory receives minimal coverage.",
+          "contradiction": "Saudi Arabia claims neutrality and desire for peace while actively hosting US offensive operations against Iran.",
+          "hiddenAngle": "Saudi Arabia's delicate balancing act between US alliance and Iranian regional power creates internal contradictions. Energy infrastructure remains vulnerable.",
+          "significance": "Saudi Arabia is crucial for global oil markets. Any sustained attack on its infrastructure would have worldwide economic consequences."
+        }
+      ]
+    },
+    "UAE": {
+      "stories": [
+        {
+          "headline": "UAE Under Iranian Missile Attack as Dubai and Abu Dhabi Face Regional War Spillover",
+          "source": "https://www.aljazeera.com/news/liveblog/2026/3/27/iran-war-live-trump-delays-attacks-on-iranian-energy-sector-by-10-days",
+          "source2": "https://asia.nikkei.com/spotlight/iran-tensions/iran-war-exposes-energy-divide-between-bangladesh-solar-rich-pakistan",
+          "whatHappened": "Iranian missiles and drones continue targeting UAE alongside other Gulf states. The UAE's role as a US ally and hosting US military assets has made it a target in the regional conflict.",
+          "officialNarrative": "UAE emphasizes defensive posture and calls for de-escalation while coordinating defense with US and Gulf partners.",
+          "suppressedOrBuried": "The economic impact on Dubai's tourism and financial sectors is being minimized. Civilian flight disruptions and safety concerns remain underreported.",
+          "contradiction": "UAE claims neutrality while hosting critical US military infrastructure used in attacks on Iran.",
+          "hiddenAngle": "The UAE's emergence as a major financial hub is threatened by proximity to active conflict zone. Insurance costs for shipping through UAE ports have spiked.",
+          "significance": "UAE is a critical logistics hub for global trade and energy. Continued attacks could disrupt supply chains."
+        }
+      ]
+    },
+    "Turkey": {
+      "stories": [
+        {
+          "headline": "Turkey Balances Relations With All Sides as Regional War Escalates",
+          "source": "https://www.aljazeera.com/news/2026/3/26/russian-officials-meet-us-counterparts-as-moscow-denies-aiding-iran",
+          "source2": "https://www.aljazeera.com/news/liveblog/2026/3/27/iran-war-live-trump-delays-attacks-on-iranian-energy-sector-by-10-days",
+          "whatHappened": "Turkey continues its delicate balancing act, maintaining relations with Iran, Russia, and NATO simultaneously. As the conflict escalates, Turkey's strategic position becomes increasingly important for all parties.",
+          "officialNarrative": "Turkey presents itself as a mediator seeking peace and regional stability.",
+          "suppressedOrBuried": "Turkey's dual role as NATO member and Iranian/Russian partner creates internal contradictions that receive minimal coverage.",
+          "contradiction": "Turkey claims neutrality while potentially enabling logistics for multiple sides in the conflict.",
+          "hiddenAngle": "Turkey could emerge as a key mediator or spoiler depending on which side offers better terms.",
+          "significance": "Turkey's position affects NATO cohesion and regional power dynamics."
+        }
+      ]
+    },
+    "Egypt": {
+      "stories": [
+        {
+          "headline": "Egypt Faces Economic Pressure from Regional War and Canal Disruptions",
+          "source": "https://asia.nikkei.com/spotlight/iran-tensions/iran-war-exposes-energy-divide-between-bangladesh-solar-rich-pakistan",
+          "source2": "https://www.bbc.com/news/articles/cq8wkq1n9epo",
+          "whatHappened": "Egypt faces compounding pressures from the regional conflict affecting Suez Canal traffic and tourism. Economic strain continues as global shipping routes are disrupted.",
+          "officialNarrative": "Egypt emphasizes stability and calls for peaceful resolution to regional conflicts.",
+          "suppressedOrBuried": "Economic hardship facing Egyptian citizens due to war-related disruptions receives minimal coverage.",
+          "contradiction": "Egypt claims economic recovery while facing new disruptions from regional instability.",
+          "hiddenAngle": "Egypt's military government relies on Gulf financial support that may come with strings attached regarding regional policy.",
+          "significance": "Egypt is a key regional power whose stability affects Middle East geopolitics."
+        }
+      ]
+    },
+    "Nigeria": {
+      "stories": [
+        {
+          "headline": "Nigeria Among African Nations Whose Citizens Recruited to Fight for Russia",
+          "source": "https://www.bbc.com/news/articles/clyxevz45x9o",
+          "source2": "https://www.bbc.com/news/articles/c36r0068xp2o",
+          "whatHappened": "Nigeria is among several African countries whose citizens have been recruited to fight for Russia in Ukraine. The pattern reflects a broader trend across the continent.",
+          "officialNarrative": "Governments warn citizens about overseas job scams and encourage verification through official channels.",
+          "suppressedOrBuried": "The full scale of African recruitment for Russian military operations remains unknown. Economic desperation driving recruitment is underreported.",
+          "contradiction": "African governments condemn recruitment while failing to address underlying economic desperation driving citizens to accept risky offers.",
+          "hiddenAngle": "This represents a new form of exploitation of African labor by foreign powers.",
+          "significance": "Sets precedent for recruitment of Africans in future conflicts by other nations."
+        }
+      ]
+    },
+    "South Africa": {
+      "stories": [
+        {
+          "headline": "South Africa Secures Return of Citizens Tricked into Fighting for Russia",
+          "source": "https://www.bbc.com/news/articles/clyxevz45x9o",
+          "source2": "https://asia.nikkei.com/spotlight/iran-tensions/iran-war-exposes-energy-divide-between-bangladesh-solar-rich-pakistan",
+          "whatHappened": "South Africa secured the return of 17 citizens who were allegedly tricked into joining Russia's war in Ukraine. The case highlights recruitment networks targeting Africans.",
+          "officialNarrative": "Government is working to protect citizens from predatory recruitment schemes.",
+          "suppressedOrBuried": "Full details of recruitment networks and Russian involvement are not publicly disclosed.",
+          "contradiction": "South Africa maintains close ties with Russia while publicly opposing exploitation of its citizens.",
+          "hiddenAngle": "South Africa's BRICS membership creates tensions with efforts to protect citizens from Russian recruitment.",
+          "significance": "Highlights growing pattern of African nationals being used as proxy forces in foreign conflicts."
+        }
+      ]
+    }
+  },
+  "crossBorderStories": [
+    {
+      "headline": "4 Million Displaced from Iran to Lebanon by US-Israel War",
+      "countries": ["Iran", "Lebanon", "Syria"],
+      "source": "https://www.aljazeera.com/news/2026/3/26/iran-to-lebanon-four-million-people-displaced-by-us-israeli-war",
+      "significance": "One of the largest displacement crises in recent history, creating humanitarian catastrophe across multiple nations."
+    },
+    {
+      "headline": "Gulf States Targeted by Iranian Missiles as Regional War Expands",
+      "countries": ["Saudi Arabia", "UAE", "Kuwait", "Jordan"],
+      "source": "https://www.aljazeera.com/news/liveblog/2026/3/27/iran-war-live-trump-delays-attacks-on-iranian-energy-sector-by-10-days",
+      "significance": "Regional conflict now directly involving multiple Gulf nations beyond the original Iran-Israel-US confrontation."
+    }
+  ],
+  "suppressedStories": [
+    {
+      "headline": "Civilian Casualties in Iran Systematically Underreported",
+      "whatIsBeingBuried": "The full scale of civilian deaths and infrastructure destruction in Iran from US-Israel attacks.",
+      "whoIsSuppressingIt": "Western media and governments",
+      "sources": [{"name": "Al Jazeera", "url": "https://www.aljazeera.com/news/liveblog/2026/3/27/iran-war-live-trump-delays-attacks-on-iranian-energy-sector-by-10-days", "type": "news"}],
+      "whyItMatters": "Public understanding of war's human cost is essential for democratic accountability."
+    }
+  ]
+}

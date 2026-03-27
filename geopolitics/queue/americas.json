@@ -1,0 +1,129 @@
+{
+  "batch": "americas",
+  "date": "2026-03-27",
+  "countries": {
+    "USA": {
+      "stories": [
+        {
+          "headline": "Hegseth Prays for 'Overwhelming Violence' Against Enemies at Pentagon Religious Service",
+          "source": "https://www.theguardian.com/us-news/2026/mar/26/hegseth-prayer-violence-pentagon",
+          "source2": "https://www.bbc.com/news/articles/cq8wkq1n9epo",
+          "whatHappened": "Defense Secretary Pete Hegseth led a prayer service at the Pentagon calling for 'overwhelming violence of action against those who deserve no mercy' and that 'every round find its mark against the enemies of righteousness'. Hegseth also announced changes to the chaplain corps, reducing faith codes from 200 to 31, removing officer rank insignia in favor of religious insignia. All monthly prayer sessions have been presided over by evangelicals.",
+          "officialNarrative": "Hegseth frames the changes as 'making the chaplain corps great again' and returning focus to faith.",
+          "suppressedOrBuried": "The explicit Christian nationalist rhetoric in US military leadership and potential constitutional violations receive minimal mainstream coverage.",
+          "contradiction": "US claims to defend religious freedom while one faith is explicitly elevated in military institutions.",
+          "hiddenAngle": "This represents a deliberate infusion of Christian nationalism into the US military during an active multi-front war.",
+          "significance": "Fundamental shift in civil-military relations with explicit religious framing of military action."
+        },
+        {
+          "headline": "Trump Delays Iran Energy Attacks by 10 Days, Claims 'Progress' in Negotiations",
+          "source": "https://www.aljazeera.com/news/liveblog/2026/3/27/iran-war-live-trump-delays-attacks-on-iranian-energy-sector-by-10-days",
+          "source2": "https://www.theguardian.com/world/2026/mar/26/donald-trump-uk-aircraft-carriers-toys-nato-keir-starmer-iran",
+          "whatHappened": "Trump announced he would delay attacks on Iran's energy sector by 10 days, saying Iran has 'a chance to make a deal'. The US reportedly sent a 15-point settlement proposal to end the war. Iranian missiles continue targeting Gulf states. Trump told UK PM Starmer that Iran would have 'no choice' but to surrender. The war has entered its 27th day.",
+          "officialNarrative": "The US presents this as strategic patience while maintaining maximum pressure on Iran to negotiate.",
+          "suppressedOrBuried": "The delay suggests military difficulties or international pressure that the US is not publicly acknowledging.",
+          "contradiction": "Trump claims 'winning' and 'progress' while simultaneously delaying planned attacks.",
+          "hiddenAngle": "The 10-day delay may be related to arms replenishment, alliance coordination, or Iran's selective Hormuz closure affecting allies differently.",
+          "significance": "The pause in energy infrastructure attacks suggests concerns about global oil market impacts."
+        },
+        {
+          "headline": "US Brokers Ukraine-Russia Talks That Demand Kyiv Cede Donbas",
+          "source": "https://www.theguardian.com/world/2026/mar/26/putin-asks-oligarchs-to-donate-to-russias-dwindling-defence-budget",
+          "source2": "https://www.aljazeera.com/news/2026/3/26/russian-officials-meet-us-counterparts-as-moscow-denies-aiding-iran",
+          "whatHappened": "Zelenskyy revealed the US is making security guarantees for Ukraine conditional on Kyiv ceding all of Donbas to Russia. Talks in Florida failed to produce security guarantees. Putin continues to demand Russian control of remaining Donbas areas not already occupied. Russian officials visited the US for the first time since the Ukraine war began.",
+          "officialNarrative": "US positions itself as peace broker seeking to end the conflict.",
+          "suppressedOrBuried": "The US is effectively pressuring Ukraine to accept territorial losses while publicly claiming to support Ukrainian sovereignty.",
+          "contradiction": "US claims to support Ukrainian self-determination while conditioning support on territorial surrender.",
+          "hiddenAngle": "The Iran war provides cover for the US to push Ukraine toward concessions without taking public blame.",
+          "significance": "US policy is shifting toward pressuring Ukraine to accept Russian territorial gains."
+        }
+      ]
+    },
+    "Canada": {
+      "stories": [
+        {
+          "headline": "Canada Condemns Israel's Lebanon Occupation Plans as Humanitarian Crisis Looms",
+          "source": "https://www.aljazeera.com/news/2026/3/25/canada-tells-israel-that-lebanons-sovereignty-must-not-be-violated",
+          "source2": "https://www.bbc.com/news/articles/cq8wkq1n9epo",
+          "whatHappened": "Canada 'strongly condemned' Israel's plans to occupy southern Lebanon, warning that Lebanon's sovereignty 'must not be violated'. Over 1,000 Lebanese have been killed and more than a million displaced. Israel's Defense Minister Katz said the military would control territory up to the Litani River, 30km inside Lebanon, using the 'model of Rafah'.",
+          "officialNarrative": "Canada emphasizes international law and protection of civilians.",
+          "suppressedOrBuried": "Canada's condemnation lacks enforcement mechanisms or consequences for Israel.",
+          "contradiction": "Canada condemns Israeli actions while maintaining various forms of cooperation with Israel.",
+          "hiddenAngle": "Canada's relatively strong statement may reflect domestic political calculations regarding Lebanese-Canadian population.",
+          "significance": "Canada joins France in explicitly opposing Israeli territorial ambitions in Lebanon."
+        },
+        {
+          "headline": "South Africa Secures Return of Citizens Tricked into Fighting for Russia",
+          "source": "https://www.bbc.com/news/articles/clyxevz45x9o",
+          "source2": "https://www.bbc.com/news/articles/c36r0068xp2o",
+          "whatHappened": "South Africa and Canada have both addressed cases of citizens being recruited to fight for Russia in Ukraine. South Africa secured the return of 17 citizens. The pattern reflects a broader trend of African and other nationals being recruited for the war.",
+          "officialNarrative": "Governments warn citizens about overseas job scams and encourage verification through official channels.",
+          "suppressedOrBuried": "The full scale of recruitment networks and Russian government involvement is not disclosed.",
+          "contradiction": "Western and other nations condemn recruitment while failing to address economic desperation driving it.",
+          "hiddenAngle": "This represents a new form of proxy warfare exploiting economically vulnerable populations.",
+          "significance": "Sets precedent for recruitment of foreign nationals in future conflicts."
+        }
+      ]
+    },
+    "Mexico": {
+      "stories": [
+        {
+          "headline": "Mexico Navigates Regional Conflict Impacts on Trade and Energy",
+          "source": "https://asia.nikkei.com/spotlight/iran-tensions/vietnam-philippines-seek-oil-aid-from-japan-amid-mideast-war",
+          "source2": "https://www.aljazeera.com/news/liveblog/2026/3/27/iran-war-live-trump-delays-attacks-on-iranian-energy-sector-by-10-days",
+          "whatHappened": "Mexico faces energy price increases and supply chain disruptions from the Middle East conflict. As a major oil producer and consumer, Mexico must balance domestic needs with export considerations.",
+          "officialNarrative": "Mexico emphasizes stability and continued trade relationships.",
+          "suppressedOrBuried": "Mexico's refining capacity limitations create vulnerability despite domestic oil production.",
+          "contradiction": "Mexico claims energy independence while remaining vulnerable to global price shocks.",
+          "hiddenAngle": "Energy crisis may accelerate Mexico's renewable transition or increase US energy dependence.",
+          "significance": "Mexico's economy is highly sensitive to US economic conditions and global energy prices."
+        }
+      ]
+    },
+    "Brazil": {
+      "stories": [
+        {
+          "headline": "Brazilian President Lula Hospitalized for Tests",
+          "source": "https://www.theguardian.com/world/2026/mar/27/brazil-lula-hospital-tests",
+          "source2": "https://www.bbc.com/news/articles/c0mz2v5ldq4o",
+          "whatHappened": "Brazilian President Luiz Inácio Lula da Silva was hospitalized for medical tests. The situation remains developing as Brazil navigates regional and global challenges.",
+          "officialNarrative": "Official statements emphasize routine medical care and stable condition.",
+          "suppressedOrBuried": "Details of Lula's health condition are minimized in official communications.",
+          "contradiction": "Government emphasizes stability while the president's health creates uncertainty.",
+          "hiddenAngle": "Lula's health raises questions about succession and Brazil's political direction.",
+          "significance": "Brazil is a key regional power; leadership uncertainty affects regional dynamics."
+        }
+      ]
+    }
+  },
+  "crossBorderStories": [
+    {
+      "headline": "African and Other Nationals Recruited to Fight for Russia in Ukraine",
+      "countries": ["South Africa", "Nigeria", "Canada", "Russia", "Ukraine"],
+      "source": "https://www.bbc.com/news/articles/clyxevz45x9o",
+      "significance": "Reveals new pattern of foreign recruitment in conflicts, exploiting economic vulnerability."
+    },
+    {
+      "headline": "Western Alliance Fractures Over Israel-Lebanon Policy",
+      "countries": ["USA", "Canada", "France", "United Kingdom"],
+      "source": "https://www.aljazeera.com/news/2026/3/25/canada-tells-israel-that-lebanons-sovereignty-must-not-be-violated",
+      "significance": "Public divisions in Western alliance over Israeli territorial expansion."
+    }
+  ],
+  "suppressedStories": [
+    {
+      "headline": "Christian Nationalist Takeover of US Military Chaplain Corps",
+      "whatIsBeingBuried": "The systematic infusion of Christian nationalist ideology into the US military during wartime.",
+      "whoIsSuppressingIt": "US military establishment and mainstream media",
+      "sources": [{"name": "The Guardian", "url": "https://www.theguardian.com/us-news/2026/mar/26/hegseth-prayer-violence-pentagon", "type": "news"}],
+      "whyItMatters": "Represents fundamental shift in US military ideology with implications for domestic and international policy."
+    },
+    {
+      "headline": "US Conditioning Ukraine Support on Territorial Surrender",
+      "whatIsBeingBuried": "The explicit US pressure on Ukraine to accept Russian control of Donbas as condition for support.",
+      "whoIsSuppressingIt": "US and Ukrainian governments",
+      "sources": [{"name": "The Guardian", "url": "https://www.theguardian.com/world/2026/mar/26/putin-asks-oligarchs-to-donate-to-russias-dwindling-defence-budget", "type": "news"}, {"name": "Al Jazeera", "url": "https://www.aljazeera.com/news/2026/3/26/russian-officials-meet-us-counterparts-as-moscow-denies-aiding-iran", "type": "news"}],
+      "whyItMatters": "Reveals limits of US commitment to Ukrainian sovereignty."
+    }
+  ]
+}

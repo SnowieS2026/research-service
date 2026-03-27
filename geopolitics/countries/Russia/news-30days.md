@@ -4,6 +4,26 @@
 
 ---
 
+## 🔴 Breaking / Major Stories (March 27, 2026)
+
+### Putin Asks Oligarchs to Donate to Dwindling Defense Budget
+- **Putin asked Russia's oligarchs to donate to the country's defense budget** - war entering fifth year.
+- **Defense budget increased 42% to Rbs13.1tn (£121bn) last year**.
+- **Budget deficit for January-February reached 90% of projected annual figure** - sanctions forcing discounted oil sales.
+- **Russia launched 948 drones in 24 hours** - one of largest aerial attacks of the war.
+- **US-brokered talks seeking Ukraine deal are "effectively frozen"** - Kremlin ruling out compromises.
+
+### Russian Officials Visit US - First Since Ukraine War
+- **Russian delegation arrived in US for meetings with American counterparts** - first such trip since relations strained.
+- **Kremlin denies completing drone shipment to Iran** - calls media reports "lies".
+- **Putin will be "thoroughly briefed" on the meeting** - talks part of "necessary dialogue".
+
+---
+
+## 🔴 Breaking / Major Stories
+
+---
+
 ## 🔴 Breaking / Major Stories
 
 ### Russia-Ukraine Ceasefire Negotiations — Frozen Again (March 2026)

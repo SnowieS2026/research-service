@@ -38,6 +38,8 @@ _Learn about the person you're helping. Update this as you go._
 
 **Crons:** All bounty crons DISABLED. Pipeline can be re-enabled on request.
 
+**Model assignments (2026-03-26):** See `MEMORY.md` — 8 cloud models registered (all `:cloud` suffix, Ollama Connect). minimax-m2.7:cloud is main/default. Coding: `qwen3-coder-next:cloud`, research: `glm-5:cloud`, fast: `nemotron-3-nano:cloud`.
+
 ## Context
 
 - **Terminal stall issue**: Terminal hangs between messages until they send another message. Root cause: main session blocks on long exec calls; OpenClaw sessions aren't truly concurrent. Fix: keep main session free for replies, use isolated cron sessions for background work.

@@ -1,0 +1,216 @@
+{
+  "batch": "asia-pacific",
+  "date": "2026-03-27",
+  "countries": {
+    "China": {
+      "stories": [
+        {
+          "headline": "China in Talks With US Over Trump's Delayed Beijing Visit as Trade Truce Holds",
+          "source": "https://asia.nikkei.com/politics/international-relations/us-china-tensions/china-says-talks-underway-with-us-over-trump-s-delayed-visit",
+          "source2": "https://asia.nikkei.com/editor-s-picks/china-up-close/analysis-xi-jinping-finds-himself-in-a-japan-us-dilemma",
+          "whatHappened": "China confirmed talks are underway with the US regarding Trump's rescheduled visit to Beijing on May 14-15. The trip was originally planned for March but delayed due to the Iran war. China's COSCO has resumed Asia-Gulf shipment bookings after Tehran promised non-hostile ships can pass Hormuz. China's oil demand is approaching peak this year according to CNOOC economists.",
+          "officialNarrative": "China emphasizes stable relations and economic cooperation. Beijing seeks to maintain trade truce with Washington.",
+          "suppressedOrBuried": "China's dependence on Middle East oil creates vulnerability. The Iran war exposes China's energy supply chain risks.",
+          "contradiction": "China claims neutrality in Iran conflict while benefiting from Iran allowing Chinese shipping through Hormuz while blocking others.",
+          "hiddenAngle": "China is positioning itself as an alternative to US hegemony by maintaining relations with all parties in the regional conflict.",
+          "significance": "The Trump-Xi meeting will shape US-China relations and global trade for years."
+        },
+        {
+          "headline": "Japan to Downgrade China Ties From 'Most Important' as Tensions Persist",
+          "source": "https://asia.nikkei.com/politics/international-relations/japan-to-downgrade-china-ties-from-most-important-as-tensions-persist",
+          "source2": "https://asia.nikkei.com/editor-s-picks/china-up-close/analysis-xi-jinping-finds-himself-in-a-japan-us-dilemma",
+          "whatHappened": "Japan's draft diplomatic bluebook will downgrade China from 'most important' relationship status, citing Beijing's export restrictions on dual-use goods targeting Japan. This represents a significant diplomatic shift.",
+          "officialNarrative": "Japan cites China's trade restrictions and security concerns as justification for the downgrade.",
+          "suppressedOrBuried": "The downgrade reflects Japan's concern about China's growing military capabilities and territorial ambitions.",
+          "contradiction": "Japan downgrades relations while still being economically dependent on Chinese trade.",
+          "hiddenAngle": "Japan's shift toward military buildup (Tomahawks, defense spending) is justified by China threat narrative.",
+          "significance": "Marks a turning point in Japan's post-war approach to China relations."
+        }
+      ]
+    },
+    "Japan": {
+      "stories": [
+        {
+          "headline": "Japan Destroyer Gains Tomahawk Launch Capability as Military Buildup Accelerates",
+          "source": "https://asia.nikkei.com/politics/defense/japan-destroyer-boosts-deterrence-with-tomahawk-launch-capability",
+          "source2": "https://asia.nikkei.com/politics/defense/japan-s-defense-equipment-procurement-financing-triples-in-4-years",
+          "whatHappened": "A Japanese Maritime Self-Defense Force ship has been modified at a US Navy shipyard to launch Tomahawk cruise missiles. Japan's defense equipment procurement financing has tripled in four years. The modified vessel will return to Japan in September.",
+          "officialNarrative": "Japan frames the buildup as necessary for deterrence against China and North Korea threats.",
+          "suppressedOrBuried": "Japan is transforming from a pacifist nation to one with offensive capabilities. The constitutional implications are minimized.",
+          "contradiction": "Japan maintains 'self-defense forces' posture while acquiring clearly offensive weapons systems.",
+          "hiddenAngle": "The timing during the Iran war allows Japan to accelerate military expansion under cover of alliance solidarity.",
+          "significance": "Represents a fundamental shift in Japan's defense posture and regional security dynamics."
+        },
+        {
+          "headline": "Japan's Closest Garrison to Taiwan Takes Bigger Role 10 Years On",
+          "source": "https://asia.nikkei.com/politics/defense/japan-s-closest-garrison-to-taiwan-takes-bigger-role-10-years-on",
+          "source2": "https://asia.nikkei.com/opinion/the-us-has-built-a-taiwan-security-toolkit-now-it-needs-to-use-it",
+          "whatHappened": "Camp Yonaguni, Japan's closest garrison to Taiwan, is expanding its role as tensions rise. The Self-Defense Forces continue their southwest shift toward Taiwan contingency preparation.",
+          "officialNarrative": "Japan claims this is routine defense modernization and alliance cooperation.",
+          "suppressedOrBuried": "Japan is positioning for potential Taiwan conflict, contradicting official ambiguity about defense commitments.",
+          "contradiction": "Japan officially maintains 'strategic ambiguity' on Taiwan while clearly preparing for Taiwan contingency.",
+          "hiddenAngle": "Yonaguni and southwest islands would be frontline bases in any Taiwan conflict, making Japan a direct participant.",
+          "significance": "Japan's Taiwan preparations signal expectations of conflict and commitment to US alliance."
+        }
+      ]
+    },
+    "South Korea": {
+      "stories": [
+        {
+          "headline": "South Korea Rolls Out $17 Billion 'Wartime' Budget as Oil Spike Rattles Economy",
+          "source": "https://asia.nikkei.com/politics/middle-east-crisis/south-korea-rolls-out-17bn-wartime-budget-as-oil-spike-rattles-economy",
+          "source2": "https://asia.nikkei.com/business/markets/bonds/south-korea-to-buy-back-3bn-in-government-bonds-to-stabilize-market",
+          "whatHappened": "South Korea announced a $17 billion 'wartime' emergency budget in response to oil price spikes from the Middle East conflict. The government is buying back $3 billion in government bonds to stabilize markets. Panic buying of goods (including garbage bags) has revealed supply chain vulnerabilities.",
+          "officialNarrative": "The government presents this as prudent economic management during temporary disruption.",
+          "suppressedOrBuried": "The scale of economic disruption and public anxiety (panic buying) exceeds official calm portrayal.",
+          "contradiction": "Government claims stability while implementing wartime measures and massive market interventions.",
+          "hiddenAngle": "South Korea's energy dependence and export economy are highly vulnerable to extended Middle East conflict.",
+          "significance": "First major economy to implement wartime budget measures; could set precedent for others."
+        }
+      ]
+    },
+    "North Korea": {
+      "stories": [
+        {
+          "headline": "North Korea Quiet as Regional Powers Focus on Middle East",
+          "source": "https://asia.nikkei.com/politics/defense/japan-destroyer-boosts-deterrence-with-tomahawk-launch-capability",
+          "source2": "https://asia.nikkei.com/politics/international-relations/japan-south-korea-eye-defense-cooperation-to-complement-us-deterrence",
+          "whatHappened": "North Korea has been relatively quiet as international attention focuses on the Middle East. Japan and South Korea continue defense cooperation specifically citing North Korea as a concern alongside China.",
+          "officialNarrative": "Regional powers maintain that North Korea remains a primary threat requiring continued vigilance.",
+          "suppressedOrBuried": "North Korea may be taking advantage of reduced attention to advance capabilities quietly.",
+          "contradiction": "Nations claim North Korea requires urgent attention while actually focused on Middle East and China.",
+          "hiddenAngle": "North Korea's silence may be strategic, awaiting optimal moment to test or negotiate.",
+          "significance": "North Korea benefits from US distraction; may escalate when attention returns."
+        }
+      ]
+    },
+    "Taiwan": {
+      "stories": [
+        {
+          "headline": "Taiwan Opposition Leader Ko Wen-je Convicted of Graft, Sentenced to 17 Years",
+          "source": "https://asia.nikkei.com/politics/onetime-taiwan-presidential-hopeful-ko-wen-je-convicted-of-graft",
+          "source2": "https://asia.nikkei.com/politics/international-relations/taiwan-tensions/taiwan-minister-calls-for-removal-of-china-born-opposition-lawmaker",
+          "whatHappened": "Former Taipei Mayor and presidential candidate Ko Wen-je was convicted of graft and sentenced to 17 years in prison. Ko's Taiwan People's Party (TPP) was the third-largest political force. Separately, Interior Minister Liu Shyh-fang called for removal of a China-born opposition lawmaker, citing 'singular obligation of loyalty'.",
+          "officialNarrative": "Government presents prosecution as anti-corruption. Ko's supporters call it political persecution.",
+          "suppressedOrBuried": "China has accused Taiwan President Lai of 'hunting down' rivals like Ko Wen-je. The timing during heightened tensions is noted.",
+          "contradiction": "Taiwan claims to be a democracy while opposition figures face prosecution and calls for removal based on origin.",
+          "hiddenAngle": "The conviction removes a key alternative voice from Taiwan politics ahead of potential China tensions escalation.",
+          "significance": "Eliminates a major political alternative in Taiwan, consolidating power amid rising cross-strait tensions."
+        }
+      ]
+    },
+    "India": {
+      "stories": [
+        {
+          "headline": "India's Trade Deficit With China Set to Cross $100 Billion for First Time",
+          "source": "https://asia.nikkei.com/economy/trade/india-s-trade-deficit-with-china-set-to-cross-100bn-for-first-time",
+          "source2": "https://asia.nikkei.com/business/energy/diesel-supply-woes-begin-to-hit-australia-s-farmers-and-miners",
+          "whatHappened": "India's trade deficit with China is projected to exceed $100 billion for the first time, as India's growing manufacturing relies heavily on Chinese inputs. Meanwhile, diesel supply issues from the Middle East conflict are beginning to affect various sectors.",
+          "officialNarrative": "India emphasizes manufacturing growth and economic development despite dependence on Chinese inputs.",
+          "suppressedOrBuried": "India's 'Make in India' program is increasingly dependent on Chinese supply chains, undermining strategic autonomy claims.",
+          "contradiction": "India claims strategic autonomy and reduced China dependence while trade deficit hits record highs.",
+          "hiddenAngle": "Economic vulnerability to China continues to grow despite political rhetoric about diversification.",
+          "significance": "India's economic dependence on China complicates its ability to counter China strategically."
+        }
+      ]
+    },
+    "Australia": {
+      "stories": [
+        {
+          "headline": "Diesel Supply Woes Begin to Hit Australia's Farmers and Miners",
+          "source": "https://asia.nikkei.com/business/energy/diesel-supply-woes-begin-to-hit-australia-s-farmers-and-miners",
+          "source2": "https://asia.nikkei.com/politics/international-relations/japan-to-downgrade-china-ties-from-most-important-as-tensions-persist",
+          "whatHappened": "Australia's diesel supply is being affected by the Strait of Hormuz crisis, pushing up fuel prices and disrupting distribution. Farmers and miners, key economic sectors, are beginning to feel the impact.",
+          "officialNarrative": "Government emphasizes energy security measures and alternative supply arrangements.",
+          "suppressedOrBuried": "Australia's energy vulnerability despite being an energy exporter is not widely discussed.",
+          "contradiction": "Australia exports energy but faces supply shortages at home due to global distribution disruption.",
+          "hiddenAngle": "Australia's dependence on imported refined fuel products creates strategic vulnerability.",
+          "significance": "Resource-rich nation faces supply constraints, highlighting global energy interdependence."
+        }
+      ]
+    },
+    "Pakistan": {
+      "stories": [
+        {
+          "headline": "Pakistan Benefits From Solar Boom as Iran War Exposes Energy Divide With Bangladesh",
+          "source": "https://asia.nikkei.com/spotlight/iran-tensions/iran-war-exposes-energy-divide-between-bangladesh-solar-rich-pakistan",
+          "source2": "https://asia.nikkei.com/spotlight/iran-tensions/iran-allowing-malaysian-vessels-through-strait-of-hormuz-pm-anwar-says",
+          "whatHappened": "Pakistan could save at least $6.3 billion this year thanks to its recent solar boom, as the Iran war disrupts oil supplies. Bangladesh, less solar-ready, faces greater vulnerability. The war is exposing the energy divide between nations with renewable capacity and those dependent on fossil fuels.",
+          "officialNarrative": "Pakistan highlights renewable energy progress as buffer against global energy shocks.",
+          "suppressedOrBuried": "Bangladesh's energy vulnerability and economic crisis receive less attention.",
+          "contradiction": "Pakistan claims energy independence while still heavily dependent on oil and gas imports.",
+          "hiddenAngle": "The Iran war is accelerating developing nations' transition to renewables by necessity.",
+          "significance": "Energy crises may accelerate solar adoption across developing world."
+        }
+      ]
+    },
+    "Singapore": {
+      "stories": [
+        {
+          "headline": "Singapore Clamps Down Harder on Vapers Despite Regional Trends Toward Regulation",
+          "source": "https://asia.nikkei.com/spotlight/policy-asia/singapore-clamps-down-even-harder-on-vapers-but-some-just-won-t-quit",
+          "source2": "https://asia.nikkei.com/business/markets/bonds/south-korea-to-buy-back-3bn-in-government-bonds-to-stabilize-market",
+          "whatHappened": "Singapore is taking a harder line on vaping, rejecting Indonesia's path of regulation. The policy divergence with neighbors reflects different approaches to public health policy.",
+          "officialNarrative": "Singapore emphasizes public health protection and enforcement of existing bans.",
+          "suppressedOrBuried": "Enforcement costs and black market proliferation receive minimal coverage.",
+          "contradiction": "Singapore claims effective governance while black market for vapes continues to grow.",
+          "hiddenAngle": "Policy differences with neighbors may complicate regional cooperation.",
+          "significance": "Highlights governance divergence within ASEAN amid broader regional challenges."
+        }
+      ]
+    },
+    "Vietnam": {
+      "stories": [
+        {
+          "headline": "Vietnam and Philippines Seek Oil Aid From Japan Amid Middle East War",
+          "source": "https://asia.nikkei.com/spotlight/iran-tensions/vietnam-philippines-seek-oil-aid-from-japan-amid-mideast-war",
+          "source2": "https://asia.nikkei.com/business/energy/china-oil-demand-to-approach-peak-this-year-cnooc-economist-says",
+          "whatHappened": "Vietnam and Philippines are seeking energy assistance from Japan as the Middle East war disrupts oil supplies. The request highlights regional energy security concerns and alternative supply arrangements.",
+          "officialNarrative": "Japan presents itself as a partner for energy security and regional cooperation.",
+          "suppressedOrBuried": "Japan's own energy vulnerability and competing demands from South Korea receive less attention.",
+          "contradiction": "Nations seek energy independence while increasing reliance on external suppliers.",
+          "hiddenAngle": "Japan may use energy diplomacy to strengthen regional influence against China.",
+          "significance": "Energy crisis is reshaping regional alliances and dependence patterns."
+        }
+      ]
+    },
+    "Kazakhstan": {
+      "stories": [
+        {
+          "headline": "Central Asian Nations Navigate Regional War Impacts on Energy and Trade",
+          "source": "https://asia.nikkei.com/business/energy/china-oil-demand-to-approach-peak-this-year-cnooc-economist-says",
+          "source2": "https://asia.nikkei.com/politics/international-relations/japan-to-downgrade-china-ties-from-most-important-as-tensions-persist",
+          "whatHappened": "Central Asian nations including Kazakhstan are navigating the regional conflict's impact on energy exports and trade routes. China's approaching oil demand peak may affect future demand for Central Asian energy.",
+          "officialNarrative": "Kazakhstan and Central Asian states emphasize stability and continued trade partnerships.",
+          "suppressedOrBuried": "Central Asian dependence on China and Russia creates vulnerability during global realignments.",
+          "contradiction": "Central Asian nations claim strategic autonomy while remaining dependent on major powers.",
+          "hiddenAngle": "Middle East conflict may increase Central Asia's importance as alternative energy source.",
+          "significance": "Central Asia's energy resources may become more strategically valuable during Middle East instability."
+        }
+      ]
+    }
+  },
+  "crossBorderStories": [
+    {
+      "headline": "Iran War Reshaping Asia-Pacific Energy Security and Alliances",
+      "countries": ["Japan", "South Korea", "Vietnam", "Philippines", "Australia", "Pakistan"],
+      "source": "https://asia.nikkei.com/spotlight/iran-tensions/iran-war-exposes-energy-divide-between-bangladesh-solar-rich-pakistan",
+      "significance": "Regional nations are adjusting energy policies, budgets, and alliances in response to Middle East conflict."
+    },
+    {
+      "headline": "China-US Trade Truce Holds Despite Taiwan Tensions",
+      "countries": ["China", "Taiwan", "Japan", "United States"],
+      "source": "https://asia.nikkei.com/politics/international-relations/us-china-tensions/china-says-talks-underway-with-us-over-trump-s-delayed-visit",
+      "significance": "Economic interdependence continues despite military tensions and territorial disputes."
+    }
+  ],
+  "suppressedStories": [
+    {
+      "headline": "Japan's Constitutional Transformation to Offensive Military Capability",
+      "whatIsBeingBuried": "The full extent of Japan's shift from purely self-defense to offensive strike capability.",
+      "whoIsSuppressingIt": "Japanese government and Western allies",
+      "sources": [{"name": "Nikkei Asia", "url": "https://asia.nikkei.com/politics/defense/japan-destroyer-boosts-deterrence-with-tomahawk-launch-capability", "type": "news"}],
+      "whyItMatters": "Japan is fundamentally abandoning its post-war pacifist posture with minimal public debate."
+    }
+  ]
+}
