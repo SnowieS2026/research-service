@@ -96,7 +96,7 @@ JSON only, no explanation outside the JSON block.`;
   try {
     const rawResponse = await ollamaGenerate(prompt);
 
-    // The cloud model may prepend a <thinking> block — strip everything before the first {
+    // The cloud model may prepend a <thinking> block -- strip everything before the first {
     let jsonStr = rawResponse;
     const firstBrace = rawResponse.indexOf("{");
     if (firstBrace !== -1) {
@@ -131,7 +131,7 @@ JSON only, no explanation outside the JSON block.`;
         : "Medium",
       keyQuote:
         parsed.keyQuote ||
-        `Source: ${article.domain} — ${(article.description || "").slice(0, 80)}...`,
+        `Source: ${article.domain} -- ${(article.description || "").slice(0, 80)}...`,
     };
   } catch (err) {
     // Fallback if Ollama fails

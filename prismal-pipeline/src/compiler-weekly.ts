@@ -1,4 +1,4 @@
-// Weekly Round-up Compiler — Sunday output
+// Weekly Round-up Compiler -- Sunday output
 // Full week review format
 
 import type { ArticleForWriter } from "./writer.js";
@@ -37,18 +37,18 @@ export function compileWeeklyReport(input: WeeklyReportInput): WeeklyReport {
     beats: beatCounts,
   };
 
-  const markdown = `# PRISMAL — WEEKLY ROUND-UP
-### ${weekLabel} · Issue ${issueNumber} · Tech × Finance × Geopolitics
+  const markdown = `# PRISMAL -- WEEKLY ROUND-UP
+### ${weekLabel}  --  Issue ${issueNumber}  --  Tech x Finance x Geopolitics
 
-*Refracting signal from noise — a weekly digest for the curious and the informed*
+*Refracting signal from noise -- a weekly digest for the curious and the informed*
 
 ---
 
 ${newsletterContent}
 
 ---
-*This week: ${beatCounts.tech} tech · ${beatCounts.finance} finance · ${beatCounts.geopolitics} geopolitics · ${sourceCount} total sources*
-*Subscribe at ${PRISMAL.baseUrl} · Not financial advice · Past performance is not indicative of future results*`;
+*This week: ${beatCounts.tech} tech  --  ${beatCounts.finance} finance  --  ${beatCounts.geopolitics} geopolitics  --  ${sourceCount} total sources*
+*Subscribe at ${PRISMAL.baseUrl}  --  Not financial advice  --  Past performance is not indicative of future results*`;
 
   const html = `<!DOCTYPE html>
 <html>
@@ -63,7 +63,7 @@ ${newsletterContent}
     ⬡ PRISMAL
   </h1>
   <p style="color: #666; font-size: 13px; margin: 4px 0 0;">
-    ${weekLabel} · Issue ${issueNumber} · Tech × Finance × Geopolitics
+    ${weekLabel}  --  Issue ${issueNumber}  --  Tech x Finance x Geopolitics
   </p>
 </div>
 
@@ -73,13 +73,13 @@ ${newsletterContent}
 
 <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #999;">
   <p style="margin: 0 0 4px;">
-    This week: <strong style="color:#555;">${beatCounts.tech} tech</strong> ·
-    <strong style="color:#555;">${beatCounts.finance} finance</strong> ·
-    <strong style="color:#555;">${beatCounts.geopolitics} geopolitics</strong> ·
+    This week: <strong style="color:#555;">${beatCounts.tech} tech</strong>  -- 
+    <strong style="color:#555;">${beatCounts.finance} finance</strong>  -- 
+    <strong style="color:#555;">${beatCounts.geopolitics} geopolitics</strong>  -- 
     ${sourceCount} total sources
   </p>
   <p style="margin: 8px 0 0;">
-    <a href="${PRISMAL.baseUrl}" style="color:#6C5CE7;">Subscribe at ${PRISMAL.baseUrl}</a> ·
+    <a href="${PRISMAL.baseUrl}" style="color:#6C5CE7;">Subscribe at ${PRISMAL.baseUrl}</a>  -- 
     Not financial advice
   </p>
 </div>

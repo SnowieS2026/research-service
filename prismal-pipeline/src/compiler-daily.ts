@@ -1,4 +1,4 @@
-// Daily Report Compiler — Mon-Fri output
+// Daily Report Compiler -- Mon-Fri output
 // Wraps writer output in Prismal HTML email template + metadata
 
 import type { ArticleForWriter } from "./writer.js";
@@ -35,26 +35,45 @@ export function compileDailyReport(input: DailyReportInput): DailyReport {
     weekday: "long", year: "numeric", month: "long", day: "numeric",
   });
 
-  // Strip any existing footer from writer output (compiler adds its own)
-  const cleanContent = newsletterContent
-    .replace(/\*Subscribe at.+?\*/g, "")
-    .replace(/---$/gm, "")
+  // Strip writer's PRISMAL header block (everything from # PRISMAL to the blank line after the date/beat line)
+  // Be careful: the regex [^\n]* matches the entire date line, but we stop at the first blank line after
+  // Strip writer's PRISMAL header block: lines starting with # or ### until first blank line
+  const allLines = newsletterContent.split("\n");
+  let contentStart = 0;
+  for (let i = 0; i < allLines.length; i++) {
+    const trimmed = allLines[i].trim();
+    if (trimmed === "") {
+      contentStart = i + 1; // start AFTER this blank line
+      break;
+    }
+    if (i === allLines.length - 1) {
+      contentStart = i + 1;
+    }
+  }
+
+  // Get content after header, then strip writer's footer if present
+  let content = allLines.slice(contentStart).join("\n");
+  content = content
+    .replace(/\*Subscribe at[^*]+\*/g, "")
+    .replace(/^[\s-]*---\s*$/gm, "")
     .trim();
 
+  const cleanContent = content;
+
   const markdown = `# PRISMAL
-### ${dateStr} · Issue ${issueNumber} · Tech × Finance × Geopolitics
+### ${dateStr}  --  Issue ${issueNumber}  --  Tech x Finance x Geopolitics
 
 ${cleanContent}
 
 ---
-*Subscribe at ${PRISMAL.baseUrl} · Not financial advice · Past performance is not indicative of future results*`;
+*Subscribe at ${PRISMAL.baseUrl}  --  Not financial advice  --  Past performance is not indicative of future results*`;
 
   // BeeHiiv HTML email template
   const html = `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Prismal — ${dateLabel}</title>
+<title>Prismal -- ${dateLabel}</title>
 </head>
 <body style="font-family: Georgia, serif; max-width: 680px; margin: 0 auto; padding: 20px; color: #1a1a1a; line-height: 1.6;">
 
@@ -67,7 +86,7 @@ ${cleanContent}
     ⬡ PRISMAL
   </h1>
   <p style="color: #666; font-size: 13px; margin: 4px 0 0;">
-    ${dateLabel} · Issue ${issueNumber} · Tech × Finance × Geopolitics
+    ${dateLabel}  --  Issue ${issueNumber}  --  Tech x Finance x Geopolitics
   </p>
 </div>
 
@@ -79,13 +98,13 @@ ${cleanContent}
 <!-- Footer -->
 <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #999;">
   <p style="margin: 0 0 4px;">
-    <strong style="color: #555;">Prismal</strong> — Refracting signal from noise
+    <strong style="color: #555;">Prismal</strong> -- Refracting signal from noise
   </p>
   <p style="margin: 0 0 4px;">
     <a href="${PRISMAL.baseUrl}" style="color: #6C5CE7;">Subscribe at ${PRISMAL.baseUrl}</a>
   </p>
   <p style="margin: 8px 0 0; font-size: 11px;">
-    Not financial advice · Past performance is not indicative of future results · ${sourceCount} sources analysed
+    Not financial advice  --  Past performance is not indicative of future results  --  ${sourceCount} sources analysed
   </p>
 </div>
 

@@ -1,4 +1,4 @@
-// Article Store — SQLite logger for all scraped articles
+// Article Store -- SQLite logger for all scraped articles
 // Every article scraped is logged here for weekly roundup reference
 
 import Database from "better-sqlite3";
@@ -72,7 +72,7 @@ export class ArticleStore {
     `);
   }
 
-  /** Log a scraped article — upsert by URL (idempotent) */
+  /** Log a scraped article -- upsert by URL (idempotent) */
   upsert(article: Omit<StoredArticle, "id">): number {
     const existing = this.db.prepare("SELECT id FROM articles WHERE url = ?").get(article.url) as { id: number } | undefined;
     if (existing) {

@@ -1,4 +1,4 @@
-// Report compiler — assembles analyses into Prismal newsletter
+// Report compiler -- assembles analyses into Prismal newsletter
 
 import * as fs from "fs";
 import * as path from "path";
@@ -125,7 +125,7 @@ function buildTldr(analyses: Analysis[]): string {
 }
 
 function buildDeepDive(analyses: Analysis[]): string {
-  // Find main story — highest relevance with cross-domain themes
+  // Find main story -- highest relevance with cross-domain themes
   const mainStory =
     analyses.find(
       (a) => a.relevance === "High" && a.crossDomainThemes.length > 0
@@ -134,7 +134,7 @@ function buildDeepDive(analyses: Analysis[]): string {
     analyses[0];
 
   if (!mainStory) {
-    return "No dominant story identified this cycle — the news cycle appears fragmented.";
+    return "No dominant story identified this cycle -- the news cycle appears fragmented.";
   }
 
   const domain = new URL(mainStory.url).hostname.replace(/^www\./, "");
@@ -204,7 +204,7 @@ function buildSignalsFromTheEdge(analyses: Analysis[]): string {
   return edgeStories
     .map(
       (a) =>
-        `- **${a.title}** — ${a.significance.slice(0, 100)}${a.significance.length > 100 ? "..." : ""} [` +
+        `- **${a.title}** -- ${a.significance.slice(0, 100)}${a.significance.length > 100 ? "..." : ""} [` +
         new URL(a.url).hostname.replace(/^www\./, "") +
         "]"
     )
@@ -247,7 +247,7 @@ export function compileReport(
 
   // Header
   lines.push("# PRISMAL");
-  lines.push(`### ${date} · Issue ${issue} · Tech × Finance × Geopolitics`);
+  lines.push(`### ${date}  --  Issue ${issue}  --  Tech x Finance x Geopolitics`);
   lines.push("");
   lines.push(PRISMAL.masthead.trim());
   lines.push("");

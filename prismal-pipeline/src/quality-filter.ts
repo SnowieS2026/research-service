@@ -1,8 +1,8 @@
-// Quality Filter — domain allowlist, date filter, advertorial blocker
+// Quality Filter -- domain allowlist, date filter, advertorial blocker
 
 export type Beat = "tech" | "finance" | "geopolitics";
 
-// Domain tier list — Tier 1 is preferred, Tier 3 is fallback only
+// Domain tier list -- Tier 1 is preferred, Tier 3 is fallback only
 const TIER1_DOMAINS = new Set([
   // Major news wires
   "reuters.com", "apnews.com", "bbc.com", "afp.com", "upi.com",
@@ -20,7 +20,7 @@ const TIER1_DOMAINS = new Set([
 
 const TIER2_DOMAINS = new Set([
   "news.yahoo.com", "news.google.com",
-  "foxnews.com",  // Use with caution — politically charged
+  "foxnews.com",  // Use with caution -- politically charged
   "nypost.com", "dailymail.co.uk",
   "huffpost.com", "slate.com",
   "vice.com", "buzzfeednews.com",
@@ -33,7 +33,7 @@ const TIER2_DOMAINS = new Set([
   "wikinews.org",  // Only if no other source available
 ]);
 
-// Never use — advertorial, low quality, or paywalled
+// Never use -- advertorial, low quality, or paywalled
 const BLOCKED_PATTERNS = new Set([
   "cryptonews.com",      // advertorial farm
   "fool.com",             // paywall + low quality
@@ -99,7 +99,7 @@ export interface DateCheckResult {
 /** Check if an article is recent enough. Returns age category. */
 export function checkDate(publishedDate: string | undefined, maxAgeDays = 1): DateCheckResult {
   if (!publishedDate) {
-    // No date found — be permissive but note it
+    // No date found -- be permissive but note it
     return { isRecent: true, age: "today" };
   }
 

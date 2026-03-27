@@ -1,4 +1,5 @@
-// Writer orchestration — spawns the persistent writer subagent for BeeHiiv content
+// Writer orchestration -- Ollama direct call fallback
+// Persistent subagent session wiring is planned for v2
 
 import * as fs from "fs";
 import * as path from "path";
@@ -38,84 +39,111 @@ function loadWriterPrompt(): string {
   }
 }
 
-function buildTaskPrompt(req: WriteRequest): string {
-  const articleList = req.articles
-    .slice(0, 12)
-    .map((a, i) => `[${i + 1}] ${a.beat.toUpperCase()} | ${a.relevance.toUpperCase()} | ${a.domain}
-    Title: ${a.title}
-    URL: ${a.url}
-    Published: ${a.publishedDate || "Unknown"}
-    Content: ${(a.content || a.title).slice(0, 600)}`)
-    .join("\n\n");
-
-  const topStoryBlock = req.topStory
-    ? `\n## TOP STORY FOR FEATURE\nTitle: ${req.topStory.title}\nURL: ${req.topStory.url}\nDomain: ${req.topStory.domain}\nContent: ${(req.topStory.content || "").slice(0, 1200)}`
-    : "";
-
-  return `# PRISMAL WRITER TASK — ${req.mode === "daily" ? "DAILY NEWSLETTER" : "WEEKLY ROUNDUP"}
-
-## Today's Date Label
-${req.dateLabel}
-
-${topStoryBlock}
-
-## Source Material (${req.articles.length} articles — use the best 6-8)
-
-${articleList}
-
-${req.mode === "weekly" && req.weekNumbers
-  ? `\n## Week at a Glance\nStories by beat: ${Object.entries(req.weekNumbers).map(([b, n]) => `${b}: ${n}`).join(", ")}`
-  : ""}
-
-Follow the Prismal voice and format guidelines in your system prompt.
-
-${req.mode === "daily" ? `
-Write the DAILY newsletter. Structure:
-- Hook (1 sentence, 10 words max)
-- Brief intro (2-3 sentences)
-- The Big Story (3-4 sentences)
-- 💻 Tech (2-3 items, 2 sentences each)
-- 🏛️ Geopolitics (2-3 items, 2 sentences each)
-- 💸 Finance (2-3 items, 2 sentences each)
-- What to Watch (2-3 forward-looking items)
-- Footer with subscribe link + disclaimer
-
-Target: 400-550 words. Be selective. Most articles are noise — pick the 5-6 that actually matter.` : `
-Write the WEEKLY ROUNDUP. Structure:
-- Week in one sentence
-- Top 5 Stories (ranked by impact, each 2 sentences)
-- The Week in Tech (4-5 items)
-- The Week in Finance (4-5 items)
-- The Week in Geopolitics (4-5 items)
-- By the Numbers (table with week's key data)
-- One Thing to Watch Next Week
-- Footer
-
-Target: 600-800 words. Pick the week's real stories.`}
-
-Return ONLY the final newsletter content in Markdown. Start directly with the first heading or hook.
-`;
+function formatArticle(a: ArticleForWriter, i: number): string {
+  const content = ((a.content || a.title) as string).slice(0, 600);
+  return [
+    `[${i + 1}] ${a.beat.toUpperCase()} | ${a.relevance.toUpperCase()} | ${a.domain}`,
+    `    Title: ${a.title}`,
+    `    URL: ${a.url}`,
+    `    Published: ${a.publishedDate || "Unknown"}`,
+    `    Content: ${content}`,
+    "",
+  ].join("\n");
 }
 
-/** Run the writer via Ollama (fallback when subagent not available) */
+function formatTopStory(topStory?: ArticleForWriter): string {
+  if (!topStory) return "";
+  const content = ((topStory.content || "") as string).slice(0, 1200);
+  return [
+    "",
+    "## TOP STORY FOR FEATURE",
+    `Title: ${topStory.title}`,
+    `URL: ${topStory.url}`,
+    `Domain: ${topStory.domain}`,
+    `Content: ${content}`,
+  ].join("\n");
+}
+
+function buildTaskPrompt(req: WriteRequest): string {
+  const articleList = req.articles.slice(0, 12).map((a, i) => formatArticle(a, i)).join("\n");
+  const topBlock = formatTopStory(req.topStory);
+  const weekNote = req.weekNumbers
+    ? "\n## Week at a Glance\nStories by beat: " +
+      Object.entries(req.weekNumbers).map(([b, n]) => `${b}: ${n}`).join(", ") + "\n"
+    : "";
+
+  const sectionRules = req.mode === "daily"
+    ? [
+        "Write the DAILY newsletter. Include ALL of the following sections in order:",
+        "",
+        "1. # PRISMAL header (today's date, Issue 1, Tech x Finance x Geopolitics)",
+        "2. THE BIG STORY (5-7 sentences, lead with consequence not event, name specific actors and figures)",
+        "3. TECH (2-3 stories, each 4-6 full sentences with specific numbers, dates, and consequences)",
+        "4. FINANCE (2-3 stories, each 4-6 full sentences with specific market levels, percentages, and figures)",
+        "5. GEOPOLITICS (2-3 stories, each 4-6 sentences focused on power dynamics and specific consequences)",
+        "6. WHAT TO WATCH (3 items, each naming a specific observable indicator with a specific trigger level or event)",
+        "7. BY THE NUMBERS (6-10 exact data points with real figures, no rounding)",
+        "8. SIGNALS FROM THE EDGE (1-3 underreported or misreported stories, 3-4 sentences each, explain what the press missed or got wrong)",
+        "9. Footer: *Subscribe at prismal.beehiiv.com | Not financial advice*",
+        "",
+        "Every story must have: specific figures, named actors, exact consequences.",
+        "Minimum word count: 700 words of editorial content.",
+        "Never use emdashes (--) or double dashes as sentence interrupts.",
+      ].join("\n")
+    : [
+        "Write the WEEKLY ROUNDUP. Include ALL of the following sections in order:",
+        "",
+        "1. # PRISMAL WEEKLY header (week date range, Issue 1)",
+        "2. THE WEEK'S BIG STORY (6-8 sentences, full context and consequences)",
+        "3. TECH (3-4 stories, 4-6 sentences each with specific figures from the week)",
+        "4. FINANCE (3-4 stories, each with weekly open/close levels, range for the week, biggest single-day move)",
+        "5. GEOPOLITICS (3-4 stories, 4-6 sentences each focused on power dynamics and specific consequences)",
+        "6. BY THE NUMBERS (8-12 exact weekly data points: open, close, high, low for the week where relevant)",
+        "7. WHAT TO WATCH NEXT WEEK (3-4 specific observable indicators with named triggers or events)",
+        "8. SIGNALS FROM THE EDGE (1-3 underreported stories from the week, 3-4 sentences each, explain what was missed)",
+        "9. Footer: *Subscribe at prismal.beehiiv.com | Not financial advice*",
+        "",
+        "Every story must have: specific figures, named actors, exact consequences.",
+        "Minimum word count: 1200 words of editorial content.",
+        "Never use emdashes (--) or double dashes as sentence interrupts.",
+      ].join("\n");
+
+  return [
+    `# PRISMAL WRITER TASK -- ${req.mode === "daily" ? "DAILY NEWSLETTER" : "WEEKLY ROUNDUP"}`,
+    "",
+    "## Today's Date Label",
+    req.dateLabel,
+    topBlock,
+    weekNote,
+    "",
+    "## Source Material -- all available facts",
+    articleList,
+    "",
+    sectionRules,
+    "",
+    "Return ONLY the final newsletter content in Markdown. Start with # PRISMAL.",
+  ].join("\n");
+}
+
 export async function writeNewsletterFallback(req: WriteRequest): Promise<WriteResult> {
   const systemPrompt = loadWriterPrompt();
   const taskPrompt = buildTaskPrompt(req);
+  const fullPrompt = systemPrompt + "\n\n" + taskPrompt;
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 120000);
+    const timeout = setTimeout(() => controller.abort(), 180000);
 
     const response = await fetch("http://localhost:11434/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         model: "minimax-m2.7:cloud",
-        prompt: `${systemPrompt}\n\n${taskPrompt}`,
+        prompt: fullPrompt,
         stream: false,
         options: {
-          temperature: 0.7,
-          num_predict: 1400,
+          temperature: 0.75,
+          num_predict: 4000,
         },
       }),
       signal: controller.signal,
@@ -125,7 +153,7 @@ export async function writeNewsletterFallback(req: WriteRequest): Promise<WriteR
 
     if (!response.ok) {
       const errText = await response.text();
-      return { success: false, error: `Ollama error: ${errText}` };
+      return { success: false, error: "Ollama error: " + errText };
     }
 
     const data = await response.json() as { response?: string };

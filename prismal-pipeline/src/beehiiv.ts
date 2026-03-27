@@ -116,6 +116,9 @@ export function markdownToHtml(markdown: string): string {
   // BeeHiiv accepts HTML in the content field
   let html = markdown;
 
+  // Strip emdashes/options dashes from source before processing
+  html = html.replace(/\u2014/g, " -- ").replace(/\u2013/g, "-");
+
   // Headers
   html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
   html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
@@ -128,14 +131,14 @@ export function markdownToHtml(markdown: string): string {
   // Italic
   html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
 
-  // Links — extract as text (BeeHiiv handles links differently)
+  // Links -- extract as text (BeeHiiv handles links differently)
   // Replace [text](url) with just text, bold the text
   html = html.replace(/\[(.+?)\]\(.+?\)/g, '<strong>$1</strong>');
 
   // Horizontal rules
   html = html.replace(/^---$/gm, '<hr/>');
 
-  // Paragraphs — split on double newlines
+  // Paragraphs -- split on double newlines
   const lines = html.split(/\n\n+/);
   html = lines
     .map(p => {

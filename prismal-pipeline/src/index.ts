@@ -1,4 +1,4 @@
-// Prismal Newsletter Pipeline — Main Entry Point
+// Prismal Newsletter Pipeline -- Main Entry Point
 // Mon-Fri: Daily newsletter | Sunday: Weekly round-up
 // Usage: node dist/index.js --mode [daily|weekly] --output [path]
 
@@ -20,10 +20,26 @@ const args = process.argv.slice(2);
 const modeArg = args.find(a => a === "--mode") ? args[args.indexOf("--mode") + 1] : "daily";
 const outputArg = args.find(a => a === "--output") ? args[args.indexOf("--output") + 1] : null;
 const publishArg = args.includes("--publish");
+const issueArg = args.find(a => a === "--issue") ? parseInt(args[args.indexOf("--issue") + 1], 10) : null;
 const dryRun = args.includes("--dry-run") || !publishArg; // default: dry-run
 
 const mode = (modeArg === "weekly" ? "weekly" : "daily") as "daily" | "weekly";
 const outputPath = outputArg || `reports/${mode === "daily" ? "daily" : "weekly"}/${formatDate(new Date())}.md`;
+
+// ── Issue number ──────────────────────────────────────────────────────────────
+// Always Issue 1 unless --issue is passed. After lock-in, use --issue 2, then 3, etc.
+// The lock file (reports/.issue-lock) stores the *next* issue number.
+function getNextIssueNumber(): number {
+  if (issueArg !== null) return issueArg;
+  const lockPath = path.join(__dirname, "..", "reports", ".issue-lock");
+  try {
+    if (fs.existsSync(lockPath)) {
+      return parseInt(fs.readFileSync(lockPath, "utf8").trim(), 10);
+    }
+  } catch { /* ignore */ }
+  return 1;
+}
+const issueNumber = getNextIssueNumber();
 
 // ── Search queries per mode ───────────────────────────────────────────────────
 
@@ -54,7 +70,7 @@ const WEEKLY_QUERIES = [
   { q: "Europe Middle East war conflict this week", beat: "geopolitics" },
 ];
 
-// ── Article quality filter — run before scoring ──────────────────────────────
+// ── Article quality filter -- run before scoring ──────────────────────────────
 
 function filterArticle(article: { url: string; publishedDate?: string; content?: string }): boolean {
   const domainCheck = checkDomain(article.url);
@@ -73,16 +89,11 @@ function filterArticle(article: { url: string; publishedDate?: string; content?:
 
 async function main() {
   const startTime = Date.now();
-  console.log(`\n⬡ PRISMAL — ${mode === "daily" ? "Daily" : "Weekly"} Pipeline`);
+  console.log(`\n⬡ PRISMAL -- ${mode === "daily" ? "Daily" : "Weekly"} Pipeline`);
   console.log(`  Started: ${new Date().toISOString()}\n`);
 
   // Init article store
   const store = new ArticleStore();
-
-  // Determine issue number
-  const existingReports = fs.readdirSync(path.join(__dirname, "..", "reports", mode === "daily" ? "daily" : "weekly"))
-    .filter(f => f.endsWith(".md"));
-  const issueNumber = existingReports.length + 1;
 
   // ── Phase 1: Search ────────────────────────────────────────────────────────
   console.log("  [1/5] Searching...");
@@ -156,7 +167,7 @@ async function main() {
   const date = new Date();
   const dateLabel = mode === "daily"
     ? date.toLocaleDateString("en-GB", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
-    : `Week of ${getWeekStart(date).toLocaleDateString("en-GB", { day: "numeric", month: "long" })} – ${date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}`;
+    : `Week of ${getWeekStart(date).toLocaleDateString("en-GB", { day: "numeric", month: "long" })} - ${date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}`;
 
   // Use top story as featured
   const topStory = topArticles[0];
@@ -217,7 +228,7 @@ async function main() {
       console.log("  [6/6] Publishing to BeeHiiv...");
       try {
         const post = await createPost({
-          title: `Prismal — ${dateLabel}`,
+          title: `Prismal -- ${dateLabel}`,
           content: report.html,
           contentFormat: "html",
           publish: true,
@@ -228,7 +239,7 @@ async function main() {
         console.error(`\n  ✗ BeeHiiv publish failed: ${err}`);
       }
     } else if (dryRun) {
-      console.log("  [6/6] Dry-run — skipped BeeHiiv publish");
+      console.log("  [6/6] Dry-run -- skipped BeeHiiv publish");
     }
 
   } else {
@@ -257,7 +268,7 @@ async function main() {
       console.log("  [6/6] Publishing weekly to BeeHiiv...");
       try {
         const post = await createPost({
-          title: `Prismal Weekly — ${dateLabel}`,
+          title: `Prismal Weekly -- ${dateLabel}`,
           content: report.html,
           contentFormat: "html",
           publish: true,
@@ -290,10 +301,10 @@ function getWeekStart(d: Date): Date {
 function getFallbackContent(articles: ScoredArticle[], mode: string, topStory?: ScoredArticle): string {
   const dateStr = new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
   if (mode === "weekly") {
-    return `# The Week in Brief\n\nThe most significant stories across tech, finance, and geopolitics this week.\n\n## Top Stories\n\n${articles.slice(0, 5).map((a, i) => `${i + 1}. **${a.title}** — ${a.domain}`).join("\n\n")}\n\n## Tech\n\n${articles.filter(a => a.beat === "tech").slice(0, 3).map(a => `- **${a.title}** (${a.domain})`).join("\n")}\n\n## Finance\n\n${articles.filter(a => a.beat === "finance").slice(0, 3).map(a => `- **${a.title}** (${a.domain})`).join("\n")}\n\n## Geopolitics\n\n${articles.filter(a => a.beat === "geopolitics").slice(0, 3).map(a => `- **${a.title}** (${a.domain})`).join("\n")}`;
+    return `# The Week in Brief\n\nThe most significant stories across tech, finance, and geopolitics this week.\n\n## Top Stories\n\n${articles.slice(0, 5).map((a, i) => `${i + 1}. **${a.title}** -- ${a.domain}`).join("\n\n")}\n\n## Tech\n\n${articles.filter(a => a.beat === "tech").slice(0, 3).map(a => `- **${a.title}** (${a.domain})`).join("\n")}\n\n## Finance\n\n${articles.filter(a => a.beat === "finance").slice(0, 3).map(a => `- **${a.title}** (${a.domain})`).join("\n")}\n\n## Geopolitics\n\n${articles.filter(a => a.beat === "geopolitics").slice(0, 3).map(a => `- **${a.title}** (${a.domain})`).join("\n")}`;
   }
 
-  return `# Today in Prismal\n\n**${dateStr}** — The most important stories across technology, finance, and geopolitics.\n\n## The Big Story\n\n${topStory ? `**${topStory.title}** — ${topStory.domain}\n\n${(topStory.content || "").slice(0, 300)}...` : "Major developments today. See top stories below."}\n\n## 💻 Tech\n\n${articles.filter(a => a.beat === "tech").slice(0, 3).map(a => `### ${a.title}\n${(a.content || "").slice(0, 200)}...`).join("\n\n")}\n\n## 💸 Finance\n\n${articles.filter(a => a.beat === "finance").slice(0, 3).map(a => `### ${a.title}\n${(a.content || "").slice(0, 200)}...`).join("\n\n")}\n\n## 🏛️ Geopolitics\n\n${articles.filter(a => a.beat === "geopolitics").slice(0, 3).map(a => `### ${a.title}\n${(a.content || "").slice(0, 200)}...`).join("\n\n")}`;
+  return `# Today in Prismal\n\n**${dateStr}** -- The most important stories across technology, finance, and geopolitics.\n\n## The Big Story\n\n${topStory ? `**${topStory.title}** -- ${topStory.domain}\n\n${(topStory.content || "").slice(0, 300)}...` : "Major developments today. See top stories below."}\n\n## 💻 Tech\n\n${articles.filter(a => a.beat === "tech").slice(0, 3).map(a => `### ${a.title}\n${(a.content || "").slice(0, 200)}...`).join("\n\n")}\n\n## 💸 Finance\n\n${articles.filter(a => a.beat === "finance").slice(0, 3).map(a => `### ${a.title}\n${(a.content || "").slice(0, 200)}...`).join("\n\n")}\n\n## 🏛️ Geopolitics\n\n${articles.filter(a => a.beat === "geopolitics").slice(0, 3).map(a => `### ${a.title}\n${(a.content || "").slice(0, 200)}...`).join("\n\n")}`;
 }
 
 // ── Run ───────────────────────────────────────────────────────────────────────

@@ -1,4 +1,4 @@
-// Relevance Scorer — ranks articles by recency × quality × relevance
+// Relevance Scorer -- ranks articles by recency x quality x relevance
 
 import type { ScrapedArticle } from "./scraper.js";
 import { checkDomain, checkDate, type QualityResult } from "./quality-filter.js";

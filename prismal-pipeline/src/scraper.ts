@@ -1,4 +1,4 @@
-// Article content scraper — URL passed via temp file (avoids Windows exec/stdin issues)
+// Article content scraper -- URL passed via temp file (avoids Windows exec/stdin issues)
 
 import { exec } from "child_process";
 import { promisify } from "util";
@@ -30,7 +30,7 @@ async function scrapeArticle(url: string): Promise<ScrapedArticle> {
   const outFile = path.join(os.tmpdir(), `prismal_out_${Date.now()}.txt`);
 
   try {
-    // Write URL to temp file (safe — no quoting issues)
+    // Write URL to temp file (safe -- no quoting issues)
     fs.writeFileSync(urlFile, url, "utf8");
 
     // Call Python: script reads URL from file, writes result to file

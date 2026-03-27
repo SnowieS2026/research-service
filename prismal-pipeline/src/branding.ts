@@ -12,7 +12,7 @@ export const PRISMAL = {
   beats: ["Technology", "Finance", "Geopolitics"] as const,
   masthead: `
 ╔══════════════════════════════════════════════════════╗
-║  ⬡ PRISMAL  ·  Refracting signal from noise         ║
+║  ⬡ PRISMAL   --   Refracting signal from noise         ║
 ╚══════════════════════════════════════════════════════╝`,
 };
 
@@ -71,9 +71,9 @@ export const SECTION_HEADERS = {
   tech: "## 💻 technology",
   finance: "## 💸 finance",
   geopolitics: "## 🏛️ geopolitics",
-  deepDive: "## 🔍 Deep Dive — ",
+  deepDive: "## 🔍 Deep Dive -- ",
   byTheNumbers: "## 📊 By the Numbers",
   signals: "## ⚡ Signals from the Edge",
   footer:
-    "*Compiled by Snowie 🤖 · Data sourced via SearxNG · Not financial advice · Subscribe at prismal.beehiiv.com*",
+    "*Compiled by Snowie 🤖  --  Data sourced via SearxNG  --  Not financial advice  --  Subscribe at prismal.beehiiv.com*",
 };
