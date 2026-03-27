@@ -91,6 +91,14 @@ Override syntax: `model=<model-id>` e.g. `model=qwen3-coder-next:cloud`
 - Intigriti requires per-program acceptance before scope is visible
 - HackerOne blocks headless browsers (CAPTCHA loop) — cookies unreadable without Chrome's DPAPI key
 
+## X/Twitter Integration (@InfinitaraReal)
+- **Handle:** @InfinitaraReal — User ID: `1044578660`
+- **Skill:** `tools/x-twitter-tool/SKILL.md` — posting script + auth docs
+- **Bearer token:** confirmed working via OAuth 1.0a consumer keys
+- **Posting:** requires Access Token + Secret (from dev.twitter.com → Keys and Tokens → Generate under Authentication Tokens)
+- **Script:** `tools/x-twitter-tool/post-tweet.ts` — fill in ACCESS_TOKEN + ACCESS_TOKEN_SECRET to activate
+- **Test:** `npx tsx tools/x-twitter-tool/test-auth.ts`
+
 ## Preferences & Boundaries
 - Route to the correct model for each task (see AGENTS.md table) — always
 - Verify all subagent work before marking complete — never assume
@@ -105,9 +113,8 @@ Activated when Infinitara says "flipping", "Vinted", "eBay", "marketplace" or si
 
 **Workflow:**
 1. Receive image(s) of item
-2. Run `ollama run moondream` for quick captioning (local, fast)
-3. Switch to `qwen3.5:cloud` for full analysis: condition grading, flaws, market research, valuation, listing description
-4. Produce: condition grade, estimated resale value, recommended listing price, full description for Vinted/eBay
+2. Use `qwen3.5:cloud` for full analysis: condition grading, flaws, market research, valuation, listing description
+3. Produce: condition grade, estimated resale value, recommended listing price, full description for Vinted/eBay
 
 **Platform notes:**
 - Vinted: no seller fees, listings free, buyer pays shipping
