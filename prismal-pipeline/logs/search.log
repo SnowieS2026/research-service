@@ -1,0 +1,49 @@
+[2026-03-27T21:47:41.042Z] Query: "latest technology news 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:47:44.221Z] Query: "AI artificial intelligence breakthroughs 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:47:47.233Z] Query: "stock market news today 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:47:48.238Z] Query: "cryptocurrency bitcoin news 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:47:49.244Z] Query: "geopolitics war conflict news 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:49:34.283Z] Query: "latest technology news 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:49:37.357Z] Query: "AI artificial intelligence breakthroughs 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:49:40.368Z] Query: "stock market news today 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:49:41.370Z] Query: "cryptocurrency bitcoin news 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:49:42.379Z] Query: "geopolitics war conflict news 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:52:32.857Z] Query: "latest technology news 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:52:35.913Z] Query: "AI artificial intelligence breakthroughs 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:52:38.923Z] Query: "stock market news today 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:52:39.932Z] Query: "cryptocurrency bitcoin news 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:52:40.946Z] Query: "geopolitics war conflict news 2026"
+  -> Used: http://localhost:8080
+[2026-03-27T21:56:07.925Z] Query: "latest technology news 2026"
+  -> FAILED all SearxNG instances
+[2026-03-27T21:56:13.218Z] Query: "stock market news today 2026"
+  -> FAILED all SearxNG instances
+[2026-03-27T21:56:20.826Z] Query: "geopolitics war conflict news 2026"
+  -> FAILED all SearxNG instances
+[2026-03-27T21:57:53.425Z] Query: "latest technology news 2026" -> 5 results via http://localhost:8080
+[2026-03-27T21:57:55.570Z] Query: "stock market news today 2026" -> 5 results via http://localhost:8080
+[2026-03-27T21:57:58.242Z] Query: "geopolitics war conflict news 2026" -> 5 results via http://localhost:8080
+[2026-03-27T22:07:03.824Z] Query: "latest technology news 2026" -> 3 results via http://localhost:8080
+[2026-03-27T22:07:04.673Z] Query: "AI artificial intelligence breakthroughs 2026" -> 4 results via http://localhost:8080
+[2026-03-27T22:07:06.211Z] Query: "stock market news today 2026" -> 4 results via http://localhost:8080
+[2026-03-27T22:07:07.109Z] Query: "cryptocurrency bitcoin news 2026" -> 4 results via http://localhost:8080
+[2026-03-27T22:07:08.623Z] Query: "geopolitics war conflict news 2026" -> 3 results via http://localhost:8080
+[2026-03-27T22:14:31.564Z] Query: "latest technology news 2026" -> 3 results via http://localhost:8080
+[2026-03-27T22:14:33.052Z] Query: "AI artificial intelligence breakthroughs 2026" -> 4 results via http://localhost:8080
+[2026-03-27T22:14:33.951Z] Query: "stock market news today 2026" -> 4 results via http://localhost:8080
+[2026-03-27T22:14:35.169Z] Query: "cryptocurrency bitcoin news 2026" -> 4 results via http://localhost:8080
+[2026-03-27T22:14:36.234Z] Query: "geopolitics war conflict news 2026" -> 3 results via http://localhost:8080
