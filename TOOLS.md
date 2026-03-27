@@ -40,10 +40,11 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ### X (Twitter) Integration — @InfinitaraReal
 **Handle:** @InfinitaraReal (non-premium, 260 char limit)
 
-**App-Only Token (Bearer):**
+**App-Only Token (Bearer):** ✅ CONFIRMED WORKING — fetched via OAuth 1.0a consumer keys
 ```
 AAAAAAAAAAAAAAAAFFFFRygEAAAAAa9aASazSspXNn0%2FtnyaQfSufrF0%3Dvn2KSpAhBVZ46YQhTr0rFNvY8XcSeeNK7UnmRjq7tHihmkWpoG
 ```
+**Associated X Account:** @InfinitaraReal — User ID: `1044578660`
 
 **OAuth 1.0a:**
 - Consumer Key: `EyLjlwhrNOAmSEjX6fYjEJS1K`
