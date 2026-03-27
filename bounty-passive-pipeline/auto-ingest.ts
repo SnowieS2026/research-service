@@ -88,6 +88,7 @@ async function main() {
     { id: 'persona:USER.md',    file: 'USER.md',    type: 'user_context' },
     { id: 'persona:MEMORY.md', file: 'MEMORY.md',   type: 'long_term_memory' },
     { id: 'persona:HEARTBEAT.md', file: 'HEARTBEAT.md', type: 'heartbeat_config' },
+    { id: 'persona:TOOLS.md',    file: 'TOOLS.md',    type: 'tools_config' },
   ];
   console.log(`\n  [persona] checking persona files...`);
   for (const { id, file, type } of personaFiles) {
