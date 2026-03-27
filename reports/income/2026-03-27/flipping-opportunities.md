@@ -1,0 +1,142 @@
+# Flipping Opportunities Report
+**Date:** 2026-03-27  
+**Research Tier:** Standard  
+**Model:** qwen3.5:cloud
+
+---
+
+## 1. UK CAR FLIPPING
+
+### Status: ✅ VIABLE - Multiple Entry Points
+
+### Key Platforms Identified:
+
+| Platform | Type | Access | Notes |
+|----------|------|--------|-------|
+| **RAW2K** | Online auctions | Public + Trade | Daily/weekly auctions, 1000s of vehicles, salvage + seized |
+| **Copart UK** | Salvage auctions | Trade preferred | Insurance write-offs, repairable vehicles |
+| **IAA/Synetiq** | Salvage auctions | Trade + Public | UK's leading online salvage platform |
+| **SalvageMarket.co.uk** | Salvage | Public | UK's biggest salvage market website |
+| **British Car Auctions (BCA)** | Trade auctions | Trade only | Largest vehicle auctioneer in Europe |
+| **LE Capital** | Used car auctions | Public + Trade | Interactive map of UK auctions |
+
+### Flipping Strategy (from RAW2K guide):
+
+**Budget Requirements:**
+- Initial capital: £1,000-£3,000 for first flip
+- Factor in: buyer's premium (10-15% + VAT), repairs, V5C, insurance
+- Start small: cheap runarounds, specific makes you know well
+
+**Profit Margins:**
+- Typical flip profit: £500-£2,000 per vehicle
+- Best niches: Ford Fiesta/Vauxhall Corsa (easy parts, high demand)
+- Avoid initially: luxury cars, complex sports cars, specialist vehicles
+
+**Key Tools:**
+- **GOV.UK MOT History:** https://www.gov.uk/check-mot-history (FREE)
+- **HPI Check:** £10-£30 for full history (finance, theft, write-off status)
+- **Free alternatives:** CarCheck.co.uk, Motorwise.io, CheckCarDetails.co.uk
+
+### Action Items:
+1. [ ] Register on RAW2K.co.uk (free)
+2. [ ] Watch 5-10 auctions before bidding (learn pricing)
+3. [ ] Set budget: £2,000 max for first purchase
+4. [ ] Create spreadsheet tracking: purchase price, fees, repairs, sale price, profit
+5. [ ] Join Facebook groups: "Car Flipping UK", "Motor Traders UK"
+
+---
+
+## 2. BULK/PALLET AUCTIONS
+
+### Status: ⚠️ LIMITED DATA - Needs Deeper Research
+
+### Platforms Identified:
+- **BCM Systems** - Returns pallets, customer returns
+- **Tradebox** - Amazon returns, bulk lots
+- **Direct Liquidation** - UK-based liquidation auctions
+- **Palletway** - Freight/pallet network (may have leads)
+
+### Action Items:
+1. [ ] Deep-dive research on BCM Systems pricing/margins
+2. [ ] Check eBay sold listings for "job lot", "pallet", "returns"
+3. [ ] Calculate shipping costs for bulk items (often the margin killer)
+
+---
+
+## 3. VINTED/EBAY/FACEBOOK MARKETPLACE FLIPPING
+
+### Status: ✅ HIGHLY VIABLE - Low Barrier Entry
+
+### Best Items to Flip (per MyMoneyToday):
+- Brand-name clothing (designer labels)
+- Vintage electronics (consoles, cameras, hi-fi)
+- Books and vinyl records (rare editions)
+- Toys and board games (limited editions)
+
+### Sourcing:
+- Charity shops
+- Car boot sales
+- Clearance racks
+- Facebook free groups
+
+### Platform Comparison:
+| Platform | Fees | Best For | Payout |
+|----------|------|----------|--------|
+| **Vinted** | 0% seller fees | Clothing | Immediate |
+| **eBay** | 10-13% + £0.30 | Everything | 2-7 days |
+| **Facebook** | 0% (local) | Bulky items | Cash on collection |
+
+### Estimated Earnings:
+- Part-time: £200-£800/month
+- Full-time hustlers: £2,000-£5,000/month
+- Margins: 30-100% on sourced items
+
+### Action Items:
+1. [ ] Download Vinted app, list 10 items from home this week
+2. [ ] Visit 3 charity shops this weekend (Saturday morning = fresh stock)
+3. [ ] Search Facebook Marketplace "free" within 10-mile radius daily
+4. [ ] Create pricing spreadsheet: buy price, fees, shipping, net profit
+
+---
+
+## 4. OTHER MARKETPLACE OPPORTUNITIES
+
+### Status: 🔍 NEEDS EXPLORATION
+
+### Potential Platforms:
+- **Depop** - Vintage/streetwear (younger demographic)
+- **Shpock** - Local classifieds (UK-based)
+- **Preloved** - UK classifieds, free to list
+- **Gumtree** - Still active for local sales
+
+---
+
+## SUMMARY & PRIORITY ACTIONS
+
+### Immediate (This Week):
+1. **Register on RAW2K** - Start watching auctions, no cost
+2. **List 10 items on Vinted** - Test the platform, learn pricing
+3. **Check GOV.UK MOT** - Research 5 cars you're interested in flipping
+
+### Short-term (This Month):
+1. **First car flip** - Budget £2,000, target £500-£1,000 profit
+2. **Charity shop round** - Source 20+ items for Vinted/eBay
+3. **Track all transactions** - Build data on what sells, margins
+
+### Estimated Monthly Income Potential:
+- **Car flipping (1-2 cars/month):** £1,000-£3,000
+- **Vinted/eBay (part-time):** £300-£1,000
+- **Combined potential:** £1,300-£4,000/month
+
+---
+
+## RISKS & CONSIDERATIONS
+
+- **Car flipping:** Requires space, tools, mechanical knowledge or trusted mechanic
+- **HMRC:** Regular buying/selling = trader status, must declare income
+- **Vinted/eBay:** Time-intensive (photos, listings, shipping, customer service)
+- **Cash flow:** Money tied up in inventory until sold
+
+---
+
+*Report generated by income research subagent*
