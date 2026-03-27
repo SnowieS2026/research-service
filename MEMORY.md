@@ -72,6 +72,7 @@ _This is my curated memory. Updated regularly from daily logs._
 | `nemotron-3-nano:30b-cloud` | Fast tasks — fast concurrent operations |
 | `minimax-m2.5:cloud` | Secondary general |
 | `glm-4.6:cloud` | Secondary research |
+| `qwen3.5:cloud` | Flipping agent — valuations, Vinted/eBay analysis, image inspection, item descriptions |
 
 Override syntax: `model=<model-id>` e.g. `model=qwen3-coder-next:cloud`
 
@@ -97,6 +98,22 @@ Override syntax: `model=<model-id>` e.g. `model=qwen3-coder-next:cloud`
 - Don't message unless something needs attention
 - Keep replies short and actionable
 - Private things stay private
+
+## Flipping Workflow (2026-03-27)
+
+Activated when Infinitara says "flipping", "Vinted", "eBay", "marketplace" or similar. Uses `qwen3.5:cloud` as the model.
+
+**Workflow:**
+1. Receive image(s) of item
+2. Run `ollama run moondream` for quick captioning (local, fast)
+3. Switch to `qwen3.5:cloud` for full analysis: condition grading, flaws, market research, valuation, listing description
+4. Produce: condition grade, estimated resale value, recommended listing price, full description for Vinted/eBay
+
+**Platform notes:**
+- Vinted: no seller fees, listings free, buyer pays shipping
+- eBay: seller fees apply (~15%), more reach
+
+**Condition grades (standard):** Like New | Very Good | Good | Acceptable
 
 ---
 

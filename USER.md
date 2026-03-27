@@ -6,7 +6,7 @@ _Learn about the person you're helping. Update this as you go._
 - **What to call them:** Infinitara (or just "you")
 - **Pronouns:** _(unknown)_
 - **Timezone:** Europe/London (GMT)
-- **Notes:** Active bounty hunter; runs the bounty-passive-pipeline targeting Bugcrowd/HackerOne/Intigriti/Standoff365 programs. Has the terminal stall issue with OpenClaw. Prefers proactive, concise replies. Running an active OSINT + bounty scanning pipeline from a Windows machine. **Bounty hunting is currently PAUSED.**
+- **Notes:** Active bounty hunter; runs the bounty-passive-pipeline targeting Bugcrowd/HackerOne/Intigriti/Standoff365 programs. Has the terminal stall issue with OpenClaw. Prefers proactive, concise replies. Running an active OSINT + bounty scanning pipeline from a Windows machine. **Bounty hunting is currently PAUSED.** Flipping is ACTIVE (2026-03-27) — using qwen3.5:cloud + moondream for valuations, condition grading, and listing descriptions.
 
 ## Bounty Pipeline Status
 
@@ -38,7 +38,7 @@ _Learn about the person you're helping. Update this as you go._
 
 **Crons:** All bounty crons DISABLED. Pipeline can be re-enabled on request.
 
-**Model assignments (2026-03-26):** See `MEMORY.md` — 8 cloud models registered (all `:cloud` suffix, Ollama Connect). minimax-m2.7:cloud is main/default. Coding: `qwen3-coder-next:cloud`, research: `glm-5:cloud`, fast: `nemotron-3-nano:cloud`.
+**Model assignments (2026-03-26, updated 2026-03-27):** See `MEMORY.md` — 9 cloud models registered (all `:cloud` suffix, Ollama Connect). minimax-m2.7:cloud is main/default. Coding: `qwen3-coder-next:cloud`, research: `glm-5:cloud`, flipping: `qwen3.5:cloud`, fast: `nemotron-3-nano:cloud`.
 
 ## Context
 

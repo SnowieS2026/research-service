@@ -1,0 +1,86 @@
+{
+  "date": "2026-03-27",
+  "countries_updated": [
+    "Iran",
+    "Israel",
+    "United-States",
+    "Saudi-Arabia",
+    "UAE",
+    "Kuwait",
+    "Jordan",
+    "Lebanon",
+    "Palestine",
+    "Turkey",
+    "Ukraine",
+    "Pakistan",
+    "Bangladesh",
+    "Sri-Lanka",
+    "Egypt",
+    "Ethiopia",
+    "Nigeria",
+    "South-Africa",
+    "China",
+    "Taiwan",
+    "Japan",
+    "India",
+    "Philippines",
+    "Thailand",
+    "Indonesia",
+    "North-Korea",
+    "Belarus",
+    "Australia",
+    "Russia",
+    "Hungary",
+    "Slovakia",
+    "Venezuela",
+    "Brazil",
+    "Cuba",
+    "Canada",
+    "Sudan",
+    "Qatar"
+  ],
+  "countries_count": 37,
+  "git_commit": {
+    "hash": "e08a810",
+    "message": "Geo intel update: 2026-03-27",
+    "files_changed": 80,
+    "insertions": 26755
+  },
+  "ingest_status": {
+    "success": true,
+    "ingested": 6,
+    "skipped": 28,
+    "collections": {
+      "agent_memory": 0,
+      "pipeline_findings": 0
+    }
+  },
+  "regional_reports_processed": [
+    "mideast-africa.json",
+    "asia-pacific.json",
+    "europe-central-asia.json",
+    "americas.json",
+    "suppressed.json"
+  ],
+  "stories_per_region": {
+    "mideast_africa": {
+      "lead": 3,
+      "secondary": 5
+    },
+    "asia_pacific": {
+      "lead": 5,
+      "secondary": 5
+    },
+    "europe_central_asia": {
+      "lead": 5,
+      "secondary": 4
+    },
+    "americas": {
+      "lead": 5,
+      "secondary": 3
+    },
+    "suppressed": {
+      "stories": 7
+    }
+  }
+}

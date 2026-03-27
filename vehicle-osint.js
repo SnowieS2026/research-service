@@ -559,10 +559,13 @@ function generateValuation(make, model, year, mileage, fuelType, advisories, mot
 function detectPlateType(plate) {
   const clean = plate.replace(/[\s\-]/g, '').toUpperCase();
   if (/^[A-HJ-NPR-Z0-9]{17}$/i.test(clean)) return 'VIN';
-  if (/^[A-Z]{2}\d{2}[A-Z]{3}$/.test(clean)) return 'UK';
-  if (/^[A-Z]\d{1,3}[A-Z]{2,3}$/.test(clean)) return 'UK';
-  if (/^[A-Z]{3}\d{1,3}[A-Z]{2}$/.test(clean)) return 'UK';
-  if (/^[A-Z]{2}\d{2} [A-Z]{3}$/.test(clean)) return 'UK';
+  if (/^[A-Z]{2}\d{2}[A-Z]{3}$/.test(clean)) return 'UK';                 // AB12CDE
+  if (/^[A-Z]{2}\d{2} [A-Z]{3}$/.test(clean)) return 'UK';               // AB12 CDE (with space)
+  if (/^[A-Z]\d{1,3}[A-Z]{3}$/.test(clean)) return 'UK';                  // A123ABC (prefix style)
+  if (/^[A-Z]\d{1,2}[A-Z]{3}$/.test(clean)) return 'UK';                 // A12ABC (prefix style)
+  if (/^[A-Z]{2}\d{1,2}[A-Z]{3}$/.test(clean)) return 'UK';              // AB12CDE (current style)
+  if (/^[A-Z]{3}\d{1,4}$/.test(clean)) return 'UK';                       // GMZ2745 (3 letters + 4 digits)
+  if (/^[A-Z]{3}\d{1,3}[A-Z]{2}$/.test(clean)) return 'UK';             // ABC123DE (suffix style)
   if (/^[A-Z0-9]{3,8}$/i.test(clean)) return 'US';
   return 'UNKNOWN';
 }
@@ -768,6 +771,15 @@ async function collectDVLA(plate) {
     await page.locator('#wizard_vehicle_enquiry_capture_vrn_vrn').fill(plate);
     await page.locator('button').filter({ hasText: /continue/i }).click();
     await page.waitForLoadState('networkidle', { timeout: 20_000 });
+    await page.waitForTimeout(1000);
+
+    // Handle "Is this the vehicle?" confirmation page — click Yes to proceed
+    const yesBtn = page.locator('button').filter({ hasText: /yes/i }).first();
+    if (await yesBtn.count() > 0) {
+      await yesBtn.click();
+      await page.waitForLoadState('networkidle', { timeout: 20_000 });
+      await page.waitForTimeout(1000);
+    }
 
     const bodyText = await page.textContent('body') || '';
     result.rawData.raw_text = bodyText.substring(0, 5000);
