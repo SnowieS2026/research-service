@@ -2,12 +2,12 @@
 // Each formatter takes the newsletter data and returns platform-optimized content
 
 export interface NewsletterData {
-  date: string;          // "Friday 27 March 2026"
-  dateIso: string;       // "2026-03-27"
-  issueNumber: number;   // 1
-  headline: string;     // The big story headline
-  hook: string;          // Opening paragraph
-  bigStory: string;      // THE BIG STORY content
+  date: string;
+  dateIso: string;
+  issueNumber: number;
+  headline: string;
+  hook: string;
+  bigStory: string;
   techStories: { title: string; summary: string }[];
   financeStories: { title: string; summary: string }[];
   geopoliticsStories: { title: string; summary: string }[];
@@ -31,9 +31,20 @@ export interface PlatformOutput {
 // ── Substack ─────────────────────────────────────────────────────────────────
 
 export function formatSubstack(data: NewsletterData): PlatformOutput {
-  const hashtagLine = "#Tech #Finance #Geopolitics #DailyNewsletter";
+  const techItems = data.techStories.map(s =>
+    "### " + s.title + "\n\n" + s.summary).join("\n\n");
+  const financeItems = data.financeStories.map(s =>
+    "### " + s.title + "\n\n" + s.summary).join("\n\n");
+  const geoItems = data.geopoliticsStories.map(s =>
+    "### " + s.title + "\n\n" + s.summary).join("\n\n");
+  const watchItems = data.whatToWatch.map(w => "• " + w).join("\n");
+  const numbersItems = data.byTheNumbers.map(n => "• " + n).join("\n");
+  const signalItems = data.signalsFromTheEdge.map(s => "**" + s.title + "** -- " + s.content).join("\n\n");
+
   const content = [
-    `${data.headline}`,
+    "# " + data.headline,
+    "",
+    "*" + data.date + " -- Issue " + data.issueNumber + "*",
     "",
     data.hook,
     "",
@@ -41,30 +52,43 @@ export function formatSubstack(data: NewsletterData): PlatformOutput {
     "",
     "## THE BIG STORY",
     "",
-    data.bigStory.slice(0, 500) + (data.bigStory.length > 500 ? "..." : ""),
+    data.bigStory,
     "",
     "---",
     "",
     "## TECH",
-    ...data.techStories.slice(0, 2).map(s => `**${s.title}**\n${s.summary}`),
+    "",
+    techItems,
     "",
     "## FINANCE",
-    ...data.financeStories.slice(0, 2).map(s => `**${s.title}**\n${s.summary}`),
+    "",
+    financeItems,
     "",
     "## GEOPOLITICS",
-    ...data.geopoliticsStories.slice(0, 2).map(s => `**${s.title}**\n${s.summary}`),
+    "",
+    geoItems,
     "",
     "---",
     "",
-    "**What to Watch:**",
-    data.whatToWatch.map(w => `• ${w}`).join("\n"),
+    "## WHAT TO WATCH",
     "",
-    "**By the Numbers:**",
-    data.byTheNumbers.slice(0, 5).map(n => `• ${n}`).join("\n"),
+    watchItems,
     "",
-    `Subscribe free: ${data.subscribeUrl}`,
+    "## BY THE NUMBERS",
     "",
-    hashtagLine,
+    numbersItems,
+    "",
+    "---",
+    "",
+    "## SIGNALS FROM THE EDGE",
+    "",
+    signalItems,
+    "",
+    "---",
+    "",
+    "**[Subscribe free -- get Prismal in your inbox](" + data.subscribeUrl + ")**",
+    "",
+    "Tech -- Finance -- Geopolitics -- Daily Newsletter",
   ].join("\n");
 
   return {
@@ -84,117 +108,164 @@ export function formatSubstack(data: NewsletterData): PlatformOutput {
 const X_LINK = "prismal.beehiiv.com";
 
 export function formatX(data: NewsletterData): PlatformOutput {
-  // X allows 280 chars. We need room for the link (22 chars including space).
-  // So headline gets max ~255 chars.
-  const maxHeadline = 256;
-  let headline = data.headline;
-  const linkText = `${X_LINK}`;
-  const withLink = headline.length + 1 + linkText.length;
+  // X: 260 chars max.
+  // Budget: link ~22 + CTA "Subscribe free" ~14 + hashtags ~26 + newlines ~4 = ~66 fixed
+  // Remaining for opener: 260 - 66 = 194 chars max
+  const maxOpener = 194;
+  let opener = data.hook.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\n/g, " ").trim();
 
-  if (withLink > 280) {
-    const availHeadroom = 280 - (1 + linkText.length);
-    headline = headline.slice(0, availHeadroom - 3) + "...";
+  // Find the first real sentence end (skip decimals like "3.4 million")
+  let sentenceEnd = opener.length;
+  {
+    const rx = /[.!?]\s+/g;
+    let m;
+    while ((m = rx.exec(opener)) !== null) {
+      const pos = m.index;
+      const isDecimal = /^\d$/.test(opener[pos - 1]);
+      if (!isDecimal) {
+        sentenceEnd = pos + 1;
+        break;
+      }
+    }
   }
 
-  const tweet = `${headline} ${linkText}`;
-  const hashtags = "#Tech #Finance #Geopolitics";
-  const fullTweet = tweet.includes("#") ? tweet : `${tweet} ${hashtags}`;
+  let firstSentence = opener.slice(0, sentenceEnd).trim();
+  if (firstSentence.length > maxOpener) {
+    firstSentence = firstSentence.slice(0, maxOpener - 3);
+    const lastSpace = firstSentence.lastIndexOf(" ");
+    if (lastSpace > maxOpener * 0.6) {
+      firstSentence = firstSentence.slice(0, lastSpace);
+    }
+    firstSentence = firstSentence.trim() + "...";
+  }
+
+  const tweet = firstSentence + "\n\n" + X_LINK + "\n\nSubscribe free | #Tech #Finance #Geopolitics";
 
   return {
     platform: "x",
     platformName: "X (Twitter)",
     content: tweet,
     characterCount: tweet.length,
-    characterLimit: 280,
-    overLimit: tweet.length > 280,
+    characterLimit: 260,
+    overLimit: tweet.length > 260,
     hashtags: ["Tech", "Finance", "Geopolitics"],
-    copyText: fullTweet.length <= 280 ? fullTweet : tweet,
+    copyText: tweet,
   };
 }
 
-// X Thread: for longer-form threading
+// ── X Thread ────────────────────────────────────────────────────────────────
+
 export function formatXThread(data: NewsletterData): PlatformOutput {
   const threadLines: string[] = [];
-  const maxPerTweet = 270; // leave room for Tweet separator
+  const MAX_CHARS = 260;
 
-  // Helper: split a long string into tweet-sized chunks, each max 280 chars
-  function splitTweet(text: string, prefix: string = ""): string[] {
-    const maxLen = 280 - (prefix ? prefix.length + 2 : 0);
-    if (text.length <= maxLen) return [prefix ? `${prefix}\n\n${text}` : text];
+  function splitText(text: string, prefix: string = ""): string[] {
+    const normalized = text.replace(/\s+/g, " ").trim();
+    const prefixLen = prefix ? prefix.length + 4 : 0;
+    const maxLen = MAX_CHARS - prefixLen;
+
+    if (normalized.length <= maxLen) {
+      return prefix ? [prefix + "\n\n" + normalized] : [normalized];
+    }
+
+    // Split by sentences: punctuation followed by whitespace or end of string
+    const sentenceRx = /[^.!?]*[.!?]+(?:\s|$)|[^.!?]+$/g;
+    const sentences = normalized.match(sentenceRx) || [normalized];
     const chunks: string[] = [];
-    const sentences = text.match(/[^.!?]+[.!?]+[\s]*/g) || [text];
     let current = "";
     let part = 1;
+
     for (const sentence of sentences) {
-      if ((current.length + sentence.length) > maxLen && current) {
-        chunks.push(prefix ? `${prefix} (${part})\n\n${current.trim()}` : current.trim());
+      const trimmed = sentence.trim();
+      if (!trimmed) continue;
+      if (current && (current.length + trimmed.length + 1) > maxLen) {
+        const chunkText = prefix
+          ? prefix + " (" + part + "/" + sentences.length + ")\n\n" + current.trim()
+          : current.trim();
+        chunks.push(chunkText);
         part++;
-        current = sentence;
-        prefix = prefix; // keep same prefix for continuation
+        current = trimmed;
       } else {
-        current += sentence;
+        current += current ? " " + trimmed : trimmed;
       }
     }
-    if (current.trim()) chunks.push(prefix ? `${prefix} (${part})\n\n${current.trim()}` : current.trim());
+    if (current.trim()) {
+      const chunkText = prefix
+        ? prefix + " (" + part + "/" + sentences.length + ")\n\n" + current.trim()
+        : current.trim();
+      chunks.push(chunkText);
+    }
     return chunks;
   }
 
+  // WHAT TO WATCH items can be 200-270 chars. Pre-truncate each to 220 chars
+  // so they always fit in a tweet after the "WHAT TO WATCH (N/3)\n\n" prefix.
+  const watchMax = MAX_CHARS - 25;
+  function fitWatch(text: string): string {
+    if (text.length <= watchMax) return text;
+    const truncated = text.slice(0, watchMax - 3);
+    const lastSpace = truncated.lastIndexOf(" ");
+    return (lastSpace > watchMax * 0.6 ? truncated.slice(0, lastSpace) : truncated) + "...";
+  }
+
   // Thread header
-  threadLines.push(`${data.date} -- Issue ${data.issueNumber} of Prismal\nThe most important stories in Tech, Finance, and Geopolitics.\n\n${data.subscribeUrl}`);
+  threadLines.push(
+    data.date + " -- Issue " + data.issueNumber + " of Prismal\n" +
+    "The most important stories in Tech, Finance, and Geopolitics.\n\n" +
+    data.subscribeUrl
+  );
 
-  // Tweet 2: The big story
-  const bigChunks = splitTweet(data.bigStory.slice(0, 500), "THE BIG STORY");
-  bigChunks.forEach(c => threadLines.push(c));
+  // Big story (may split) -- build text up to ~470 chars so the second chunk
+  // (which gets a ~23-char prefix) stays within the 260-char limit
+  const bigWords = data.bigStory.replace(/\s+/g, " ").trim().split(" ");
+  let bigText = "";
+  for (const word of bigWords) {
+    if ((bigText + " " + word).length > 465) break;
+    bigText += (bigText ? " " : "") + word;
+  }
+  splitText(bigText, "THE BIG STORY").forEach(c => threadLines.push(c));
 
-  // Tweet 3: Tech highlights
-  const techSnippet = data.techStories.slice(0, 2).map(s => `• ${s.title}`).join("\n");
-  threadLines.push(`TECH\n\n${techSnippet}`);
+  // Tech, Finance, Geopolitics highlights
+  const techText = data.techStories.slice(0, 2).map(s => "\u2022 " + s.title).join("\n");
+  splitText(techText, "TECH").forEach(c => threadLines.push(c));
 
-  // Tweet 4: Finance highlights
-  const finSnippet = data.financeStories.slice(0, 2).map(s => `• ${s.title}`).join("\n");
-  threadLines.push(`FINANCE\n\n${finSnippet}`);
+  const finText = data.financeStories.slice(0, 2).map(s => "\u2022 " + s.title).join("\n");
+  splitText(finText, "FINANCE").forEach(c => threadLines.push(c));
 
-  // Tweet 5: Geopolitics highlights
-  const geoSnippet = data.geopoliticsStories.slice(0, 2).map(s => `• ${s.title}`).join("\n");
-  threadLines.push(`GEOPOLITICS\n\n${geoSnippet}`);
+  const geoText = data.geopoliticsStories.slice(0, 2).map(s => "\u2022 " + s.title).join("\n");
+  splitText(geoText, "GEOPOLITICS").forEach(c => threadLines.push(c));
 
-  // Tweet 6: What to watch (may split into multiple)
-  const watchText = data.whatToWatch.slice(0, 2).map(w => `→ ${w}`).join("\n");
-  const watchChunks = splitTweet(watchText, "WHAT TO WATCH");
-  watchChunks.forEach(c => threadLines.push(c));
+  // What to watch (items pre-truncated)
+  const watchText = data.whatToWatch.slice(0, 3).map(w => fitWatch(w)).join("\n");
+  splitText(watchText, "WHAT TO WATCH").forEach(c => threadLines.push(c));
 
-  // Tweet 7: By the numbers
-  const numbersText = data.byTheNumbers.slice(0, 4).map(n => `• ${n}`).join("\n");
-  threadLines.push(`BY THE NUMBERS\n\n${numbersText}`);
+  // By the numbers
+  const numbersText = data.byTheNumbers.slice(0, 4).map(n => "\u2022 " + n).join("\n");
+  splitText(numbersText, "BY THE NUMBERS").forEach(c => threadLines.push(c));
 
-  // Build thread text with separators
-  const threadText = threadLines.join("\n\n---\n\n");
+  const SEP = "\n\n---\n\n";
+  const threadText = threadLines.join(SEP);
   const longestTweet = Math.max(...threadLines.map(t => t.length));
 
   return {
     platform: "x-thread",
-    platformName: `X Thread (${threadLines.length} tweets)`,
+    platformName: "X Thread (" + threadLines.length + " tweets)",
     content: threadText,
     characterCount: threadText.length,
-    characterLimit: maxPerTweet,
-    overLimit: longestTweet > 280,
+    characterLimit: MAX_CHARS,
+    overLimit: longestTweet > MAX_CHARS,
     hashtags: [],
     copyText: threadText,
   };
 }
 
-// ── TikTok ──────────────────────────────────────────────────────────────────
+// ── TikTok ─────────────────────────────────────────────────────────────────
 
 export function formatTikTok(data: NewsletterData): PlatformOutput {
   const maxCaption = 150;
   const hashtags = "#prismal #tech #finance #geopolitics #newsletter #dailyread";
-
-  // TikTok caption: punchy hook + hook + link
   const caption = data.hook.slice(0, maxCaption - (hashtags.length + 3));
-  const fullCaption = `${caption}...\n\n📬 Full newsletter + link in bio\n${hashtags}`;
-
-  // Also a longer description version for the video text overlay
-  const videoOverlayText = `${data.date} -- Issue ${data.issueNumber} -- Tech, Finance, Geopolitics`;
+  const fullCaption = caption + "...\n\nFull newsletter + link in bio\n" + hashtags;
 
   return {
     platform: "tiktok",
@@ -211,59 +282,14 @@ export function formatTikTok(data: NewsletterData): PlatformOutput {
 // ── BeeHiiv (full HTML) ─────────────────────────────────────────────────────
 
 export function formatBeeHiiv(data: NewsletterData): PlatformOutput {
-  const byTheNumbersList = data.byTheNumbers.map(n => `<li>${n}</li>`).join("\n");
-  const whatToWatchList = data.whatToWatch.map(w => `<li>${w}</li>`).join("\n");
-  const techList = data.techStories.slice(0, 2).map(s => `<li><strong>${s.title}</strong> -- ${s.summary}</li>`).join("\n");
-  const financeList = data.financeStories.slice(0, 2).map(s => `<li><strong>${s.title}</strong> -- ${s.summary}</li>`).join("\n");
-  const geoList = data.geopoliticsStories.slice(0, 2).map(s => `<li><strong>${s.title}</strong> -- ${s.summary}</li>`).join("\n");
-  const signalsList = data.signalsFromTheEdge.map(s => `<li><em>${s.title}</em>: ${s.content.slice(0, 200)}...</li>`).join("\n");
+  const byTheNumbersList = data.byTheNumbers.map(n => "<li style=\"margin-bottom: 6px;\">" + n + "</li>").join("\n");
+  const whatToWatchList = data.whatToWatch.map(w => "<li style=\"margin-bottom: 6px;\">" + w + "</li>").join("\n");
+  const techList = data.techStories.slice(0, 2).map(s => "<li style=\"margin-bottom: 10px;\"><strong>" + s.title + "</strong><br>" + s.summary + "</li>").join("\n");
+  const financeList = data.financeStories.slice(0, 2).map(s => "<li style=\"margin-bottom: 10px;\"><strong>" + s.title + "</strong><br>" + s.summary + "</li>").join("\n");
+  const geoList = data.geopoliticsStories.slice(0, 2).map(s => "<li style=\"margin-bottom: 10px;\"><strong>" + s.title + "</strong><br>" + s.summary + "</li>").join("\n");
+  const signalsList = data.signalsFromTheEdge.map(s => "<li style=\"margin-bottom: 10px; font-style: italic;\"><strong>" + s.title + ":</strong> " + s.content.slice(0, 200) + (s.content.length > 200 ? "..." : "") + "</li>").join("\n");
 
-  const html = `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Prismal -- ${data.date}</title>
-</head>
-<body style="font-family: Georgia, serif; max-width: 680px; margin: 0 auto; padding: 20px; color: #1a1a1a; line-height: 1.6;">
-
-<div style="text-align: center; margin-bottom: 32px;">
-  <div style="font-size: 11px; letter-spacing: 4px; color: #888; text-transform: uppercase;">Prismal</div>
-  <h1 style="font-size: 28px; font-weight: 700; color: #1a1a1a; margin: 4px 0;">⬡ PRISMAL</h1>
-  <p style="color: #666; font-size: 13px; margin: 4px 0 0;">${data.date} -- Issue ${data.issueNumber} -- Tech x Finance x Geopolitics</p>
-</div>
-
-<p style="font-size: 16px; font-weight: 600; border-left: 4px solid #6C5CE7; padding-left: 16px; margin: 24px 0;">${data.hook}</p>
-
-<h2 style="font-size: 20px; margin: 24px 0 12px;">THE BIG STORY</h2>
-<p>${data.bigStory}</p>
-
-<h2 style="font-size: 16px;">💻 TECH</h2>
-<ul>${techList}</ul>
-
-<h2 style="font-size: 16px;">💸 FINANCE</h2>
-<ul>${financeList}</ul>
-
-<h2 style="font-size: 16px;">🏛️ GEOPOLITICS</h2>
-<ul>${geoList}</ul>
-
-<h2 style="font-size: 16px;">👀 WHAT TO WATCH</h2>
-<ul>${whatToWatchList}</ul>
-
-<h2 style="font-size: 16px;">📊 BY THE NUMBERS</h2>
-<ul>${byTheNumbersList}</ul>
-
-<h2 style="font-size: 16px;">🚨 SIGNALS FROM THE EDGE</h2>
-<ul>${signalsList}</ul>
-
-<hr style="border:none; border-top: 1px solid #eee; margin: 32px 0;">
-<p style="font-size: 12px; color: #999;">
-  <strong>⬡ PRISMAL</strong> -- Refracting signal from noise<br>
-  <a href="${data.subscribeUrl}" style="color: #6C5CE7;">Subscribe at ${data.subscribeUrl}</a><br>
-  Not financial advice -- Past performance is not indicative of future results
-</p>
-
-</body>
-</html>`;
+  const html = "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Prismal -- " + data.date + " -- Issue " + data.issueNumber + "</title>\n</head>\n<body style=\"font-family: Georgia, serif; max-width: 680px; margin: 0 auto; padding: 24px 20px; color: #1a1a1a; line-height: 1.7; background: #ffffff;\">\n\n<div style=\"text-align: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px solid #1a1a1a;\">\n  <div style=\"font-size: 11px; letter-spacing: 4px; color: #888; text-transform: uppercase; margin-bottom: 4px;\">\n    Prismal\n  </div>\n  <h1 style=\"font-size: 36px; font-weight: 700; color: #1a1a1a; margin: 0; letter-spacing: -1px;\">\n    &#x2B21; PRISMAL\n  </h1>\n  <p style=\"color: #666; font-size: 13px; margin: 6px 0 0; letter-spacing: 0.5px;\">\n    " + data.date + " &nbsp;&middot;&nbsp; Issue " + data.issueNumber + " &nbsp;&middot;&nbsp; Tech x Finance x Geopolitics\n  </p>\n</div>\n\n<p style=\"font-size: 17px; font-weight: 600; color: #111; border-left: 4px solid #6C5CE7; padding-left: 18px; margin: 0 0 28px; line-height: 1.5;\">\n  " + data.hook + "\n</p>\n\n<div style=\"margin: 0 0 32px;\">\n  <h2 style=\"font-size: 11px; letter-spacing: 3px; color: #6C5CE7; text-transform: uppercase; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid #eee;\">\n    The Big Story\n  </h2>\n  <p style=\"font-size: 15px; line-height: 1.75; color: #2a2a2a; margin: 0;\">\n    " + data.bigStory + "\n  </p>\n</div>\n\n<table style=\"width: 100%; border-collapse: collapse; margin: 0 0 32px;\">\n  <tr>\n    <td style=\"vertical-align: top; width: 33%; padding-right: 16px;\">\n      <h3 style=\"font-size: 11px; letter-spacing: 2px; color: #e74c3c; text-transform: uppercase; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 2px solid #e74c3c;\">\n        Tech\n      </h3>\n      <ul style=\"padding-left: 16px; margin: 0;\">" + (techList || "<li>No significant tech stories today.</li>") + "</ul>\n    </td>\n    <td style=\"vertical-align: top; width: 33%; padding: 0 16px; border-left: 1px solid #eee;\">\n      <h3 style=\"font-size: 11px; letter-spacing: 2px; color: #27ae60; text-transform: uppercase; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 2px solid #27ae60;\">\n        Finance\n      </h3>\n      <ul style=\"padding-left: 16px; margin: 0;\">" + (financeList || "<li>No significant finance stories today.</li>") + "</ul>\n    </td>\n    <td style=\"vertical-align: top; width: 33%; padding-left: 16px; border-left: 1px solid #eee;\">\n      <h3 style=\"font-size: 11px; letter-spacing: 2px; color: #2980b9; text-transform: uppercase; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 2px solid #2980b9;\">\n        Geopolitics\n      </h3>\n      <ul style=\"padding-left: 16px; margin: 0;\">" + (geoList || "<li>No significant geopolitics stories today.</li>") + "</ul>\n    </td>\n  </tr>\n</table>\n\n<div style=\"margin: 0 0 28px;\">\n  <h2 style=\"font-size: 11px; letter-spacing: 3px; color: #6C5CE7; text-transform: uppercase; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid #eee;\">\n    What to Watch\n  </h2>\n  <ul style=\"padding-left: 20px; margin: 0;\">" + whatToWatchList + "</ul>\n</div>\n\n<div style=\"margin: 0 0 28px;\">\n  <h2 style=\"font-size: 11px; letter-spacing: 3px; color: #6C5CE7; text-transform: uppercase; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid #eee;\">\n    By the Numbers\n  </h2>\n  <ul style=\"padding-left: 20px; margin: 0; columns: 2; column-gap: 24px;\">" + byTheNumbersList + "</ul>\n</div>\n\n" + (signalsList ? "\n<div style=\"margin: 0 0 28px; background: #f9f9ff; border-left: 4px solid #6C5CE7; padding: 16px 20px; border-radius: 0 8px 8px 0;\">\n  <h2 style=\"font-size: 11px; letter-spacing: 3px; color: #6C5CE7; text-transform: uppercase; margin: 0 0 12px;\">\n    Signals from the Edge\n  </h2>\n  <ul style=\"padding-left: 20px; margin: 0;\">" + signalsList + "</ul>\n</div>\n" : "") + "\n\n<hr style=\"border: none; border-top: 1px solid #eee; margin: 32px 0 20px;\">\n<div style=\"text-align: center;\">\n  <p style=\"font-size: 12px; color: #888; margin: 0 0 8px;\">\n    <strong style=\"color: #555;\">&#x2B21; PRISMAL</strong> -- Refracting signal from noise\n  </p>\n  <p style=\"margin: 0 0 6px;\">\n    <a href=\"" + data.subscribeUrl + "\" style=\"color: #6C5CE7; font-size: 13px; text-decoration: none; font-weight: 600;\">\n      Subscribe free at " + data.subscribeUrl + "\n    </a>\n  </p>\n  <p style=\"font-size: 11px; color: #aaa; margin: 0;\">\n    Not financial advice &nbsp;&middot;&nbsp; Past performance is not indicative of future results\n  </p>\n</div>\n\n</body>\n</html>";
 
   return {
     platform: "beehiiv",

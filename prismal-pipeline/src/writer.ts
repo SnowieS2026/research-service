@@ -143,7 +143,7 @@ export async function writeNewsletterFallback(req: WriteRequest): Promise<WriteR
         stream: false,
         options: {
           temperature: 0.75,
-          num_predict: 4000,
+          num_predict: 8000,
         },
       }),
       signal: controller.signal,
