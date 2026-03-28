@@ -91,6 +91,10 @@ Override syntax: `model=<model-id>` e.g. `model=qwen3-coder-next:cloud`
 - Intigriti requires per-program acceptance before scope is visible
 - HackerOne blocks headless browsers (CAPTCHA loop) — cookies unreadable without Chrome's DPAPI key
 
+## Contacts
+- **Infinitara** (851533398) -- primary user, Telegram @Infinitara, Europe/London
+- **Shell** (5958934302) -- authorized sender, Telegram @shell_biatch
+
 ## Preferences & Boundaries
 - Route to the correct model for each task (see AGENTS.md table) — always
 - Verify all subagent work before marking complete — never assume
