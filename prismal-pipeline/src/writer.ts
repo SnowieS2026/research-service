@@ -39,33 +39,91 @@ function loadWriterPrompt(): string {
   }
 }
 
+/**
+ * Format a single article for the writer. Content is paraphrased only --
+ * never copy sentences verbatim. The writer must synthesise from multiple
+ * sources and cite inline using [SourceName] notation.
+ */
 function formatArticle(a: ArticleForWriter, i: number): string {
-  const content = ((a.content || a.title) as string).slice(0, 600);
+  // Paraphrase the content: truncate at 1,500 chars but mark it as raw material
+  // The writer is instructed to NEVER copy phrasing directly
+  const content = ((a.content || a.title) as string).slice(0, 1500);
   return [
-    `[${i + 1}] ${a.beat.toUpperCase()} | ${a.relevance.toUpperCase()} | ${a.domain}`,
+    `[${i + 1}] ${a.beat.toUpperCase()} | ${a.relevance.toUpperCase()} | ${a.domain.toUpperCase()}`,
     `    Title: ${a.title}`,
-    `    URL: ${a.url}`,
+    `    Source: ${a.domain} -- ${a.url}`,
     `    Published: ${a.publishedDate || "Unknown"}`,
-    `    Content: ${content}`,
+    `    Material: ${content}`,
+    "",
+  ].join("\n");
+}
+
+/**
+ * Pair two articles on the same topic into a single dual-sourced story slot.
+ * Both sources are presented together so the writer synthesises rather than copies.
+ */
+function formatArticlePair(a1: ArticleForWriter, a2: ArticleForWriter, i: number): string {
+  const c1 = ((a1.content || a1.title) as string).slice(0, 1200);
+  const c2 = ((a2.content || a2.title) as string).slice(0, 1200);
+  return [
+    `[${i + 1}] ${a1.beat.toUpperCase()} | DUAL-SOURCED -- BOTH SOURCES MUST BE USED`,
+    "",
+    "  SOURCE A:",
+    `  Title: ${a1.title}`,
+    `  Source: ${a1.domain} -- ${a1.url}`,
+    `  Published: ${a1.publishedDate || "Unknown"}`,
+    `  Material: ${c1}`,
+    "",
+    "  SOURCE B:",
+    `  Title: ${a2.title}`,
+    `  Source: ${a2.domain} -- ${a2.url}`,
+    `  Published: ${a2.publishedDate || "Unknown"}`,
+    `  Material: ${c2}`,
     "",
   ].join("\n");
 }
 
 function formatTopStory(topStory?: ArticleForWriter): string {
   if (!topStory) return "";
-  const content = ((topStory.content || "") as string).slice(0, 1200);
+  const content = ((topStory.content || "") as string).slice(0, 3000);
   return [
     "",
-    "## TOP STORY FOR FEATURE",
+    "## TOP STORY FOR FEATURE -- DUAL SOURCES PROVIDED",
     `Title: ${topStory.title}`,
-    `URL: ${topStory.url}`,
-    `Domain: ${topStory.domain}`,
+    `Source: ${topStory.domain} -- ${topStory.url}`,
     `Content: ${content}`,
   ].join("\n");
 }
 
+/**
+ * Build article list pairing articles on the same topic/beat.
+ * Tries to pair consecutive articles of the same beat; falls back to single.
+ */
+function buildArticleList(articles: ArticleForWriter[]): string {
+  const selected = articles.slice(0, 12);
+  const lines: string[] = [];
+  let i = 0;
+  let slot = 1;
+
+  while (i < selected.length) {
+    const a = selected[i];
+    // Try to pair with next article of same beat
+    const next = selected[i + 1];
+    if (next && next.beat === a.beat) {
+      lines.push(formatArticlePair(a, next, slot - 1));
+      i += 2;
+    } else {
+      lines.push(formatArticle(a, slot - 1));
+      i += 1;
+    }
+    slot++;
+  }
+
+  return lines.join("\n");
+}
+
 function buildTaskPrompt(req: WriteRequest): string {
-  const articleList = req.articles.slice(0, 12).map((a, i) => formatArticle(a, i)).join("\n");
+  const articleList = buildArticleList(req.articles);
   const topBlock = formatTopStory(req.topStory);
   const weekNote = req.weekNumbers
     ? "\n## Week at a Glance\nStories by beat: " +
@@ -83,11 +141,11 @@ function buildTaskPrompt(req: WriteRequest): string {
         "5. GEOPOLITICS (2-3 stories, each 4-6 sentences focused on power dynamics and specific consequences)",
         "6. WHAT TO WATCH (3 items, each naming a specific observable indicator with a specific trigger level or event)",
         "7. BY THE NUMBERS (6-10 exact data points with real figures, no rounding)",
-        "8. SIGNALS FROM THE EDGE (1-3 underreported or misreported stories, 3-4 sentences each, explain what the press missed or got wrong)",
+        "8. SIGNALS FROM THE EDGE (3-5 underreported, misreported, or obscured stories, 4-6 sentences each. For each: name what is being hidden, who benefits from the underreporting, and the actual plain significance. Use investigative depth, not summary.)",
         "9. Footer: *Subscribe at prismal.beehiiv.com | Not financial advice*",
         "",
         "Every story must have: specific figures, named actors, exact consequences.",
-        "Minimum word count: 700 words of editorial content.",
+        "Minimum word count: 1,000 words of editorial content.",
         "Never use emdashes (--) or double dashes as sentence interrupts.",
       ].join("\n")
     : [
@@ -108,15 +166,16 @@ function buildTaskPrompt(req: WriteRequest): string {
         "Never use emdashes (--) or double dashes as sentence interrupts.",
       ].join("\n");
 
+  const modeLabel = req.mode === "daily" ? "DAILY NEWSLETTER" : "WEEKLY ROUNDUP";
   return [
-    `# PRISMAL WRITER TASK -- ${req.mode === "daily" ? "DAILY NEWSLETTER" : "WEEKLY ROUNDUP"}`,
+    `# PRISMAL WRITER TASK -- ${modeLabel}`,
     "",
     "## Today's Date Label",
     req.dateLabel,
     topBlock,
     weekNote,
     "",
-    "## Source Material -- all available facts",
+    "## Source Material -- all available facts (PARAPHRASE ONLY -- NEVER COPY WORD FOR WORD)",
     articleList,
     "",
     sectionRules,
@@ -138,12 +197,12 @@ export async function writeNewsletterFallback(req: WriteRequest): Promise<WriteR
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "minimax-m2.7:cloud",
+        model: "glm-5:cloud",
         prompt: fullPrompt,
         stream: false,
         options: {
           temperature: 0.75,
-          num_predict: 8000,
+          num_predict: 16000,
         },
       }),
       signal: controller.signal,

@@ -53,6 +53,10 @@ const DAILY_QUERIES = [
   { q: "tech layoffs acquisition funding news today", beat: "tech" },
   { q: "EU AI Act tech regulation Europe news today", beat: "tech" },
   { q: "China tech news today 2026", beat: "tech" },
+  // Intelligence, surveillance, and covert tech operations
+  { q: "CIA NSA intelligence operation exposed today 2026", beat: "geopolitics" },
+  { q: "surveillance state privacy breach today 2026", beat: "geopolitics" },
+  { q: "dark web cybercrime underground today 2026", beat: "geopolitics" },
   // Finance -- Markets, Macro, Crypto
   { q: "stock market S&P 500 Nasdaq today 2026", beat: "finance" },
   { q: "Federal Reserve interest rate decision today", beat: "finance" },
@@ -60,10 +64,13 @@ const DAILY_QUERIES = [
   { q: "bitcoin ethereum cryptocurrency price today", beat: "finance" },
   { q: "oil gold commodities markets today 2026", beat: "finance" },
   { q: "banking crisis credit default news today", beat: "finance" },
-  { q: " ECB Bank of England interest rates today", beat: "finance" },
+  { q: "ECB Bank of England interest rates today", beat: "finance" },
   { q: "JP Morgan Goldman Sachs Morgan Stanley news today", beat: "finance" },
-  { q: "forex dollar euro yen yuan today", beat: "finance" },
   { q: "Treasury bond yield curve today 2026", beat: "finance" },
+  { q: "forex dollar euro yen yuan today", beat: "finance" },
+  // Dark money, sanctions, financial intelligence
+  { q: "dark money sanctions oligarchs financial leak today 2026", beat: "finance" },
+  { q: "offshore finance tax haven leak today 2026", beat: "finance" },
   // Geopolitics -- Major Powers
   { q: "US China trade tariffs diplomacy news today", beat: "geopolitics" },
   { q: "Russia Ukraine war latest news today 2026", beat: "geopolitics" },
@@ -71,6 +78,10 @@ const DAILY_QUERIES = [
   { q: "NATO military alliance news today", beat: "geopolitics" },
   { q: "G7 G20 summits diplomacy news today", beat: "geopolitics" },
   { q: "South China Sea Taiwan tensions today", beat: "geopolitics" },
+  // Intelligence and clandestine operations
+  { q: "covert operation intelligence briefing today 2026", beat: "geopolitics" },
+  { q: "diplomatic cables whistleblower today 2026", beat: "geopolitics" },
+  { q: "military intelligence operation today 2026", beat: "geopolitics" },
   // Geopolitics -- Europe
   { q: "Germany France UK politics news today", beat: "geopolitics" },
   { q: "European Union energy crisis news today", beat: "geopolitics" },
@@ -87,6 +98,13 @@ const DAILY_QUERIES = [
   { q: "military spending weapons deal news today", beat: "geopolitics" },
   { q: "sanctions oligarchs asset freeze today", beat: "geopolitics" },
   { q: "disinformation propaganda election news today", beat: "geopolitics" },
+  { q: "classified briefing declassified today 2026", beat: "geopolitics" },
+  { q: "militia paramilitary force operation today 2026", beat: "geopolitics" },
+  { q: "proxy war shadow war escalation today 2026", beat: "geopolitics" },
+  { q: "narco-state organised crime today 2026", beat: "geopolitics" },
+  { q: "information warfare psyop today 2026", beat: "geopolitics" },
+  { q: "strategic minerals supply chain disruption today 2026", beat: "geopolitics" },
+  { q: "private military contractor mercenary today 2026", beat: "geopolitics" },
 ];
 
 const WEEKLY_QUERIES = [
@@ -99,6 +117,10 @@ const WEEKLY_QUERIES = [
   { q: "tech layoffs acquisition funding week 2026", beat: "tech" },
   { q: "EU AI Act tech regulation Europe week 2026", beat: "tech" },
   { q: "China tech week 2026", beat: "tech" },
+  // Intelligence, surveillance, covert tech operations
+  { q: "CIA NSA intelligence operation exposed week 2026", beat: "geopolitics" },
+  { q: "surveillance state privacy breach week 2026", beat: "geopolitics" },
+  { q: "dark web cybercrime underground week 2026", beat: "geopolitics" },
   // Finance -- Markets, Macro, Crypto
   { q: "stock market S&P 500 Nasdaq week 2026", beat: "finance" },
   { q: "Federal Reserve interest rate week 2026", beat: "finance" },
@@ -110,6 +132,9 @@ const WEEKLY_QUERIES = [
   { q: "JP Morgan Goldman Sachs Morgan Stanley week 2026", beat: "finance" },
   { q: "Treasury bond yield curve week 2026", beat: "finance" },
   { q: "forex dollar euro yen yuan week 2026", beat: "finance" },
+  // Dark money, sanctions, financial intelligence
+  { q: "dark money sanctions oligarchs financial leak week 2026", beat: "finance" },
+  { q: "offshore finance tax haven leak week 2026", beat: "finance" },
   // Geopolitics -- Major Powers
   { q: "US China trade tariffs diplomacy week 2026", beat: "geopolitics" },
   { q: "Russia Ukraine war week 2026", beat: "geopolitics" },
@@ -117,6 +142,10 @@ const WEEKLY_QUERIES = [
   { q: "NATO military alliance week 2026", beat: "geopolitics" },
   { q: "G7 G20 summits diplomacy week 2026", beat: "geopolitics" },
   { q: "South China Sea Taiwan tensions week 2026", beat: "geopolitics" },
+  // Intelligence and clandestine operations
+  { q: "covert operation intelligence briefing week 2026", beat: "geopolitics" },
+  { q: "diplomatic cables whistleblower week 2026", beat: "geopolitics" },
+  { q: "military intelligence operation week 2026", beat: "geopolitics" },
   // Geopolitics -- Europe
   { q: "Germany France UK politics week 2026", beat: "geopolitics" },
   { q: "European Union energy week 2026", beat: "geopolitics" },
@@ -124,7 +153,7 @@ const WEEKLY_QUERIES = [
   { q: "India Pakistan tensions week 2026", beat: "geopolitics" },
   { q: "North Korea nuclear missile week 2026", beat: "geopolitics" },
   { q: "Japan South Korea US alliance week 2026", beat: "geopolitics" },
-  // Geopolitics -- Americas / Africa / underreported
+  // Geopolitics -- Americas / Africa / underreported / clandestine
   { q: "Latin America politics week 2026", beat: "geopolitics" },
   { q: "Africa conflict democracy week 2026", beat: "geopolitics" },
   { q: "underreported news week 2026", beat: "geopolitics" },
@@ -133,6 +162,13 @@ const WEEKLY_QUERIES = [
   { q: "military spending weapons deal week 2026", beat: "geopolitics" },
   { q: "sanctions oligarchs week 2026", beat: "geopolitics" },
   { q: "disinformation propaganda election week 2026", beat: "geopolitics" },
+  { q: "classified briefing declassified week 2026", beat: "geopolitics" },
+  { q: "militia paramilitary force operation week 2026", beat: "geopolitics" },
+  { q: "proxy war shadow war escalation week 2026", beat: "geopolitics" },
+  { q: "narco-state organised crime week 2026", beat: "geopolitics" },
+  { q: "information warfare psyop week 2026", beat: "geopolitics" },
+  { q: "strategic minerals supply chain disruption week 2026", beat: "geopolitics" },
+  { q: "private military contractor mercenary week 2026", beat: "geopolitics" },
 ];
 
 // ── Article quality filter -- run before scoring ──────────────────────────────
