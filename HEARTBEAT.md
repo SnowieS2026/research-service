@@ -10,6 +10,17 @@
 - Model: `glm-5:cloud` (deep research)
 - Content: 35-country morning intelligence report with suppressed/obfuscated stories
 
+## ⚠️ EXCEPTION: Prismal Daily Newsletter (ACTIVE)
+**Prismal daily newsletter cron is ACTIVE** (2026-03-28):
+- Cron: `0 1 * * 1-5` (1:00 AM GMT, Mon-Fri)
+- Delivers to: Telegram chat 851533398
+- Model: `glm-5:cloud` (deep research, 16k tokens)
+- Pipeline: `C:\Users\bryan\.openclaw\workspace\prismal-pipeline`
+- Run: `node dist/index.js --date YYYY-MM-DD --issue N`
+- Dashboard: `reports/distribution/dashboard-YYYY-MM-DD.html`
+- Issue lock: `reports/.issue-lock`
+- The agent handles: run pipeline, verify completeness, generate dashboard, message Telegram, update lock file
+
 ## What This Means
 - No other periodic health checks
 - No bounty pipeline crons
