@@ -58,6 +58,7 @@ _This is my curated memory. Updated regularly from daily logs._
 - **SearxNG:** `http://localhost:8080` — start with `docker run --name searxng -p 8080:8080 searxng/searxng:latest`
 - **Vehicle OSINT:** Full pipeline at `bounty-passive-pipeline/`. Python CLI: `python vehicle-osint.py [PLATE]`. Report: `reports/osint/YYYY-MM-DD/vehicle-PLATE-full.md` (14-section emoji format). Sources: car-checking.com (Cloudflare-blocked in headless, use OpenClaw browser fallback), gov.uk DVLA (cloudscraper + Playwright anti-detect), check-mot-history.co.uk (cloudscraper, full 18-entry MOT timeline), data.gov.uk MOT API (free JSON). Skill: `skills/vehicle-osint/SKILL.md`. TypeScript collectors in `src/osint/collectors/VehicleCollector.ts`.
 - **EditThisCookie:** Used to export HackerOne cookies for session capture
+- **Document Creation:** Local Python tools for Word, Excel, PowerPoint, PDF. Skill: `skills/document-creator/SKILL.md`. Tools: `tools/docx_create.py`, `tools/xlsx_create.py`, `tools/pptx_create.py`, `tools/pdf_create.py`, `tools/md_to_docx.py`, `tools/md_to_pdf.py`. Dependencies: `python-docx`, `openpyxl`, `python-pptx`, `reportlab`, `markdown-it-py`.
 
 ## Ollama Model Assignments (permanent, from 2026-03-26)
 **Cloud models only** (Ollama Connect, `:cloud` suffix). No local models registered — those run directly via `ollama list` when needed. Config: `C:\openclaw-local\openclaw.json`. Primary = minimax-m2.7:cloud.
@@ -87,6 +88,7 @@ Override syntax: `model=<model-id>` e.g. `model=qwen3-coder-next:cloud`
 | Skill | What it does |
 |-------|-------------|
 | `vehicle-osint` | UK vehicle OSINT pipeline -- 14-section report from DVLA, MOT history, valuations, risk analysis. Entry: `python vehicle-osint.py [PLATE]`. |
+| `document-creator` | Create Word, Excel, PowerPoint, PDF documents from structured input. Entry: `python tools/docx_create.py`, `xlsx_create.py`, `pptx_create.py`, `pdf_create.py`. |
 | `research-service` | Full research pipeline: SearxNG search -> scrape -> structured report |
 | `web-browser` | Fast web search + content extraction via SearxNG |
 
