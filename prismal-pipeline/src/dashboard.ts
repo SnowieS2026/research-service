@@ -67,15 +67,15 @@ export function parseNewsletter(md: string, issueNumber: number = 1): Newsletter
 
     for (const line of rawLines) {
       if (/^## SIGNALS FROM THE EDGE$/mi.test(line)) { inSignals = true; continue; }
-      if (inSignals && /^---/.test(line)) break; // end of section
       if (!inSignals) continue;
 
       const trimmed = line.trim();
 
-      // A title line: non-blank, starts without markdown list chars or common prefixes
-      // In the raw md, titles are ### lines
+      // Stop at standalone --- divider or opening HTML comment of SEO block
+      if (/^---$/.test(line) || trimmed.startsWith("<!--")) { break; }
+
       if (trimmed.startsWith("### ")) {
-        // Save previous signal if we have one
+        // Save previous signal
         if (currentTitle && contentLines.length > 0) {
           signals.push({
             title: currentTitle.replace(/^#{1,6}\s+/, "").replace(/\*\*/g, "").trim(),
@@ -85,11 +85,7 @@ export function parseNewsletter(md: string, issueNumber: number = 1): Newsletter
         currentTitle = trimmed;
         contentLines.length = 0;
       } else if (trimmed && !trimmed.startsWith("#")) {
-        // Content line
         contentLines.push(trimmed);
-      } else if (trimmed === "") {
-        // Blank line -- could be separating title from content or between signals
-        // Just skip it; contentLines handles multi-line paragraphs
       }
     }
 
