@@ -206,15 +206,31 @@ def collect_car_check(plate, pw):
     result = {"findings": [], "errors": [], "raw_data": {}, "source": "car-checking.com"}
     browser = None
     try:
-        browser = pw.chromium.launch(headless=True, executable_path=CHROME_PATH)
+        browser = pw.chromium.launch(
+            headless=True,
+            executable_path=CHROME_PATH,
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--disable-dev-shm-usage",
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-web-security",
+                "--disable-features=IsolateOrigins,site-per-process",
+            ]
+        )
         ctx = browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
             extra_http_headers={"Accept-Language": "en-GB,en;q=0.9"}
         )
+        # Patch navigator.webdriver before any pages load
+        ctx.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+            window.navigator.chrome = { runtime: {} };
+        """)
         page = ctx.new_page()
         page.on("dialog", lambda d: d.accept())
         page.goto("https://www.car-checking.com/", wait_until="domcontentloaded", timeout=20000)
-        page.wait_for_timeout(3000)
+        page.wait_for_timeout(4000)
         page.locator("#subForm1").fill(plate)
         page.wait_for_timeout(500)
         page.locator("button[type='submit']").first.click()
@@ -349,50 +365,240 @@ def collect_car_check(plate, pw):
 
 
 def collect_dvla(plate, pw):
-    """DVLA vehicle enquiry — colour, VIN, first registration, tax status."""
+    """DVLA vehicle enquiry — colour, VIN, first registration, tax status.
+    Uses cloudscraper first (no Cloudflare on gov.uk), falls back to Playwright."""
     result = {"findings": [], "errors": [], "raw_data": {}, "source": "gov.uk-DVLA"}
-    browser = None
-    try:
-        browser = pw.chromium.launch(headless=True, executable_path=CHROME_PATH)
-        ctx = browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-            extra_http_headers={"Accept-Language": "en-GB,en;q=0.9"}
-        )
-        page = ctx.new_page()
-        page.goto("https://vehicleenquiry.service.gov.uk/", wait_until="networkidle", timeout=25000)
-        try:
-            page.locator("button", has_text=re.compile(r"Reject", re.I)).first.click()
-            page.wait_for_load_state("networkidle", timeout=10000)
-        except:
-            pass
-        page.locator("#wizard_vehicle_enquiry_capture_vrn_vrn").fill(plate)
-        page.get_by_role("button", name="Continue").click()
-        page.wait_for_load_state("networkidle", timeout=20000)
-        body = page.text_content("body") or ""
-        result["raw_data"]["raw_text"] = body[:5000]
 
-        pairs = {
-            "Colour": "colour", "Vehicle colour": "colour",
-            "Tax status": "tax_status", "Vehicle tax status": "tax_status",
-            "First registered": "first_reg", "Date of first registration": "first_reg",
-            "Make": "make_dvla", "Vehicle make": "make_dvla",
-            "MOT expiry date": "mot_expiry_dvla",
-            "Fuel type": "fuel_type_dvla",
-        }
-        for label, field in pairs.items():
-            m = re.search(rf'{re.escape(label)}[\s:]+([^\n]{2,60})', body, re.I)
-            if m:
-                val = m.group(1).strip()
-                result["raw_data"][field] = val
-                if field not in ("make_dvla",):
-                    result["findings"].append({"source": "gov.uk-DVLA", "field": field, "value": val, "confidence": 90})
+    # ── Try cloudscraper first (no Cloudflare, fast) ──────────────────────────
+    try:
+        scraper = cloudscraper.create_scraper()
+        scraper.headers.update({
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-GB,en;q=0.9",
+            "Referer": "https://vehicleenquiry.service.gov.uk/",
+        })
+        resp = scraper.get("https://vehicleenquiry.service.gov.uk/", timeout=20)
+        body = resp.text
+
+        # Extract hidden form fields
+        hidden = {}
+        for m in re.finditer(r'<input[^>]*type=["\']hidden["\'][^>]*name=["\']([^"\']+)["\'][^>]*value=["\']([^"\']*)["\']', body, re.I):
+            hidden[m.group(1)] = m.group(2)
+        for m in re.finditer(r'<input[^>]*value=["\']([^"\']*)["\'][^>]*type=["\']hidden["\'][^>]*name=["\']([^"\']+)["\']', body, re.I):
+            hidden[m.group(2)] = m.group(1)
+
+        # Submit form
+        form_data = dict(hidden)
+        form_data["wizard_vehicle_enquiry_capture_vrn[vrn]"] = plate
+        resp2 = scraper.post(
+            "https://vehicleenquiry.service.gov.uk/",
+            data=form_data, timeout=20, allow_redirects=True,
+            headers={"Referer": "https://vehicleenquiry.service.gov.uk/"}
+        )
+        body2 = resp2.text
+        result["raw_data"]["raw_text"] = body2[:8000]
+
+        # If redirected to result page, extract vehicle data
+        if resp2.url and "session-timeout" not in resp2.url and "vehicle" in resp2.url.lower() or \
+           any(k in body2 for k in ["Colour", "Tax status", "Make"]):
+            pairs = [
+                ("Colour", "colour"), ("Tax status", "tax_status"),
+                ("Date of first registration", "first_reg"),
+                ("First registered", "first_reg"),
+                ("Vehicle make", "make_dvla"), ("Make", "make_dvla"),
+                ("MOT expiry date", "mot_expiry_dvla"),
+            ]
+            for label, field in pairs:
+                m = re.search(rf'{re.escape(label)}[\s:]+([^\n<]{2,80})', body2, re.I)
+                if m:
+                    result["raw_data"][field] = m.group(1).strip()
+                    if field != "make_dvla":
+                        result["findings"].append({"source": "gov.uk-DVLA", "field": field, "value": m.group(1).strip(), "confidence": 90})
+        else:
+            raise ValueError("cloudscraper got redirected to session-timeout")
+
+    except Exception as cloudscraper_err:
+        result["errors"].append(f"cloudscraper DVLA failed ({cloudscraper_err}), falling back to Playwright")
+        # ── Fallback: Playwright with system Chrome + anti-detection ────────────
+        browser = None
+        try:
+            browser = pw.chromium.launch(
+                headless=True, executable_path=CHROME_PATH,
+                args=["--disable-blink-features=AutomationControlled",
+                      "--disable-dev-shm-usage", "--no-sandbox",
+                      "--disable-setuid-sandbox", "--disable-web-security"]
+            )
+            ctx = browser.new_context(
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                extra_http_headers={"Accept-Language": "en-GB,en;q=0.9"}
+            )
+            ctx.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+            page = ctx.new_page()
+            page.goto("https://vehicleenquiry.service.gov.uk/", wait_until="networkidle", timeout=25000)
+            try:
+                page.locator("button", has_text=re.compile(r"Reject", re.I)).first.click()
+                page.wait_for_load_state("networkidle", timeout=10000)
+            except Exception:
+                pass
+            page.locator("#wizard_vehicle_enquiry_capture_vrn_vrn").fill(plate)
+            page.get_by_role("button", name="Continue").click()
+            page.wait_for_load_state("networkidle", timeout=20000)
+            body = page.text_content("body") or ""
+            result["raw_data"]["raw_text"] = body[:5000]
+
+            pairs = {
+                "Colour": "colour", "Vehicle colour": "colour",
+                "Tax status": "tax_status", "Vehicle tax status": "tax_status",
+                "First registered": "first_reg", "Date of first registration": "first_reg",
+                "Make": "make_dvla", "Vehicle make": "make_dvla",
+                "MOT expiry date": "mot_expiry_dvla",
+                "Fuel type": "fuel_type_dvla",
+            }
+            for label, field in pairs.items():
+                m = re.search(rf'{re.escape(label)}[\s:]+([^\n]{2,60})', body, re.I)
+                if m:
+                    val = m.group(1).strip()
+                    result["raw_data"][field] = val
+                    if field not in ("make_dvla",):
+                        result["findings"].append({"source": "gov.uk-DVLA", "field": field, "value": val, "confidence": 90})
+        except Exception as pw_err:
+            result["errors"].append(f"Playwright DVLA also failed: {pw_err}")
+        finally:
+            if browser:
+                browser.close()
+    delay(0.5)
+    return result
+
+
+def collect_check_mot_history(plate):
+    """check-mot-history.co.uk — full MOT history via cloudscraper (no Cloudflare on GET).
+    Falls back to data.gov.uk direct API if blocked."""
+    result = {"findings": [], "errors": [], "raw_data": {}, "source": "check-mot-history.co.uk"}
+    try:
+        scraper = cloudscraper.create_scraper()
+        scraper.headers.update({
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml",
+            "Accept-Language": "en-GB,en;q=0.9",
+            "Referer": "https://www.check-mot-history.co.uk/",
+        })
+
+        resp = scraper.get(
+            f"https://www.check-mot-history.co.uk/vehicle/{plate.upper().replace(' ', '')}",
+            timeout=20
+        )
+        result["raw_data"]["status_code"] = resp.status_code
+        result["raw_data"]["url"] = resp.url
+
+        # cloudscraper returns the JS-challenged page; we need to wait for the302 redirect
+        # Try waiting a bit for the challenge to complete
+        if resp.status_code in (403, 503, 202):
+            result["errors"].append(f"check-mot-history.co.uk: HTTP {resp.status_code} — Cloudflare challenge in progress")
+            # Try data.gov.uk MOT API directly instead
+            return collect_data_gov_uk_mot(plate)
+
+        body = resp.text
+        result["raw_data"]["raw_text"] = body[:20000]
+
+        # Parse vehicle details
+        # Format: "2006 VAUXHALL VECTRA Colour: Grey Fuel Type: Diesel First Registered: 14/06/2006"
+        m = re.search(r'(\d{4})\s+(VAUXHALL|FORD|TOYOTA|BMW|AUDI|MERCEDES|VW|Volkswagen|HONDA|NISSAN|PEUGEOT|RENAULT|SKODA|SEAT|CITROEN|MAZDA|SUBARU|MITSUBISHI|KIA|HYUNDAI|LAND ROVER|JAGUAR|PORSCHE)\s+([^\s][^\n]*?)(?=Colour:|$)', body, re.I)
+        if m:
+            result["raw_data"]["year"] = m.group(1)
+            result["raw_data"]["make"] = m.group(2).upper()
+            result["raw_data"]["model"] = m.group(3).strip()[:60]
+            result["findings"].append({"source": "check-mot-history.co.uk", "field": "year", "value": m.group(1), "confidence": 95})
+            result["findings"].append({"source": "check-mot-history.co.uk", "field": "make", "value": m.group(2).upper(), "confidence": 95})
+
+        pairs = [("Colour:", "colour"), ("Fuel Type:", "fuel_type"), ("First Registered:", "first_reg")]
+        for label, field in pairs:
+            m2 = re.search(rf'{re.escape(label)}\s*([^\n]+)', body, re.I)
+            if m2:
+                result["raw_data"][field] = m2.group(1).strip()
+                result["findings"].append({"source": "check-mot-history.co.uk", "field": field, "value": m2.group(1).strip(), "confidence": 90})
+
+        # Parse MOT history entries
+        # Format: "Date Tested: DD/MM/YYYY Test Result: ✔ Passed MOT Expiry Date: DD/MM/YYYY Mileage: NNNNN Comments:"
+        # Comments as list items
+        mot_entries = []
+        date_re = re.compile(r'Date Tested:\s*(\d{1,2}\/\d{1,2}\/\d{4})(.*?)(?=Date Tested:|$)', re.S)
+        for entry_m in date_re.finditer(body):
+            date_str = entry_m.group(1)
+            block = entry_m.group(2)[:500]
+            result_m = re.search(r'Test Result:\s*([✔✖]\s*(?:Pass|Failed))', block)
+            expiry_m = re.search(r'MOT Expiry Date:\s*(\d{1,2}\/\d{1,2}\/\d{4})', block)
+            mileage_m = re.search(r'Mileage:\s*(\d{1,6})', block)
+            comments = []
+            for c_m in re.finditer(r'[✔✖]?\s*(Advisory|Major|Dangerous|Fail|Prs)\s*[-–]\s*([^\n<]{3,200})', block):
+                comments.append(c_m.group(2).strip())
+            if result_m:
+                mot_entries.append({
+                    "date": date_str,
+                    "result": "PASSED" if "Pass" in result_m.group(1) else "FAILED",
+                    "expiry": expiry_m.group(1) if expiry_m else "",
+                    "mileage": int(mileage_m.group(1)) if mileage_m else 0,
+                    "comments": comments
+                })
+            if len(mot_entries) >= 30:
+                break
+
+        if mot_entries:
+            result["raw_data"]["mot_history"] = mot_entries
+            result["raw_data"]["mot_history_count"] = len(mot_entries)
+            result["findings"].append({"source": "check-mot-history.co.uk", "field": "mot_history_count", "value": str(len(mot_entries)), "confidence": 95})
+            latest = mot_entries[0]
+            result["findings"].append({"source": "check-mot-history.co.uk", "field": "mot_result_latest", "value": latest.get("result", "Unknown"), "confidence": 95})
+            result["findings"].append({"source": "check-mot-history.co.uk", "field": "current_mileage", "value": f"{latest.get('mileage', 0):,}", "confidence": 90})
+        else:
+            # Fallback to data.gov.uk if no MOT parsed
+            raise ValueError("No MOT history found in page body")
 
     except Exception as e:
-        result["errors"].append(f"DVLA: {e}")
-    finally:
-        if browser:
-            browser.close()
+        result["errors"].append(f"check-mot-history.co.uk: {e}")
+        # Fall back to data.gov.uk
+        fallback = collect_data_gov_uk_mot(plate)
+        result["findings"].extend(fallback["findings"])
+        result["errors"].extend(fallback["errors"])
+        result["raw_data"].update(fallback["raw_data"])
+
     delay(0.5)
+    return result
+
+
+def collect_data_gov_uk_mot(plate):
+    """data.gov.uk MOT history API — free, no auth. Returns full MOT history.
+    Endpoint: https://data.gov.uk/data/api/pre_release/mot/vehicle?q=REG&date=YYYY-MM"""
+    result = {"findings": [], "errors": [], "raw_data": {}, "source": "data.gov.uk-MOT"}
+    try:
+        scraper = cloudscraper.create_scraper()
+        scraper.headers.update({
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "application/json",
+        })
+        # Try the data.gov.uk MOT API
+        url = f"https://data.gov.uk/data/api/pre_release/mot/vehicle?q={plate.upper()}"
+        resp = scraper.get(url, timeout=15)
+        result["raw_data"]["status_code"] = resp.status_code
+        result["raw_data"]["response"] = resp.text[:2000]
+        if resp.status_code == 200 and resp.text.strip().startswith("["):
+            import json
+            data = json.loads(resp.text)
+            if isinstance(data, list) and len(data) > 0:
+                mot_entries = []
+                for e in data[:30]:
+                    if isinstance(e, dict):
+                        mot_entries.append({
+                            "date": e.get("date", ""),
+                            "result": e.get("testResult", "UNKNOWN"),
+                            "expiry": e.get("expiryDate", ""),
+                            "mileage": int(e.get("odometerReading", 0)),
+                            "comments": [e.get("rfrAndComments", "")[:200]]
+                        })
+                result["raw_data"]["mot_history"] = mot_entries
+                result["findings"].append({"source": "data.gov.uk-MOT", "field": "mot_history_count", "value": str(len(mot_entries)), "confidence": 95})
+    except Exception as e:
+        result["errors"].append(f"data.gov.uk MOT: {e}")
     return result
 
 
@@ -863,6 +1069,7 @@ def run_vehicle_osint(plate, output_path=None):
     threads = [
         threading.Thread(target=run_one, args=("carcheck", collect_car_check, plate_clean)),
         threading.Thread(target=run_one, args=("dvla", collect_dvla, plate_clean)),
+        threading.Thread(target=run_one, args=("mot_history", lambda p, _: collect_check_mot_history(p), plate_clean)),
     ]
     for t in threads:
         t.start()
@@ -874,10 +1081,13 @@ def run_vehicle_osint(plate, output_path=None):
 
     cc = results.get("carcheck", {"findings": [], "errors": [], "raw_data": {}})
     dvla = results.get("dvla", {"findings": [], "errors": [], "raw_data": {}})
+    mot_hist_data = results.get("mot_history", {"findings": [], "errors": [], "raw_data": {}})
     data_sources.append({"name": "car-checking.com", "success": bool(cc.get("findings")), "note": cc.get("source","")})
     data_sources.append({"name": "gov.uk DVLA", "success": bool(dvla.get("findings")), "note": dvla.get("source","")})
+    data_sources.append({"name": "check-mot-history.co.uk", "success": bool(mot_hist_data.get("findings")), "note": mot_hist_data.get("source","")})
     errors.extend(cc.get("errors", []))
     errors.extend(dvla.get("errors", []))
+    errors.extend(mot_hist_data.get("errors", []))
 
     # ── Extract fields from collected data ──
     raw = cc.get("raw_data", {})
@@ -885,7 +1095,6 @@ def run_vehicle_osint(plate, output_path=None):
 
     make = raw.get("make", "") or dvla_raw.get("make_dvla", "") or ""
     model = (raw.get("model", "") or "").strip()
-    model = model.strip()
     year = int(raw.get("year", 0)) or 0
     colour = raw.get("colour", "") or dvla_raw.get("colour", "")
     fuel_type = raw.get("fuel_type", "")
@@ -904,6 +1113,28 @@ def run_vehicle_osint(plate, output_path=None):
     first_reg = dvla_raw.get("first_reg", dvla_raw.get("first_reg_dvla", ""))
     vin = raw.get("vin", "")
     body_type = ""
+
+    # ── Merge MOT history from check-mot-history.co.uk ──────────────────────
+    mot_hist_raw = mot_hist_data.get("raw_data", {})
+    if mot_hist_raw.get("mot_history") and not mot_history:
+        mot_history = mot_hist_raw["mot_history"]
+        mot_history_count = mot_hist_raw.get("mot_history_count", len(mot_history))
+        combined = [int(e["mileage"]) for e in mot_history if e.get("mileage")]
+        combined.extend(mileage_timeline or [])
+        mileage_timeline = sorted(set(combined), reverse=True)
+        current_mileage = mileage_timeline[0] if mileage_timeline else current_mileage
+    # Pull vehicle identity from mot_hist if not already set
+    if not make:
+        make = mot_hist_raw.get("make", "")
+    if not colour:
+        colour = mot_hist_raw.get("colour", "")
+    if not year:
+        try: year = int(mot_hist_raw.get("year", 0))
+        except: pass
+    if not first_reg:
+        first_reg = mot_hist_raw.get("first_reg", "")
+    if not fuel_type:
+        fuel_type = mot_hist_raw.get("fuel_type", "")
 
     # ── Cross-reference enrichment ──
     cr = cross_reference(make, model, year, engine_cc, fuel_type)
@@ -1022,8 +1253,20 @@ def run_vehicle_osint(plate, output_path=None):
 
 if __name__ == "__main__":
     import sys
-    plate = sys.argv[1] if len(sys.argv) > 1 else input("Enter plate: ").strip()
+    # Parse --reg flag
+    plate = None
+    i = 1
+    while i < len(sys.argv):
+        if sys.argv[i] == "--reg" and i + 1 < len(sys.argv):
+            plate = sys.argv[i + 1]
+            break
+        elif not sys.argv[i].startswith("-"):
+            plate = sys.argv[i]
+            break
+        i += 1
+    if not plate:
+        plate = input("Enter plate: ").strip()
     if not plate:
         print("No plate entered.")
         sys.exit(1)
-    run_vehicle_osint(plate, sys.argv[2] if len(sys.argv) > 2 else None)
+    run_vehicle_osint(plate, sys.argv[-1] if sys.argv[-1] and not sys.argv[-1].startswith("-") else None)
