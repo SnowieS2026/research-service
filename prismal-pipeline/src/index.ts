@@ -44,30 +44,95 @@ const issueNumber = getNextIssueNumber();
 // ── Search queries per mode ───────────────────────────────────────────────────
 
 const DAILY_QUERIES = [
-  // Tech
-  { q: "AI artificial intelligence news today 2026", beat: "tech" },
-  { q: "cybersecurity data breach technology news today", beat: "tech" },
-  { q: "tech industry news major development today", beat: "tech" },
-  // Finance
-  { q: "stock market news today 2026", beat: "finance" },
-  { q: "federal reserve interest rates economy news today", beat: "finance" },
-  { q: "bitcoin cryptocurrency markets news today", beat: "finance" },
-  // Geopolitics
-  { q: "geopolitics war conflict diplomacy news today 2026", beat: "geopolitics" },
-  { q: "US China trade relations news today", beat: "geopolitics" },
-  { q: "Europe Middle East Russia Ukraine war news today", beat: "geopolitics" },
+  // Tech -- AI, Regulation, Big Tech
+  { q: "artificial intelligence AI news today 2026", beat: "tech" },
+  { q: "OpenAI Google DeepMind Anthropic news today", beat: "tech" },
+  { q: "cybersecurity data breach ransomware today 2026", beat: "tech" },
+  { q: "Big Tech antitrust regulation news today", beat: "tech" },
+  { q: "semiconductor chip shortage news today", beat: "tech" },
+  { q: "tech layoffs acquisition funding news today", beat: "tech" },
+  { q: "EU AI Act tech regulation Europe news today", beat: "tech" },
+  { q: "China tech news today 2026", beat: "tech" },
+  // Finance -- Markets, Macro, Crypto
+  { q: "stock market S&P 500 Nasdaq today 2026", beat: "finance" },
+  { q: "Federal Reserve interest rate decision today", beat: "finance" },
+  { q: "inflation CPI economic data today 2026", beat: "finance" },
+  { q: "bitcoin ethereum cryptocurrency price today", beat: "finance" },
+  { q: "oil gold commodities markets today 2026", beat: "finance" },
+  { q: "banking crisis credit default news today", beat: "finance" },
+  { q: " ECB Bank of England interest rates today", beat: "finance" },
+  { q: "JP Morgan Goldman Sachs Morgan Stanley news today", beat: "finance" },
+  { q: "forex dollar euro yen yuan today", beat: "finance" },
+  { q: "Treasury bond yield curve today 2026", beat: "finance" },
+  // Geopolitics -- Major Powers
+  { q: "US China trade tariffs diplomacy news today", beat: "geopolitics" },
+  { q: "Russia Ukraine war latest news today 2026", beat: "geopolitics" },
+  { q: "Middle East Iran Israel news today 2026", beat: "geopolitics" },
+  { q: "NATO military alliance news today", beat: "geopolitics" },
+  { q: "G7 G20 summits diplomacy news today", beat: "geopolitics" },
+  { q: "South China Sea Taiwan tensions today", beat: "geopolitics" },
+  // Geopolitics -- Europe
+  { q: "Germany France UK politics news today", beat: "geopolitics" },
+  { q: "European Union energy crisis news today", beat: "geopolitics" },
+  // Geopolitics -- Asia
+  { q: "India Pakistan tensions news today", beat: "geopolitics" },
+  { q: "North Korea nuclear missile news today", beat: "geopolitics" },
+  { q: "Japan South Korea US alliance news today", beat: "geopolitics" },
+  // Geopolitics -- Americas / Africa / underreported
+  { q: "Latin America drug cartel politics today", beat: "geopolitics" },
+  { q: "Africa conflict minerals democracy news today", beat: "geopolitics" },
+  { q: "underreported news stories today 2026", beat: "geopolitics" },
+  { q: "whistleblower surveillance news today", beat: "geopolitics" },
+  { q: "climate extreme weather economic impact today", beat: "geopolitics" },
+  { q: "military spending weapons deal news today", beat: "geopolitics" },
+  { q: "sanctions oligarchs asset freeze today", beat: "geopolitics" },
+  { q: "disinformation propaganda election news today", beat: "geopolitics" },
 ];
 
 const WEEKLY_QUERIES = [
+  // Tech -- AI, Regulation, Big Tech (7 days)
   { q: "AI artificial intelligence news this week 2026", beat: "tech" },
-  { q: "cybersecurity major breach week 2026", beat: "tech" },
-  { q: "tech industry major development this week", beat: "tech" },
-  { q: "stock market this week 2026", beat: "finance" },
-  { q: "federal reserve interest rate decision this week", beat: "finance" },
-  { q: "bitcoin cryptocurrency markets this week", beat: "finance" },
-  { q: "geopolitics war conflict major event this week 2026", beat: "geopolitics" },
-  { q: "US China trade sanctions this week", beat: "geopolitics" },
-  { q: "Europe Middle East war conflict this week", beat: "geopolitics" },
+  { q: "OpenAI Google DeepMind Anthropic week 2026", beat: "tech" },
+  { q: "cybersecurity data breach ransomware week 2026", beat: "tech" },
+  { q: "Big Tech antitrust regulation week 2026", beat: "tech" },
+  { q: "semiconductor chip week 2026", beat: "tech" },
+  { q: "tech layoffs acquisition funding week 2026", beat: "tech" },
+  { q: "EU AI Act tech regulation Europe week 2026", beat: "tech" },
+  { q: "China tech week 2026", beat: "tech" },
+  // Finance -- Markets, Macro, Crypto
+  { q: "stock market S&P 500 Nasdaq week 2026", beat: "finance" },
+  { q: "Federal Reserve interest rate week 2026", beat: "finance" },
+  { q: "inflation CPI economic data week 2026", beat: "finance" },
+  { q: "bitcoin ethereum cryptocurrency price week 2026", beat: "finance" },
+  { q: "oil gold commodities markets week 2026", beat: "finance" },
+  { q: "banking crisis credit default week 2026", beat: "finance" },
+  { q: "ECB Bank of England interest rates week 2026", beat: "finance" },
+  { q: "JP Morgan Goldman Sachs Morgan Stanley week 2026", beat: "finance" },
+  { q: "Treasury bond yield curve week 2026", beat: "finance" },
+  { q: "forex dollar euro yen yuan week 2026", beat: "finance" },
+  // Geopolitics -- Major Powers
+  { q: "US China trade tariffs diplomacy week 2026", beat: "geopolitics" },
+  { q: "Russia Ukraine war week 2026", beat: "geopolitics" },
+  { q: "Middle East Iran Israel week 2026", beat: "geopolitics" },
+  { q: "NATO military alliance week 2026", beat: "geopolitics" },
+  { q: "G7 G20 summits diplomacy week 2026", beat: "geopolitics" },
+  { q: "South China Sea Taiwan tensions week 2026", beat: "geopolitics" },
+  // Geopolitics -- Europe
+  { q: "Germany France UK politics week 2026", beat: "geopolitics" },
+  { q: "European Union energy week 2026", beat: "geopolitics" },
+  // Geopolitics -- Asia
+  { q: "India Pakistan tensions week 2026", beat: "geopolitics" },
+  { q: "North Korea nuclear missile week 2026", beat: "geopolitics" },
+  { q: "Japan South Korea US alliance week 2026", beat: "geopolitics" },
+  // Geopolitics -- Americas / Africa / underreported
+  { q: "Latin America politics week 2026", beat: "geopolitics" },
+  { q: "Africa conflict democracy week 2026", beat: "geopolitics" },
+  { q: "underreported news week 2026", beat: "geopolitics" },
+  { q: "whistleblower surveillance week 2026", beat: "geopolitics" },
+  { q: "climate extreme weather economic impact week 2026", beat: "geopolitics" },
+  { q: "military spending weapons deal week 2026", beat: "geopolitics" },
+  { q: "sanctions oligarchs week 2026", beat: "geopolitics" },
+  { q: "disinformation propaganda election week 2026", beat: "geopolitics" },
 ];
 
 // ── Article quality filter -- run before scoring ──────────────────────────────
