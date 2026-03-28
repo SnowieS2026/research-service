@@ -236,6 +236,35 @@ Central bank decisions: exact rate, exact decision, exact change from prior meet
 
 ---
 
+## SEO TAGS -- include these in every newsletter
+
+After the footer line, add a commented metadata block like this:
+
+```
+<!--
+title: [exact headline title]
+description: [one compelling sentence, max 160 chars, that makes someone click]
+keywords: [comma-separated list of 8-12 specific keywords relevant to this edition]
+published: [today is fine]
+-->
+```
+
+Example:
+```
+<!--
+title: TriZetto Breach, Fed Hold, Bitcoin Week -- Prismal March 27
+description: The TriZetto breach exposes 3.4 million patients and a 16-month gap in healthcare cybersecurity accountability.
+keywords: TriZetto breach, healthcare data, Federal Reserve, Bitcoin, Iran ceasefire, ransomware, cybersecurity, market analysis
+published: 2026-03-27
+-->
+```
+
+The title should be: specific story name + date + Prismal. Max 60 chars.
+The description should hook the reader in one sentence. Max 160 chars.
+Keywords should match the actual stories in today's edition -- not generic.
+
+---
+
 ## HARD RULES
 
 1. **NO advertorials.** If the source is a known press-release farm, pay-to-play site, or affiliate content farm, skip it. Credible sources only.
