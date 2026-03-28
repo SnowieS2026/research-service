@@ -114,38 +114,67 @@ Activated when Infinitara says "flipping", "Vinted", "eBay", "marketplace" or si
 
 **Condition grades (standard):** Like New | Very Good | Good | Acceptable
 
-## Prismal Newsletter (2026-03-27)
+## Prismal Newsletter (2026-03-27+, active development)
 
-**Name:** Prismal — coined brand, 8 chars, tagline: *"Refracting signal from noise"*
+**Name:** Prismal -- coined brand, 8 chars, tagline: *"Refracting signal from noise"*
 
-**Platform:** BeeHiiv
-**Newsletter name:** Prismal
-**Topic:** Tech/Finance/Geopolitics
+**Format (LOCKED):** Newspaper-depth, 6 beats + signals. Inline HTML dashboard per platform (not textareas). Copy buttons for raw text/HTML.
+- Header: `⬡ Prismal ✍️ | Newsletter | Issue N`
+- Subheader: `Saturday, 28 March 2026 · Issue N · Tech | Finance | Geopolitics`
+- Sections: THE BIG STORY, TECH, FINANCE, GEOPOLITICS, WHAT TO WATCH, BY THE NUMBERS, SIGNALS FROM THE EDGE
+- Tags shown as plain text chips (no `#` prefix in display)
+- No emdashes in any output
 
-### BeeHiiv Credentials (stored in vector store + credentials file)
+**Platform:** BeeHiiv (primary), Substack (cross-post), X, X Thread, TikTok
+
+### BeeHiiv Credentials
 - **API Key:** `WfncsNDfviwghnWPHYpVP7x6wd1CMXOK4kSKWlKIPDEu97nUueWVQHsWuMyWxwKY`
-- **Publication ID v1:** `7e46fcb0-239b-4079-ada4-78bb13137de0`
-- **Publication ID v2:** `pub_7e46fcb0-239b-4079-ada4-78bb13137de0`
-- **Base URL:** `https://api.beehiiv.com/v2` (Bearer token auth)
+- **Publication ID:** `pub_7e46fcb0-239b-4079-ada4-78bb13137de0`
 - **Credentials file:** `C:\Users\bryan\.openclaw\workspace\credentials\beehiiving-platforms.json`
-- **Vector store:** indexed as `cred:beehiiv.json` in `agent_memory` collection (vector store count: 79)
 
-### BeeHiiv API Capabilities
-- Create/publish posts (`POST /posts`)
-- Manage subscribers (`GET/POST /subscribers`)
-- Automations + welcome sequences (triggers: signup, email_submission, form_submission, etc.)
-- Custom fields (`GET/POST /custom_fields`)
-- Analytics (`GET /publications/{id}/stats`)
-- Bulk subscriptions
-- Sponsorship opportunities
+### Pipeline Config (2026-03-28, locked for cron)
+- **Location:** `C:\Users\bryan\.openclaw\workspace\prismal-pipeline\`
+- **Model:** `glm-5:cloud` (deep research, 16k token output)
+- **Token limit:** `num_predict: 16000` in `src/writer.ts`
+- **Search queries:** 38 queries in `src/index.ts` `DAILY_QUERIES` -- all beats, all regions (US, EU, Asia, Middle East, Americas, Africa)
+- **Article content:** 1,500 chars per article (`formatArticle()` in `platform-formatters.ts`)
+- **Top story:** 3,000 chars (`formatTopStory()`)
+- **Signals:** 3-5 items, 4-6 sentences each, investigative depth (`agents/writer-agent.md`)
+- **Entry:** `node dist/index.js --date YYYY-MM-DD --issue N` (or `--mode daily`)
+- **Dashboard:** `node -e "const{generateDashboard}=require('./dist/dashboard.js');generateDashboard('reports/daily/YYYY-MM-DD.md','reports/distribution',N)"`
 
-### Organic Discoverability
-- Auto-updating sitemap at `{pub}.beehiiv.com/sitemap.xml`
-- Customizable post URLs, meta titles, meta descriptions
-- OpenGraph + Twitter card customization per post
-- robots.txt included
-- Register sitemap in Google Search Console + Bing Webmaster Tools
+### Issue 1 (2026-03-28) -- COMPLETE
+- Newsletter: `reports/daily/2026-03-28.md` -- all sections complete
+- Dashboard: `reports/distribution/dashboard-2026-03-28.html`
+- Platform outputs all within limits:
+  - Substack: 13,242 chars | BeeHiiv: 18,269 chars
+  - X single: 248/260 | X Thread: 15 tweets <=260 | TikTok: 182/220
+- `.issue-lock` file: create to advance to next issue
+
+### Key Fixes Applied (2026-03-28)
+1. **Token limit:** 4k was insufficient (caused mid-output truncation). Raised to 16k.
+2. **parseSignals():** Rewrote to parse `###` headings directly from raw markdown (was stripping markers via `extract()` helper). Also stops at SEO `<!--` block to prevent metadata bleed.
+3. **formatSubstack():** Full stories per section (was `slice(0, 2)`). Header now uses consistent format from dateIso + issueNumber.
+4. **formatXThread big story:** Word-boundary split at 230 chars (was sentence-based, failing on long unpunctuated paragraphs).
+5. **BeeHiiv signals:** Removed 200-char truncation -- full content renders.
+6. **No emdashes:** Permanent ban in all output.
+
+### Commits (2026-03-28)
+- `9378d89f`: Token limit 8k, X limit 260, X Thread word-boundary, Substack full stories
+- `28c61fc1`: parseSignals handles ### headings; big story word-boundary split; Signals in Substack/BeeHiiv
+- `d1ae7c4b`: Substack header format, Signals SEO bleed, BeeHiiv full Signals, date formatting
+
+### Running the Pipeline
+```bash
+cd C:\Users\bryan\.openclaw\workspace\prismal-pipeline
+# Daily run
+node dist/index.js --date 2026-03-28 --issue 1
+# Generate dashboard
+node -e "const{generateDashboard}=require('./dist/dashboard.js');generateDashboard('reports/daily/2026-03-28.md','reports/distribution',1)"
+# Advance to next issue
+echo 2 > reports/.issue-lock
+```
 
 ---
 
-_Last major update: 2026-03-27_
+_Last major update: 2026-03-28_
