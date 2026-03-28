@@ -50,6 +50,7 @@ Located at `C:\Users\bryan\AppData\Roaming\npm\node_modules\openclaw\skills\`. L
 | `research-service` | Full research pipeline: SearxNG → scrape → structured report | `skills/research-service/` |
 | `web-browser` | Fast web search + content extraction via SearxNG | `skills/web-browser/` |
 | `document-creator` | Create Word, Excel, PowerPoint, PDF from structured input | `skills/document-creator/` |
+| `image-generator` | Generate AI images via Stability AI SDXL | `skills/image-generator/` |
 
 ---
 
@@ -114,6 +115,7 @@ docker run -d --name searxng -p 8080:8080 -v searxng:/etc/searxng --restart unle
 | `python-pptx` | PowerPoint creation |
 | `reportlab` | PDF generation |
 | `markdown-it-py` | Markdown parsing |
+| `stability-sdk` | Stability AI image generation |
 | `selenium` | Legacy browser automation |
 | `sqlmap` | SQL injection detection |
 | `pwntools` | CTF/exploit dev |
