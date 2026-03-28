@@ -57,14 +57,50 @@ export function parseNewsletter(md: string, issueNumber: number = 1): Newsletter
   }
 
   function parseSignals(rawMd: string): { title: string; content: string }[] {
-    const section = extract(rawMd, /^## SIGNALS FROM THE EDGE$/mi, /^---$/m);
+    // Don't use extract() -- it strips ### markers. Work on raw lines from the
+    // raw markdown so we can detect title lines vs content lines.
+    const rawLines = rawMd.split("\n");
+    let inSignals = false;
     const signals: { title: string; content: string }[] = [];
-    const parts = section.split(/\*\*([^*]+)\*\*/).filter(Boolean);
-    for (let i = 1; i < parts.length; i += 2) {
-      const title = parts[i]?.trim() || "";
-      const content = parts[i + 1]?.replace(/\*$/, "").trim() || "";
-      if (title) signals.push({ title, content });
+    let currentTitle = "";
+    const contentLines: string[] = [];
+
+    for (const line of rawLines) {
+      if (/^## SIGNALS FROM THE EDGE$/mi.test(line)) { inSignals = true; continue; }
+      if (inSignals && /^---/.test(line)) break; // end of section
+      if (!inSignals) continue;
+
+      const trimmed = line.trim();
+
+      // A title line: non-blank, starts without markdown list chars or common prefixes
+      // In the raw md, titles are ### lines
+      if (trimmed.startsWith("### ")) {
+        // Save previous signal if we have one
+        if (currentTitle && contentLines.length > 0) {
+          signals.push({
+            title: currentTitle.replace(/^#{1,6}\s+/, "").replace(/\*\*/g, "").trim(),
+            content: contentLines.join(" ").replace(/\*\*/g, "").replace(/\*/g, "").trim(),
+          });
+        }
+        currentTitle = trimmed;
+        contentLines.length = 0;
+      } else if (trimmed && !trimmed.startsWith("#")) {
+        // Content line
+        contentLines.push(trimmed);
+      } else if (trimmed === "") {
+        // Blank line -- could be separating title from content or between signals
+        // Just skip it; contentLines handles multi-line paragraphs
+      }
     }
+
+    // Save last signal
+    if (currentTitle && contentLines.length > 0) {
+      signals.push({
+        title: currentTitle.replace(/^#{1,6}\s+/, "").replace(/\*\*/g, "").trim(),
+        content: contentLines.join(" ").replace(/\*\*/g, "").replace(/\*/g, "").trim(),
+      });
+    }
+
     return signals;
   }
 

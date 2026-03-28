@@ -215,15 +215,25 @@ export function formatXThread(data: NewsletterData): PlatformOutput {
     data.subscribeUrl
   );
 
-  // Big story (may split) -- build text up to ~470 chars so the second chunk
-  // (which gets a ~23-char prefix) stays within the 260-char limit
+  // Big story (may split) -- always split by word at ~230 chars because big story
+  // content can run hundreds of characters without sentence punctuation.
+  // Target each chunk at ~230 chars so even with a ~23-char "BIG STORY (N/N)\n\n" prefix
+  // the total stays within 260.
   const bigWords = data.bigStory.replace(/\s+/g, " ").trim().split(" ");
-  let bigText = "";
+  const bigChunks: string[] = [];
+  let current = "";
   for (const word of bigWords) {
-    if ((bigText + " " + word).length > 465) break;
-    bigText += (bigText ? " " : "") + word;
+    if ((current + " " + word).trim().length > 230 && current) {
+      bigChunks.push(current.trim());
+      current = word;
+    } else {
+      current = (current + " " + word).trim();
+    }
   }
-  splitText(bigText, "THE BIG STORY").forEach(c => threadLines.push(c));
+  if (current.trim()) bigChunks.push(current.trim());
+  bigChunks.forEach((chunk, i) => {
+    threadLines.push("THE BIG STORY (" + (i + 1) + "/" + bigChunks.length + ")\n\n" + chunk);
+  });
 
   // Tech, Finance, Geopolitics highlights
   const techText = data.techStories.slice(0, 2).map(s => "\u2022 " + s.title).join("\n");
