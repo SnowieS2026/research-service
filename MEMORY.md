@@ -56,7 +56,7 @@ _This is my curated memory. Updated regularly from daily logs._
 
 ## Tools & Setup
 - **SearxNG:** `http://localhost:8080` — start with `docker run --name searxng -p 8080:8080 searxng/searxng:latest`
-- **Vehicle OSINT:** `vehicle-osint.py` + `vehicle-osint.exe` — Python/PyInstaller, DVLA + car-checking.com + NHTSA
+- **Vehicle OSINT:** Full pipeline at `bounty-passive-pipeline/`. Python CLI: `python vehicle-osint.py [PLATE]`. Report: `reports/osint/YYYY-MM-DD/vehicle-PLATE-full.md` (14-section emoji format). Sources: car-checking.com (Cloudflare-blocked in headless, use OpenClaw browser fallback), gov.uk DVLA (cloudscraper + Playwright anti-detect), check-mot-history.co.uk (cloudscraper, full 18-entry MOT timeline), data.gov.uk MOT API (free JSON). Skill: `skills/vehicle-osint/SKILL.md`. TypeScript collectors in `src/osint/collectors/VehicleCollector.ts`.
 - **EditThisCookie:** Used to export HackerOne cookies for session capture
 
 ## Ollama Model Assignments (permanent, from 2026-03-26)
@@ -82,6 +82,13 @@ Override syntax: `model=<model-id>` e.g. `model=qwen3-coder-next:cloud`
 - **Playwright on Windows:** Use `executablePath` for system Chrome; pkg snapshot corrupts Chromium.
 - **gau:** Requires `--providers wayback,commoncrawl,otx,urlscan` flag — default fails silently.
 - **nuclei json-export:** Creates output file only on exit 0 (no matches = no file, not an error).
+
+## Active Skills (workspace-managed)
+| Skill | What it does |
+|-------|-------------|
+| `vehicle-osint` | UK vehicle OSINT pipeline -- 14-section report from DVLA, MOT history, valuations, risk analysis. Entry: `python vehicle-osint.py [PLATE]`. |
+| `research-service` | Full research pipeline: SearxNG search -> scrape -> structured report |
+| `web-browser` | Fast web search + content extraction via SearxNG |
 
 ## Lessons Learned
 - WAF is the #1 blocker for automated bounty scanning

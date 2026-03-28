@@ -44,7 +44,6 @@ async function ingestDiscovery() {
 }
 
 async function ingestBrowser() {
-  // Ingest snapshot files as-is
   const snapDir = path.join(PIPELINE_ROOT, 'logs', 'snapshots');
   if (!fs.existsSync(snapDir)) return;
 
@@ -53,8 +52,6 @@ async function ingestBrowser() {
     try {
       const raw = fs.readFileSync(path.join(snapDir, file), 'utf8');
       const data = JSON.parse(raw);
-
-      // Extract meaningful text from snapshot
       const content = JSON.stringify(data).slice(0, 8000);
       const id = `snapshot:${file.replace(/\.json$/, '')}`;
 
@@ -83,7 +80,7 @@ async function ingestScanner() {
     try {
       const raw = fs.readFileSync(path.join(scanDir, file), 'utf8');
       const data: ScanResult = JSON.parse(raw);
-      const tool = file.replace('-result\.json$/, '');
+      const tool = file.replace(/[\/\\]-result\.json$/, '').replace('.json', '');
 
       const findingCount = data.findings?.length ?? 0;
       const summary = data.summary ?? {};
@@ -116,7 +113,7 @@ async function ingestReports() {
 
   const dirs = fs.readdirSync(reportsDir).filter(d => d.match(/^\d{4}-\d{2}-\d{2}$/));
 
-  for (const dir of dirs.slice(-7)) { // last 7 days only
+  for (const dir of dirs.slice(-7)) {
     const reportFiles = fs.readdirSync(path.join(reportsDir, dir)).filter(f => f.endsWith('.md'));
     for (const file of reportFiles) {
       try {
