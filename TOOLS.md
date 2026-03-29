@@ -51,6 +51,15 @@ Located at `C:\Users\bryan\AppData\Roaming\npm\node_modules\openclaw\skills\`. L
 | `searxng-research` | Fast multi-engine research via local SearxNG (60+ engines), parallel search, deep research scripts. Entry: `python skills/searxng-research/scripts/search.py "query" [-n 5]` or `research.py "topic" [--depth deep]` | `skills/searxng-research/` |
 | `document-creator` | Create Word, Excel, PowerPoint, PDF from structured input | `skills/document-creator/` |
 | `image-generator` | Generate AI images via Stability AI SDXL | `skills/image-generator/` |
+| `osint-toolkit` | Unified OSINT wrapper: Maigret, Sherlock, Holehe, SpiderFoot, EXIF, reverse image, phone lookup. Entry: `python tools/osint-toolkit.py <command>` | `skills/osint-toolkit/` |
+| `maigret` | Username OSINT across 300+ sites. Entry: `python -m maigret <username>` | `skills/maigret/` |
+| `holehe` | Email OSINT: reverse lookup across 160+ services. Entry: `python -m holehe <email>` | `skills/holehe/` |
+| `sherlock` | Username OSINT (classic). Entry: `python -m sherlock_project.sherlock <username>` | `skills/sherlock/` |
+| `spiderfoot` | Full OSINT automation framework (200+ modules). Entry: `python tools/spiderfoot/sf.py -t <target>` | `skills/spiderfoot/` |
+| `exif-analysis` | Image metadata extraction and edit detection (ELA). Entry: `python tools/osint-toolkit.py image-meta <path>` | `skills/exif-analysis/` |
+| `reverse-image` | Reverse image search: Yandex, PimEyes, Google Lens. Entry: `python tools/osint-toolkit.py reverse-image <path>` | `skills/reverse-image/` |
+| `phone-osint` | Phone number lookup: Spydialer, Truecaller, Numverify. Entry: `python tools/osint-toolkit.py phone <number>` | `skills/phone-osint/` |
+| `social-media-osint` | Social media analysis: Social Blade, Pushshift, Reddit, WhatsMyName, Hunter.io. Entry: `python tools/osint-toolkit.py socialblade <user>` | `skills/social-media-osint/` |
 
 ---
 
