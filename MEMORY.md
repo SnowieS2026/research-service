@@ -60,6 +60,7 @@ _This is my curated memory. Updated regularly from daily logs._
 - **EditThisCookie:** Used to export HackerOne cookies for session capture
 - **Document Creation:** Local Python tools for Word, Excel, PowerPoint, PDF. Skill: `skills/document-creator/SKILL.md`. Tools: `tools/docx_create.py`, `tools/xlsx_create.py`, `tools/pptx_create.py`, `tools/pdf_create.py`, `tools/md_to_docx.py`, `tools/md_to_pdf.py`. Dependencies: `python-docx`, `openpyxl`, `python-pptx`, `reportlab`, `markdown-it-py`.
 - **Image Generation:** Stability AI SDXL via REST API. Skill: `skills/image-generator/SKILL.md`. Tool: `tools/img_generate.py`. API key in `credentials/stability-ai.json`. 25 free credits. Generates: book covers, thumbnails, product images, banners. Dimensions auto-snapped to SDXL-allowed sizes.
+- **OSINT Toolkit:** Unified wrapper at `tools/osint-toolkit.py` — all free tools, no API keys required. Wraps: maigret, holehe, sherlock, spiderfoot, exifread. Web-based launchers: Yandex Images, PimEyes, Google Lens, Jeffrey's Exif, Hunter.io, Social Blade, Pushshift/Reddit, Spydialer, Truecaller, WhatsMyName. Entry: `python tools/osint-toolkit.py <command> [args]`. Full list: `python tools/osint-toolkit.py --help`. Sherlock at `tools/sherlock/`, SpiderFoot at `tools/spiderfoot/`.
 
 ## Ollama Model Assignments (permanent, from 2026-03-26)
 **Cloud models only** (Ollama Connect, `:cloud` suffix). No local models registered — those run directly via `ollama list` when needed. Config: `C:\openclaw-local\openclaw.json`. Primary = minimax-m2.7:cloud.
@@ -93,6 +94,7 @@ Override syntax: `model=<model-id>` e.g. `model=qwen3-coder-next:cloud`
 | `image-generator` | Generate AI images via Stability AI SDXL. Entry: `python tools/img_generate.py --prompt "..." --output image.png`. |
 | `research-service` | Full research pipeline: SearxNG search -> scrape -> structured report |
 | `web-browser` | Fast web search + content extraction via SearxNG |
+| `osint-toolkit` | Unified OSINT: username (Maigret/Sherlock/Holehe), email discovery, image metadata (EXIF/ELA), reverse image, phone lookup, Hunter.io, Social Blade. Entry: `python tools/osint-toolkit.py <command> [args]`. No API keys needed. |
 
 ## Lessons Learned
 - WAF is the #1 blocker for automated bounty scanning
@@ -166,6 +168,14 @@ Activated when Infinitara says "flipping", "Vinted", "eBay", "marketplace" or si
   - X single: 248/260 | X Thread: 15 tweets <=260 | TikTok: 182/220
 - `.issue-lock` file: create to advance to next issue
 
+### Issue 2 (2026-03-29) -- COMPLETE (published manually)
+- Distribution files all present: `substack-2026-03-29.txt`, `beehiiv-2026-03-29.html`, `x-2026-03-29.txt`, `x-thread-2026-03-29.txt`, `tiktok-2026-03-29.txt`
+- `.issue-lock` manually set to 2 before this run
+- Ran manually by Infinitara ~2hr before this session (2026-03-29 ~01:36)
+
+### Issue 3 -- NEXT RUN
+- `.issue-lock` set to 2 (advances automatically via cron or manual run)
+
 ### Key Fixes Applied (2026-03-28)
 1. **Token limit:** 4k was insufficient (caused mid-output truncation). Raised to 16k.
 2. **parseSignals():** Rewrote to parse `###` headings directly from raw markdown (was stripping markers via `extract()` helper). Also stops at SEO `<!--` block to prevent metadata bleed.
@@ -192,4 +202,78 @@ echo 2 > reports/.issue-lock
 
 ---
 
-_Last major update: 2026-03-28_
+## Flip Finder (2026-03-29 -- ACTIVE)
+
+**Location:** `C:\Users\bryan\.openclaw\workspace\flip-finder\`
+
+**Sources:** Gumtree (primary, working via Playwright+system Chrome `channel='chrome'`) | Preloved (secondary, Scottish listings only) | Freegle (dead/DNS blocked)
+
+**Coverage:** Perth, Kirkcaldy, Dundee, St Andrews via Gumtree `/for-sale/{location}/{category}` pages. Preloved adds Scottish-only listings via postcode/town filter.
+
+**Cron:** `flip-finder-daily` — `0 8,12,16,20 * * *` (8am/12pm/4pm/8pm GMT) via isolated `nemotron-3-nano:30b-cloud` agent. Reports to Telegram 851533398 with top flippable items + spreadsheet path.
+
+**Stack:** TypeScript, Playwright (system Chrome `channel='chrome'`), SQLite (better-sqlite3), xlsx
+
+**Commands:**
+```bash
+cd C:\Users\bryan\.openclaw\workspace\flip-finder
+node dist/index.js scrape   # scrape all sources
+node dist/index.js status   # show top listings
+node dist/index.js export  # export to Excel
+```
+
+**Assessor:** Keyword-based scoring across 13 categories: electronics, tools, sports, furniture, collectibles, appliances, auto, home, toys, console_games, clothing, equestrian, pet_livestock. Price boost for free/cheap items. `flipScore >= 60` = flippable. `>= 75` = top pick (green in spreadsheet).
+
+**DB:** `flip-finder/data/listings.db` — SQLite WAL mode, dedup by URL, upsert on re-scrape.
+
+**Known issues:** Gumtree `/search?location=...` URL 404s — must use `/for-sale/{location}/{category}` format. Edinburgh listings from Gumtree Perth location page — filtered via Scottish postcode/town list (PH/KY/DD + Scottish towns).
+
+_Last major update: 2026-03-29 02:37_
+
+---
+
+## Geopolitical Investigation (2026-03-28/29 -- COMPLETE)
+
+**All research outputs:** `geopolitics/research/`
+**Vector store:** 626 docs in `pipeline_findings` collection (Chroma at localhost:8000)
+
+### Reports Written (20 total)
+
+**UK Political POI Reports:**
+- SADIQ-KHAN-POI-report.md — No offshore/shell companies; Harris Bokhari (anti-Ahmadiyya sectarian) flagged; MCB engagement during 2009-2021 ban
+- HUMZA-YOUSAF-POI-report.md — Father Mohammad Sarwar was Punjab Governor under BOTH PML-N and PTI; £512K Alex Salmond settlement (not £430M+)
+- ANAS-SARWAR-POI-report.md — Brother Athif (Atif) Sarwar convicted £850K MTIC fraud, acquitted 2011; Anas transferred 25% business to trust 2017; Hutchesons' Grammar overlap with Yousaf
+- WAYNE-COUPENS-report.md — Correct name: Couzens (Sarah Everard murderer 2021), Met firearms officer, 20-year pattern of offending
+- ALEX-SALMOND-SETTLEMENT-report.md — £512,250 settlement, Court of Session ruled Scottish Govt investigation unlawful
+- ASIM-SARWAR-FRAUD-report.md — Correct brother name: Athif/Atif, not Asim; £850K MTIC carousel fraud; father abandoned UK citizenship
+- QATAR-UK-MOSQUE-FUNDING-report.md — Important: Qatar is NOT primary UK mosque funder; Saudi Arabia is (King Fahd £1.1M East London Mosque 1980s)
+- MUSLIM-IMPACT-FORUM-report.md — MIF GROUP LTD company 16076107 incorporated Nov 2024; Yousaf keynote speaker (not employee); no charity registration
+- UK-SECRETS-report.md — Brian Nelson (UDA/FRU agent), Kincora Boys Home, MI5 vs Wilson, Matrix Churchill, security force/UVF collusion
+
+**Regional Secrets:**
+- AMERICAS-SECRETS, EUROPE-SECRETS, MIDEAST-AFRICA-SECRETS, ASIA-SECRETS, UK-SECRETS
+
+**Global Islamic Infrastructure (2026-03-29):**
+- SAUDI-GLOBAL-ISLAMIC-INFRASTRUCTURE-report.md (51KB) — MWL, IIRO, Al Haramain, £1.1M East London Mosque, £2M London Central Mosque, 1,500+ mosques, Al-Yamamah arms
+- IRAN-GLOBAL-ISLAMIC-INFRASTRUCTURE-report.md (23KB) — Quds Force $3B+ budget, $1B to Hezbollah in 10 months (2025), FinCEN $9B shadow banking, Mykonos assassinations, Albania MEK ops, Houthis weapons, Iraqi militias, UAE sanctions hub
+- MUSLIM-BROTHERHOOD-GLOBAL-report.md (55KB) — Founded 1928 Egypt; MCB/MAB/ISB UK affiliates; Hamas=Brotherhood's Palestinian arm; Qatar/Qaradawi soft power; Waqf/Zakat financing; Saudi 2014 terrorist designation
+- ISLAMIC-CHARITY-DAWAH-NETWORK-report.md (20KB) — IIRO (al-Qaeda financing), Al Haramain (designated/dissolved), Islamic Relief (UK HQ, Qatar Charity links), Tablighi Jamaat (banned by Saudi 2021), Deobandi UK network, Salafi literature distribution
+- TURKEY-PAKISTAN-GLOBAL-ISLAMIC-NETWORKS-report.md (20KB) — Diyanet (2,000+ mosques/132 countries), DITIB Germany 900+ mosques (intelligence concerns), ICMG/Milli Gorus UK, Grey Wolves UK, ISI/Taliban/Haqqani/LeT, Hutchesons' Grammar overlap (Yousaf AND Sarwar both attended)
+
+### Key Corrections
+- Qatar is NOT primary UK mosque funder — Saudi Arabia is
+- Athif Sarwar is the correct brother name (not Asim)
+- Alex Salmond settlement = £512K not £430M+
+- Wayne Couzens = correct spelling (Sarah Everard murderer)
+- Muslim Impact Forum = MIF GROUP LTD, Yousaf keynote speaker not employee
+- Tablighi Jamaat is Deobandi-derived, NOT Saudi-funded (banned by Saudi 2021)
+- Islamic Relief Worldwide is UK-registered (not Saudi)
+- Hutchesons' Grammar overlap = sociological elite formation not ideological pipeline
+
+### SearxNG Skill (2026-03-29)
+Built comprehensive skill at `skills/searxng-research/` with 4 scripts (search.py, fetch.py, multi.py, research.py). Running on local SearxNG Docker at localhost:8080. Already surfacing new intel that subagents missed (Labour donor £3.5M in Khan contracts, hate cleric donation).
+
+### Hutchesons' Grammar Key Question
+Both Humza Yousaf and Anas Sarwar attended Hutchesons' Grammar School Glasgow. This private school (feeder to top universities) may represent a Pakistani-Scottish elite formation pipeline. No religious or Saudi connection — mainstream Scottish independent school. Both families are Pakistani-Scottish business families. The connection is sociological, not financial.
+
+_Last major update: 2026-03-29 02:37_

@@ -1,6 +1,6 @@
 # TOOLS.md — Complete Inventory
 
-_Last updated: 2026-03-28_
+_Last updated: 2026-03-29_
 
 ---
 
@@ -48,7 +48,7 @@ Located at `C:\Users\bryan\AppData\Roaming\npm\node_modules\openclaw\skills\`. L
 |-------|-------------|----------|
 | `vehicle-osint` | UK vehicle OSINT reports -- 14-section format | `skills/vehicle-osint/` |
 | `research-service` | Full research pipeline: SearxNG → scrape → structured report | `skills/research-service/` |
-| `web-browser` | Fast web search + content extraction via SearxNG | `skills/web-browser/` |
+| `searxng-research` | Fast multi-engine research via local SearxNG (60+ engines), parallel search, deep research scripts. Entry: `python skills/searxng-research/scripts/search.py "query" [-n 5]` or `research.py "topic" [--depth deep]` | `skills/searxng-research/` |
 | `document-creator` | Create Word, Excel, PowerPoint, PDF from structured input | `skills/document-creator/` |
 | `image-generator` | Generate AI images via Stability AI SDXL | `skills/image-generator/` |
 
@@ -286,6 +286,49 @@ python C:\Users\bryan\.openclaw\workspace\tools\research-tool\research.py \
 
 **Tiers:** `kickstart` / `standard` / `deep`
 
+### Unified OSINT Toolkit (all free, no API keys)
+**Location:** `C:\Users\bryan\.openclaw\workspace\tools\osint-toolkit.py`
+
+**Entry:** `python osint-toolkit.py <command> [args]`
+
+**Commands:**
+```
+python osint-toolkit.py username <user>       # Maigret + Sherlock + Holehe
+python osint-toolkit.py email <addr>         # Holehe reverse email lookup
+python osint-toolkit.py image-meta <path>     # EXIF via exifread
+python osint-toolkit.py image-ela <path>     # ELA (edit detection via PIL)
+python osint-toolkit.py phone <number>       # Spydialer + Numverify
+python osint-toolkit.py email-hunter <domain> # Hunter.io free search
+python osint-toolkit.py reddit <user>         # Pushshift + Reddit archive
+python osint-toolkit.py socialblade <user>    # Social Blade stats (TW/YT/IG/TT)
+python osint-toolkit.py reverse-image <path>  # Yandex + PimEyes + Google Lens
+python osint-toolkit.py exif-viewer <path>   # Jeffrey's EXIF Viewer
+python osint-toolkit.py truecaller <number>   # Truecaller web
+python osint-toolkit.py whatsmyname <user>    # WhatsMyName 400+ sites
+python osint-toolkit.py all <target>          # Run all applicable tools
+```
+
+**CLI tools installed:** `maigret`, `holehe`, `sherlock` (sherlock-project), `spiderfoot`
+**Web tools opened in browser:** Yandex Images, PimEyes, Google Lens, Jeffrey's Exif, Hunter.io, Social Blade, Pushshift/Reddit, Spydialer, Truecaller, WhatsMyName
+
+### Individual OSINT Tools
+
+| Tool | Purpose | Location |
+|------|---------|----------|
+| `maigret` | Username OSINT, 300+ sites | pip installed |
+| `holehe` | Email-to-account discovery, 160+ sites | pip installed |
+| `sherlock` | Username OSINT, alternate scanner | `tools/sherlock/` |
+| `spiderfoot` | Full OSINT automation framework | `tools/spiderfoot/` |
+| `exifread` | EXIF metadata extraction | pip installed |
+| `Yandex Images` | Reverse image search (best for faces) | browser |
+| `Jeffrey's Exif Viewer` | Browser-based EXIF | browser |
+| `Hunter.io` | Free email discovery | browser |
+| `Social Blade` | Social media stats | browser |
+| `Pushshift` | Historical Reddit data | browser |
+| `Spydialer` | Free phone lookup | browser |
+| `WhatsMyName` | Username across 400+ sites | browser |
+| `Truecaller` | Phone ID lookup | browser |
+
 ### Username OSINT
 `sherlock`, `maigret`, `holehe` — username enumeration across platforms
 
@@ -323,4 +366,4 @@ python C:\Users\bryan\.openclaw\workspace\tools\research-tool\research.py \
 
 ---
 
-_Last updated: 2026-03-28_
+_Last updated: 2026-03-29_
