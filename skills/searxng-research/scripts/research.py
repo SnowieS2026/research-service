@@ -16,7 +16,7 @@ import re
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from search import search
+from search import search, _get_working_engines
 from fetch import fetch
 
 DEPTH_CONFIG = {
@@ -80,8 +80,10 @@ def run_research(topic: str, depth: str = "standard", queries_override: list = N
 
     for round_idx, qlist in enumerate(query_lists):
         print(f"  Round {round_idx+1}: {len(qlist)} queries...", file=sys.stderr)
+        # Rotate engines per round to avoid hammering same engines
+        round_engines = _get_working_engines(max_engines=5)
         with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
-            futures = {ex.submit(search, q, count=8): q for q in qlist}
+            futures = {ex.submit(search, q, count=8, engines=round_engines): q for q in qlist}
             for future in concurrent.futures.as_completed(futures):
                 try:
                     result = future.result()

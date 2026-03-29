@@ -13,14 +13,16 @@ import os
 
 # Add parent dir to path for import
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from search import search
+from search import search, _get_working_engines, _is_engine_available, _mark_engine_failed
 
 DEFAULT_COUNT = 8
 MAX_WORKERS = 10
 
 
 def run_search(q: str, count: int) -> dict:
-    return search(q, count=count)
+    # Rotate: pick different random engine subsets for each query to spread load
+    engines = _get_working_engines(max_engines=5)
+    return search(q, count=count, engines=engines)
 
 
 def main():
