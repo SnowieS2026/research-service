@@ -66,7 +66,7 @@ export function parseNewsletter(md: string, issueNumber: number = 1): Newsletter
     const contentLines: string[] = [];
 
     for (const line of rawLines) {
-      if (/^## SIGNALS FROM THE EDGE$/mi.test(line)) { inSignals = true; continue; }
+      if (/^## SIGNALS FROM THE EDGE/i.test(line)) { inSignals = true; continue; }
       if (!inSignals) continue;
 
       const trimmed = line.trim();
@@ -114,18 +114,18 @@ export function parseNewsletter(md: string, issueNumber: number = 1): Newsletter
   }
 
   // Headline: from THE BIG STORY ### heading, or first sentence of hook
-  const bigStorySection = extract(md, /^## THE BIG STORY$/mi, /^## (TECH|FINANCE|GEOPOLITICS)/mi);
+  const bigStorySection = extract(md, /^##.*BIG STORY/mi, /^## (?:TECH|FINANCE|GEOPOLITICS)/mi);
   const bigStoryHeadline = (bigStorySection.match(/^###\s+(.+)/m)?.[1] || "").replace(/\*\*/g, "").trim();
   const hook = extractHook(md);
   const hookFirstSentence = (hook.match(/^[^.!?]+[.!?]/) || [hook])[0].trim();
   const headline = bigStoryHeadline || hookFirstSentence.replace(/^#+\s*/, "").slice(0, 120);
   const bigStory = bigStorySection.replace(/^###\s+.+\n?/, "").trim() || hook;
 
-  const techStories = parseStories(md, /^## TECH$/mi, /^## (FINANCE|GEOPOLITICS|WHAT TO WATCH)/mi);
-  const financeStories = parseStories(md, /^## FINANCE$/mi, /^## (GEOPOLITICS|WHAT TO WATCH|BY THE NUMBERS)/mi);
-  const geopoliticsStories = parseStories(md, /^## GEOPOLITICS$/mi, /^## (WHAT TO WATCH|BY THE NUMBERS)/mi);
-  const whatToWatch = parseBullets(md, /^## WHAT TO WATCH$/mi, /^## /mi);
-  const byTheNumbers = parseBullets(md, /^## BY THE NUMBERS$/mi, /^## |^---$/mi);
+  const techStories = parseStories(md, /^## TECH\b/mi, /^## (?:FINANCE|GEOPOLITICS|WHAT TO WATCH)/mi);
+  const financeStories = parseStories(md, /^## FINANCE\b/mi, /^## (?:GEOPOLITICS|WHAT TO WATCH|BY THE NUMBERS)/mi);
+  const geopoliticsStories = parseStories(md, /^## GEOPOLITICS\b/mi, /^## (?:WHAT TO WATCH|BY THE NUMBERS)/mi);
+  const whatToWatch = parseBullets(md, /^## WHAT TO WATCH/mi, /^## /mi);
+  const byTheNumbers = parseBullets(md, /^## BY THE NUMBERS\b/mi, /^## |^---$/mi);
   const signalsFromTheEdge = parseSignals(md);
 
   return {
